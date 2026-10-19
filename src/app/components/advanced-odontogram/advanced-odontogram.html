@@ -1,0 +1,519 @@
+<div class="odontogram-wrapper bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl p-4 sm:p-6 shadow-sm">
+  
+  <!-- TOP TOOLBAR: Controls & Numbering System -->
+  <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-neutral-200 dark:border-neutral-800">
+    
+    <!-- Title & System Switcher -->
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+        <span class="material-icons text-xl">grid_view</span>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-neutral-950 dark:text-white flex items-center gap-2">
+          <span>{{ 'odontogramTitle' | translate }}</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 font-mono">{{ 'permanent32' | translate }}</span>
+        </h3>
+        <p class="text-xs text-neutral-500">{{ 'odontogramSubtitle' | translate }}</p>
+      </div>
+    </div>
+
+    <!-- Numbering Switcher & Actions -->
+    <div class="flex items-center gap-2">
+      <div class="inline-flex rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 p-0.5 text-xs font-semibold">
+        <button 
+          type="button" 
+          (click)="numberingSystem.set('fdi')"
+          [class.bg-white]="numberingSystem() === 'fdi'"
+          [class.dark:bg-neutral-900]="numberingSystem() === 'fdi'"
+          [class.text-neutral-950]="numberingSystem() === 'fdi'"
+          [class.dark:text-white]="numberingSystem() === 'fdi'"
+          [class.shadow-xs]="numberingSystem() === 'fdi'"
+          class="px-2.5 py-1 rounded-md transition-all text-neutral-600 dark:text-neutral-400">
+          FDI (11-48)
+        </button>
+        <button 
+          type="button" 
+          (click)="numberingSystem.set('universal')"
+          [class.bg-white]="numberingSystem() === 'universal'"
+          [class.dark:bg-neutral-900]="numberingSystem() === 'universal'"
+          [class.text-neutral-950]="numberingSystem() === 'universal'"
+          [class.dark:text-white]="numberingSystem() === 'universal'"
+          [class.shadow-xs]="numberingSystem() === 'universal'"
+          class="px-2.5 py-1 rounded-md transition-all text-neutral-600 dark:text-neutral-400">
+          USA (1-32)
+        </button>
+        <button 
+          type="button" 
+          (click)="numberingSystem.set('palmer')"
+          [class.bg-white]="numberingSystem() === 'palmer'"
+          [class.dark:bg-neutral-900]="numberingSystem() === 'palmer'"
+          [class.text-neutral-950]="numberingSystem() === 'palmer'"
+          [class.dark:text-white]="numberingSystem() === 'palmer'"
+          [class.shadow-xs]="numberingSystem() === 'palmer'"
+          class="px-2.5 py-1 rounded-md transition-all text-neutral-600 dark:text-neutral-400">
+          Palmer (1-8)
+        </button>
+      </div>
+
+      @if (!readOnly()) {
+        <button 
+          type="button" 
+          (click)="resetAllToHealthy()"
+          class="px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs text-neutral-600 dark:text-neutral-400 flex items-center gap-1 transition-all"
+          [attr.title]="'btnResetAll' | translate">
+          <span class="material-icons text-xs">restart_alt</span>
+          <span>{{ 'btnResetAll' | translate }}</span>
+        </button>
+      }
+    </div>
+
+  </div>
+
+  <!-- CLINICAL PALETTE (If interactive mode) -->
+  @if (!readOnly()) {
+    <div class="py-3 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="flex items-center justify-between gap-2 mb-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-neutral-500">{{ 'activeToolLabel' | translate }} :</span>
+        <span class="text-xs text-neutral-400">{{ 'clickSurfaceHint' | translate }}</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        @for (tool of conditionTools; track tool.id) {
+          <button 
+            type="button" 
+            (click)="selectedActiveCondition.set(tool.id)"
+            [class]="selectedActiveCondition() === tool.id 
+              ? 'ring-2 ring-offset-2 ring-neutral-950 dark:ring-white dark:ring-offset-neutral-900 font-bold shadow-xs' 
+              : 'opacity-80 hover:opacity-100 border border-neutral-200 dark:border-neutral-700'"
+            class="px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 transition-all bg-neutral-50 dark:bg-neutral-800/80 text-neutral-900 dark:text-white">
+            <span class="w-2.5 h-2.5 rounded-full" [style.background-color]="tool.color"></span>
+            <span>{{ tool.label }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- MAIN ODONTOGRAM DENTAL ARCH GRID -->
+  <div class="py-6 overflow-x-auto">
+    <div class="min-w-[700px] flex flex-col gap-6">
+
+      <!-- UPPER ARCH: Quadrant 1 (Right) | Quadrant 2 (Left) -->
+      <div class="space-y-1">
+        <div class="flex items-center justify-between px-2 text-[11px] font-bold uppercase tracking-wider text-neutral-400 border-b border-dashed border-neutral-200 dark:border-neutral-800 pb-1">
+          <span>{{ 'quadrantRightUpper' | translate }}</span>
+          <span class="text-neutral-500 font-mono text-xs">{{ 'upperArchTitle' | translate }}</span>
+          <span>{{ 'quadrantLeftUpper' | translate }}</span>
+        </div>
+
+        <div class="grid grid-cols-16 gap-1 pt-2">
+          <!-- Q1: 18 -> 11 -->
+          @for (tooth of upperRightTeeth(); track tooth.fdi) {
+            <button 
+              type="button"
+              class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
+              [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
+              [class.border-emerald-500]="selectedFdi() === tooth.fdi"
+              [class.border-transparent]="selectedFdi() !== tooth.fdi"
+              [class.hover:bg-neutral-100]="selectedFdi() !== tooth.fdi"
+              [class.dark:hover:bg-neutral-800]="selectedFdi() !== tooth.fdi"
+              (click)="selectTooth(tooth.fdi)"
+              (mouseenter)="hoverTooth.set(tooth)"
+              (mouseleave)="hoverTooth.set(null)">
+              
+              <!-- Tooth Number -->
+              <span class="text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300">
+                {{ getToothNumber(tooth) }}
+              </span>
+
+              <!-- SVG Multi-Surface Tooth Graphic -->
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+                <!-- Outer Vestibular (Top) -->
+                <polygon 
+                  points="2,2 38,2 30,10 10,10" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Lingual / Palatal (Bottom) -->
+                <polygon 
+                  points="10,30 30,30 38,38 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Mesial (Inward, right for Q1) -->
+                <polygon 
+                  points="30,10 38,2 38,38 30,30" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Distal (Outward, left for Q1) -->
+                <polygon 
+                  points="2,2 10,10 10,30 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Center Occlusal -->
+                <rect 
+                  x="10" y="10" width="20" height="20" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Missing Cross indicator -->
+                @if (tooth.overallCondition === 'missing') {
+                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                }
+              </svg>
+
+              <!-- Condition Badge Dot -->
+              <span 
+                class="w-2 h-2 rounded-full mt-0.5" 
+                [style.background-color]="getSurfaceColor(tooth.overallCondition)">
+              </span>
+            </button>
+          }
+
+          <!-- Q2: 21 -> 28 -->
+          @for (tooth of upperLeftTeeth(); track tooth.fdi) {
+            <button 
+              type="button"
+              class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
+              [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
+              [class.border-emerald-500]="selectedFdi() === tooth.fdi"
+              [class.border-transparent]="selectedFdi() !== tooth.fdi"
+              [class.hover:bg-neutral-100]="selectedFdi() !== tooth.fdi"
+              [class.dark:hover:bg-neutral-800]="selectedFdi() !== tooth.fdi"
+              (click)="selectTooth(tooth.fdi)"
+              (mouseenter)="hoverTooth.set(tooth)"
+              (mouseleave)="hoverTooth.set(null)">
+              
+              <!-- Tooth Number -->
+              <span class="text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300">
+                {{ getToothNumber(tooth) }}
+              </span>
+
+              <!-- SVG Multi-Surface Tooth Graphic -->
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+                <!-- Outer Vestibular (Top) -->
+                <polygon 
+                  points="2,2 38,2 30,10 10,10" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Lingual / Palatal (Bottom) -->
+                <polygon 
+                  points="10,30 30,30 38,38 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Mesial (Inward, left for Q2) -->
+                <polygon 
+                  points="2,2 10,10 10,30 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Distal (Outward, right for Q2) -->
+                <polygon 
+                  points="30,10 38,2 38,38 30,30" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Center Occlusal -->
+                <rect 
+                  x="10" y="10" width="20" height="20" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Missing Cross indicator -->
+                @if (tooth.overallCondition === 'missing') {
+                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                }
+              </svg>
+
+              <!-- Condition Badge Dot -->
+              <span 
+                class="w-2 h-2 rounded-full mt-0.5" 
+                [style.background-color]="getSurfaceColor(tooth.overallCondition)">
+              </span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- MIDLINE DIVISION -->
+      <div class="relative py-1 flex items-center justify-center">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-neutral-300 dark:border-neutral-700"></div>
+        </div>
+        <span class="relative px-4 bg-white dark:bg-neutral-900 text-[10px] font-mono uppercase tracking-widest text-neutral-400">
+          Plan d'occlusion • Ligne Médiane
+        </span>
+      </div>
+
+      <!-- LOWER ARCH: Quadrant 4 (Right) | Quadrant 3 (Left) -->
+      <div class="space-y-1">
+        <div class="grid grid-cols-16 gap-1 pb-2">
+          <!-- Q4: 48 -> 41 -->
+          @for (tooth of lowerRightTeeth(); track tooth.fdi) {
+            <button 
+              type="button"
+              class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
+              [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
+              [class.border-emerald-500]="selectedFdi() === tooth.fdi"
+              [class.border-transparent]="selectedFdi() !== tooth.fdi"
+              [class.hover:bg-neutral-100]="selectedFdi() !== tooth.fdi"
+              [class.dark:hover:bg-neutral-800]="selectedFdi() !== tooth.fdi"
+              (click)="selectTooth(tooth.fdi)"
+              (mouseenter)="hoverTooth.set(tooth)"
+              (mouseleave)="hoverTooth.set(null)">
+              
+              <!-- Condition Badge Dot -->
+              <span 
+                class="w-2 h-2 rounded-full mb-0.5" 
+                [style.background-color]="getSurfaceColor(tooth.overallCondition)">
+              </span>
+
+              <!-- SVG Multi-Surface Tooth Graphic -->
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+                <!-- Lingual (Top for lower) -->
+                <polygon 
+                  points="2,2 38,2 30,10 10,10" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Vestibular (Bottom for lower) -->
+                <polygon 
+                  points="10,30 30,30 38,38 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Mesial (Inward, right for Q4) -->
+                <polygon 
+                  points="30,10 38,2 38,38 30,30" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Distal (Outward, left for Q4) -->
+                <polygon 
+                  points="2,2 10,10 10,30 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Center Occlusal -->
+                <rect 
+                  x="10" y="10" width="20" height="20" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Missing Cross indicator -->
+                @if (tooth.overallCondition === 'missing') {
+                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                }
+              </svg>
+
+              <!-- Tooth Number -->
+              <span class="text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300">
+                {{ getToothNumber(tooth) }}
+              </span>
+            </button>
+          }
+
+          <!-- Q3: 31 -> 38 -->
+          @for (tooth of lowerLeftTeeth(); track tooth.fdi) {
+            <button 
+              type="button"
+              class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
+              [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
+              [class.border-emerald-500]="selectedFdi() === tooth.fdi"
+              [class.border-transparent]="selectedFdi() !== tooth.fdi"
+              [class.hover:bg-neutral-100]="selectedFdi() !== tooth.fdi"
+              [class.dark:hover:bg-neutral-800]="selectedFdi() !== tooth.fdi"
+              (click)="selectTooth(tooth.fdi)"
+              (mouseenter)="hoverTooth.set(tooth)"
+              (mouseleave)="hoverTooth.set(null)">
+              
+              <!-- Condition Badge Dot -->
+              <span 
+                class="w-2 h-2 rounded-full mb-0.5" 
+                [style.background-color]="getSurfaceColor(tooth.overallCondition)">
+              </span>
+
+              <!-- SVG Multi-Surface Tooth Graphic -->
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+                <!-- Lingual (Top for lower) -->
+                <polygon 
+                  points="2,2 38,2 30,10 10,10" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Vestibular (Bottom for lower) -->
+                <polygon 
+                  points="10,30 30,30 38,38 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Mesial (Inward, left for Q3) -->
+                <polygon 
+                  points="2,2 10,10 10,30 2,38" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Distal (Outward, right for Q3) -->
+                <polygon 
+                  points="30,10 38,2 38,38 30,30" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Center Occlusal -->
+                <rect 
+                  x="10" y="10" width="20" height="20" 
+                  [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
+                  stroke="#94a3b8" stroke-width="1"
+                  (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  class="hover:opacity-80 transition-colors" />
+
+                <!-- Missing Cross indicator -->
+                @if (tooth.overallCondition === 'missing') {
+                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
+                }
+              </svg>
+
+              <!-- Tooth Number -->
+              <span class="text-xs font-mono font-bold text-neutral-700 dark:text-neutral-300">
+                {{ getToothNumber(tooth) }}
+              </span>
+            </button>
+          }
+        </div>
+
+        <div class="flex items-center justify-between px-2 text-[11px] font-bold uppercase tracking-wider text-neutral-400 border-t border-dashed border-neutral-200 dark:border-neutral-800 pt-1">
+          <span>{{ 'quadrantRightLower' | translate }}</span>
+          <span class="text-neutral-500 font-mono text-xs">{{ 'lowerArchTitle' | translate }}</span>
+          <span>{{ 'quadrantLeftLower' | translate }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SELECTED TOOTH DETAILS & LIVE DMF SUMMARY CARD -->
+  <div class="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+    
+    <!-- Left: Selected Tooth Live Card -->
+    <div class="md:col-span-7 bg-neutral-50 dark:bg-neutral-800/50 rounded-xl p-3 border border-neutral-200 dark:border-neutral-700/60">
+      @if (currentSelectedTooth(); as sel) {
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-neutral-950 dark:text-white">
+                Dent {{ sel.fdi }} (USA: {{ sel.universal }})
+              </span>
+              <span class="text-xs font-arabic text-neutral-500 font-semibold">
+                {{ sel.nameAr }}
+              </span>
+              <span 
+                class="px-2 py-0.5 rounded-full text-[11px] font-bold border"
+                [class]="getConditionBadgeClass(sel.overallCondition)">
+                {{ sel.overallCondition | uppercase }}
+              </span>
+            </div>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5">
+              {{ sel.nameFr }}
+            </p>
+          </div>
+
+          <!-- Quick Actions on Selected Tooth -->
+          @if (!readOnly()) {
+            <div class="flex items-center gap-1">
+              <button 
+                type="button" 
+                (click)="applyConditionToWholeTooth(sel.fdi, 'healthy')"
+                class="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold hover:opacity-80">
+                {{ 'toothConditionHealthy' | translate }}
+              </button>
+              <button 
+                type="button" 
+                (click)="applyConditionToWholeTooth(sel.fdi, 'caries')"
+                class="px-2 py-1 rounded bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300 text-[10px] font-bold hover:opacity-80">
+                {{ 'toothConditionCaries' | translate }}
+              </button>
+              <button 
+                type="button" 
+                (click)="applyConditionToWholeTooth(sel.fdi, 'crown')"
+                class="px-2 py-1 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-[10px] font-bold hover:opacity-80">
+                {{ 'toothConditionCrown' | translate }}
+              </button>
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="text-xs text-neutral-500 italic py-1">
+          {{ 'selectToothGridPrompt' | translate }}
+        </div>
+      }
+    </div>
+
+    <!-- Right: Clinical DMF Index Statistics -->
+    <div class="md:col-span-5 flex items-center justify-end gap-3 text-xs">
+      <div class="text-right">
+        <div class="text-[11px] uppercase tracking-wider text-neutral-400 font-semibold">{{ 'dmfIndex' | translate }}</div>
+        <div class="font-mono font-bold text-neutral-900 dark:text-white">
+          C:{{ statistics().decayed }} | A:{{ statistics().missing }} | O:{{ statistics().filled }} (Total: {{ statistics().dmfTotal }})
+        </div>
+      </div>
+      <div class="h-8 w-px bg-neutral-200 dark:bg-neutral-700"></div>
+      <div class="text-right">
+        <div class="text-[11px] uppercase tracking-wider text-emerald-500 font-semibold">{{ 'healthyTeeth' | translate }}</div>
+        <div class="font-mono font-bold text-emerald-600 dark:text-emerald-400">
+          {{ statistics().healthy }} / 32
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

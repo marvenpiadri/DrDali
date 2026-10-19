@@ -1,0 +1,927 @@
+@if (lesson(); as currentLesson) {
+  <div class="lesson-detail-root min-h-screen bg-neutral-950 text-neutral-100 font-sans pb-24">
+    
+    <!-- Top Bar & Breadcrumbs -->
+    <header class="border-b border-neutral-800 bg-neutral-900/80 backdrop-blur-md sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Breadcrumb & Title -->
+        <div class="flex items-center gap-3">
+          <a routerLink="/atlas" class="text-neutral-400 hover:text-white flex items-center gap-1 text-xs font-medium transition-colors">
+            <span class="material-icons text-sm">arrow_back</span>
+            <span>Atlas 3D</span>
+          </a>
+          <span class="text-neutral-600">/</span>
+          <span class="text-xs font-semibold text-neutral-300 truncate max-w-[200px] sm:max-w-xs">
+            {{ currentLesson.title }}
+          </span>
+          <span class="hidden sm:inline-block px-2 py-0.5 rounded-full bg-neutral-800 text-neutral-400 text-[10px] font-mono">
+            {{ currentLesson.categoryLabel }}
+          </span>
+        </div>
+
+        <!-- Mode Toggle & Action Controls -->
+        <div class="flex items-center gap-2">
+          
+          <!-- Guided vs Explore Switcher -->
+          <div class="inline-flex p-0.5 rounded-xl bg-neutral-950 border border-neutral-800 text-xs">
+            <button 
+              type="button" 
+              (click)="setLearningMode('guided')"
+              [class.bg-white]="activeLearningMode() === 'guided'"
+              [class.text-neutral-950]="activeLearningMode() === 'guided'"
+              [class.font-bold]="activeLearningMode() === 'guided'"
+              [class.text-neutral-400]="activeLearningMode() !== 'guided'"
+              class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all">
+              <span class="material-icons text-sm">school</span>
+              <span>{{ 'atlas.modeGuided' | translate }}</span>
+            </button>
+            <button 
+              type="button" 
+              (click)="setLearningMode('explore')"
+              [class.bg-white]="activeLearningMode() === 'explore'"
+              [class.text-neutral-950]="activeLearningMode() === 'explore'"
+              [class.font-bold]="activeLearningMode() === 'explore'"
+              [class.text-neutral-400]="activeLearningMode() !== 'explore'"
+              class="px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all">
+              <span class="material-icons text-sm">explore</span>
+              <span>{{ 'atlas.modeExplore' | translate }}</span>
+            </button>
+          </div>
+
+          <!-- Quiz Button Trigger if available -->
+          @if (currentLesson.quizQuestions && currentLesson.quizQuestions.length > 0) {
+            <button 
+              type="button"
+              (click)="toggleQuizDrawer()"
+              class="px-3 py-1.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 border border-purple-500/30 text-purple-300 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <span class="material-icons text-sm">quiz</span>
+              <span class="hidden sm:inline">{{ 'atlas.quiz' | translate }}</span>
+              <span class="px-1.5 py-0.2 rounded-full bg-purple-500/30 text-[10px]">
+                {{ currentLesson.quizQuestions.length }}
+              </span>
+            </button>
+          }
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      
+      <!-- Lesson Intro Header -->
+      <div class="mb-6">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="px-2.5 py-0.5 rounded-md bg-emerald-950/80 text-emerald-400 text-xs font-bold tracking-wide border border-emerald-500/30">
+            {{ currentLesson.badge }}
+          </span>
+          <span class="text-xs text-neutral-400 flex items-center gap-1">
+            <span class="material-icons text-xs text-neutral-500">schedule</span>
+            {{ currentLesson.durationMinutes }} {{ 'atlas.minTraining' | translate }}
+          </span>
+          <span class="text-xs text-neutral-400 flex items-center gap-1">
+            <span class="material-icons text-xs text-neutral-500">signal_cellular_alt</span>
+            {{ 'atlas.level' | translate }} {{ currentLesson.difficulty }}
+          </span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight mb-2">
+          {{ currentLesson.title }}
+        </h1>
+        <p class="text-neutral-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+          {{ currentLesson.subtitle }}
+        </p>
+      </div>
+
+      <!-- Main Interactive Grid: 3D Stage + Learning Controls -->
+      @if (currentLesson.id === 'permanent-dentition') {
+        <div class="mb-8">
+          <app-full-mouth-explorer
+            [initialToothFdi]="selectedToothFdi()"
+            (openToothExplorer)="onOpenToothExplorer($event)">
+          </app-full-mouth-explorer>
+        </div>
+      }
+
+      @if (currentLesson.id === 'the-jaw') {
+        <div class="mb-8 w-full h-auto lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+          <app-jawline-3d-viewer
+            (openToothExplorer)="onOpenToothExplorer($event)">
+          </app-jawline-3d-viewer>
+        </div>
+      }
+      @if (currentLesson.id !== 'permanent-dentition' && currentLesson.id !== 'the-jaw') {
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left / Center: 3D Viewport Stage & Camera Controls (8 cols on desktop) -->
+        <div class="lg:col-span-8 flex flex-col gap-4">
+          
+          <!-- 3D Canvas Box -->
+          <div class="relative w-full h-[450px] sm:h-[540px] rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900/60 shadow-2xl">
+            
+            <app-dental-3d-viewport 
+              [modelType]="currentLesson.modelType"
+              [modelSource]="currentLesson.modelSource"
+              [activeMode]="activeViewingMode()"
+              [stageIndex]="currentStageIndex()"
+              [selectedToothFdi]="selectedToothFdi()"
+              (toothSelected)="selectTooth($event)"
+            />
+
+            <!-- Floating 3D Control Overlay -->
+            <div class="absolute top-4 left-4 right-4 pointer-events-none flex items-center justify-between gap-2 z-10">
+              
+              <!-- 4 Standard Camera Angles Presets -->
+              <div class="pointer-events-auto inline-flex p-1 rounded-xl bg-black/70 backdrop-blur-md border border-neutral-800/80 shadow-lg text-[11px]">
+                <button 
+                  type="button" 
+                  (click)="setCameraAngle('front')"
+                  [class.bg-white]="currentCameraAngle() === 'front'"
+                  [class.text-neutral-950]="currentCameraAngle() === 'front'"
+                  [class.font-bold]="currentCameraAngle() === 'front'"
+                  [class.text-neutral-300]="currentCameraAngle() !== 'front'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Vue de Face (Vestibulaire)">
+                  Face
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setCameraAngle('side')"
+                  [class.bg-white]="currentCameraAngle() === 'side'"
+                  [class.text-neutral-950]="currentCameraAngle() === 'side'"
+                  [class.font-bold]="currentCameraAngle() === 'side'"
+                  [class.text-neutral-300]="currentCameraAngle() !== 'side'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Vue de Profil (Côté)">
+                  Profil
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setCameraAngle('back')"
+                  [class.bg-white]="currentCameraAngle() === 'back'"
+                  [class.text-neutral-950]="currentCameraAngle() === 'back'"
+                  [class.font-bold]="currentCameraAngle() === 'back'"
+                  [class.text-neutral-300]="currentCameraAngle() !== 'back'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Vue Arrière (Linguale)">
+                  Arrière
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setCameraAngle('occlusal')"
+                  [class.bg-white]="currentCameraAngle() === 'occlusal'"
+                  [class.text-neutral-950]="currentCameraAngle() === 'occlusal'"
+                  [class.font-bold]="currentCameraAngle() === 'occlusal'"
+                  [class.text-neutral-300]="currentCameraAngle() !== 'occlusal'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Vue du Dessus (Occlusale)">
+                  Dessus
+                </button>
+              </div>
+
+              <!-- Render Modes: Complete / Section / X-Ray / Internal Anatomy -->
+              <div class="pointer-events-auto inline-flex p-1 rounded-xl bg-black/70 backdrop-blur-md border border-neutral-800/80 shadow-lg text-[11px]">
+                <button 
+                  type="button" 
+                  (click)="setViewingMode('surface')"
+                  [class.bg-emerald-500]="activeViewingMode() === 'surface'"
+                  [class.text-black]="activeViewingMode() === 'surface'"
+                  [class.font-bold]="activeViewingMode() === 'surface'"
+                  [class.text-neutral-300]="activeViewingMode() !== 'surface'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Explore the external anatomy of the tooth.">
+                  Complete
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setViewingMode('cross-section')"
+                  [class.bg-emerald-500]="activeViewingMode() === 'cross-section'"
+                  [class.text-black]="activeViewingMode() === 'cross-section'"
+                  [class.font-bold]="activeViewingMode() === 'cross-section'"
+                  [class.text-neutral-300]="activeViewingMode() !== 'cross-section'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Examine the tooth in cross-section and reveal its internal structures.">
+                  Section
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setViewingMode('xray')"
+                  [class.bg-emerald-500]="activeViewingMode() === 'xray'"
+                  [class.text-black]="activeViewingMode() === 'xray'"
+                  [class.font-bold]="activeViewingMode() === 'xray'"
+                  [class.text-neutral-300]="activeViewingMode() !== 'xray'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="See the internal pulp and root canals through the outer tooth.">
+                  X-Ray
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setViewingMode('anatomy')"
+                  [class.bg-emerald-500]="activeViewingMode() === 'anatomy' || activeViewingMode() === 'isolate'"
+                  [class.text-black]="activeViewingMode() === 'anatomy' || activeViewingMode() === 'isolate'"
+                  [class.font-bold]="activeViewingMode() === 'anatomy' || activeViewingMode() === 'isolate'"
+                  [class.text-neutral-300]="activeViewingMode() !== 'anatomy' && activeViewingMode() !== 'isolate'"
+                  class="px-2.5 py-1 rounded-lg hover:text-white transition-colors"
+                  title="Isolate the pulp chamber and root canal anatomy.">
+                  Internal Anatomy
+                </button>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+          <!-- PRIORITY 3: BONE ARCHITECTURE CONTROLS (DIAZ DATASET) -->
+          @if (currentLesson.id === 'bone-architecture') {
+            <div class="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-neutral-300 font-semibold text-xs flex items-center gap-1.5">
+                <span class="material-icons text-amber-400 text-sm">account_tree</span>
+                <span>Mode Osseux Diaz :</span>
+              </span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button 
+                  type="button"
+                  (click)="setBoneArchitectureMode('cortical')"
+                  [class.bg-amber-500]="boneArchMode() === 'cortical'"
+                  [class.text-black]="boneArchMode() === 'cortical'"
+                  [class.font-bold]="boneArchMode() === 'cortical'"
+                  [class.bg-neutral-800]="boneArchMode() !== 'cortical'"
+                  [class.text-neutral-300]="boneArchMode() !== 'cortical'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Corticale Seule (Compacte)
+                </button>
+                <button 
+                  type="button"
+                  (click)="setBoneArchitectureMode('trabecular')"
+                  [class.bg-amber-500]="boneArchMode() === 'trabecular'"
+                  [class.text-black]="boneArchMode() === 'trabecular'"
+                  [class.font-bold]="boneArchMode() === 'trabecular'"
+                  [class.bg-neutral-800]="boneArchMode() !== 'trabecular'"
+                  [class.text-neutral-300]="boneArchMode() !== 'trabecular'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Trabéculaire (Spongieux)
+                </button>
+                <button 
+                  type="button"
+                  (click)="setBoneArchitectureMode('combined')"
+                  [class.bg-amber-500]="boneArchMode() === 'combined'"
+                  [class.text-black]="boneArchMode() === 'combined'"
+                  [class.font-bold]="boneArchMode() === 'combined'"
+                  [class.bg-neutral-800]="boneArchMode() !== 'combined'"
+                  [class.text-neutral-300]="boneArchMode() !== 'combined'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Vue Combinée (Transparente)
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- PRIORITY 2: SUPPORTING STRUCTURES CONTROLS (OPENFULLJAW DATASET) -->
+          @if (currentLesson.id === 'supporting-structures') {
+            <div class="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-neutral-300 font-semibold text-xs flex items-center gap-1.5">
+                <span class="material-icons text-rose-400 text-sm">layers</span>
+                <span>Ancrage Parodontal (31 PDL) :</span>
+              </span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button 
+                  type="button"
+                  (click)="setSupportingStructuresMode('pdl')"
+                  [class.bg-rose-500]="supportingMode() === 'pdl'"
+                  [class.text-black]="supportingMode() === 'pdl'"
+                  [class.font-bold]="supportingMode() === 'pdl'"
+                  [class.bg-neutral-800]="supportingMode() !== 'pdl'"
+                  [class.text-neutral-300]="supportingMode() !== 'pdl'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Ligament PDL Rose Fluo
+                </button>
+                <button 
+                  type="button"
+                  (click)="setSupportingStructuresMode('relationship')"
+                  [class.bg-rose-500]="supportingMode() === 'relationship'"
+                  [class.text-black]="supportingMode() === 'relationship'"
+                  [class.font-bold]="supportingMode() === 'relationship'"
+                  [class.bg-neutral-800]="supportingMode() !== 'relationship'"
+                  [class.text-neutral-300]="supportingMode() !== 'relationship'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Enceinte Alvéolaire
+                </button>
+                <button 
+                  type="button"
+                  (click)="setSupportingStructuresMode('full')"
+                  [class.bg-rose-500]="supportingMode() === 'full'"
+                  [class.text-black]="supportingMode() === 'full'"
+                  [class.font-bold]="supportingMode() === 'full'"
+                  [class.bg-neutral-800]="supportingMode() !== 'full'"
+                  [class.text-neutral-300]="supportingMode() !== 'full'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Vue Complète
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- PRIORITY 4: PEDIATRIC DENTISTRY CONTROLS (KANG DATASET) -->
+          @if (currentLesson.id === 'pediatric-dentistry') {
+            <div class="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-neutral-300 font-semibold text-xs flex items-center gap-1.5">
+                <span class="material-icons text-blue-400 text-sm">child_care</span>
+                <span>Soins Pédiatriques Dent 46 :</span>
+              </span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button 
+                  type="button"
+                  (click)="setPediatricMode('complete')"
+                  [class.bg-blue-500]="pediatricMode() === 'complete'"
+                  [class.text-black]="pediatricMode() === 'complete'"
+                  [class.font-bold]="pediatricMode() === 'complete'"
+                  [class.bg-neutral-800]="pediatricMode() !== 'complete'"
+                  [class.text-neutral-300]="pediatricMode() !== 'complete'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Vue Globale
+                </button>
+                <button 
+                  type="button"
+                  (click)="setPediatricMode('open-apex')"
+                  [class.bg-blue-500]="pediatricMode() === 'open-apex'"
+                  [class.text-black]="pediatricMode() === 'open-apex'"
+                  [class.font-bold]="pediatricMode() === 'open-apex'"
+                  [class.bg-neutral-800]="pediatricMode() !== 'open-apex'"
+                  [class.text-neutral-300]="pediatricMode() !== 'open-apex'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Apex Ouvert (Apexogenèse)
+                </button>
+                <button 
+                  type="button"
+                  (click)="setPediatricMode('maintainer')"
+                  [class.bg-blue-500]="pediatricMode() === 'maintainer'"
+                  [class.text-black]="pediatricMode() === 'maintainer'"
+                  [class.font-bold]="pediatricMode() === 'maintainer'"
+                  [class.bg-neutral-800]="pediatricMode() !== 'maintainer'"
+                  [class.text-neutral-300]="pediatricMode() !== 'maintainer'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Mainteneur d'Espace (Band & Loop)
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- PRIORITY 5: ANATOMICAL RELATIONSHIPS CONTROLS (TOOTHFAIRY DATASET) -->
+          @if (currentLesson.id === 'anatomical-relationships') {
+            <div class="p-3.5 rounded-xl bg-neutral-900/80 border border-neutral-800 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-neutral-300 font-semibold text-xs flex items-center gap-1.5">
+                <span class="material-icons text-purple-400 text-sm">alt_route</span>
+                <span>Proximité Anatomique :</span>
+              </span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button 
+                  type="button"
+                  (click)="setAnatomicalRelationshipMode('nerve')"
+                  [class.bg-purple-500]="relationshipFocus() === 'nerve'"
+                  [class.text-black]="relationshipFocus() === 'nerve'"
+                  [class.font-bold]="relationshipFocus() === 'nerve'"
+                  [class.bg-neutral-800]="relationshipFocus() !== 'nerve'"
+                  [class.text-neutral-300]="relationshipFocus() !== 'nerve'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Nerf Alvéolaire Inférieur
+                </button>
+                <button 
+                  type="button"
+                  (click)="setAnatomicalRelationshipMode('sinus')"
+                  [class.bg-purple-500]="relationshipFocus() === 'sinus'"
+                  [class.text-black]="relationshipFocus() === 'sinus'"
+                  [class.font-bold]="relationshipFocus() === 'sinus'"
+                  [class.bg-neutral-800]="relationshipFocus() !== 'sinus'"
+                  [class.text-neutral-300]="relationshipFocus() !== 'sinus'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Plancher du Sinus Maxillaire
+                </button>
+                <button 
+                  type="button"
+                  (click)="setAnatomicalRelationshipMode('all')"
+                  [class.bg-purple-500]="relationshipFocus() === 'all'"
+                  [class.text-black]="relationshipFocus() === 'all'"
+                  [class.font-bold]="relationshipFocus() === 'all'"
+                  [class.bg-neutral-800]="relationshipFocus() !== 'all'"
+                  [class.text-neutral-300]="relationshipFocus() !== 'all'"
+                  class="px-3 py-1.5 rounded-lg transition-colors">
+                  Synthèse Globale
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Layer Visibility Toggles (when full arch/anatomy) -->
+          @if (currentLesson.category === 'anatomy' || currentLesson.id === 'jaw-anatomy' || currentLesson.id === 'wisdom-teeth' || currentLesson.id === 'the-jaw') {
+            <div class="p-3 rounded-xl bg-neutral-900/60 border border-neutral-800 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-neutral-400 font-semibold text-[11px] uppercase tracking-wider">Couches Anatomiques :</span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button 
+                  type="button"
+                  (click)="toggleLayer('bone')"
+                  [class.bg-amber-950]="layerVisibility().bone"
+                  [class.text-amber-300]="layerVisibility().bone"
+                  [class.border-amber-500]="layerVisibility().bone"
+                  class="px-2.5 py-1 rounded-lg border border-neutral-800 text-neutral-400 font-medium transition-colors">
+                  Os Alvéolaire
+                </button>
+                <button 
+                  type="button"
+                  (click)="toggleLayer('teeth')"
+                  [class.bg-blue-950]="layerVisibility().teeth"
+                  [class.text-blue-300]="layerVisibility().teeth"
+                  [class.border-blue-500]="layerVisibility().teeth"
+                  class="px-2.5 py-1 rounded-lg border border-neutral-800 text-neutral-400 font-medium transition-colors">
+                  Dents
+                </button>
+                <button 
+                  type="button"
+                  (click)="toggleLayer('pulp')"
+                  [class.bg-rose-950]="layerVisibility().pulp"
+                  [class.text-rose-300]="layerVisibility().pulp"
+                  [class.border-rose-500]="layerVisibility().pulp"
+                  class="px-2.5 py-1 rounded-lg border border-neutral-800 text-neutral-400 font-medium transition-colors">
+                  Pulpe & Canaux
+                </button>
+                <button 
+                  type="button"
+                  (click)="toggleLayer('canal')"
+                  [class.bg-orange-950]="layerVisibility().canal"
+                  [class.text-orange-300]="layerVisibility().canal"
+                  [class.border-orange-500]="layerVisibility().canal"
+                  class="px-2.5 py-1 rounded-lg border border-neutral-800 text-neutral-400 font-medium transition-colors">
+                  Canal Nerveux
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Synchronized 2D Odontogram Map (if lesson supports dentition) -->
+          @if (currentLesson.hasOdontogramSync) {
+            <div class="p-5 rounded-2xl bg-neutral-900/70 border border-neutral-800">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="material-icons text-emerald-400 text-base">schema</span>
+                  <h3 class="text-sm font-bold text-white">Odontogramme 2D Synchronisé</h3>
+                </div>
+                <!-- Numbering System Switcher -->
+                <div class="inline-flex p-0.5 rounded-lg bg-neutral-950 border border-neutral-800 text-[11px]">
+                  <button 
+                    type="button" 
+                    (click)="setNumberingSystem('fdi')"
+                    [class.bg-neutral-800]="numberingSystem() === 'fdi'"
+                    [class.text-white]="numberingSystem() === 'fdi'"
+                    [class.text-neutral-400]="numberingSystem() !== 'fdi'"
+                    class="px-2 py-0.5 rounded">
+                    FDI (ISO)
+                  </button>
+                  <button 
+                    type="button" 
+                    (click)="setNumberingSystem('universal')"
+                    [class.bg-neutral-800]="numberingSystem() === 'universal'"
+                    [class.text-white]="numberingSystem() === 'universal'"
+                    [class.text-neutral-400]="numberingSystem() !== 'universal'"
+                    class="px-2 py-0.5 rounded">
+                    Universal (#1-32)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Odontogram Teeth Grid -->
+              <div class="space-y-3">
+                <!-- Upper Arch -->
+                <div>
+                  <div class="text-[10px] uppercase font-mono text-neutral-500 mb-1 text-center">
+                    Arcade Supérieure (Maxillaire)
+                  </div>
+                  <div class="grid grid-cols-16 gap-1 justify-center">
+                    @for (tooth of upperTeeth; track tooth.fdi) {
+                      <button 
+                        type="button"
+                        (click)="selectTooth(tooth.fdi)"
+                        [class.bg-emerald-500]="selectedToothFdi() === tooth.fdi"
+                        [class.text-neutral-950]="selectedToothFdi() === tooth.fdi"
+                        [class.font-bold]="selectedToothFdi() === tooth.fdi"
+                        [class.bg-neutral-800]="selectedToothFdi() !== tooth.fdi"
+                        [class.text-neutral-300]="selectedToothFdi() !== tooth.fdi"
+                        class="h-8 rounded flex items-center justify-center text-xs hover:bg-neutral-700 transition-colors"
+                        [title]="tooth.nameFr">
+                        {{ numberingSystem() === 'fdi' ? tooth.fdi : tooth.universal }}
+                      </button>
+                    }
+                  </div>
+                </div>
+
+                <!-- Lower Arch -->
+                <div>
+                  <div class="text-[10px] uppercase font-mono text-neutral-500 mb-1 text-center">
+                    Arcade Inférieure (Mandibulaire)
+                  </div>
+                  <div class="grid grid-cols-16 gap-1 justify-center">
+                    @for (tooth of lowerTeeth; track tooth.fdi) {
+                      <button 
+                        type="button"
+                        (click)="selectTooth(tooth.fdi)"
+                        [class.bg-emerald-500]="selectedToothFdi() === tooth.fdi"
+                        [class.text-neutral-950]="selectedToothFdi() === tooth.fdi"
+                        [class.font-bold]="selectedToothFdi() === tooth.fdi"
+                        [class.bg-neutral-800]="selectedToothFdi() !== tooth.fdi"
+                        [class.text-neutral-300]="selectedToothFdi() !== tooth.fdi"
+                        class="h-8 rounded flex items-center justify-center text-xs hover:bg-neutral-700 transition-colors"
+                        [title]="tooth.nameFr">
+                        {{ numberingSystem() === 'fdi' ? tooth.fdi : tooth.universal }}
+                      </button>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <!-- Selected Tooth Insight Card -->
+              @if (selectedTooth(); as activeTooth) {
+                <div class="mt-4 p-3 rounded-xl bg-neutral-950 border border-neutral-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="font-bold text-white text-sm">{{ activeTooth.nameFr }}</span>
+                      <span class="px-2 py-0.5 rounded bg-neutral-800 text-neutral-300 font-mono text-[10px]">
+                        FDI {{ activeTooth.fdi }} • US #{{ activeTooth.universal }}
+                      </span>
+                    </div>
+                    <p class="text-neutral-400 text-xs mt-1">
+                      {{ activeTooth.functionFr }} • {{ activeTooth.rootsCount }} racine(s) • Éruption : {{ activeTooth.eruptionAge }}
+                    </p>
+                  </div>
+                  <a 
+                    routerLink="/encyclopedia/anatomy/dental-anatomy"
+                    class="text-emerald-400 hover:text-emerald-300 font-semibold shrink-0 flex items-center gap-1">
+                    <span>Fiche anatomique</span>
+                    <span class="material-icons text-sm">open_in_new</span>
+                  </a>
+                </div>
+              }
+
+            </div>
+          }
+
+        </div>
+
+        <!-- Right: Guided Stage Controller & Clinical Facts (4 cols on desktop) -->
+        <div class="lg:col-span-4 flex flex-col gap-4">
+          
+          <!-- GUIDED STAGES STEPPER CARD -->
+          @if (activeLearningMode() === 'guided' && currentStage(); as stage) {
+            <div class="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 shadow-xl flex flex-col justify-between">
+              
+              <div>
+                <!-- Stage Progress Header -->
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="px-2.5 py-0.5 rounded bg-neutral-800 text-neutral-300 text-xs font-mono font-semibold">
+                    Étape {{ stage.stageNumber }} / {{ currentLesson.stages.length }}
+                  </span>
+                  <span class="text-xs text-neutral-500 font-medium">
+                    Progression : {{ ((stage.stageNumber / currentLesson.stages.length) * 100).toFixed(0) }}%
+                  </span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full h-1.5 rounded-full bg-neutral-800 mb-5 overflow-hidden">
+                  <div 
+                    class="h-full bg-emerald-500 rounded-full transition-all duration-300"
+                    [style.width.%]="(stage.stageNumber / currentLesson.stages.length) * 100">
+                  </div>
+                </div>
+
+                <!-- Stage Title -->
+                <h3 class="text-lg font-bold text-white mb-1">
+                  {{ stage.title }}
+                </h3>
+                <p class="text-xs font-semibold text-emerald-400 mb-4">
+                  {{ stage.subtitle }}
+                </p>
+
+                <!-- Stage Explanation -->
+                <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-4">
+                  {{ stage.explanation }}
+                </p>
+
+                <!-- Clinical Callout Blocks -->
+                <div class="space-y-2.5 mb-6 text-xs">
+                  
+                  <!-- What is happening -->
+                  <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-800">
+                    <div class="font-semibold text-neutral-200 flex items-center gap-1.5 mb-1">
+                      <span class="material-icons text-blue-400 text-sm">visibility</span>
+                      <span>Ce qui se passe :</span>
+                    </div>
+                    <p class="text-neutral-400 text-[11px] leading-relaxed">
+                      {{ stage.whatIsHappening }}
+                    </p>
+                  </div>
+
+                  <!-- Why it matters -->
+                  <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-800">
+                    <div class="font-semibold text-neutral-200 flex items-center gap-1.5 mb-1">
+                      <span class="material-icons text-amber-400 text-sm">health_and_safety</span>
+                      <span>Importance clinique :</span>
+                    </div>
+                    <p class="text-neutral-400 text-[11px] leading-relaxed">
+                      {{ stage.whyItMatters }}
+                    </p>
+                  </div>
+
+                  <!-- Patient sensation (if available) -->
+                  @if (stage.patientSensation) {
+                    <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-800">
+                      <div class="font-semibold text-neutral-200 flex items-center gap-1.5 mb-1">
+                        <span class="material-icons text-purple-400 text-sm">sentiment_satisfied</span>
+                        <span>Sensation du patient :</span>
+                      </div>
+                      <p class="text-neutral-400 text-[11px] leading-relaxed">
+                        {{ stage.patientSensation }}
+                      </p>
+                    </div>
+                  }
+
+                </div>
+              </div>
+
+              <!-- Stepper Navigation Buttons -->
+              <div class="pt-4 border-t border-neutral-800 flex items-center justify-between gap-3">
+                <button 
+                  type="button" 
+                  (click)="prevStage()"
+                  [disabled]="currentStageIndex() === 0"
+                  class="px-4 py-2.5 rounded-xl border border-neutral-700 bg-neutral-800 hover:bg-neutral-700 disabled:opacity-30 disabled:pointer-events-none text-xs font-semibold text-neutral-200 transition-colors flex items-center gap-1">
+                  <span class="material-icons text-sm">arrow_back</span>
+                  <span>Précédent</span>
+                </button>
+
+                @if (currentStageIndex() < currentLesson.stages.length - 1) {
+                  <button 
+                    type="button" 
+                    (click)="nextStage()"
+                    class="px-5 py-2.5 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-bold text-xs transition-all shadow-md flex items-center gap-1">
+                    <span>Étape Suivante</span>
+                    <span class="material-icons text-sm">arrow_forward</span>
+                  </button>
+                } @else {
+                  <button 
+                    type="button" 
+                    (click)="isCompleted.set(true)"
+                    class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-black text-xs transition-all shadow-md flex items-center gap-1">
+                    <span class="material-icons text-sm">check</span>
+                    <span>Terminer la Leçon</span>
+                  </button>
+                }
+              </div>
+
+            </div>
+          } @else {
+            <!-- EXPLORE MODE STRUCTURES LIST -->
+            <div class="p-6 rounded-2xl bg-neutral-900 border border-neutral-800 shadow-xl">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="material-icons text-emerald-400 text-lg">explore</span>
+                <h3 class="text-sm font-bold text-white">Structures à Explorer</h3>
+              </div>
+              <p class="text-xs text-neutral-400 mb-4">
+                Cliquez sur une structure pour l'isoler et découvrir ses fonctions cliniques.
+              </p>
+
+              <div class="space-y-2 mb-6 max-h-72 overflow-y-auto pr-1">
+                @for (str of currentLesson.structures; track str.id) {
+                  <button 
+                    type="button"
+                    (click)="selectStructure(str.id)"
+                    [class.bg-emerald-950]="selectedStructureId() === str.id"
+                    [class.border-emerald-500]="selectedStructureId() === str.id"
+                    [class.bg-neutral-950]="selectedStructureId() !== str.id"
+                    [class.border-neutral-800]="selectedStructureId() !== str.id"
+                    class="w-full text-left p-3 rounded-xl border transition-all">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-xs text-white">{{ str.name }}</span>
+                      <span class="text-[10px] text-neutral-400 font-mono">{{ str.tag }}</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-400 line-clamp-1 mt-0.5">
+                      {{ str.description }}
+                    </p>
+                  </button>
+                }
+              </div>
+
+              @if (selectedStructure(); as activeStr) {
+                <div class="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-xs">
+                  <h4 class="font-bold text-white text-sm mb-1">{{ activeStr.name }}</h4>
+                  <p class="text-neutral-300 text-xs mb-2">{{ activeStr.description }}</p>
+                  <div class="space-y-1 text-[11px] text-neutral-400">
+                    <div><span class="font-semibold text-neutral-200">Rôle :</span> {{ activeStr.functionText }}</div>
+                    <div><span class="font-semibold text-neutral-200">Clinique :</span> {{ activeStr.clinicalSignificance }}</div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- "Did You Know?" Fact Card -->
+          @if (currentLesson.didYouKnowFacts && currentLesson.didYouKnowFacts.length > 0) {
+            @for (fact of currentLesson.didYouKnowFacts; track fact.title) {
+              <div class="p-5 rounded-2xl bg-amber-950/30 border border-amber-500/30">
+                <div class="flex items-center gap-2 mb-2 text-amber-300">
+                  <span class="material-icons text-base">{{ fact.icon || 'lightbulb' }}</span>
+                  <span class="text-xs font-bold uppercase tracking-wider">Le Saviez-Vous ?</span>
+                </div>
+                <h4 class="text-xs font-bold text-white mb-1">{{ fact.title }}</h4>
+                <p class="text-[11px] text-amber-200/80 leading-relaxed">
+                  {{ fact.text }}
+                </p>
+              </div>
+            }
+          }
+
+        </div>
+
+      </div>
+      }
+
+      <!-- QUIZ DRAWER / MODAL -->
+      @if (isQuizDrawerOpen() && currentLesson.quizQuestions && currentLesson.quizQuestions.length > 0) {
+        <div class="mt-8 p-6 lg:p-8 rounded-2xl bg-neutral-900 border border-purple-500/40 shadow-2xl">
+          
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-300 flex items-center justify-center">
+                <span class="material-icons text-xl">quiz</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Quiz de Validation des Connaissances</h3>
+                <p class="text-xs text-neutral-400">Vérifiez vos acquis sur la leçon « {{ currentLesson.title }} »</p>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              (click)="toggleQuizDrawer()"
+              class="text-neutral-400 hover:text-white p-2"
+              aria-label="Fermer le quiz">
+              <span class="material-icons">close</span>
+            </button>
+          </div>
+
+          <div class="space-y-6 mb-8">
+            @for (q of currentLesson.quizQuestions; track q.id; let idx = $index) {
+              <div class="p-4 rounded-xl bg-neutral-950 border border-neutral-800">
+                <h4 class="text-sm font-bold text-white mb-3 flex items-start gap-2">
+                  <span class="w-5 h-5 rounded-full bg-neutral-800 text-neutral-300 flex items-center justify-center text-xs font-mono shrink-0">
+                    {{ idx + 1 }}
+                  </span>
+                  <span>{{ q.question }}</span>
+                </h4>
+
+                <div class="space-y-2">
+                  @for (opt of q.options; track opt.id) {
+                    <button 
+                      type="button"
+                      (click)="selectQuizOption(q.id, opt.id)"
+                      [disabled]="quizSubmitted()"
+                      [class.bg-emerald-950]="quizSubmitted() && opt.isCorrect"
+                      [class.border-emerald-500]="quizSubmitted() && opt.isCorrect"
+                      [class.text-emerald-300]="quizSubmitted() && opt.isCorrect"
+                      [class.bg-rose-950]="quizSubmitted() && !opt.isCorrect && quizAnswers()[q.id] === opt.id"
+                      [class.border-rose-500]="quizSubmitted() && !opt.isCorrect && quizAnswers()[q.id] === opt.id"
+                      [class.bg-neutral-800]="!quizSubmitted() && quizAnswers()[q.id] === opt.id"
+                      [class.border-neutral-600]="!quizSubmitted() && quizAnswers()[q.id] === opt.id"
+                      [class.bg-neutral-900]="quizAnswers()[q.id] !== opt.id"
+                      class="w-full text-left p-3 rounded-xl border border-neutral-800 text-xs transition-all flex items-start justify-between gap-2">
+                      <span>{{ opt.text }}</span>
+                      @if (quizSubmitted()) {
+                        @if (opt.isCorrect) {
+                          <span class="material-icons text-emerald-400 text-sm shrink-0">check_circle</span>
+                        } @else if (quizAnswers()[q.id] === opt.id) {
+                          <span class="material-icons text-rose-400 text-sm shrink-0">cancel</span>
+                        }
+                      }
+                    </button>
+                    @if (quizSubmitted() && (opt.isCorrect || quizAnswers()[q.id] === opt.id)) {
+                      <p class="text-[11px] px-3 text-neutral-400">
+                        {{ opt.explanation }}
+                      </p>
+                    }
+                  }
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Quiz Submit Bar -->
+          <div class="flex items-center justify-between gap-4 pt-4 border-t border-neutral-800">
+            @if (!quizSubmitted()) {
+              <button 
+                type="button" 
+                (click)="submitQuiz()"
+                class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg transition-all">
+                Valider mes réponses
+              </button>
+            } @else {
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-bold text-white">
+                  Score : {{ quizScore().correct }} / {{ quizScore().total }}
+                </span>
+                <span class="text-xs text-neutral-400">
+                  {{ quizScore().correct === quizScore().total ? '🎉 Félicitations, sans faute !' : 'Continuez vos révisions !' }}
+                </span>
+              </div>
+              <button 
+                type="button" 
+                (click)="resetQuiz()"
+                class="px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-medium text-neutral-200">
+                Recommencer le quiz
+              </button>
+            }
+          </div>
+
+        </div>
+      }
+
+      <!-- LESSON COMPLETION BANNER -->
+      @if (isCompleted()) {
+        <div class="mt-12 p-6 sm:p-8 rounded-2xl border border-emerald-500/40 bg-emerald-950/20 backdrop-blur-sm">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+                <span class="material-icons text-sm">verified</span>
+                Leçon Validée
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">
+                Vous avez terminé : {{ currentLesson.title }}
+              </h3>
+              <p class="text-neutral-300 text-xs sm:text-sm max-w-2xl leading-relaxed mb-4">
+                {{ currentLesson.completionSummary.clinicalAdvice }}
+              </p>
+
+              <div class="space-y-1.5 text-xs text-neutral-300 mb-4">
+                @for (takeaway of currentLesson.completionSummary.keyTakeaways; track takeaway) {
+                  <div class="flex items-center gap-2">
+                    <span class="material-icons text-emerald-400 text-sm">check</span>
+                    <span>{{ takeaway }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- CTA Actions -->
+            <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+              @if (nextLesson(); as next) {
+                <a 
+                  [routerLink]="['/atlas', next.slug]"
+                  class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-neutral-950 hover:bg-neutral-200 font-bold text-xs shadow-lg transition-all">
+                  <span>Leçon Suivante : {{ next.title }}</span>
+                  <span class="material-icons text-sm">arrow_forward</span>
+                </a>
+              }
+              <a 
+                [href]="whatsappUrl()"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors">
+                <app-whatsapp-icon [size]="16" extraClass="text-white" />
+                <span>Prendre RDV au Cabinet Dali</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      }
+
+      <!-- RELATED LESSONS & ENCYCLOPEDIA ARTICLES -->
+      <div class="mt-12 pt-8 border-t border-neutral-800">
+        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+          <span>Poursuivre votre Apprentissage</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          @for (rel of relatedLessons(); track rel.id) {
+            <a 
+              [routerLink]="['/atlas', rel.slug]"
+              class="p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 hover:border-neutral-700 transition-all group flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-neutral-400 uppercase">{{ rel.categoryLabel }}</span>
+                <h4 class="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors mt-1 mb-2">
+                  {{ rel.title }}
+                </h4>
+                <p class="text-xs text-neutral-400 line-clamp-2">
+                  {{ rel.subtitle }}
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-[11px] font-semibold text-neutral-400 group-hover:text-white">
+                <span>Démarrer</span>
+                <span class="material-icons text-xs transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </a>
+          }
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+}

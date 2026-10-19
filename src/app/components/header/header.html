@@ -1,0 +1,312 @@
+<header class="sticky top-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+    
+    <!-- Logo & Brand identity -->
+    <a 
+      routerLink="/" 
+      class="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 dark:focus-visible:ring-white rounded-lg p-1"
+      [attr.aria-label]="'brandName' | translate">
+      <app-logo />
+    </a>
+
+    <!-- Primary Desktop Navigation Links -->
+    <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-semibold uppercase tracking-wider">
+      <a 
+        routerLink="/" 
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        {{ 'navHome' | translate }}
+      </a>
+      <a 
+        routerLink="/atlas" 
+        routerLinkActive="nav-link-active"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white flex items-center gap-1.5">
+        <span>{{ 'navAtlas' | translate }}</span>
+        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
+          3D
+        </span>
+      </a>
+      <a 
+        routerLink="/tools" 
+        routerLinkActive="nav-link-active"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        {{ 'navTools' | translate }}
+      </a>
+      <a 
+        routerLink="/dr-dali" 
+        routerLinkActive="nav-link-active"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        {{ 'navDoctors' | translate }}
+      </a>
+      <a 
+        routerLink="/clinic" 
+        routerLinkActive="nav-link-active"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        {{ 'navClinic' | translate }}
+      </a>
+      <a 
+        routerLink="/contact" 
+        routerLinkActive="nav-link-active"
+        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        {{ 'navContact' | translate }}
+      </a>
+    </nav>
+
+    <!-- Right Controls: Language Switcher, Search, Theme, Mobile Toggle -->
+    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+
+      <!-- Language Selector & Direction Switcher Dropdown -->
+      <div class="relative lang-dropdown-wrapper">
+        <button 
+          type="button" 
+          (click)="toggleLangDropdown()"
+          class="lang-dropdown-btn bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-white"
+          [attr.aria-expanded]="langDropdownOpen()"
+          [attr.aria-label]="'ariaSelectLang' | translate">
+          <span class="material-icons text-base text-neutral-500 dark:text-neutral-400">language</span>
+          <span class="font-bold tracking-wider text-xs">{{ currentLangOption().shortLabel }}</span>
+          @if (i18n.currentLang() === 'ar') {
+            <span class="text-[9px] font-mono uppercase px-1 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+              {{ i18n.effectiveDir().toUpperCase() }}
+            </span>
+          }
+          <span class="material-icons text-xs text-neutral-400 transition-transform duration-200" [class.rotate-180]="langDropdownOpen()">expand_more</span>
+        </button>
+
+        @if (langDropdownOpen()) {
+          <!-- Click backdrop -->
+          <button 
+            type="button" 
+            [attr.aria-label]="'ariaCloseMenu' | translate"
+            class="fixed inset-0 z-40 cursor-default bg-transparent border-none p-0 w-full h-full block" 
+            (click)="closeLangDropdown()">
+          </button>
+
+          <!-- Dropdown popover list -->
+          <div class="lang-dropdown-menu bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xl min-w-[200px]">
+            <!-- Languages List -->
+            <div class="p-1 space-y-0.5">
+              @for (lang of languages; track lang.code) {
+                <button 
+                  type="button" 
+                  (click)="selectLanguage(lang.code)"
+                  class="lang-menu-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-left"
+                  [class.active]="i18n.currentLang() === lang.code">
+                  <div class="flex items-center gap-2">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 w-6">
+                      {{ lang.shortLabel }}
+                    </span>
+                    <span class="text-xs font-semibold text-neutral-900 dark:text-white">
+                      {{ lang.nativeName }}
+                    </span>
+                  </div>
+                  @if (i18n.currentLang() === lang.code) {
+                    <span class="material-icons text-emerald-600 dark:text-emerald-400 text-sm">check</span>
+                  }
+                </button>
+              }
+            </div>
+
+            <!-- Direction Override (RTL / LTR) -->
+            <div class="border-t border-neutral-200 dark:border-neutral-800 p-2 bg-neutral-50 dark:bg-neutral-950/50 rounded-b-xl">
+              <div class="flex items-center justify-between mb-1.5 px-1">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                  {{ 'dirMode' | translate }}
+                </span>
+                <span class="text-[10px] font-mono font-bold text-neutral-800 dark:text-neutral-200 uppercase">
+                  {{ i18n.effectiveDir() }}
+                </span>
+              </div>
+              <div class="grid grid-cols-3 gap-1">
+                <button 
+                  type="button"
+                  (click)="setDirection('auto')"
+                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
+                  [class.bg-neutral-900]="i18n.textDir() === 'auto'"
+                  [class.text-white]="i18n.textDir() === 'auto'"
+                  [class.dark:bg-white]="i18n.textDir() === 'auto'"
+                  [class.dark:text-neutral-900]="i18n.textDir() === 'auto'"
+                  [class.border-transparent]="i18n.textDir() === 'auto'"
+                  [class.border-neutral-200]="i18n.textDir() !== 'auto'"
+                  [class.dark:border-neutral-800]="i18n.textDir() !== 'auto'">
+                  Auto
+                </button>
+                <button 
+                  type="button"
+                  (click)="setDirection('rtl')"
+                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
+                  [class.bg-neutral-900]="i18n.textDir() === 'rtl'"
+                  [class.text-white]="i18n.textDir() === 'rtl'"
+                  [class.dark:bg-white]="i18n.textDir() === 'rtl'"
+                  [class.dark:text-neutral-900]="i18n.textDir() === 'rtl'"
+                  [class.border-transparent]="i18n.textDir() === 'rtl'"
+                  [class.border-neutral-200]="i18n.textDir() !== 'rtl'"
+                  [class.dark:border-neutral-800]="i18n.textDir() !== 'rtl'">
+                  RTL
+                </button>
+                <button 
+                  type="button"
+                  (click)="setDirection('ltr')"
+                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
+                  [class.bg-neutral-900]="i18n.textDir() === 'ltr'"
+                  [class.text-white]="i18n.textDir() === 'ltr'"
+                  [class.dark:bg-white]="i18n.textDir() === 'ltr'"
+                  [class.dark:text-neutral-900]="i18n.textDir() === 'ltr'"
+                  [class.border-transparent]="i18n.textDir() === 'ltr'"
+                  [class.border-neutral-200]="i18n.textDir() !== 'ltr'"
+                  [class.dark:border-neutral-800]="i18n.textDir() !== 'ltr'">
+                  LTR
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Search Trigger Button -->
+      <button 
+        type="button" 
+        (click)="openSearch.emit()"
+        class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
+        [attr.aria-label]="'ariaSearch' | translate">
+        <span class="material-icons text-lg">search</span>
+      </button>
+
+      <!-- Theme Switcher Button -->
+      <button 
+        type="button" 
+        (click)="theme.toggleTheme()"
+        class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
+        [attr.aria-label]="theme.isDark() ? ('ariaThemeLight' | translate) : ('ariaThemeDark' | translate)">
+        <span class="material-icons text-lg">{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button 
+        type="button" 
+        (click)="toggleMobileMenu()"
+        class="lg:hidden icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200"
+        [attr.aria-label]="mobileMenuOpen() ? ('ariaCloseMenu' | translate) : ('ariaOpenMenu' | translate)"
+        [attr.aria-expanded]="mobileMenuOpen()">
+        <span class="material-icons text-xl">{{ mobileMenuOpen() ? 'close' : 'menu' }}</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  @if (mobileMenuOpen()) {
+    <div class="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-4 pt-3 pb-6 space-y-1.5 shadow-2xl animate-fade-in">
+      <a 
+        routerLink="/" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">home</span>
+        <span>{{ 'navHome' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/atlas" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">view_in_ar</span>
+        <span>{{ 'navAtlas' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/tools" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">tune</span>
+        <span>{{ 'navTools' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/dr-dali" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">groups</span>
+        <span>{{ 'navDoctors' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/clinic" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">domain</span>
+        <span>{{ 'navClinic' | translate }}</span>
+      </a>
+
+      <a 
+        routerLink="/contact" 
+        (click)="closeMobileMenu()"
+        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
+        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
+        <span class="material-icons text-neutral-400 text-lg">contact_support</span>
+        <span>{{ 'navContact' | translate }}</span>
+      </a>
+
+      <div class="pt-4 mt-2 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+        <!-- Language Switch -->
+        <div class="flex items-center justify-between px-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+            {{ 'ariaSelectLang' | translate }}
+          </span>
+          <div class="flex items-center gap-1">
+            @for (lang of languages; track lang.code) {
+              <button 
+                type="button" 
+                (click)="selectLanguage(lang.code)"
+                class="px-2.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors"
+                [class.bg-neutral-950]="i18n.currentLang() === lang.code"
+                [class.text-white]="i18n.currentLang() === lang.code"
+                [class.dark:bg-white]="i18n.currentLang() === lang.code"
+                [class.dark:text-neutral-950]="i18n.currentLang() === lang.code"
+                [class.text-neutral-600]="i18n.currentLang() !== lang.code"
+                [class.dark:text-neutral-400]="i18n.currentLang() !== lang.code">
+                {{ lang.shortLabel }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Direction Switch (RTL / LTR) -->
+        <div class="flex items-center justify-between px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded-xl">
+          <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">
+            {{ 'dirMode' | translate }}
+          </span>
+          <div class="flex items-center gap-1">
+            <button 
+              type="button"
+              (click)="setDirection('rtl')"
+              class="px-2 py-1 text-xs font-bold rounded-lg transition"
+              [class.bg-neutral-950]="i18n.isRtl()"
+              [class.text-white]="i18n.isRtl()"
+              [class.dark:bg-white]="i18n.isRtl()"
+              [class.dark:text-neutral-950]="i18n.isRtl()">
+              RTL
+            </button>
+            <button 
+              type="button"
+              (click)="setDirection('ltr')"
+              class="px-2 py-1 text-xs font-bold rounded-lg transition"
+              [class.bg-neutral-950]="!i18n.isRtl()"
+              [class.text-white]="!i18n.isRtl()"
+              [class.dark:bg-white]="!i18n.isRtl()"
+              [class.dark:text-neutral-950]="!i18n.isRtl()">
+              LTR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</header>

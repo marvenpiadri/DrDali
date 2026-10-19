@@ -1,0 +1,6 @@
+{
+  "name": "Centre Dentaire Dali",
+  "description": "Plateforme d'excellence dentaire, encyclopédie clinique 3D, outils interactifs et prise de rendez-vous pour le Centre Dentaire Dali à Témara.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

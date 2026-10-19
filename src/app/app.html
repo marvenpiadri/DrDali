@@ -1,0 +1,46 @@
+<div class="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-200">
+  
+  <!-- Global Reading Progress Bar -->
+  <app-reading-progress-bar />
+
+  <!-- Global Header -->
+  <app-header 
+    (openSearch)="openSearchModal()" 
+    (openWhatsApp)="openWhatsAppModal()" />
+
+  <!-- Main View Container -->
+  <div class="flex-1 w-full">
+    <router-outlet />
+  </div>
+
+  <!-- Global Footer -->
+  <app-footer 
+    (openWhatsApp)="openWhatsAppModal()" />
+
+  <!-- Floating WhatsApp Action Badge in bottom right corner -->
+  <aside 
+    class="fixed bottom-6 right-6 z-40 flex items-center gap-3 animate-fade-in rtl:right-auto rtl:left-6"
+    [attr.aria-label]="i18n.translate('ariaWhatsAppCTA')">
+    <button 
+      type="button" 
+      (click)="openWhatsAppModal()"
+      class="group flex items-center gap-2.5 px-4 py-3 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all border border-neutral-800 dark:border-neutral-200 cursor-pointer"
+      [attr.aria-label]="i18n.translate('ariaWhatsAppCTA')">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <app-whatsapp-icon [size]="18" extraClass="text-emerald-400 dark:text-emerald-600" />
+      <span class="text-xs font-bold uppercase tracking-wider hidden sm:inline">{{ i18n.translate('btnWhatsApp') }}</span>
+    </button>
+  </aside>
+
+  <!-- Modals -->
+  @if (isWhatsAppModalOpen()) {
+    <app-whatsapp-modal 
+      (closeModal)="closeWhatsAppModal()" />
+  }
+
+  @if (isSearchModalOpen()) {
+    <app-search-modal 
+      (closeModal)="closeSearchModal()" />
+  }
+
+</div>

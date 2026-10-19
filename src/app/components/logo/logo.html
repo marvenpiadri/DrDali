@@ -1,0 +1,39 @@
+<div class="logo-wrapper" [class]="containerClass()">
+  @if (!hasImageError()) {
+    <img 
+      [src]="logoSrc()" 
+      alt="Centre Dentaire Dali" 
+      class="logo-img"
+      [style.height.px]="size()"
+      (error)="onImageError()" />
+  }
+
+  @if (showText()) {
+    @if (!hasTextError()) {
+      <img 
+        [src]="logoTextSrc()" 
+        alt="Centre Dentaire Dali" 
+        class="logo-text-img h-[40px] w-auto object-contain"
+        [style.height.px]="textHeight()"
+        (error)="onTextError()" />
+    } @else {
+      <div class="flex flex-col tracking-tight leading-[1.05] text-left select-none">
+        <span class="text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-neutral-900 dark:text-white">
+          CENTRE
+        </span>
+        <span class="text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-neutral-900 dark:text-white">
+          DENTAIRE
+        </span>
+        <span class="text-xs sm:text-sm font-black tracking-[0.16em] uppercase text-emerald-600 dark:text-emerald-400">
+          DALI
+        </span>
+        @if (showSubtitle()) {
+          <span class="text-[9px] tracking-widest uppercase text-neutral-500 dark:text-neutral-400 mt-0.5 font-medium">
+            {{ i18n.translate('brandTagline') }}
+          </span>
+        }
+      </div>
+    }
+  }
+</div>
+

@@ -1,0 +1,434 @@
+<div id="jawline-viewer-container" class="flex flex-col w-full h-auto max-h-none lg:h-full bg-neutral-950 text-neutral-100 rounded-none overflow-visible lg:overflow-hidden border border-neutral-800 shadow-2xl relative font-sans">
+  
+  <!-- REFINED APPLE-STYLE CLINICAL HEADER -->
+  <header id="jawline-header-bar" class="flex items-center justify-between px-3.5 py-2 sm:py-2.5 bg-neutral-950/95 backdrop-blur border-b border-neutral-800/80 shrink-0 z-20 gap-2">
+    <div class="flex items-center gap-2.5 min-w-0">
+      <div class="w-7 h-7 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-neutral-300 shrink-0">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">account_tree</mat-icon>
+      </div>
+    </div>
+
+    <!-- Right Controls: Reset, Sidebar, Fullscreen -->
+    <div class="flex items-center gap-1.5 shrink-0">
+      <!-- Reset Camera Button -->
+      <button
+        type="button"
+        id="jawline-reset-view-btn"
+        (click)="resetView()"
+        class="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-900 border border-neutral-800/80 transition cursor-pointer"
+        data-tooltip="Recentrer la vue 3D"
+        aria-label="Recentrer la vue 3D">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">restart_alt</mat-icon>
+      </button>
+
+      <!-- Toggle Sidebar Button -->
+      <button
+        type="button"
+        id="jawline-toggle-sidebar-btn"
+        (click)="toggleSidebar()"
+        [class.text-white]="isSidebarOpen()"
+        [class.bg-neutral-900]="isSidebarOpen()"
+        [class.border-neutral-700]="isSidebarOpen()"
+        class="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-900 border border-neutral-800/80 transition cursor-pointer"
+        [attr.data-tooltip]="isSidebarOpen() ? 'Masquer le volet latéral' : 'Afficher le volet latéral'"
+        aria-label="Afficher ou masquer les options anatomiques">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">tune</mat-icon>
+      </button>
+
+      <!-- Fullscreen Toggle Button -->
+      <button
+        type="button"
+        id="jawline-fullscreen-btn"
+        (click)="toggleFullscreen()"
+        class="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-900 border border-neutral-800/80 transition cursor-pointer"
+        [attr.data-tooltip]="isFullscreen() ? 'Quitter le plein écran' : 'Plein écran'"
+        aria-label="Basculer en plein écran">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN 3D WORKSPACE -->
+  <div class="flex-1 flex flex-col lg:grid lg:grid-cols-12 relative min-h-0 h-auto lg:h-full lg:overflow-hidden"
+    [class.lg:grid-cols-12]="isSidebarOpen()">
+    
+    <!-- 3D VIEWPORT CANVAS (HERO REGION) -->
+    <div id="viewer-container"
+      [class.lg:col-span-8]="isSidebarOpen()"
+      [class.xl:col-span-9]="isSidebarOpen()"
+      [class.col-span-12]="!isSidebarOpen()"
+      class="relative flex flex-col bg-neutral-950 min-h-[400px] h-[450px] lg:h-full overflow-hidden shrink-0 rounded-none">
+      
+      <app-dental-3d-viewport
+        [modelType]="'jaw-anatomy'"
+        [modelSource]="'toothfairy'"
+        [activeMode]="'surface'"
+        [showControls]="false"
+        [selectedToothFdi]="selectedToothFdi() || undefined"
+        (toothSelected)="onViewportToothSelected($event)"
+        class="w-full h-full block">
+      </app-dental-3d-viewport>
+
+      <!-- FLOATING TOP CENTER: ARCH SELECTION PILL -->
+      <div class="absolute top-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+        <div class="pointer-events-auto flex items-center bg-neutral-950/85 backdrop-blur-md p-0.5 rounded-xl border border-white/10 shadow-xl text-[11px] font-medium">
+          <button
+            type="button"
+            id="jawline-arch-all-btn"
+            (click)="setArch('all')"
+            [class.bg-neutral-800]="selectedArch() === 'all'"
+            [class.text-white]="selectedArch() === 'all'"
+            [class.font-semibold]="selectedArch() === 'all'"
+            [class.shadow-sm]="selectedArch() === 'all'"
+            [class.text-neutral-400]="selectedArch() !== 'all'"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            data-tooltip="Afficher les deux arcades (32 dents)"
+            aria-label="Arcade complète">
+            Arcade (32)
+          </button>
+          <button
+            type="button"
+            id="jawline-arch-upper-btn"
+            (click)="setArch('upper')"
+            [class.bg-neutral-800]="selectedArch() === 'upper'"
+            [class.text-white]="selectedArch() === 'upper'"
+            [class.font-semibold]="selectedArch() === 'upper'"
+            [class.shadow-sm]="selectedArch() === 'upper'"
+            [class.text-neutral-400]="selectedArch() !== 'upper'"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            data-tooltip="Arcade supérieure seule (16 dents)"
+            aria-label="Maxillaire supérieur">
+            Maxillaire
+          </button>
+          <button
+            type="button"
+            id="jawline-arch-lower-btn"
+            (click)="setArch('lower')"
+            [class.bg-neutral-800]="selectedArch() === 'lower'"
+            [class.text-white]="selectedArch() === 'lower'"
+            [class.font-semibold]="selectedArch() === 'lower'"
+            [class.shadow-sm]="selectedArch() === 'lower'"
+            [class.text-neutral-400]="selectedArch() !== 'lower'"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            data-tooltip="Arcade inférieure seule (16 dents)"
+            aria-label="Mandibule inférieure">
+            Mandibule
+          </button>
+        </div>
+      </div>
+
+      <!-- FLOATING BOTTOM CAMERA PRESETS DOCK (MINIMALIST ICONS ONLY, SMALLER) -->
+      <div id="jawline-camera-dock" class="lg:hidden absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1 bg-neutral-950/90 backdrop-blur-md p-1 rounded-2xl border border-white/10 shadow-xl text-xs">
+        <button
+          type="button"
+          id="jawline-cam-global-btn"
+          (click)="resetView()"
+          class="p-1.5 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Vue Globale"
+          aria-label="Vue globale">
+          <mat-icon class="text-base leading-none flex items-center justify-center">center_focus_strong</mat-icon>
+        </button>
+
+        <button
+          type="button"
+          id="jawline-cam-occlusal-btn"
+          (click)="setOcclusalView()"
+          class="p-1.5 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Vue Occlusale"
+          aria-label="Vue occlusale">
+          <mat-icon class="text-base leading-none flex items-center justify-center">vertical_align_top</mat-icon>
+        </button>
+
+        <button
+          type="button"
+          id="jawline-cam-anterior-btn"
+          (click)="setAnteriorView()"
+          class="p-1.5 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Vue Antérieure"
+          aria-label="Vue antérieure">
+          <mat-icon class="text-base leading-none flex items-center justify-center">visibility</mat-icon>
+        </button>
+
+        <button
+          type="button"
+          id="jawline-cam-left-btn"
+          (click)="setLeftLateralView()"
+          class="p-1.5 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Profil Gauche"
+          aria-label="Profil gauche">
+          <mat-icon class="text-base leading-none flex items-center justify-center">west</mat-icon>
+        </button>
+
+        <button
+          type="button"
+          id="jawline-cam-right-btn"
+          (click)="setRightLateralView()"
+          class="p-1.5 rounded-xl text-neutral-300 hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Profil Droit"
+          aria-label="Profil droit">
+          <mat-icon class="text-base leading-none flex items-center justify-center">east</mat-icon>
+        </button>
+
+        <div class="w-px h-3.5 bg-white/10 my-auto mx-0.5 shrink-0"></div>
+
+        <button
+          type="button"
+          (click)="toggleAutoRotate()"
+          [class.bg-emerald-500/20]="isAutoRotating()"
+          [class.text-emerald-300]="isAutoRotating()"
+          [class.border-emerald-500/40]="isAutoRotating()"
+          [class.text-neutral-300]="!isAutoRotating()"
+          class="p-1.5 rounded-xl hover:text-white hover:bg-neutral-800 transition flex items-center justify-center cursor-pointer"
+          data-tooltip="Rotation automatique"
+          aria-label="Rotation automatique">
+          <mat-icon class="text-base leading-none flex items-center justify-center">sync</mat-icon>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR: REFINED, COMPACT & NON-INTRUSIVE -->
+    @if (isSidebarOpen()) {
+      <aside id="jawline-sidebar-panel" class="lg:col-span-4 xl:col-span-3 bg-neutral-950/95 border-t lg:border-t-0 lg:border-l border-neutral-800/80 flex flex-col p-3.5 space-y-3 h-auto lg:h-full overflow-visible lg:overflow-y-auto z-10 custom-scrollbar">
+
+        <!-- GUIDED TOUR CARD (SHOWN ONLY IN LEARN MODE) -->
+        @if (viewMode() === 'learn') {
+          <div id="jawline-guided-tour-card" class="bg-neutral-900/90 p-3 rounded-xl border border-neutral-800 flex flex-col gap-2 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-300 border border-neutral-700">
+                Étape {{ currentStepIndex() + 1 }} / {{ guidedSteps.length }}
+              </span>
+              <span class="text-[11px] text-neutral-400">Visite Clinique</span>
+            </div>
+
+            <div class="flex items-center gap-2 text-neutral-100 font-semibold text-xs">
+              <div class="w-6 h-6 rounded-md bg-neutral-800 flex items-center justify-center text-neutral-200 shrink-0">
+                <mat-icon class="text-xs">{{ guidedSteps[currentStepIndex()].icon }}</mat-icon>
+              </div>
+              <h4 class="leading-tight">{{ guidedSteps[currentStepIndex()].title }}</h4>
+            </div>
+
+            <p class="text-[11px] text-neutral-300 leading-relaxed">
+              {{ guidedSteps[currentStepIndex()].description }}
+            </p>
+
+            <div class="flex items-center justify-between pt-2 border-t border-neutral-800/80">
+              <button
+                type="button"
+                id="jawline-step-prev-btn"
+                (click)="prevStep()"
+                [disabled]="currentStepIndex() === 0"
+                class="px-2.5 py-1 rounded-lg text-xs font-medium bg-neutral-800 border border-neutral-700/60 text-neutral-300 hover:bg-neutral-700 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center gap-1 cursor-pointer">
+                <mat-icon class="text-xs">arrow_back</mat-icon>
+                <span>Précédent</span>
+              </button>
+
+              <button
+                type="button"
+                id="jawline-step-next-btn"
+                (click)="nextStep()"
+                [disabled]="currentStepIndex() === guidedSteps.length - 1"
+                class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-neutral-100 hover:bg-white text-neutral-950 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center gap-1 cursor-pointer shadow-sm">
+                <span>Suivant</span>
+                <mat-icon class="text-xs">arrow_forward</mat-icon>
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- ANATOMICAL LAYERS CHIPS -->
+        <div id="jawline-layers-card" class="bg-neutral-900/60 p-3 rounded-xl border border-neutral-800/80 flex flex-col gap-2.5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider flex items-center gap-1.5">
+              <mat-icon class="text-xs text-neutral-400">layers</mat-icon>
+              Couches Anatomiques
+            </h3>
+            <span class="text-[10px] text-neutral-500 font-mono">ToothFairy3</span>
+          </div>
+
+          <!-- Compact Toggle Chips -->
+          <div class="flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              id="jawline-layer-teeth-chk"
+              (click)="toggleTeethLayer()"
+              [class.bg-neutral-800]="showTeethLayer()"
+              [class.text-white]="showTeethLayer()"
+              [class.border-neutral-700]="showTeethLayer()"
+              [class.bg-neutral-950]="!showTeethLayer()"
+              [class.text-neutral-500]="!showTeethLayer()"
+              [class.border-neutral-850]="!showTeethLayer()"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full" [class.bg-neutral-100]="showTeethLayer()" [class.bg-neutral-600]="!showTeethLayer()"></span>
+              <span>32 Dents</span>
+            </button>
+
+            <button
+              type="button"
+              id="jawline-layer-canal-chk"
+              (click)="toggleCanalLayer()"
+              [class.bg-amber-950/40]="showCanalLayer()"
+              [class.text-amber-300]="showCanalLayer()"
+              [class.border-amber-500/40]="showCanalLayer()"
+              [class.bg-neutral-950]="!showCanalLayer()"
+              [class.text-neutral-500]="!showCanalLayer()"
+              [class.border-neutral-850]="!showCanalLayer()"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full" [class.bg-amber-400]="showCanalLayer()" [class.bg-neutral-600]="!showCanalLayer()"></span>
+              <span>Canaux (Nerfs)</span>
+            </button>
+
+            <button
+              type="button"
+              id="jawline-layer-maxilla-chk"
+              (click)="toggleMaxillaLayer()"
+              [class.bg-neutral-800]="showMaxillaLayer()"
+              [class.text-white]="showMaxillaLayer()"
+              [class.border-neutral-700]="showMaxillaLayer()"
+              [class.bg-neutral-950]="!showMaxillaLayer()"
+              [class.text-neutral-500]="!showMaxillaLayer()"
+              [class.border-neutral-850]="!showMaxillaLayer()"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full" [class.bg-neutral-300]="showMaxillaLayer()" [class.bg-neutral-600]="!showMaxillaLayer()"></span>
+              <span>Maxillaire</span>
+            </button>
+
+            <button
+              type="button"
+              id="jawline-layer-mandible-chk"
+              (click)="toggleMandibleLayer()"
+              [class.bg-neutral-800]="showMandibleLayer()"
+              [class.text-white]="showMandibleLayer()"
+              [class.border-neutral-700]="showMandibleLayer()"
+              [class.bg-neutral-950]="!showMandibleLayer()"
+              [class.text-neutral-500]="!showMandibleLayer()"
+              [class.border-neutral-850]="!showMandibleLayer()"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full" [class.bg-neutral-300]="showMandibleLayer()" [class.bg-neutral-600]="!showMandibleLayer()"></span>
+              <span>Mandibule</span>
+            </button>
+
+            <button
+              type="button"
+              id="jawline-layer-sinus-chk"
+              (click)="toggleSinusLayer()"
+              [class.bg-sky-950/40]="showSinusLayer()"
+              [class.text-sky-300]="showSinusLayer()"
+              [class.border-sky-500/40]="showSinusLayer()"
+              [class.bg-neutral-950]="!showSinusLayer()"
+              [class.text-neutral-500]="!showSinusLayer()"
+              [class.border-neutral-850]="!showSinusLayer()"
+              class="px-2.5 py-1 rounded-lg text-xs font-medium border transition cursor-pointer flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full" [class.bg-sky-400]="showSinusLayer()" [class.bg-neutral-600]="!showSinusLayer()"></span>
+              <span>Sinus</span>
+            </button>
+          </div>
+
+          <!-- BONE OPACITY SEGMENTED CONTROL -->
+          <div class="pt-2 border-t border-neutral-800/80">
+            <div class="flex items-center justify-between text-[10px] text-neutral-400 mb-1.5 font-medium">
+              <span>Transparence Osseuse</span>
+              <span class="text-neutral-300 font-mono">{{ boneMode() === 'translucent' ? 'Translucide' : boneMode() === 'visible' ? 'Solide' : 'Masqué' }}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-1 bg-neutral-950 p-0.5 rounded-lg border border-neutral-800 text-[11px]">
+              <button
+                type="button"
+                id="jawline-bone-hidden-btn"
+                (click)="setBoneMode('hidden')"
+                [class.bg-neutral-800]="boneMode() === 'hidden'"
+                [class.text-white]="boneMode() === 'hidden'"
+                [class.font-medium]="boneMode() === 'hidden'"
+                class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer">
+                Masqué
+              </button>
+              <button
+                type="button"
+                id="jawline-bone-translucent-btn"
+                (click)="setBoneMode('translucent')"
+                [class.bg-neutral-800]="boneMode() === 'translucent'"
+                [class.text-white]="boneMode() === 'translucent'"
+                [class.font-medium]="boneMode() === 'translucent'"
+                class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer">
+                Translucide
+              </button>
+              <button
+                type="button"
+                id="jawline-bone-visible-btn"
+                (click)="setBoneMode('visible')"
+                [class.bg-neutral-800]="boneMode() === 'visible'"
+                [class.text-white]="boneMode() === 'visible'"
+                [class.font-medium]="boneMode() === 'visible'"
+                class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer">
+                Solide
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SELECTED TOOTH / STRUCTURE REFINED CARD -->
+        <div id="jawline-selected-structure-card" class="bg-neutral-900/60 p-3 rounded-xl border border-neutral-800/80 flex flex-col gap-2 flex-1 min-h-0">
+          <div class="flex items-center justify-between">
+            <h3 class="text-[11px] font-semibold text-neutral-300 uppercase tracking-wider flex items-center gap-1.5">
+              <mat-icon class="text-xs text-neutral-400">gps_fixed</mat-icon>
+              Structure
+            </h3>
+            @if (selectedToothData()) {
+              <button
+                type="button"
+                id="jawline-clear-tooth-btn"
+                (click)="clearToothSelection()"
+                class="text-neutral-400 hover:text-neutral-200 transition p-0.5 cursor-pointer"
+                title="Désélectionner">
+                <mat-icon class="text-sm">close</mat-icon>
+              </button>
+            }
+          </div>
+
+          @if (selectedToothData(); as tooth) {
+            <div class="bg-neutral-950/80 rounded-lg p-2.5 border border-neutral-800 flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="px-1.5 py-0.2 text-xs font-mono font-bold bg-neutral-800 text-neutral-100 border border-neutral-700 rounded">
+                      FDI {{ tooth.fdi }}
+                    </span>
+                    <span class="text-[10px] text-neutral-400 uppercase font-mono">Q{{ tooth.quadrant }}</span>
+                  </div>
+                  <h4 class="text-xs font-semibold text-neutral-100 mt-1">{{ tooth.nameFr }}</h4>
+                </div>
+              </div>
+
+              <!-- Anatomic relationship note -->
+              <div class="text-[11px] text-neutral-300 leading-relaxed bg-neutral-900/70 p-2 rounded border border-neutral-800/60">
+                @if (tooth.fdi >= 31 && tooth.fdi <= 48) {
+                  <span class="font-medium text-amber-300">Rapport mandibulaire :</span> Proximité directe avec le canal alvéolaire inférieur.
+                } @else {
+                  <span class="font-medium text-sky-300">Rapport maxillaire :</span> Implantation en regard du plancher sinusien.
+                }
+              </div>
+
+              <!-- Direct Single Tooth CTA Button -->
+              <button
+                type="button"
+                id="jawline-inspect-tooth-btn"
+                (click)="inspectTooth()"
+                class="w-full flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-neutral-100 hover:bg-white text-neutral-950 font-semibold text-xs shadow transition active:scale-[0.98] cursor-pointer">
+                <mat-icon class="text-sm">visibility</mat-icon>
+                <span>Explorer la dent {{ tooth.fdi }} en 3D</span>
+                <mat-icon class="text-sm">arrow_forward</mat-icon>
+              </button>
+            </div>
+          } @else {
+            <div class="bg-neutral-950/50 rounded-lg p-3 border border-neutral-850 text-center flex flex-col items-center justify-center gap-1.5 my-auto">
+              <mat-icon class="text-xl text-neutral-600">touch_app</mat-icon>
+              <p class="text-[11px] text-neutral-400">Touchez ou cliquez une dent pour voir ses rapports anatomiques.</p>
+            </div>
+          }
+        </div>
+
+      </aside>
+    }
+
+  </div>
+
+</div>

@@ -1,0 +1,102 @@
+/* Jawline 3D viewer styles */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Apple-style lightweight, accessible CSS tooltips */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 4px 8px;
+  background: rgba(18, 18, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f5f5;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  z-index: 60;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Tooltip below if pinned */
+[data-tooltip-bottom]::after {
+  top: calc(100% + 8px);
+  bottom: auto;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+[data-tooltip-bottom]:hover::after,
+[data-tooltip-bottom]:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Smooth custom scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Viewer Container & Layout Stacking Rules */
+#viewer-container {
+  min-height: 400px;
+  flex-basis: 100%;
+  border-radius: 0 !important;
+  height: 100%;
+}
+
+#viewer-container canvas,
+#viewer-container app-dental-3d-viewport {
+  border-radius: 0 !important;
+  height: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  #viewer-container {
+    flex-basis: auto;
+    height: 100%;
+  }
+}
+
+#jawline-sidebar-panel {
+  min-height: max-content;
+}
+
+@media (max-width: 1023px) {
+  #jawline-sidebar-panel {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+

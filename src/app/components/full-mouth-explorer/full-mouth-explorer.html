@@ -1,0 +1,527 @@
+<div class="full-mouth-container flex flex-col w-full min-h-[580px] lg:min-h-[680px] h-[78vh] max-h-[900px] bg-neutral-950 text-neutral-100 rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl relative font-sans">
+
+  <!-- TOP APP BAR / HEADER -->
+  <header class="header-bar flex items-center justify-between px-4 py-2.5 bg-neutral-900/95 backdrop-blur border-b border-neutral-800 z-20 shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-neutral-800 border border-neutral-700/80 flex items-center justify-center text-neutral-200 shadow-inner">
+        <mat-icon class="text-base">view_in_ar</mat-icon>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h2 class="text-sm md:text-base font-semibold text-neutral-100 tracking-tight">Full-Mouth Dentition Explorer</h2>
+          <span class="px-2 py-0.5 text-[10px] font-mono font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 rounded-full">ToothFairy3 CBCT</span>
+        </div>
+        <p class="text-xs text-neutral-400 hidden sm:block">Anatomie Tridimensionnelle des 32 Dents & Rapports Radiculo-Nerveux</p>
+      </div>
+    </div>
+
+    <!-- Right Quick Actions -->
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        (click)="toggleFdiLabels()"
+        [class.bg-neutral-100]="showFdiLabels()"
+        [class.text-neutral-950]="showFdiLabels()"
+        [class.font-semibold]="showFdiLabels()"
+        [class.bg-neutral-800]="!showFdiLabels()"
+        [class.text-neutral-300]="!showFdiLabels()"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border border-neutral-700/60 transition hover:text-white cursor-pointer"
+        title="Afficher/Masquer les repères FDI">
+        <mat-icon class="text-sm">tag</mat-icon>
+        <span class="hidden sm:inline">Repères FDI</span>
+      </button>
+
+      <button
+        type="button"
+        (click)="toggleAccessibleList()"
+        [class.bg-neutral-700]="isAccessibleListOpen()"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-neutral-800 border border-neutral-700/60 text-neutral-300 hover:bg-neutral-700 transition cursor-pointer"
+        title="Répertoire des 32 dents">
+        <mat-icon class="text-sm">format_list_bulleted</mat-icon>
+        <span class="hidden sm:inline">Répertoire</span>
+      </button>
+
+      <button
+        type="button"
+        (click)="resetView()"
+        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-neutral-800 border border-neutral-700/60 text-neutral-300 hover:bg-neutral-700 transition cursor-pointer"
+        title="Réinitialiser le cadrage">
+        <mat-icon class="text-sm">restart_alt</mat-icon>
+        <span class="hidden sm:inline">Réinitialiser</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN EXPLORER GRID (HERO 3D VIEWPORT + COMPACT DETAIL SIDEBAR) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 relative overflow-hidden min-h-0 h-full">
+
+    <!-- 3D VIEWPORT CANVAS (DOMINANT HERO AREA) -->
+    <div class="lg:col-span-8 xl:col-span-9 relative flex flex-col bg-neutral-950 h-full min-h-[460px]">
+
+      <!-- TOP ARCH & QUADRANT FILTER OVERLAY -->
+      <div class="absolute top-3 inset-x-3 z-10 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+        
+        <!-- Arch Segmented Pill -->
+        <div class="pointer-events-auto flex items-center bg-neutral-900/90 backdrop-blur-md p-1 rounded-xl border border-neutral-800 shadow-xl text-xs font-medium">
+          <button
+            type="button"
+            (click)="setArch('all')"
+            [class.bg-neutral-100]="selectedArch() === 'all'"
+            [class.text-neutral-950]="selectedArch() === 'all'"
+            [class.font-bold]="selectedArch() === 'all'"
+            [class.shadow-md]="selectedArch() === 'all'"
+            [class.text-neutral-400]="selectedArch() !== 'all'"
+            class="px-3 py-1.5 rounded-lg transition hover:text-white cursor-pointer">
+            Arcade Complète (32)
+          </button>
+          <button
+            type="button"
+            (click)="setArch('upper')"
+            [class.bg-neutral-100]="selectedArch() === 'upper'"
+            [class.text-neutral-950]="selectedArch() === 'upper'"
+            [class.font-bold]="selectedArch() === 'upper'"
+            [class.shadow-md]="selectedArch() === 'upper'"
+            [class.text-neutral-400]="selectedArch() !== 'upper'"
+            class="px-3 py-1.5 rounded-lg transition hover:text-white cursor-pointer">
+            Maxillaire (16)
+          </button>
+          <button
+            type="button"
+            (click)="setArch('lower')"
+            [class.bg-neutral-100]="selectedArch() === 'lower'"
+            [class.text-neutral-950]="selectedArch() === 'lower'"
+            [class.font-bold]="selectedArch() === 'lower'"
+            [class.shadow-md]="selectedArch() === 'lower'"
+            [class.text-neutral-400]="selectedArch() !== 'lower'"
+            class="px-3 py-1.5 rounded-lg transition hover:text-white cursor-pointer">
+            Mandibule (16)
+          </button>
+        </div>
+
+        <!-- Quadrants Quick Toggle -->
+        <div class="pointer-events-auto flex items-center bg-neutral-900/90 backdrop-blur-md p-1 rounded-xl border border-neutral-800 shadow-xl text-xs font-mono">
+          <button
+            type="button"
+            (click)="setQuadrant(selectedQuadrant() === 1 ? null : 1)"
+            [class.bg-neutral-100]="selectedQuadrant() === 1"
+            [class.text-neutral-950]="selectedQuadrant() === 1"
+            [class.font-bold]="selectedQuadrant() === 1"
+            [class.text-neutral-400]="selectedQuadrant() !== 1"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            title="Quadrant 1: Supérieur Droit (11-18)">
+            Q1
+          </button>
+          <button
+            type="button"
+            (click)="setQuadrant(selectedQuadrant() === 2 ? null : 2)"
+            [class.bg-neutral-100]="selectedQuadrant() === 2"
+            [class.text-neutral-950]="selectedQuadrant() === 2"
+            [class.font-bold]="selectedQuadrant() === 2"
+            [class.text-neutral-400]="selectedQuadrant() !== 2"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            title="Quadrant 2: Supérieur Gauche (21-28)">
+            Q2
+          </button>
+          <button
+            type="button"
+            (click)="setQuadrant(selectedQuadrant() === 3 ? null : 3)"
+            [class.bg-neutral-100]="selectedQuadrant() === 3"
+            [class.text-neutral-950]="selectedQuadrant() === 3"
+            [class.font-bold]="selectedQuadrant() === 3"
+            [class.text-neutral-400]="selectedQuadrant() !== 3"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            title="Quadrant 3: Inférieur Gauche (31-38)">
+            Q3
+          </button>
+          <button
+            type="button"
+            (click)="setQuadrant(selectedQuadrant() === 4 ? null : 4)"
+            [class.bg-neutral-100]="selectedQuadrant() === 4"
+            [class.text-neutral-950]="selectedQuadrant() === 4"
+            [class.font-bold]="selectedQuadrant() === 4"
+            [class.text-neutral-400]="selectedQuadrant() !== 4"
+            class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
+            title="Quadrant 4: Inférieur Droit (41-48)">
+            Q4
+          </button>
+        </div>
+      </div>
+
+      <!-- THREE.JS WEBGL VIEWPORT COMPONENT -->
+      <div class="w-full flex-1 relative h-full">
+        <app-dental-3d-viewport
+          modelType="dental-arch"
+          modelSource="toothfairy"
+          [showControls]="false"
+          [selectedToothFdi]="selectedToothFdi() || undefined"
+          (toothSelected)="onViewportToothSelected($event)">
+        </app-dental-3d-viewport>
+
+        <!-- FLOATING FDI 3D BADGES OVERLAY -->
+        @if (showFdiLabels()) {
+          <div class="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+            @for (pos of fdiPositions(); track pos.fdi) {
+              @if (pos.visible) {
+                <button
+                  type="button"
+                  (click)="selectTooth(pos.fdi)"
+                  [style.left.px]="pos.x"
+                  [style.top.px]="pos.y"
+                  [class.bg-neutral-100]="selectedToothFdi() === pos.fdi"
+                  [class.text-neutral-950]="selectedToothFdi() === pos.fdi"
+                  [class.scale-125]="selectedToothFdi() === pos.fdi"
+                  class="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] font-mono font-bold rounded-md bg-neutral-900/90 text-neutral-200 border border-neutral-700 shadow-md backdrop-blur transition hover:bg-neutral-100 hover:text-neutral-950 cursor-pointer">
+                  {{ pos.fdi }}
+                </button>
+              }
+            }
+          </div>
+        }
+
+        <!-- INFERIOR ALVEOLAR CANALS BEACON (TOP LEFT) -->
+        <div class="absolute top-14 left-3 z-10 pointer-events-none">
+          <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-950/85 backdrop-blur-md border border-amber-500/30 text-amber-300 text-xs shadow-md">
+            <span class="w-2 h-2 rounded-full bg-amber-400" [class.animate-pulse]="showCanalLayer()"></span>
+            <span class="font-medium">Canaux Alvéolaires Inférieurs {{ showCanalLayer() ? 'Visibles' : 'Masqués' }}</span>
+          </div>
+        </div>
+
+        <!-- UNIFIED FLOATING BOTTOM ORIENTATION CONTROL BAR -->
+        <div class="lg:hidden absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1 bg-neutral-900/90 backdrop-blur-md p-1.5 rounded-2xl border border-neutral-800 shadow-2xl text-xs">
+          <button
+            type="button"
+            (click)="resetView()"
+            class="px-2.5 py-1.5 rounded-xl hover:bg-neutral-800 text-neutral-300 transition flex items-center gap-1 cursor-pointer"
+            title="Vue d'ensemble">
+            <mat-icon class="text-base">center_focus_strong</mat-icon>
+            <span class="hidden sm:inline">Vue Globale</span>
+          </button>
+          
+          <div class="w-px h-4 bg-neutral-800 my-auto"></div>
+          
+          <button
+            type="button"
+            (click)="setOcclusalView()"
+            class="px-2.5 py-1.5 rounded-xl hover:bg-neutral-800 text-neutral-300 transition cursor-pointer"
+            title="Vue Occlusale (Dessus)">
+            Occlusale
+          </button>
+          
+          <button
+            type="button"
+            (click)="setAnteriorView()"
+            class="px-2.5 py-1.5 rounded-xl hover:bg-neutral-800 text-neutral-300 transition cursor-pointer"
+            title="Vue Antérieure (Face)">
+            Antérieure
+          </button>
+          
+          <button
+            type="button"
+            (click)="setPosteriorView()"
+            class="px-2.5 py-1.5 rounded-xl hover:bg-neutral-800 text-neutral-300 transition cursor-pointer"
+            title="Vue Postérieure (Arrière)">
+            Postérieure
+          </button>
+
+          <button
+            type="button"
+            (click)="setCanalView()"
+            class="px-2.5 py-1.5 rounded-xl hover:bg-amber-950/40 text-amber-300 border border-amber-500/30 bg-amber-500/10 transition flex items-center gap-1.5 cursor-pointer font-medium"
+            title="Cadrage centré sur les canaux alvéolaires inférieurs">
+            <mat-icon class="text-sm text-amber-400">insights</mat-icon>
+            <span>Canaux</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTROL & DETAIL PANEL (PROPER VERTICAL SCROLL, NO CUTOFF) -->
+    <div class="lg:col-span-4 xl:col-span-3 bg-neutral-900/95 border-l border-neutral-800 p-4 flex flex-col gap-4 overflow-y-auto max-h-full custom-scrollbar z-10 h-full">
+
+      <!-- SECTION 1: ANATOMICAL LAYERS -->
+      <div class="layer-controls flex flex-col gap-3 bg-neutral-950/80 p-3.5 rounded-xl border border-neutral-800 shadow-inner shrink-0">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-semibold text-neutral-300 uppercase tracking-wider flex items-center gap-1.5">
+            <mat-icon class="text-sm text-neutral-400">layers</mat-icon>
+            Couches Anatomiques
+          </h3>
+          <span class="text-[10px] text-neutral-500 font-mono">ToothFairy3</span>
+        </div>
+
+        <div class="space-y-2 text-xs">
+          <!-- 32 Teeth Toggle -->
+          <label class="flex items-center justify-between p-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 cursor-pointer transition">
+            <span class="flex items-center gap-2 text-neutral-200">
+              <span class="w-2.5 h-2.5 rounded-full bg-neutral-200 shadow-sm"></span>
+              32 Dents Permanentes
+            </span>
+            <input
+              type="checkbox"
+              [checked]="showTeethLayer()"
+              (change)="toggleTeethLayer()"
+              class="w-4 h-4 rounded text-neutral-100 focus:ring-neutral-400 bg-neutral-950 border-neutral-700">
+          </label>
+
+          <!-- Inferior Alveolar Canals Toggle (MANDATORY DEFAULT VISIBLE) -->
+          <label class="flex items-center justify-between p-2 rounded-lg bg-amber-950/20 border border-amber-500/30 hover:border-amber-500/50 cursor-pointer transition">
+            <span class="flex items-center gap-2 text-amber-300 font-medium">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50"></span>
+              Canaux Alvéolaires Inférieurs
+            </span>
+            <input
+              type="checkbox"
+              [checked]="showCanalLayer()"
+              (change)="toggleCanalLayer()"
+              class="w-4 h-4 rounded text-amber-500 focus:ring-amber-500 bg-neutral-950 border-amber-500/50">
+          </label>
+
+          <!-- Maxillary Sinus Floors Toggle -->
+          <label class="flex items-center justify-between p-2 rounded-lg bg-neutral-900 border border-neutral-800 hover:border-neutral-700 cursor-pointer transition">
+            <span class="flex items-center gap-2 text-neutral-200">
+              <span class="w-2.5 h-2.5 rounded-full bg-sky-400/80 shadow-sm"></span>
+              Planchers Sinusiens Maxillaires
+            </span>
+            <input
+              type="checkbox"
+              [checked]="showSinusLayer()"
+              (change)="toggleSinusLayer()"
+              class="w-4 h-4 rounded text-sky-500 focus:ring-sky-500 bg-neutral-950 border-neutral-700">
+          </label>
+
+          <!-- Real Pulp Mesh Toggle (Strict Clinical Red) -->
+          <label class="flex items-center justify-between p-2 rounded-lg bg-rose-950/20 border border-rose-500/30 hover:border-rose-500/50 cursor-pointer transition">
+            <span class="flex items-center gap-2 text-rose-300 font-medium">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50"></span>
+              Pulpe & Réseau Endodontique
+            </span>
+            <input
+              type="checkbox"
+              [checked]="showPulpLayer()"
+              (change)="togglePulpLayer()"
+              class="w-4 h-4 rounded text-rose-500 focus:ring-rose-500 bg-neutral-950 border-rose-500/50">
+          </label>
+        </div>
+
+        <!-- BONE TRANSLUCENCY CONTROL -->
+        <div class="pt-2 border-t border-neutral-800">
+          <div class="flex items-center justify-between text-[11px] text-neutral-400 mb-1.5 font-medium">
+            <span>Matrice Osseuse Alvéolaire</span>
+            <span class="text-neutral-300 font-mono text-[10px]">{{ boneMode() === 'translucent' ? 'Translucide' : boneMode() === 'visible' ? 'Solide' : 'Masqué' }}</span>
+          </div>
+          <div class="grid grid-cols-3 gap-1 bg-neutral-900 p-1 rounded-lg border border-neutral-800 text-xs">
+            <button
+              type="button"
+              (click)="setBoneMode('hidden')"
+              [class.bg-neutral-800]="boneMode() === 'hidden'"
+              [class.text-white]="boneMode() === 'hidden'"
+              class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer">
+              Masqué
+            </button>
+            <button
+              type="button"
+              (click)="setBoneMode('translucent')"
+              [class.bg-neutral-800]="boneMode() === 'translucent'"
+              [class.text-white]="boneMode() === 'translucent'"
+              class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer font-medium">
+              Translucide
+            </button>
+            <button
+              type="button"
+              (click)="setBoneMode('visible')"
+              [class.bg-neutral-800]="boneMode() === 'visible'"
+              [class.text-white]="boneMode() === 'visible'"
+              class="py-1 rounded text-center text-neutral-400 transition hover:text-neutral-200 cursor-pointer">
+              Solide
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: TOOTH NAVIGATOR & SELECTION CARD -->
+      <div class="tooth-selector flex flex-col gap-3 bg-neutral-950/80 p-3.5 rounded-xl border border-neutral-800 shadow-inner flex-1 min-h-0">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-semibold text-neutral-300 uppercase tracking-wider flex items-center gap-1.5">
+            <mat-icon class="text-sm text-neutral-400">gps_fixed</mat-icon>
+            Dent Sélectionnée
+          </h3>
+          <div class="flex items-center gap-1">
+            <button
+              type="button"
+              (click)="navigateToTooth('prev')"
+              class="p-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 hover:bg-neutral-800 transition cursor-pointer"
+              title="Dent précédente">
+              <mat-icon class="text-sm">chevron_left</mat-icon>
+            </button>
+            <button
+              type="button"
+              (click)="navigateToTooth('next')"
+              class="p-1 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 hover:bg-neutral-800 transition cursor-pointer"
+              title="Dent suivante">
+              <mat-icon class="text-sm">chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        @if (selectedToothData(); as tooth) {
+          <!-- ACTIVE SELECTED TOOTH CARD -->
+          <div class="active-tooth-card bg-neutral-900 rounded-xl p-3 border border-neutral-700 shadow-lg flex flex-col gap-3">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 text-xs font-mono font-bold bg-neutral-100 text-neutral-950 rounded-md">FDI {{ tooth.fdi }}</span>
+                  <span class="text-[10px] text-neutral-400 uppercase tracking-wide">Q{{ tooth.quadrant }} • {{ tooth.arch }}</span>
+                </div>
+                <h4 class="text-sm font-semibold text-neutral-100 mt-1">{{ tooth.nameFr }}</h4>
+                <p class="text-xs text-neutral-400 italic">Universal {{ tooth.universal }} • Palmer {{ tooth.palmer }}</p>
+              </div>
+
+              <button
+                type="button"
+                (click)="clearToothSelection()"
+                class="text-neutral-500 hover:text-neutral-300 transition p-1 cursor-pointer"
+                title="Désélectionner">
+                <mat-icon class="text-base">close</mat-icon>
+              </button>
+            </div>
+
+            <!-- Anatomical Relationship Callout -->
+            @if (nearbyAnatomyInfo(); as anatomy) {
+              <div class="bg-amber-950/30 border border-amber-500/30 rounded-lg p-2.5 flex flex-col gap-1">
+                <div class="flex items-center gap-1.5 text-amber-400 text-xs font-semibold">
+                  <mat-icon class="text-sm">insights</mat-icon>
+                  <span>{{ anatomy.title }}</span>
+                </div>
+                <p class="text-[11px] text-amber-200/90 leading-relaxed">{{ anatomy.description }}</p>
+              </div>
+            }
+
+            <!-- Quick Specs -->
+            <div class="grid grid-cols-2 gap-2 text-[11px] bg-neutral-950/60 p-2 rounded-lg border border-neutral-800">
+              <div>
+                <span class="text-neutral-500 block">Type :</span>
+                <span class="text-neutral-200 capitalize font-medium">{{ tooth.type }}</span>
+              </div>
+              <div>
+                <span class="text-neutral-500 block">Racines :</span>
+                <span class="text-neutral-200 font-medium">{{ tooth.rootsCount }} racine(s)</span>
+              </div>
+            </div>
+
+            <!-- PRIMARY ACTION: DEDICATED TOOTH EXPLORER TRANSITION -->
+            <button
+              type="button"
+              (click)="exploreSelectedTooth()"
+              class="w-full mt-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-neutral-100 hover:bg-white text-neutral-950 font-bold text-xs shadow-lg transition active:scale-[0.98] cursor-pointer">
+              <mat-icon class="text-base">visibility</mat-icon>
+              <span>Explorer la dent {{ tooth.fdi }} en 3D</span>
+              <mat-icon class="text-base">arrow_forward</mat-icon>
+            </button>
+          </div>
+        } @else {
+          <!-- EMPTY SELECTION STATE -->
+          <div class="empty-selection bg-neutral-900/50 rounded-xl p-4 border border-neutral-800 text-center flex flex-col items-center justify-center gap-2 my-auto">
+            <mat-icon class="text-3xl text-neutral-600">touch_app</mat-icon>
+            <p class="text-xs text-neutral-400">Cliquez sur une dent dans le modèle 3D ou sélectionnez ci-dessous pour analyser ses rapports radiculaires.</p>
+          </div>
+        }
+
+        <!-- QUICK FDIs BUTTON GRID -->
+        <div class="grid grid-cols-8 gap-1 pt-1 shrink-0">
+          @for (tooth of dataService.dentalArchTeeth; track tooth.fdi) {
+            <button
+              type="button"
+              (click)="selectTooth(tooth.fdi)"
+              [class.bg-neutral-100]="selectedToothFdi() === tooth.fdi"
+              [class.text-neutral-950]="selectedToothFdi() === tooth.fdi"
+              [class.font-bold]="selectedToothFdi() === tooth.fdi"
+              [class.bg-neutral-900]="selectedToothFdi() !== tooth.fdi"
+              [class.text-neutral-300]="selectedToothFdi() !== tooth.fdi"
+              class="py-1 text-[11px] font-mono rounded border border-neutral-800 hover:bg-neutral-800 hover:text-white transition text-center cursor-pointer">
+              {{ tooth.fdi }}
+            </button>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACCESSIBLE DIRECTORY MODAL / DRAWER -->
+  @if (isAccessibleListOpen()) {
+    <div class="fixed inset-0 z-50 bg-neutral-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-neutral-900 border border-neutral-800 rounded-2xl w-full max-w-3xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-neutral-800">
+          <div class="flex items-center gap-2">
+            <mat-icon class="text-neutral-300">format_list_bulleted</mat-icon>
+            <h3 class="text-base font-semibold text-neutral-100">Répertoire des 32 Dents Permanentes</h3>
+          </div>
+          <button type="button" (click)="toggleAccessibleList()" class="text-neutral-400 hover:text-neutral-200 p-1 cursor-pointer">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <div class="p-5 overflow-y-auto space-y-6 text-xs custom-scrollbar">
+          <!-- Q1 -->
+          <div>
+            <h4 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Quadrant 1 — Supérieur Droit (FDI 11–18)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              @for (t of q1Teeth(); track t.fdi) {
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center justify-between">
+                  <div>
+                    <span class="font-mono font-bold text-neutral-200">FDI {{ t.fdi }}</span> • {{ t.nameFr }}
+                  </div>
+                  <button type="button" (click)="selectTooth(t.fdi); toggleAccessibleList()" class="px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[11px] cursor-pointer">Afficher</button>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div>
+            <h4 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Quadrant 2 — Supérieur Gauche (FDI 21–28)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              @for (t of q2Teeth(); track t.fdi) {
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center justify-between">
+                  <div>
+                    <span class="font-mono font-bold text-neutral-200">FDI {{ t.fdi }}</span> • {{ t.nameFr }}
+                  </div>
+                  <button type="button" (click)="selectTooth(t.fdi); toggleAccessibleList()" class="px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[11px] cursor-pointer">Afficher</button>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div>
+            <h4 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Quadrant 3 — Inférieur Gauche (FDI 31–38)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              @for (t of q3Teeth(); track t.fdi) {
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center justify-between">
+                  <div>
+                    <span class="font-mono font-bold text-neutral-200">FDI {{ t.fdi }}</span> • {{ t.nameFr }}
+                  </div>
+                  <button type="button" (click)="selectTooth(t.fdi); toggleAccessibleList()" class="px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[11px] cursor-pointer">Afficher</button>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div>
+            <h4 class="text-xs font-bold text-neutral-300 uppercase tracking-wider mb-2">Quadrant 4 — Inférieur Droit (FDI 41–48)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              @for (t of q4Teeth(); track t.fdi) {
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center justify-between">
+                  <div>
+                    <span class="font-mono font-bold text-neutral-200">FDI {{ t.fdi }}</span> • {{ t.nameFr }}
+                  </div>
+                  <button type="button" (click)="selectTooth(t.fdi); toggleAccessibleList()" class="px-2 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-[11px] cursor-pointer">Afficher</button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

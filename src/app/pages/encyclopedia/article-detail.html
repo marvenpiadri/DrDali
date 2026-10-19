@@ -1,0 +1,217 @@
+@if (article(); as art) {
+  <article class="py-12 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-neutral-500 mb-6" aria-label="Fil d'Ariane">
+      <a routerLink="/" class="hover:text-neutral-900 dark:hover:text-white">Accueil</a>
+      <span>/</span>
+      <a routerLink="/encyclopedia" class="hover:text-neutral-900 dark:hover:text-white">Encyclopédie</a>
+      <span>/</span>
+      <span class="text-neutral-900 dark:text-white font-medium truncate">{{ art.title }}</span>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header pb-8">
+      <div class="flex flex-wrap items-center gap-3 text-xs text-neutral-500 mb-3">
+        <span class="px-2.5 py-1 rounded-md bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-bold uppercase tracking-wider text-[10px]">
+          {{ art.categoryLabel }}
+        </span>
+        <span>•</span>
+        <span class="flex items-center gap-1">
+          <span class="material-icons text-sm">schedule</span>
+          <span>{{ art.readingTimeMinutes }} min de lecture</span>
+        </span>
+        <span>•</span>
+        <span>Révisé en {{ art.lastReviewed }}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-neutral-950 dark:text-white leading-tight">
+        {{ art.title }}
+      </h1>
+
+      <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-300 mt-4 leading-relaxed font-normal">
+        {{ art.summary }}
+      </p>
+
+      <!-- Reviewer Box -->
+      <div class="mt-6 p-4 rounded-2xl bg-neutral-100/80 dark:bg-neutral-900/80 border border-neutral-200 dark:border-neutral-800 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 flex items-center justify-center font-bold text-sm shrink-0">
+          CDD
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-sm font-bold text-neutral-950 dark:text-white">{{ art.reviewer.name }}</span>
+            <span class="material-icons text-xs text-emerald-500" title="Validé cliniquement">verified</span>
+          </div>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400">
+            {{ art.reviewer.title }} • {{ art.reviewer.credentials }}
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Educational Disclaimer -->
+    <app-disclaimer />
+
+    <!-- 3D Interactive Laboratory Integration Callout -->
+    @if (related3DTool(); as tool3d) {
+      <section class="my-8 p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 border border-neutral-800 text-white shadow-xl relative overflow-hidden group">
+        <div class="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-emerald-500/10 blur-2xl pointer-events-none"></div>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10">
+          <div class="space-y-2 max-w-xl">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <span class="material-icons text-xs">{{ tool3d.icon }}</span>
+              <span>{{ tool3d.badge }}</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white">
+              {{ tool3d.title }}
+            </h3>
+            <p class="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">
+              {{ tool3d.desc }}
+            </p>
+          </div>
+
+          <a 
+            [routerLink]="['/tools', tool3d.slug]"
+            class="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md group-hover:scale-105">
+            <span>Ouvrir l'Atelier 3D</span>
+            <span class="material-icons text-base">view_in_ar</span>
+          </a>
+        </div>
+      </section>
+    }
+
+    <!-- Key Facts Card -->
+    <section class="my-8 fact-card bg-neutral-950 text-white dark:bg-neutral-900 border border-neutral-800 shadow-sm">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4 flex items-center gap-2">
+        <span class="material-icons text-emerald-400 text-base">task_alt</span>
+        <span>Faits Cliniques Essentiels</span>
+      </h2>
+      <ul class="space-y-2.5">
+        @for (fact of art.keyFacts; track fact) {
+          <li class="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0"></span>
+            <span>{{ fact }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="space-y-10 my-10 text-neutral-800 dark:text-neutral-200 text-sm sm:text-base leading-relaxed">
+      @for (sec of art.sections; track sec.title) {
+        <section class="space-y-4">
+          <h2 class="text-2xl font-bold tracking-tight text-neutral-950 dark:text-white">
+            {{ sec.title }}
+          </h2>
+          <p class="leading-relaxed whitespace-pre-line text-neutral-700 dark:text-neutral-300">
+            {{ sec.content }}
+          </p>
+
+          @if (sec.bulletPoints && sec.bulletPoints.length > 0) {
+            <ul class="space-y-2 pl-4 border-l-2 border-neutral-300 dark:border-neutral-700 my-4 text-xs sm:text-sm">
+              @for (bullet of sec.bulletPoints; track bullet) {
+                <li class="text-neutral-600 dark:text-neutral-400 font-medium">
+                  {{ bullet }}
+                </li>
+              }
+            </ul>
+          }
+
+          @if (sec.clinicalNote) {
+            <div class="p-4 rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 flex items-start gap-3">
+              <span class="material-icons text-base text-neutral-900 dark:text-white mt-0.5">lightbulb</span>
+              <div>
+                <strong class="block font-semibold text-neutral-950 dark:text-white mb-0.5">Note Clinique :</strong>
+                <p>{{ sec.clinicalNote }}</p>
+              </div>
+            </div>
+          }
+        </section>
+      }
+    </div>
+
+    <!-- Symptoms & Causes Split Grid -->
+    @if (art.symptoms || art.causes) {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+        @if (art.symptoms && art.symptoms.length > 0) {
+          <div class="p-6 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-neutral-900 dark:text-white">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-1.5">
+              <span class="material-icons text-sm">warning</span>
+              <span>Symptômes Fréquents</span>
+            </h3>
+            <ul class="space-y-2 text-xs sm:text-sm">
+              @for (sym of art.symptoms; track sym) {
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                  <span>{{ sym }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+
+        @if (art.causes && art.causes.length > 0) {
+          <div class="p-6 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-3 flex items-center gap-1.5">
+              <span class="material-icons text-sm">help_outline</span>
+              <span>Facteurs Déclenchants</span>
+            </h3>
+            <ul class="space-y-2 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+              @for (cau of art.causes; track cau) {
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-neutral-400"></span>
+                  <span>{{ cau }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Related Articles -->
+    @if (art.relatedArticles && art.relatedArticles.length > 0) {
+      <section class="my-12 pt-8 border-t border-neutral-200 dark:border-neutral-800">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
+          Sujets Liés & Poursuite de Lecture
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          @for (rel of art.relatedArticles; track rel.slug) {
+            <a 
+              [routerLink]="['/encyclopedia', rel.category, rel.slug]"
+              class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-900 dark:hover:border-white transition-colors group">
+              <span class="text-[10px] uppercase font-bold text-neutral-500 block mb-1">{{ rel.category }}</span>
+              <h4 class="text-sm font-bold text-neutral-950 dark:text-white group-hover:underline">
+                {{ rel.title }}
+              </h4>
+            </a>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Back to list link -->
+    <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800 flex justify-between items-center">
+      <a 
+        routerLink="/encyclopedia" 
+        class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white hover:underline">
+        <span class="material-icons text-sm">arrow_back</span>
+        <span>Retour à l'Encyclopédie</span>
+      </a>
+    </div>
+
+  </article>
+} @else {
+  <!-- Article Not Found State -->
+  <div class="py-24 text-center max-w-md mx-auto px-4">
+    <span class="material-icons text-5xl text-neutral-300 dark:text-neutral-700">article</span>
+    <h2 class="text-2xl font-bold text-neutral-900 dark:text-white mt-3">Article non trouvé</h2>
+    <p class="text-sm text-neutral-500 mt-2">Le sujet recherché n'a pas pu être chargé ou a été déplacé.</p>
+    <div class="mt-6">
+      <a routerLink="/encyclopedia" class="px-5 py-2.5 bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 text-xs font-bold uppercase tracking-wider rounded-xl">
+        Retour à l'encyclopédie
+      </a>
+    </div>
+  </div>
+}

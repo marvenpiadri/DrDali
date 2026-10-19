@@ -1,0 +1,9 @@
+# Allow all search engine crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin path
+Disallow: /admin/
+
+# XML Sitemap Location
+Sitemap: https://centredentairedali.ma/sitemap.xml

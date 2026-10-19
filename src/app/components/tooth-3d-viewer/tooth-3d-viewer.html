@@ -1,0 +1,257 @@
+<div id="tooth-viewer-container" class="tooth-viewer-container flex flex-col w-full bg-neutral-950 text-neutral-100 rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl relative font-sans">
+
+  <!-- REFINED APPLE-STYLE HEADER -->
+  <header id="tooth-header-bar" class="flex flex-wrap items-center justify-between px-3.5 py-2.5 sm:py-3 bg-neutral-950/95 backdrop-blur border-b border-neutral-800/80 z-20 shrink-0 gap-3">
+    <!-- Tooth FDI & Name Hierarchy -->
+    <div class="flex items-center gap-3 min-w-0">
+      <div class="w-9 h-9 rounded-xl bg-neutral-900 border border-white/10 flex items-center justify-center text-white font-mono font-bold text-sm shrink-0 shadow-inner">
+        {{ selectedFdi() }}
+      </div>
+      <div class="min-w-0">
+        <div class="flex items-center gap-2">
+          <h2 class="text-sm sm:text-base font-semibold text-neutral-100 truncate">
+            {{ localizedToothName() }}
+          </h2>
+          <span class="hidden sm:inline-block px-1.5 py-0.2 text-[9px] font-mono uppercase tracking-wider text-neutral-400 bg-neutral-900 border border-neutral-800 rounded">
+            FDI {{ selectedFdi() }}
+          </span>
+        </div>
+        <p class="text-[11px] text-neutral-400 font-sans truncate">
+          {{ localizedArchName() }} · Quadrant {{ selectedTooth()?.quadrant }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Controls: Stepper, Fullscreen & Back to Arch -->
+    <div class="flex items-center gap-2 shrink-0">
+      <!-- Stepper Controls (< Prev / Next >) -->
+      <div class="flex items-center bg-neutral-900 rounded-lg border border-neutral-800 p-0.5 text-xs">
+        <button
+          type="button"
+          id="tooth-prev-btn"
+          (click)="navigateToPrevTooth()"
+          class="p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-800 transition cursor-pointer"
+          data-tooltip="Dent précédente"
+          aria-label="Dent précédente">
+          <mat-icon class="text-sm leading-none flex items-center justify-center">chevron_left</mat-icon>
+        </button>
+        <span class="px-2 font-mono font-bold text-neutral-200 text-xs">#{{ selectedFdi() }}</span>
+        <button
+          type="button"
+          id="tooth-next-btn"
+          (click)="navigateToNextTooth()"
+          class="p-1.5 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-800 transition cursor-pointer"
+          data-tooltip="Dent suivante"
+          aria-label="Dent suivante">
+          <mat-icon class="text-sm leading-none flex items-center justify-center">chevron_right</mat-icon>
+        </button>
+      </div>
+
+      <!-- Fullscreen Toggle -->
+      <button
+        type="button"
+        id="tooth-fullscreen-btn"
+        (click)="toggleFullscreen()"
+        class="p-1.5 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-900 border border-neutral-800 transition cursor-pointer"
+        [attr.data-tooltip]="isFullscreen() ? 'Quitter le plein écran' : 'Plein écran'"
+        aria-label="Basculer le plein écran">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+
+      <!-- Back to Full Arch -->
+      <button
+        type="button"
+        id="tooth-back-arch-btn"
+        (click)="backToFullMouth.emit()"
+        class="flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 hover:bg-neutral-800 hover:text-white transition cursor-pointer"
+        data-tooltip="Revenir à l'arcade complète (32 dents)"
+        aria-label="Retour à l'arcade complète">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">view_in_ar</mat-icon>
+        <span class="hidden sm:inline">Arcade</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SUB-BAR: 4 TOOTH TYPES FILTER + FDI SELECTION STRIP -->
+  <div id="tooth-type-subbar" class="px-3.5 py-2 bg-neutral-950 border-b border-neutral-850 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 z-10 shrink-0">
+    
+    <!-- 4 Tooth Types Segmented Filter (Incisives, Canines, Prémolaires, Molaires, Toutes) -->
+    <div class="flex items-center bg-neutral-900/90 p-0.5 rounded-xl border border-neutral-800 text-[11px] font-medium overflow-x-auto custom-scrollbar">
+      @for (cat of toothCategories; track cat.id) {
+        <button
+          type="button"
+          (click)="selectCategory(cat.id)"
+          [class.bg-neutral-800]="selectedCategory() === cat.id"
+          [class.text-white]="selectedCategory() === cat.id"
+          [class.font-semibold]="selectedCategory() === cat.id"
+          [class.shadow-sm]="selectedCategory() === cat.id"
+          [class.text-neutral-400]="selectedCategory() !== cat.id"
+          class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer whitespace-nowrap flex items-center gap-1.5"
+          [attr.data-tooltip]="getCategoryLabel(cat.id) + ' (' + cat.fdis.join(', ') + ')'">
+          <span>{{ getCategoryLabel(cat.id) }}</span>
+          <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-neutral-950/40 text-neutral-400">{{ cat.count }}</span>
+        </button>
+      }
+      <button
+        type="button"
+        (click)="selectCategory('all')"
+        [class.bg-neutral-800]="selectedCategory() === 'all'"
+        [class.text-white]="selectedCategory() === 'all'"
+        [class.font-semibold]="selectedCategory() === 'all'"
+        [class.shadow-sm]="selectedCategory() === 'all'"
+        [class.text-neutral-400]="selectedCategory() !== 'all'"
+        class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer whitespace-nowrap flex items-center gap-1"
+        [attr.data-tooltip]="i18n.translate('toothCategoryAll') + ' (32)'">
+        <span>{{ i18n.translate('toothCategoryAll') }}</span>
+        <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-neutral-950/40 text-neutral-400">32</span>
+      </button>
+    </div>
+
+    <!-- Active FDI Quick Chips Strip for the selected category -->
+    <div class="flex items-center gap-1 overflow-x-auto custom-scrollbar py-0.5">
+      @for (tooth of activeCategoryTeeth(); track tooth.fdi) {
+        <button
+          type="button"
+          (click)="onToothSelected(tooth.fdi)"
+          [class.bg-neutral-100]="selectedFdi() === tooth.fdi"
+          [class.text-neutral-950]="selectedFdi() === tooth.fdi"
+          [class.font-bold]="selectedFdi() === tooth.fdi"
+          [class.shadow-sm]="selectedFdi() === tooth.fdi"
+          [class.bg-neutral-900]="selectedFdi() !== tooth.fdi"
+          [class.text-neutral-400]="selectedFdi() !== tooth.fdi"
+          [class.border-neutral-800]="selectedFdi() !== tooth.fdi"
+          class="px-2 py-0.5 rounded-lg border text-xs font-mono transition hover:text-white hover:border-neutral-700 cursor-pointer shrink-0"
+          [attr.data-tooltip]="tooth.fdi + ' · ' + tooth.nameFr">
+          {{ tooth.fdi }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- 3D VIEWPORT CANVAS (HERO REGION) -->
+  <div id="viewer-container" class="relative w-full bg-neutral-950 flex flex-col justify-center min-h-[420px] lg:min-h-[480px] h-[52vh] max-h-[600px] overflow-hidden">
+    <app-dental-3d-viewport
+      modelType="tooth-explorer"
+      modelSource="toothfairy"
+      [selectedToothFdi]="selectedFdi()"
+      [activeMode]="mappedViewingMode()"
+      [focusedStructure]="focusedStructure()"
+      [showControls]="false"
+      class="w-full h-full block">
+    </app-dental-3d-viewport>
+
+    <!-- FLOATING TOP-RIGHT VIEWPORT UTILITIES (AUTO-ROTATE & RESET) -->
+    <div class="absolute top-3 right-3 z-10 flex items-center gap-1.5">
+      <button
+        type="button"
+        (click)="toggleAutoRotate()"
+        [class.bg-emerald-500/20]="isAutoRotating()"
+        [class.text-emerald-300]="isAutoRotating()"
+        [class.border-emerald-500/40]="isAutoRotating()"
+        [class.text-neutral-400]="!isAutoRotating()"
+        class="p-1.5 rounded-lg bg-neutral-950/80 backdrop-blur-md border border-white/10 hover:text-white transition cursor-pointer"
+        data-tooltip="Rotation automatique"
+        aria-label="Rotation automatique">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">sync</mat-icon>
+      </button>
+
+      <button
+        type="button"
+        (click)="resetCamera()"
+        class="p-1.5 rounded-lg bg-neutral-950/80 backdrop-blur-md border border-white/10 text-neutral-400 hover:text-white transition cursor-pointer"
+        data-tooltip="Recentrer l'orientation de la dent"
+        aria-label="Recentrer caméra">
+        <mat-icon class="text-sm leading-none flex items-center justify-center">restart_alt</mat-icon>
+      </button>
+    </div>
+
+    <!-- VIEW MODE SELECTOR (Minimalist rounded button row in bottom-right corner) -->
+    <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 flex items-center gap-1 bg-neutral-950/90 backdrop-blur-md p-1.5 rounded-2xl border border-white/10 shadow-xl text-xs">
+      @for (mode of viewModes; track mode.id) {
+        <button
+          type="button"
+          (click)="setMode(mode.id)"
+          class="px-3 py-1.5 rounded-xl text-[11px] font-semibold transition cursor-pointer border"
+          [class.bg-white]="activeMode() === mode.id"
+          [class.text-neutral-950]="activeMode() === mode.id"
+          [class.border-white]="activeMode() === mode.id"
+          [class.bg-neutral-900/80]="activeMode() !== mode.id"
+          [class.text-neutral-300]="activeMode() !== mode.id"
+          [class.border-neutral-700/80]="activeMode() !== mode.id"
+          [class.hover:text-white]="activeMode() !== mode.id">
+          {{ i18n.translate(mode.labelKey) }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- ANATOMICAL STRUCTURE NAVIGATION PANEL -->
+  <div id="tooth-structures-panel" class="p-3 sm:p-3.5 bg-neutral-950 border-t border-neutral-850 flex flex-col gap-2.5 shrink-0">
+    
+    <!-- 4-Structure Pill Navigation -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      @for (struct of structures; track struct.id) {
+        <button
+          type="button"
+          (click)="selectPart(struct.id)"
+          [class.bg-neutral-900]="selectedPart() === struct.id"
+          [class.border-neutral-700]="selectedPart() === struct.id"
+          [class.text-white]="selectedPart() === struct.id"
+          [class.bg-neutral-950]="selectedPart() !== struct.id"
+          [class.border-neutral-850]="selectedPart() !== struct.id"
+          class="p-2 sm:p-2.5 rounded-xl border hover:border-neutral-700 text-left transition flex flex-col gap-1 cursor-pointer">
+          <div class="flex items-center justify-between">
+            <span class="text-[9px] font-mono font-bold text-neutral-500">{{ struct.num }}</span>
+            <span class="w-1.5 h-1.5 rounded-full" [style.background-color]="struct.colorHex"></span>
+          </div>
+          <span class="text-xs font-semibold text-neutral-200 truncate">{{ struct.name }}</span>
+          <span class="text-[10px] text-neutral-400 truncate">{{ struct.subtitle }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Active Structure Clinical Details Card -->
+    <div class="bg-neutral-900/60 rounded-xl p-3 border border-neutral-800/80 flex flex-col gap-2">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="px-1.5 py-0.2 text-[10px] font-mono font-bold rounded bg-neutral-800 text-neutral-300 border border-neutral-700">
+            Structure {{ currentStructure().num }}
+          </span>
+          <h3 class="text-xs font-bold text-white">{{ currentStructure().name }}</h3>
+          <span class="text-[11px] text-neutral-400 hidden sm:inline">— {{ currentStructure().subtitle }}</span>
+        </div>
+
+        <!-- Metric badge -->
+        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-neutral-950 border border-neutral-800 text-neutral-300">
+          {{ currentStructure().metric }} · {{ currentStructure().metricLabel }}
+        </span>
+      </div>
+
+      <p class="text-[11px] text-neutral-300 leading-relaxed">
+        {{ currentStructure().description }}
+      </p>
+
+      <div class="flex items-start gap-1.5 p-2 rounded-lg bg-neutral-950/80 border border-neutral-850 text-neutral-300 text-[11px]">
+        <mat-icon class="text-xs text-neutral-400 mt-0.5 shrink-0">clinical_notes</mat-icon>
+        <p class="leading-relaxed"><strong class="text-neutral-100 font-medium">Note Clinique :</strong> {{ currentStructure().clinicalNote }}</p>
+      </div>
+
+      <!-- Footer action -->
+      <div class="flex items-center justify-between pt-1 text-[10px] text-neutral-400 border-t border-neutral-800/60">
+        <span class="flex items-center gap-1">
+          <mat-icon class="text-xs text-neutral-400">info</mat-icon>
+          {{ currentStructure().modeHelp }}
+        </span>
+        <button
+          type="button"
+          (click)="exploreNextStructure()"
+          class="text-neutral-300 hover:text-white transition flex items-center gap-1 cursor-pointer font-medium">
+          <span>Structure suivante</span>
+          <mat-icon class="text-xs">arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

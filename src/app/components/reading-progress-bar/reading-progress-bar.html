@@ -1,0 +1,31 @@
+<!-- TOP SUBTLE READING PROGRESS BAR -->
+<div 
+  class="fixed top-0 left-0 right-0 z-50 h-1 bg-neutral-200/30 dark:bg-neutral-800/30 pointer-events-none transition-opacity duration-300"
+  [class.opacity-0]="!isVisible()"
+  [class.opacity-100]="isVisible()">
+  <div 
+    class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-400 dark:from-emerald-400 dark:via-teal-300 dark:to-emerald-300 shadow-sm transition-all duration-150 ease-out rounded-r-full"
+    [style.width.%]="progress()">
+  </div>
+</div>
+
+<!-- FLOATING READING BADGE & BACK TO TOP BUTTON -->
+@if (isVisible() && isArticleRoute()) {
+  <div class="fixed bottom-6 right-6 z-40 flex items-center gap-2 animate-fade-in pointer-events-auto">
+    <!-- Progress Pill -->
+    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 dark:bg-neutral-800/90 backdrop-blur-md text-white border border-neutral-700/60 shadow-lg text-xs font-mono font-semibold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>{{ progress() }}%</span>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button
+      type="button"
+      (click)="scrollToTop()"
+      class="w-9 h-9 rounded-full bg-neutral-900/90 dark:bg-neutral-800/90 backdrop-blur-md text-white border border-neutral-700/60 shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors cursor-pointer"
+      [attr.aria-label]="'scrollToTop' | translate"
+      [attr.title]="'scrollToTop' | translate">
+      <span class="material-icons text-lg">arrow_upward</span>
+    </button>
+  </div>
+}

@@ -1,0 +1,16 @@
+.clinic-hero {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .clinic-hero {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.equipment-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.equipment-card:hover {
+  transform: translateY(-2px);
+}

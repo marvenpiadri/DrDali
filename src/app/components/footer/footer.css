@@ -1,0 +1,17 @@
+.footer-root {
+  background-color: #0a0a0a;
+  color: #a3a3a3;
+  border-top: 1px solid #1f1f1f;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  transition: background-color 0.2s ease;
+}
+
+.footer-link {
+  color: #a3a3a3;
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "toothfairy-adult-dentition",
+    "name": "ToothFairy3 Case F_026 Full Dentition, Pulps & Nerve Canals",
+    "source": "ToothFairy3 / OMF Atlas",
+    "sourceUrl": "https://ditto.ing.unimore.it/toothfairy3/",
+    "license": "CC BY-SA 4.0",
+    "attribution": "Bolelli F, Lumetti L, Vinayahalingam S et al. ToothFairy3, MICCAI 2025. Segmenting the Inferior Alveolar Canal in CBCT Volumes (IEEE TMI 2025).",
+    "originalFile": "toothfairy.bin / Case F_026 CBCT Segmentation",
+    "modifications": [
+      "Marching cubes surface extraction from CBCT voxel labels",
+      "Taubin non-shrinking surface smoothing",
+      "Meshoptimizer simplification (6,000 triangles/tooth, 3,000/pulp, 4,000/canal)",
+      "Anteroposterior half-turn orientation correction",
+      "Long-axis PCA alignment"
+    ]
+  },
+  {
+    "id": "diaz-synthetic-jaw",
+    "name": "Diaz Synthetic Human Jaw, Teeth & Periodontal Ligaments",
+    "source": "Mendeley Data / Diaz et al. (2024)",
+    "sourceUrl": "https://doi.org/10.17632/xjsx7nfhj8.1",
+    "license": "CC BY 4.0",
+    "attribution": "Diaz et al. (2024). Data of synthetic 3D models of the human jaw, including teeth, ligaments, and bone structures. Mendeley Data, V1.",
+    "originalFile": "dental.bin / STL binary meshes",
+    "modifications": [
+      "Vertex welding on exact coordinates",
+      "Preserved native coordinates without decimation or scaling"
+    ]
+  },
+  {
+    "id": "kang-immature-molar",
+    "name": "Kang Immature First Permanent Mandibular Molar with Space Maintainer",
+    "source": "PeerJ / figshare (2024)",
+    "sourceUrl": "https://doi.org/10.6084/m9.figshare.24591537.v1",
+    "license": "CC BY 4.0",
+    "attribution": "Kang FF, Shi H, Liu Q (2024). Models for Stress induced on permanent mandible first molar. PeerJ 12:e17456.",
+    "originalFile": "dental.bin / STEP solid tessellations",
+    "modifications": [
+      "OpenCASCADE tessellation via occt-import-js",
+      "Welded and simplified to 34,000 triangles"
+    ]
+  },
+  {
+    "id": "open-full-jaw-patient12",
+    "name": "Open-Full-Jaw Patient 12 Maxilla & Mandible Arches",
+    "source": "Computer Methods and Programs in Biomedicine (2022) / DIKU",
+    "sourceUrl": "https://github.com/diku-dk/Open-Full-Jaw",
+    "license": "CC BY-NC-SA 4.0",
+    "attribution": "Gholamalizadeh T, Moshfeghifar F, Ferguson Z, Schneider T, Panozzo D, Darkner S, Makaremi M, Chan F, Sondergaard PL, Erleben K (2022). Open-Full-Jaw: an open-access dataset. CMPB 224:107009.",
+    "originalFile": "open-full-jaw.bin / Patient 12 STL",
+    "modifications": [
+      "Vertex welding",
+      "Meshoptimizer simplification (6,000 triangles/tooth, 3,000/PDL, 34,000/jaw bone)",
+      "Connected shell PDL separation per tooth"
+    ]
+  }
+]

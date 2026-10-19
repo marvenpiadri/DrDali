@@ -1,0 +1,16 @@
+<aside 
+  class="disclaimer-aside border border-neutral-200 dark:border-neutral-800 bg-neutral-100/70 dark:bg-neutral-900/60 p-4 sm:p-5 rounded-xl text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 my-6 leading-relaxed flex items-start gap-3.5"
+  role="note"
+  aria-label="Avertissement médical et légal">
+  <div class="p-1.5 rounded-lg bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 shrink-0 mt-0.5">
+    <span class="material-icons text-base">info</span>
+  </div>
+  <div>
+    <strong class="font-semibold text-neutral-900 dark:text-neutral-200 block mb-1">
+      {{ title() }}
+    </strong>
+    <p class="leading-relaxed">
+      {{ text() }}
+    </p>
+  </div>
+</aside>

@@ -1,0 +1,349 @@
+@if (toolConfig(); as tool) {
+  <main class="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-8">
+      
+      <!-- Top Navigation & Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+        <a routerLink="/" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Accueil</a>
+        <span class="material-icons text-xs">chevron_right</span>
+        @if (isAtlasRoute()) {
+          <a routerLink="/atlas" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Atlas Dentaire 3D</a>
+        } @else {
+          <a routerLink="/tools" class="hover:text-neutral-900 dark:hover:text-white transition-colors">Outils Interactifs</a>
+        }
+        <span class="material-icons text-xs">chevron_right</span>
+        <span class="text-neutral-900 dark:text-white font-semibold truncate">{{ tool.title }}</span>
+      </nav>
+
+      <!-- Tool Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-neutral-200 dark:border-neutral-800">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mb-2">
+            <span class="material-icons text-sm">{{ tool.icon }}</span>
+            <span>{{ tool.badge }}</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-neutral-950 dark:text-white">
+            {{ tool.title }}
+          </h1>
+          <p class="mt-2 text-sm sm:text-base text-neutral-600 dark:text-neutral-300 max-w-3xl">
+            {{ tool.subtitle }}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <button 
+            type="button" 
+            (click)="toggle2DFallback()"
+            class="px-3.5 py-2 rounded-xl text-xs font-bold border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors flex items-center gap-1.5 shadow-xs">
+            <span class="material-icons text-sm">{{ show2dFallback() ? 'view_in_ar' : 'layers' }}</span>
+            <span>{{ show2dFallback() ? 'Activer 3D WebGL' : 'Vue Schématique 2D' }}</span>
+          </button>
+
+          <a 
+            [href]="whatsappUrl()" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white transition-colors flex items-center gap-2 shadow-sm">
+            <app-whatsapp-icon [size]="16" extraClass="text-white" />
+            <span>Prendre RDV</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Interactive Workstation -->
+      @if (tool.id === 'jaw-anatomy') {
+        <div class="mb-8 w-full h-auto lg:h-[75vh] lg:min-h-[680px] lg:max-h-[880px] rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-950">
+          <app-jawline-3d-viewer (openToothExplorer)="navigateToTooth($event)"></app-jawline-3d-viewer>
+        </div>
+      } @else if (tool.id === 'dental-arch') {
+        <div class="mb-8 rounded-2xl overflow-hidden shadow-2xl">
+          <app-full-mouth-explorer [initialToothFdi]="selectedToothFdi()" (openToothExplorer)="navigateToTooth($event)"></app-full-mouth-explorer>
+        </div>
+      } @else if (tool.id === 'tooth-explorer') {
+        <div class="mb-8 rounded-2xl overflow-hidden shadow-2xl">
+          <app-tooth-3d-viewer [initialFdi]="selectedToothFdi()" (backToFullMouth)="navigateBackToArch()"></app-tooth-3d-viewer>
+        </div>
+      } @else {
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: 3D Viewport Area (Col 7) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-900">
+            @if (!show2dFallback()) {
+              <app-dental-3d-viewport
+                [modelType]="tool.id"
+                [activeMode]="activeMode()"
+                [stageIndex]="currentStageIndex()"
+                [selectedToothFdi]="selectedToothFdi()"
+                [explode]="isImplantExploded()"
+                [crownStage]="crownStage()"
+                [veneerStage]="veneerStage()"
+                (toothSelected)="onToothSelected($event)"
+                (modeChange)="setMode($event)">
+              </app-dental-3d-viewport>
+            } @else {
+              <!-- Fallback 2D Medical Vector Graphic -->
+              <div class="w-full h-full p-8 flex flex-col items-center justify-center bg-neutral-900 text-white text-center">
+                <span class="material-icons text-5xl text-emerald-400 mb-3">science</span>
+                <h3 class="text-lg font-bold mb-1">Schéma Clinique 2D Alternatif</h3>
+                <p class="text-xs text-neutral-400 max-w-sm mb-4">
+                  Mode allégé sans accélération 3D. Toutes les données anatomiques restent consultables ci-dessous.
+                </p>
+                <button 
+                  type="button" 
+                  (click)="toggle2DFallback()"
+                  class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold">
+                  Revenir à la 3D interactive
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Viewing Mode Selectors -->
+          <div class="flex items-center justify-between p-1.5 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xs">
+            <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 px-3 hidden sm:inline-block">Mode 3D :</span>
+            <div class="flex items-center gap-1 w-full sm:w-auto justify-end">
+              @for (mode of tool.availableModes; track mode) {
+                <button 
+                  type="button" 
+                  (click)="setMode(mode)"
+                  class="flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all"
+                  [class.bg-neutral-950]="activeMode() === mode"
+                  [class.text-white]="activeMode() === mode"
+                  [class.dark:bg-white]="activeMode() === mode"
+                  [class.dark:text-neutral-950]="activeMode() === mode"
+                  [class.text-neutral-600]="activeMode() !== mode"
+                  [class.dark:text-neutral-400]="activeMode() !== mode">
+                  {{ mode === 'surface' ? 'Surface' : mode === 'anatomy' ? 'Anatomie' : mode === 'cross-section' ? 'Coupe' : mode === 'isolate' ? 'Isolation' : 'Radio X-Ray' }}
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Control Panel (Col 5) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- CONTROLS: PROGRESSION SLIDER (Decay, Gum Disease, Root Canal, Wisdom Teeth) -->
+          @if (tool.stages) {
+            <div class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-5">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Chronologie & Stades</h2>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
+                  Étape {{ currentStageIndex() + 1 }} / {{ tool.stages.length }}
+                </span>
+              </div>
+
+              <!-- Interactive Step Pills -->
+              <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
+                @for (stg of tool.stages; track stg.id; let idx = $index) {
+                  <button 
+                    type="button" 
+                    (click)="setStageIndex(idx)"
+                    class="h-8 min-w-[2rem] px-2.5 rounded-lg text-xs font-bold transition-all shrink-0"
+                    [class.bg-emerald-600]="currentStageIndex() === idx"
+                    [class.text-white]="currentStageIndex() === idx"
+                    [class.bg-neutral-100]="currentStageIndex() !== idx"
+                    [class.dark:bg-neutral-800]="currentStageIndex() !== idx"
+                    [class.text-neutral-600]="currentStageIndex() !== idx"
+                    [class.dark:text-neutral-400]="currentStageIndex() !== idx">
+                    {{ idx + 1 }}
+                  </button>
+                }
+              </div>
+
+              <!-- Active Stage Details Card -->
+              @if (currentStage(); as stg) {
+                <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/60 space-y-3">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-bold text-neutral-950 dark:text-white">{{ stg.title }}</h3>
+                    <span 
+                      class="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider"
+                      [class.bg-emerald-100]="stg.severity === 'healthy'"
+                      [class.text-emerald-800]="stg.severity === 'healthy'"
+                      [class.bg-amber-100]="stg.severity === 'mild' || stg.severity === 'moderate'"
+                      [class.text-amber-800]="stg.severity === 'mild' || stg.severity === 'moderate'"
+                      [class.bg-rose-100]="stg.severity === 'severe' || stg.severity === 'critical'"
+                      [class.text-rose-800]="stg.severity === 'severe' || stg.severity === 'critical'">
+                      {{ stg.severity }}
+                    </span>
+                  </div>
+
+                  <p class="text-xs text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                    {{ stg.clinicalDescription }}
+                  </p>
+
+                  <div class="space-y-2 pt-2 border-t border-neutral-200 dark:border-neutral-700 text-xs">
+                    <div>
+                      <span class="font-bold text-neutral-900 dark:text-white">Ce qui se passe : </span>
+                      <span class="text-neutral-600 dark:text-neutral-400">{{ stg.whatHappens }}</span>
+                    </div>
+                    <div>
+                      <span class="font-bold text-neutral-900 dark:text-white">Sensation ressentie : </span>
+                      <span class="text-neutral-600 dark:text-neutral-400">{{ stg.patientSensation }}</span>
+                    </div>
+                    <div>
+                      <span class="font-bold text-emerald-600 dark:text-emerald-400">Traitement recommandé : </span>
+                      <span class="text-neutral-600 dark:text-neutral-400">{{ stg.recommendedTreatment }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          <!-- CONTROLS: IMPLANT EXPLORER -->
+          @if (tool.id === 'implant-explorer') {
+            <div class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-4">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Architecture Implantaire</h2>
+              
+              <button 
+                type="button" 
+                (click)="toggleImplantExplode()"
+                class="w-full py-2.5 px-4 rounded-xl text-xs font-bold border transition-colors flex items-center justify-center gap-2"
+                [class.bg-emerald-600]="isImplantExploded()"
+                [class.text-white]="isImplantExploded()"
+                [class.border-emerald-600]="isImplantExploded()"
+                [class.bg-white]="!isImplantExploded()"
+                [class.dark:bg-neutral-800]="!isImplantExploded()">
+                <span class="material-icons text-sm">{{ isImplantExploded() ? 'unfold_less' : 'unfold_more' }}</span>
+                <span>{{ isImplantExploded() ? 'Réassembler les composants' : 'Vue Éclatée des Composants' }}</span>
+              </button>
+
+              <div class="space-y-2 text-xs">
+                <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/60">
+                  <div class="font-bold text-neutral-900 dark:text-white">1. Vis en Titane Pur (Grade 5)</div>
+                  <p class="text-neutral-600 dark:text-neutral-400 mt-1">Ancrage alvéolaire osseux fusionnant avec l'os par ostéo-intégration (3 à 6 mois).</p>
+                </div>
+                <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/60">
+                  <div class="font-bold text-neutral-900 dark:text-white">2. Pilier Trans-Gingival</div>
+                  <p class="text-neutral-600 dark:text-neutral-400 mt-1">Pièce de raccordement traversant la gencive scellée ou vissée dans l'implant.</p>
+                </div>
+                <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200 dark:border-neutral-700/60">
+                  <div class="font-bold text-neutral-900 dark:text-white">3. Couronne Prothétique en Zircone</div>
+                  <p class="text-neutral-600 dark:text-neutral-400 mt-1">Dent artificielle sur-mesure reproduisant teinte et morphologie exacte.</p>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- CONTROLS: CROWN EXPLORER -->
+          @if (tool.id === 'crown-explorer') {
+            <div class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-4">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Étapes de Réhabilitation</h2>
+              <div class="grid grid-cols-3 gap-2">
+                <button 
+                  type="button" 
+                  (click)="setCrownStage('damaged')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="crownStage() === 'damaged'"
+                  [class.text-white]="crownStage() === 'damaged'"
+                  [class.dark:bg-white]="crownStage() === 'damaged'"
+                  [class.dark:text-neutral-950]="crownStage() === 'damaged'">
+                  1. Dent Usée
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setCrownStage('prepared')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="crownStage() === 'prepared'"
+                  [class.text-white]="crownStage() === 'prepared'"
+                  [class.dark:bg-white]="crownStage() === 'prepared'"
+                  [class.dark:text-neutral-950]="crownStage() === 'prepared'">
+                  2. Taille Moignon
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setCrownStage('crown')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="crownStage() === 'crown'"
+                  [class.text-white]="crownStage() === 'crown'"
+                  [class.dark:bg-white]="crownStage() === 'crown'"
+                  [class.dark:text-neutral-950]="crownStage() === 'crown'">
+                  3. Couronne
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- CONTROLS: VENEER EXPLORER -->
+          @if (tool.id === 'veneer-explorer') {
+            <div class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm space-y-4">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-neutral-400">Pose de Facette Céramique</h2>
+              <div class="grid grid-cols-3 gap-2">
+                <button 
+                  type="button" 
+                  (click)="setVeneerStage('natural')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="veneerStage() === 'natural'"
+                  [class.text-white]="veneerStage() === 'natural'"
+                  [class.dark:bg-white]="veneerStage() === 'natural'"
+                  [class.dark:text-neutral-950]="veneerStage() === 'natural'">
+                  1. Dent Teintée
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setVeneerStage('prep')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="veneerStage() === 'prep'"
+                  [class.text-white]="veneerStage() === 'prep'"
+                  [class.dark:bg-white]="veneerStage() === 'prep'"
+                  [class.dark:text-neutral-950]="veneerStage() === 'prep'">
+                  2. Micro-Taille
+                </button>
+                <button 
+                  type="button" 
+                  (click)="setVeneerStage('veneer')"
+                  class="p-2.5 text-center rounded-xl text-xs font-bold border transition-colors"
+                  [class.bg-neutral-950]="veneerStage() === 'veneer'"
+                  [class.text-white]="veneerStage() === 'veneer'"
+                  [class.dark:bg-white]="veneerStage() === 'veneer'"
+                  [class.dark:text-neutral-950]="veneerStage() === 'veneer'">
+                  3. Facette Collée
+                </button>
+              </div>
+            </div>
+          }
+
+          <!-- Related Encyclopedia Articles Card -->
+          @if (tool.relatedArticles && tool.relatedArticles.length > 0) {
+            <div class="p-5 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-3">
+              <div class="text-xs font-bold uppercase tracking-wider text-neutral-500">Pour aller plus loin</div>
+              <div class="space-y-1.5">
+                @for (art of tool.relatedArticles; track art.slug) {
+                  <a 
+                    [routerLink]="['/encyclopedia', art.category, art.slug]"
+                    class="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-neutral-800/80 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-xs font-semibold text-neutral-900 dark:text-white transition-colors shadow-2xs">
+                    <span>{{ art.title }}</span>
+                    <span class="material-icons text-sm text-emerald-600 dark:text-emerald-400">arrow_forward</span>
+                  </a>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+            }
+
+      <!-- Medical Disclaimer & Clinic Assistance Banner -->
+      <div class="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-start gap-3">
+          <span class="material-icons text-emerald-600 dark:text-emerald-400 text-xl mt-0.5">verified_user</span>
+          <div class="text-xs text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
+            <strong class="text-neutral-900 dark:text-white">Note Clinique du Centre Dentaire Dali : </strong>
+            {{ tool.disclaimer }}
+          </div>
+        </div>
+        <a 
+          [href]="whatsappUrl()" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="shrink-0 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center gap-2 transition-colors shadow-sm">
+          <app-whatsapp-icon [size]="16" extraClass="text-white" />
+          <span>Poser une question au Dr Dali</span>
+        </a>
+      </div>
+    </div>
+  </main>
+}

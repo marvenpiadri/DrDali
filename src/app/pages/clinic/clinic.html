@@ -1,0 +1,170 @@
+<main class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left rtl:text-right">
+  
+  <!-- Breadcrumbs -->
+  <nav class="flex items-center gap-2 text-xs text-neutral-500 mb-8" aria-label="Breadcrumbs">
+    <a routerLink="/" class="hover:text-neutral-900 dark:hover:text-white">{{ 'navHome' | translate }}</a>
+    <span class="rtl:rotate-180">/</span>
+    <span class="text-neutral-900 dark:text-white font-medium">{{ 'navClinic' | translate }}</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="clinic-hero mb-12 max-w-3xl">
+    <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 block mb-2">{{ 'brandName' | translate }} • {{ 'cityLocation' | translate }}</span>
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-950 dark:text-white">
+      {{ 'clinicPageTitle' | translate }}
+    </h1>
+    <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed">
+      {{ 'clinicPageSubtitle' | translate }}
+    </p>
+  </div>
+
+  <!-- Plateau Technique Highlights -->
+  <section class="py-10 space-y-12 border-b border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-widest text-neutral-500">{{ 'fdiClinicalStandard' | translate }}</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-neutral-950 dark:text-white mt-1">
+        Les Équipements du Plateau Technique
+      </h2>
+      <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        La précision d'un acte dentaire est directement corrélée à la qualité des outils diagnostiques et thérapeutiques utilisés.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">sanitizer</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Stérilisation Norme Hospitalière (Classe B)</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Autoclave à vide fractionné de classe B avec traçabilité informatique de chaque cycle. Chaque instrument est décontaminé, nettoyé aux ultrasons, ensaché et stérilisé avant d'être ouvert devant vous.
+        </p>
+      </div>
+
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">radiology</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Radiovisiographie (RVG) Numérique Basse Dose</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Capteurs numériques haute définition réduisant jusqu'à 80% l'exposition aux rayons X par rapport aux films argentiques traditionnels. Clichés instantanés commentés sur écran face au patient.
+        </p>
+      </div>
+
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">camera_alt</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Caméra Intra-Orale & Pédagogie Écran</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Visualisez directement vos dents et gencives sur écran tactile : les lésions cariantes, usures ou fêlures vous sont montrées avant tout traitement pour une totale transparence.
+        </p>
+      </div>
+
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">search</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Aides Optiques & Grossissement</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Chaque geste de préparation et de collage est réalisé sous loupes binoculaires prismatiques avec éclairage LED coaxial pour préserver au maximum la structure dentaire saine.
+        </p>
+      </div>
+
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">air</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Aéro-Polisseur & Décontamination Douce</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Nettoyage sous-gingival par pulvérisation d'eau, d'air et de poudres ultra-fines de glycine ou d'érythritol, préservant l'émail et les tissus parodontaux sans abrasion agressive.
+        </p>
+      </div>
+
+      <div class="equipment-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4 text-left rtl:text-right">
+        <div class="w-12 h-12 rounded-2xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-neutral-900 dark:text-white">
+          <span class="material-icons">chair</span>
+        </div>
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Fauteuil Ergonomique & Confort Patient</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Sellerie à mémoire de forme et ambiance feutrée avec insonorisation acoustique étudiée pour atténuer le stress et vous offrir une expérience clinique détendue.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="py-14 space-y-8 border-b border-neutral-200 dark:border-neutral-800 text-left rtl:text-right">
+    <div>
+      <span class="text-xs font-bold uppercase tracking-widest text-neutral-500">{{ 'btnDirections' | translate }}</span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-neutral-950 dark:text-white mt-1">
+        {{ 'liveMapTitle' | translate }}
+      </h2>
+    </div>
+
+    <app-clinic-map />
+  </section>
+
+  <!-- Access & Practical Info -->
+  <section class="py-14 space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      <div class="p-8 rounded-3xl bg-neutral-950 text-white border border-neutral-800 space-y-6 text-left rtl:text-right">
+        <h3 class="text-lg font-bold text-white">{{ 'brandName' | translate }}</h3>
+        <div class="space-y-3 text-xs sm:text-sm text-neutral-300">
+          <p><strong>{{ 'clinicAddress' | translate }}:</strong> {{ clinic.clinicInfo.address }}</p>
+          <p><strong>{{ 'emergencyPhoneLabel' | translate }}:</strong> {{ clinic.clinicInfo.phone }}</p>
+          <p><strong>{{ 'btnWhatsApp' | translate }}:</strong> {{ clinic.clinicInfo.whatsappNumber }}</p>
+          <p><strong>{{ 'openingHours' | translate }}:</strong> {{ clinic.clinicInfo.openingHours }}</p>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-800">
+          <button 
+            type="button" 
+            (click)="openWhatsApp.emit()"
+            class="w-full inline-flex items-center justify-center gap-2 py-3.5 bg-white text-neutral-950 font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-neutral-200 transition-colors cursor-pointer"
+            [attr.aria-label]="'ariaWhatsAppCTA' | translate">
+            <app-whatsapp-icon [size]="18" extraClass="text-emerald-600" />
+            <span>{{ 'btnWhatsApp' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-8 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-6 text-left rtl:text-right">
+        <h3 class="text-lg font-bold text-neutral-950 dark:text-white">Dessertes & Accessibilité</h3>
+        <div class="space-y-4 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400">
+          <div class="flex items-start gap-3">
+            <span class="material-icons text-neutral-900 dark:text-white text-base mt-0.5 shrink-0">directions_car</span>
+            <div>
+              <strong class="text-neutral-900 dark:text-white block">Depuis Rabat et Harhoura :</strong>
+              <span>Accès rapide via la rocade et l'axe Hassan II. Moins de 10 à 15 minutes depuis les quartiers sud de Rabat.</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="material-icons text-neutral-900 dark:text-white text-base mt-0.5 shrink-0">local_parking</span>
+            <div>
+              <strong class="text-neutral-900 dark:text-white block">Stationnement :</strong>
+              <span>Places de parking disponibles le long de l'avenue et dans les rues adjacentes.</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <span class="material-icons text-neutral-900 dark:text-white text-base mt-0.5 shrink-0">accessible</span>
+            <div>
+              <strong class="text-neutral-900 dark:text-white block">Accessibilité :</strong>
+              <span>Cabinet accessible avec ascenseur adapté aux personnes à mobilité réduite.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <app-faq-accordion (openWhatsApp)="openWhatsApp.emit()"></app-faq-accordion>
+
+</main>

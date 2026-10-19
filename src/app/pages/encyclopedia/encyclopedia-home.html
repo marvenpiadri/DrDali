@@ -1,0 +1,150 @@
+<main class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  
+  <!-- Breadcrumb & Header -->
+  <div class="mb-8">
+    <nav class="flex items-center gap-2 text-xs text-neutral-500 mb-3" aria-label="Fil d'Ariane">
+      <a routerLink="/" class="hover:text-neutral-900 dark:hover:text-white">Accueil</a>
+      <span>/</span>
+      <span class="text-neutral-900 dark:text-white font-medium">Encyclopédie Dentaire</span>
+    </nav>
+
+    <div class="encyclopedia-header flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 block mb-2">Savoir Médical & Prévention</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-950 dark:text-white">
+          L'Encyclopédie Bucco-Dentaire
+        </h1>
+        <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 mt-3 max-w-2xl leading-relaxed">
+          Une base de connaissances cliniques rigoureuse, validée par l'équipe du Centre Dentaire Dali, pour tout comprendre sur vos dents, vos gencives et vos soins.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a 
+          routerLink="/tools" 
+          class="inline-flex items-center gap-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
+          <span>Laboratoire 3D</span>
+          <span class="material-icons text-sm">view_in_ar</span>
+        </a>
+        <a 
+          routerLink="/encyclopedia/dictionary" 
+          class="inline-flex items-center gap-2 px-5 py-3 bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all">
+          <span>Dictionnaire A-Z</span>
+          <span class="material-icons text-sm">spellcheck</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medical Disclaimer Box -->
+  <app-disclaimer />
+
+  <!-- 3D Anatomical Laboratory Showcase Section -->
+  <section class="my-12">
+    <div class="p-6 sm:p-8 rounded-3xl border border-neutral-800 bg-neutral-950 text-white shadow-2xl">
+      
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-neutral-900">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-neutral-900 text-neutral-300 border border-neutral-800 mb-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Laboratoire 3D Clinique</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            Explorateur Anatomique 3D des Dents
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-400 mt-1 max-w-xl">
+            Modèles 3D issus de segmentations tomodensitométriques Micro-CT réelles. Visualisez l'émail, la coupe sagittale, la transparence radiologique et les canaux radiculaires.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a 
+            routerLink="/tools/3d/tooth-explorer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-xs font-semibold text-neutral-200 border border-neutral-800 transition-colors">
+            <span class="material-icons text-sm text-emerald-400">fullscreen</span>
+            <span>Ouvrir dans l'Atelier 3D</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Redesigned 3D Stage -->
+      <div class="pt-6 space-y-4">
+        <app-tooth-3d-viewer [isCompact]="false"></app-tooth-3d-viewer>
+
+        <!-- Direct Link to All 3D Tools -->
+        <div class="flex items-center justify-between pt-2">
+          <span class="text-xs text-neutral-400">8 autres simulateurs cliniques disponibles</span>
+          <a 
+            routerLink="/tools"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold uppercase tracking-wider transition-all">
+            <span>Tous les simulateurs 3D</span>
+            <span class="material-icons text-sm">view_in_ar</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Category Filter Pills -->
+  <div class="flex items-center gap-2 overflow-x-auto pb-4 pt-2 no-scrollbar">
+    <button 
+      type="button" 
+      (click)="selectedCategory.set('all')"
+      [class]="selectedCategory() === 'all' 
+        ? 'bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 font-bold' 
+        : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 font-medium'"
+      class="px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all shrink-0">
+      Tous les sujets ({{ allArticles().length }})
+    </button>
+    
+    @for (cat of categories; track cat.id) {
+      <button 
+        type="button" 
+        (click)="selectedCategory.set(cat.id)"
+        [class]="selectedCategory() === cat.id 
+          ? 'bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 font-bold' 
+          : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 font-medium'"
+        class="px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition-all shrink-0">
+        {{ cat.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Articles Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+    @for (art of filteredArticles(); track art.id) {
+      <article class="article-card flex flex-col justify-between p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
+              {{ art.categoryLabel }}
+            </span>
+            <span class="text-xs text-neutral-400 font-medium">
+              {{ art.readingTimeMinutes }} min de lecture
+            </span>
+          </div>
+
+          <h3 class="text-lg font-bold text-neutral-950 dark:text-white mb-2 leading-snug">
+            {{ art.title }}
+          </h3>
+
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-3 mb-6">
+            {{ art.summary }}
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+          <span class="text-[11px] text-neutral-400">Par l'équipe du Dr. Dali</span>
+          <a 
+            [routerLink]="['/encyclopedia', art.category, art.slug]"
+            class="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-950 dark:text-white hover:underline">
+            <span>Lire l'article</span>
+            <span class="material-icons text-sm">arrow_forward</span>
+          </a>
+        </div>
+      </article>
+    }
+  </div>
+
+</main>

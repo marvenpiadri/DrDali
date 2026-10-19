@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 550" fill="currentColor">
+  <!-- Tooth Silhouette & Contours -->
+  <path d="M318.5 49.3 C370 20 425 24 448 40 C452 43 451 49 446 51 C390 73 340 102 335 152 C328 220 365 300 420 400 C435 428 450 455 466 484 C470 491 465 498 458 494 C372 443 325 350 310 260 C301 205 315 150 350 108 C375 78 410 56 440 45 C400 35 348 38 300 62 C265 80 235 110 220 148 C205 186 210 230 225 268 C227 274 220 278 216 273 C192 245 178 200 178 152 C178 95 210 52 258 35 C280 27 302 24 325 27 C310 32 295 40 282 50 C260 67 245 92 240 120 C234 155 244 190 258 222 C260 226 256 230 252 228 C230 215 215 188 215 155 C215 110 245 70 285 54 C295 50 306 48 318.5 49.3 Z" />
+  
+  <!-- Left Root Arc -->
+  <path d="M225 150 C235 105 270 70 315 65 C345 61 380 75 405 98 C365 112 335 142 325 185 C310 250 330 320 370 395 C340 345 322 285 325 225 C328 170 355 125 395 102 C370 82 335 72 305 76 C270 80 240 108 230 145 C222 175 228 208 238 238 C239 242 234 245 231 242 C218 215 212 182 225 150 Z" />
+
+  <!-- Outer Right Sweeping Blade -->
+  <path d="M420 85 C445 150 450 230 435 310 C420 385 385 455 342 510 C340 513 343 516 346 514 C410 460 455 380 472 295 C485 230 480 155 455 90 C452 83 445 80 440 85 C432 93 425 102 420 112 C418 108 418 94 420 85 Z" />
+
+  <!-- Sparkle 1 (Large Lower) -->
+  <path d="M360 210 Q370 185 380 175 Q390 185 400 210 Q390 235 380 245 Q370 235 360 210 Z" />
+
+  <!-- Sparkle 2 (Small Upper Right) -->
+  <path d="M405 145 Q412 128 420 120 Q428 128 435 145 Q428 162 420 170 Q412 162 405 145 Z" />
+
+  <!-- Typography: CENTRE DENTAIRE DALI -->
+  <text x="0" y="340" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="64" letter-spacing="0.02em">CENTRE</text>
+  <text x="0" y="425" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="64" letter-spacing="0.02em">DENTAIRE</text>
+  <text x="0" y="510" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="64" letter-spacing="0.02em">DALI</text>
+</svg>

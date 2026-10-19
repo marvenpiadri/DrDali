@@ -1,0 +1,19 @@
+.contact-hero {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .contact-hero {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.preview-box {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.6;
+}

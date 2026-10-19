@@ -1,0 +1,15 @@
+.tool-header {
+  padding-bottom: 1.5rem;
+}
+
+.tooth-btn {
+  transition: all 0.15s ease-in-out;
+}
+
+.tooth-btn:hover {
+  transform: scale(1.08);
+}
+
+.arch-container {
+  border-radius: 1.5rem;
+}

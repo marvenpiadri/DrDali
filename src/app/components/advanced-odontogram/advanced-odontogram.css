@@ -1,0 +1,12 @@
+.odontogram-wrapper {
+  user-select: none;
+}
+
+.tooth-cell {
+  min-width: 38px;
+}
+
+.grid-cols-16 {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(42px, 1fr));
+}

@@ -1,0 +1,39 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+}
+
+.slide-card {
+  flex: 0 0 100%;
+  min-width: 100%;
+}
+
+.nav-button {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.nav-button:active {
+  transform: scale(0.95);
+}
+
+.dot-indicator {
+  height: 0.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}

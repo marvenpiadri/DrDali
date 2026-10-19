@@ -1,0 +1,35 @@
+<div 
+  class="dental-loader-container"
+  [class.overlay-mode]="overlay()"
+  [class.size-sm]="size() === 'sm'"
+  [class.size-md]="size() === 'md'"
+  [class.size-lg]="size() === 'lg'">
+  
+  <div class="loader-content flex flex-col items-center justify-center text-center p-4">
+    
+    <!-- Star light & circle loader graphic -->
+    <div class="loader-graphic relative flex items-center justify-center">
+      <!-- Ambient background star light glow -->
+      <div class="absolute inset-0 rounded-full bg-emerald-500/20 blur-lg animate-pulse"></div>
+
+      <!-- Outer spinning circle ring -->
+      <div class="circle-spinner rounded-full border-2 border-emerald-500/20 border-t-emerald-400 border-r-emerald-500/80 animate-spin"></div>
+
+      <!-- Central star light sparkle -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg class="star-light-icon text-emerald-300" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Minimalist Status Label -->
+    @if (message()) {
+      <div class="mt-4 text-xs font-semibold tracking-widest text-neutral-300 uppercase select-none">
+        {{ message() }}
+      </div>
+    }
+
+  </div>
+</div>
+

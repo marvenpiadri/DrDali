@@ -1,0 +1,16 @@
+.dictionary-header {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .dictionary-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.term-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.term-card:hover {
+  transform: translateY(-2px);
+}
