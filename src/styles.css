@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import "./app/components/advanced-odontogram/advanced-odontogram.css";
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   color-scheme: dark;
