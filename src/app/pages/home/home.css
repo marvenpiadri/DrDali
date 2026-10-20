@@ -70,15 +70,6 @@
   box-shadow: 0 20px 50px rgb(0 0 0 / .16);
 }
 
-.home-emergency-section {
-  background: var(--app-bg);
-}
-
-.home-emergency-card {
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-}
-
 @media (max-width: 640px) {
   .home-hero {
     padding-block: 3.5rem;
