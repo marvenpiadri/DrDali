@@ -1,11 +1,193 @@
-/* Jawline 3D viewer styles */
 :host {
   display: block;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  color: #eef2ef;
 }
 
-/* Apple-style lightweight, accessible CSS tooltips */
+/* The anatomy is the primary surface; controls stay quiet and predictable. */
+#jawline-viewer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  border: 1px solid #28312c;
+  border-radius: 1rem;
+  background: #0b0f0d;
+  box-shadow: 0 20px 56px rgb(0 0 0 / .2);
+  font-family: inherit;
+}
+
+#jawline-header-bar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #27302b;
+  background: #101512;
+  backdrop-filter: none;
+}
+
+#jawline-header-bar > div:first-child {
+  min-width: 0;
+  gap: .75rem;
+}
+
+#jawline-header-bar > div:first-child::after {
+  content: "Anatomie de la mâchoire";
+  display: block;
+  color: #f0f4f1;
+  font-size: .875rem;
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+#jawline-header-bar button,
+#jawline-camera-dock button,
+#jawline-sidebar-panel button {
+  min-height: 2.25rem;
+  border-radius: .55rem;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+#jawline-header-bar button:focus-visible,
+#jawline-camera-dock button:focus-visible,
+#jawline-sidebar-panel button:focus-visible {
+  outline: 2px solid #9ed7b1;
+  outline-offset: 2px;
+}
+
+#jawline-header-bar button:hover,
+#jawline-camera-dock button:hover {
+  background-color: #252e28;
+  color: #fff;
+}
+
+#jawline-header-bar button {
+  width: 2.35rem;
+  min-width: 2.35rem;
+  min-height: 2.35rem;
+  padding: .45rem;
+  border-color: #303a33;
+  background: #171e19;
+}
+
+#jawline-header-bar mat-icon {
+  font-size: 1.15rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  line-height: 1.15rem;
+}
+
+#jawline-viewer-container > .flex-1 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+}
+
+#viewer-container {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  flex-basis: auto;
+  overflow: hidden;
+  background: #090d0b;
+  border-radius: 0;
+}
+
+#viewer-container app-dental-3d-viewport,
+#viewer-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+#jawline-sidebar-panel {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1rem;
+  gap: .875rem;
+  border: 0;
+  border-left: 1px solid #27302b;
+  background: #101512;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #3b4840 transparent;
+}
+
+#jawline-sidebar-panel > div {
+  border-color: #2b352e;
+  border-radius: .8rem;
+  box-shadow: none;
+}
+
+#jawline-sidebar-panel h3 {
+  font-size: .7rem;
+  letter-spacing: .045em;
+}
+
+#jawline-sidebar-panel button {
+  min-height: 2.15rem;
+}
+
+#jawline-sidebar-panel button:disabled {
+  cursor: not-allowed;
+}
+
+#jawline-arch-all-btn,
+#jawline-arch-upper-btn,
+#jawline-arch-lower-btn {
+  min-height: 2.35rem;
+  padding: .5rem .8rem;
+  border-radius: .55rem;
+}
+
+#jawline-camera-dock {
+  left: auto;
+  right: 1rem;
+  bottom: 1rem;
+  transform: none;
+  gap: .25rem;
+  padding: .35rem;
+  border: 1px solid #303a33;
+  border-radius: .8rem;
+  background: #111713;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .24);
+  backdrop-filter: none;
+}
+
+#jawline-camera-dock button {
+  width: 2.4rem;
+  min-width: 2.4rem;
+  min-height: 2.4rem;
+  padding: .45rem;
+  border-radius: .55rem;
+}
+
+#jawline-camera-dock button[aria-label="Rotation automatique"] {
+  border: 1px solid #3b4840;
+}
+
+#jawline-camera-dock .w-px {
+  background: #354038;
+}
+
 [data-tooltip] {
   position: relative;
 }
@@ -13,90 +195,136 @@
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  bottom: calc(100% + 8px);
+  z-index: 60;
+  bottom: calc(100% + 7px);
   left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  padding: 4px 8px;
-  background: rgba(18, 18, 18, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f5f5f5;
-  font-size: 11px;
+  padding: .35rem .5rem;
+  transform: translateX(-50%);
+  border: 1px solid #354038;
+  border-radius: .4rem;
+  color: #f2f5f2;
+  background: #171e19;
+  box-shadow: 0 5px 16px rgb(0 0 0 / .22);
+  font-size: .7rem;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.25;
   white-space: nowrap;
-  border-radius: 6px;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-  z-index: 60;
 }
 
 [data-tooltip]:hover::after,
 [data-tooltip]:focus-visible::after {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
 }
 
-/* Tooltip below if pinned */
-[data-tooltip-bottom]::after {
-  top: calc(100% + 8px);
-  bottom: auto;
-  transform: translateX(-50%) translateY(-4px);
-}
-
-[data-tooltip-bottom]:hover::after,
-[data-tooltip-bottom]:focus-visible::after {
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Smooth custom scrollbars */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* Viewer Container & Layout Stacking Rules */
-#viewer-container {
-  min-height: 400px;
-  flex-basis: 100%;
-  border-radius: 0 !important;
-  height: 100%;
-}
-
-#viewer-container canvas,
-#viewer-container app-dental-3d-viewport {
-  border-radius: 0 !important;
-  height: 100% !important;
-}
+.custom-scrollbar::-webkit-scrollbar { width: 5px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { border-radius: 8px; background: #3b4840; }
 
 @media (min-width: 1024px) {
-  #viewer-container {
-    flex-basis: auto;
-    height: 100%;
+  #jawline-viewer-container > .flex-1 {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
   }
-}
 
-#jawline-sidebar-panel {
-  min-height: max-content;
+  #jawline-viewer-container > .flex-1:has(#jawline-sidebar-panel) {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 21rem);
+  }
+
+  #jawline-viewer-container > .flex-1:not(:has(#jawline-sidebar-panel)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #viewer-container {
+    min-height: 0;
+  }
 }
 
 @media (max-width: 1023px) {
+  :host {
+    height: auto;
+  }
+
+  #jawline-viewer-container {
+    height: auto;
+    overflow: visible;
+    border-radius: .9rem;
+  }
+
+  #jawline-viewer-container > .flex-1 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  #viewer-container {
+    width: 100%;
+    height: clamp(24rem, 68svh, 38rem);
+    min-height: 24rem;
+    flex: 0 0 auto;
+  }
+
   #jawline-sidebar-panel {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding: .9rem;
+    border-top: 1px solid #27302b;
+    border-left: 0;
+  }
+
+  #jawline-camera-dock {
+    right: .75rem;
+    bottom: .75rem;
+    max-width: calc(100% - 1.5rem);
   }
 }
 
+@media (max-width: 480px) {
+  #jawline-header-bar {
+    padding: .65rem .75rem;
+  }
+
+  #jawline-header-bar > div:first-child::after {
+    font-size: .8rem;
+  }
+
+  #jawline-header-bar > div:first-child .w-7 {
+    display: none;
+  }
+
+  #jawline-camera-dock {
+    left: .75rem;
+    right: .75rem;
+    justify-content: center;
+    gap: .15rem;
+  }
+
+  #jawline-camera-dock button {
+    width: 2.25rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+  }
+
+  #jawline-arch-all-btn,
+  #jawline-arch-upper-btn,
+  #jawline-arch-lower-btn {
+    padding-inline: .55rem;
+    font-size: .68rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #jawline-viewer-container *,
+  #jawline-viewer-container *::before,
+  #jawline-viewer-container *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
