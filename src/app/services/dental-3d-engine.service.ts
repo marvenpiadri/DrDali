@@ -1862,13 +1862,13 @@ export class Dental3DEngineService {
   }
 
   resetCamera(): void {
-    if (!this.camera || !this.controls) return;
-    const isArch = (this.modelGroup.name && this.modelGroup.name.startsWith('dentition')) ||
-                   this.modelGroup.children.some(child => child.name && child.name.startsWith('dentition'));
-    const dist = isArch ? 108 : 72;
-    this.camera.position.set(0, isArch ? 2.0 : 0, dist);
-    this.controls.target.set(0, 0, 0);
-    this.controls.update();
+    if (!this.camera || !this.controls || !this.modelGroup) return;
+    const isArch = this.modelGroup.name.startsWith('dentition') ||
+      this.modelGroup.children.some((child) => child.name.startsWith('dentition'));
+
+    // Reframe from the active model's world-space bounds rather than assuming
+    // every dataset is centered at the origin or shares the same dimensions.
+    this.frameCameraOnGroup(this.modelGroup, 1.65, isArch);
   }
 
   setPresetView(preset: 'top' | 'front' | 'back' | 'left' | 'right' | 'perspective' | 'canal' | 'nerve'): void {
