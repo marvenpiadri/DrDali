@@ -1,7 +1,7 @@
-<div class="full-mouth-container flex flex-col w-full min-h-[580px] lg:min-h-[680px] h-[78vh] max-h-[900px] bg-neutral-950 text-neutral-100 rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl relative font-sans">
+<div class="full-mouth-container">
 
   <!-- TOP APP BAR / HEADER -->
-  <header class="header-bar flex items-center justify-between px-4 py-2.5 bg-neutral-900/95 backdrop-blur border-b border-neutral-800 z-20 shrink-0">
+  <header class="full-mouth-header">
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-xl bg-neutral-800 border border-neutral-700/80 flex items-center justify-center text-neutral-200 shadow-inner">
         <mat-icon class="text-base">view_in_ar</mat-icon>
@@ -53,10 +53,10 @@
   </header>
 
   <!-- MAIN EXPLORER GRID (HERO 3D VIEWPORT + COMPACT DETAIL SIDEBAR) -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 relative overflow-hidden min-h-0 h-full">
+  <div class="full-mouth-layout">
 
     <!-- 3D VIEWPORT CANVAS (DOMINANT HERO AREA) -->
-    <div class="lg:col-span-8 xl:col-span-9 relative flex flex-col bg-neutral-950 h-full min-h-[460px]">
+    <div class="full-mouth-stage">
 
       <!-- TOP ARCH & QUADRANT FILTER OVERLAY -->
       <div class="absolute top-3 inset-x-3 z-10 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
@@ -236,7 +236,7 @@
     </div>
 
     <!-- RIGHT CONTROL & DETAIL PANEL (PROPER VERTICAL SCROLL, NO CUTOFF) -->
-    <div class="lg:col-span-4 xl:col-span-3 bg-neutral-900/95 border-l border-neutral-800 p-4 flex flex-col gap-4 overflow-y-auto max-h-full custom-scrollbar z-10 h-full">
+    <div class="full-mouth-sidebar">
 
       <!-- SECTION 1: ANATOMICAL LAYERS -->
       <div class="layer-controls flex flex-col gap-3 bg-neutral-950/80 p-3.5 rounded-xl border border-neutral-800 shadow-inner shrink-0">
