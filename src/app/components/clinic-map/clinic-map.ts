@@ -15,8 +15,9 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-clinic-map',
-  imports: [TranslatePipe],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [TranslatePipe],
   templateUrl: './clinic-map.html',
   styleUrl: './clinic-map.css',
 })
