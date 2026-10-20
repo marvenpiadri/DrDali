@@ -1,9 +1,9 @@
 <main class="w-full">
   
   <!-- HERO SECTION: High-Contrast Authority -->
-  <section class="relative bg-neutral-950 text-white overflow-hidden py-20 sm:py-28 lg:py-36 border-b border-neutral-900">
+  <section class="home-hero ui-section text-white overflow-hidden border-b">
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative ui-container">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <!-- Left Narrative Column -->
@@ -13,7 +13,7 @@
             <span>{{ 'brandName' | translate }} • {{ 'cityLocation' | translate }}</span>
           </div>
 
-          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] uppercase">
+          <h1 class="home-hero-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
             {{ 'brandTagline' | translate }}.
           </h1>
 
@@ -22,21 +22,21 @@
           </p>
 
           <!-- CTAs with strictly balanced proportions -->
-          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-            <a 
-              routerLink="/atlas" 
-              class="btn-primary bg-white text-neutral-950 hover:bg-neutral-200 shadow-lg active:scale-95 group">
-              <span>{{ 'atlasTitle' | translate }}</span>
-              <span class="material-icons text-base group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_forward</span>
-            </a>
-
-            <button 
-              type="button" 
+          <div class="home-hero-actions pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <button
+              type="button"
               (click)="openWhatsAppGeneral()"
-              class="btn-secondary border border-neutral-700 hover:border-neutral-500 bg-neutral-900/70 hover:bg-neutral-800 text-white active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-              <app-whatsapp-icon [size]="18" extraClass="text-emerald-400" />
+              class="btn-primary home-contact-primary flex items-center justify-center gap-2 cursor-pointer">
+              <app-whatsapp-icon [size]="19" extraClass="text-current" />
               <span>{{ 'btnWhatsApp' | translate }}</span>
             </button>
+
+            <a
+              routerLink="/clinic"
+              class="btn-secondary home-contact-secondary flex items-center justify-center gap-2">
+              <span>{{ 'navClinic' | translate }}</span>
+              <span class="material-icons text-base rtl:rotate-180" aria-hidden="true">arrow_forward</span>
+            </a>
           </div>
 
           <!-- Trust Markers -->
@@ -76,8 +76,8 @@
   </section>
 
   <!-- SECTION 2: 3D Interactive Lab Teaser & Ad for Atlas -->
-  <section class="py-20 sm:py-28 bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-900 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="ui-section home-location-section border-b transition-colors">
+    <div class="ui-container">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
@@ -224,7 +224,7 @@
 
   <!-- SECTION 2.5: Interactive 3D Jawline & Dental Arch Centerpiece -->
   <section class="py-20 sm:py-28 bg-neutral-950 text-white border-b border-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="ui-container">
       <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-neutral-900 border border-neutral-800 text-emerald-400">
           <span class="material-icons text-xs">scatter_plot</span>
@@ -239,15 +239,15 @@
       </div>
 
       <!-- Jawline 3D Viewport Component -->
-      <div class="w-full h-auto lg:h-[700px] rounded-none overflow-hidden shadow-2xl border border-neutral-800 relative">
+      <div class="home-model-frame w-full h-auto lg:h-[700px] overflow-hidden relative">
         <app-jawline-3d-viewer></app-jawline-3d-viewer>
       </div>
     </div>
   </section>
 
   <!-- SECTION 3: Infinite Slider for the Two Doctors -->
-  <section class="py-20 sm:py-28 bg-white dark:bg-neutral-900/60 border-b border-neutral-200/80 dark:border-neutral-900 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="ui-section home-doctors-section border-b transition-colors">
+    <div class="ui-container">
       
       <div class="max-w-3xl mb-12 text-left rtl:text-right">
         <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block mb-2">
@@ -269,7 +269,7 @@
 
   <!-- SECTION 4: Real-Time Interactive Map & Location -->
   <section class="py-20 sm:py-28 bg-neutral-100 dark:bg-neutral-950 border-b border-neutral-200/80 dark:border-neutral-900 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="ui-container">
       
       <div class="max-w-3xl mb-12 text-left rtl:text-right">
         <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block mb-2">
@@ -290,8 +290,8 @@
   </section>
 
   <!-- SECTION 5: Encyclopedia Categories Grid -->
-  <section class="py-20 sm:py-28 bg-white dark:bg-neutral-900/40 border-b border-neutral-200/80 dark:border-neutral-900 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="ui-section home-learning-section border-b transition-colors">
+    <div class="ui-container">
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
         <div class="text-left rtl:text-right">
@@ -375,9 +375,9 @@
   <app-faq-accordion></app-faq-accordion>
 
   <!-- SECTION 6: Priority Emergency & Direct Contact Banner -->
-  <section class="py-16 sm:py-20 bg-neutral-950 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+  <section class="ui-section home-emergency-section text-white">
+    <div class="ui-container">
+      <div class="home-emergency-card p-8 sm:p-12 rounded-3xl flex flex-col lg:flex-row lg:items-center justify-between gap-8">
         
         <div class="space-y-2 max-w-2xl text-left rtl:text-right">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/30">
