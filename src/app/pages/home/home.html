@@ -83,7 +83,7 @@
         
         <div class="ui-feature-copy">
           <div class="ui-feature-badge">
-            <span class="material-icons text-xs">view_in_ar</span>
+            <span class="material-icons ui-section-badge-icon">view_in_ar</span>
             <span>{{ 'visualTechBadge' | translate }}</span>
           </div>
 
@@ -223,23 +223,23 @@
   </section>
 
   <!-- SECTION 2.5: Interactive 3D Jawline & Dental Arch Centerpiece -->
-  <section class="py-20 sm:py-28 bg-neutral-950 text-white border-b border-neutral-900">
+  <section class="ui-dark-section home-jawline-section">
     <div class="ui-container">
-      <div class="text-center max-w-3xl mx-auto mb-10 space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-neutral-900 border border-neutral-800 text-emerald-400">
+      <div class="ui-centered-section-heading">
+        <div class="ui-section-badge">
           <span class="material-icons text-xs">scatter_plot</span>
           <span>{{ 'jawScannerBadge' | translate }}</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+        <h2 class="ui-section-title">
           {{ 'jawScannerTitle' | translate }}
         </h2>
-        <p class="text-sm sm:text-base text-neutral-400">
+        <p class="ui-section-description">
           {{ 'jawScannerSubtitle' | translate }}
         </p>
       </div>
 
       <!-- Jawline 3D Viewport Component -->
-      <div class="home-model-frame w-full h-auto lg:h-[700px] overflow-hidden relative">
+      <div class="home-model-frame">
         <app-jawline-3d-viewer></app-jawline-3d-viewer>
       </div>
     </div>
