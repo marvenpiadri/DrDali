@@ -46,16 +46,7 @@
           <p class="font-medium text-neutral-200">{{ 'brandName' | translate }}</p>
           <p>{{ 'clinicAddress' | translate }}</p>
           <p>{{ 'openingHours' | translate }}</p>
-          <div class="pt-2">
-            <button 
-              type="button" 
-              (click)="openWhatsApp.emit()"
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white rounded-xl text-xs font-medium transition-colors cursor-pointer"
-              [attr.aria-label]="'ariaWhatsAppCTA' | translate">
-              <app-whatsapp-icon [size]="16" extraClass="text-emerald-400" />
-              <span>{{ 'btnWhatsApp' | translate }}</span>
-            </button>
-          </div>
+          <div class="pt-2"><a routerLink="/contact" class="footer-link">{{ 'navContact' | translate }}</a></div>
         </div>
       </div>
 
