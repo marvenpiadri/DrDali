@@ -25,13 +25,13 @@
             type="button"
             (click)="searchQuery.set('')"
             class="faq-search-clear"
-            [attr.aria-label]="'Clear search'">
+            aria-label="Effacer la recherche">
             <span class="material-icons" aria-hidden="true">cancel</span>
           </button>
         }
       </div>
 
-      <div class="faq-category-list" aria-label="FAQ categories">
+      <div class="faq-category-list">
         @for (cat of faqCategories; track cat.id) {
           <button
             type="button"
