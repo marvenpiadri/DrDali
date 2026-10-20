@@ -28,5 +28,6 @@ export interface Doctor {
   };
   languages: string[];
   initials: string;
+  portraitUrl?: string;
   colorAccent: string;
 }
