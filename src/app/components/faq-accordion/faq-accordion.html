@@ -1,154 +1,112 @@
-<section id="faq-section" class="py-16 bg-neutral-50/70 dark:bg-neutral-900/40 border-y border-neutral-200/80 dark:border-neutral-800 transition-colors">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <!-- HEADER SECTION -->
-    <div class="text-center max-w-3xl mx-auto mb-10">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-xs font-semibold uppercase tracking-wider mb-4">
-        <span class="material-icons text-sm">quiz</span>
+<section id="faq-section" class="faq-section">
+  <div class="faq-container">
+    <header class="faq-header">
+      <div class="faq-badge">
+        <span class="material-icons faq-badge-icon" aria-hidden="true">quiz</span>
         <span>{{ 'faqBadge' | translate }}</span>
       </div>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white tracking-tight mb-3">
-        {{ 'faqTitle' | translate }}
-      </h2>
-      <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        {{ 'faqSubtitle' | translate }}
-      </p>
-    </div>
+      <h2 class="faq-title">{{ 'faqTitle' | translate }}</h2>
+      <p class="faq-subtitle">{{ 'faqSubtitle' | translate }}</p>
+    </header>
 
-    <!-- SEARCH & CATEGORY FILTERS BAR -->
-    <div class="space-y-4 mb-8">
-      <!-- Search Input -->
-      <div class="relative max-w-xl mx-auto">
-        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
-          <span class="material-icons text-lg">search</span>
-        </div>
+    <div class="faq-filters">
+      <div class="faq-search">
+        <span class="material-icons faq-search-icon" aria-hidden="true">search</span>
         <input
           type="text"
           [ngModel]="searchQuery()"
           (ngModelChange)="searchQuery.set($event)"
           [placeholder]="'faqSearchPlaceholder' | translate"
-          class="w-full pl-10 pr-10 py-3 text-sm bg-white dark:bg-neutral-800/90 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-700 rounded-2xl shadow-xs focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all placeholder:text-neutral-400"
+          [attr.aria-label]="'faqSearchPlaceholder' | translate"
+          class="faq-search-input"
         />
         @if (searchQuery()) {
           <button
             type="button"
             (click)="searchQuery.set('')"
-            class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-neutral-400 hover:text-neutral-600 dark:hover:text-white transition-colors">
-            <span class="material-icons text-base">cancel</span>
+            class="faq-search-clear"
+            [attr.aria-label]="'Clear search'">
+            <span class="material-icons" aria-hidden="true">cancel</span>
           </button>
         }
       </div>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+      <div class="faq-category-list" aria-label="FAQ categories">
         @for (cat of faqCategories; track cat.id) {
           <button
             type="button"
             (click)="setCategory(cat.id)"
-            [class]="selectedCategory() === cat.id
-              ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-xs scale-102'
-              : 'bg-white dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700/70 font-medium'"
-            class="px-3.5 py-2 rounded-xl text-xs flex items-center gap-1.5 transition-all cursor-pointer">
-            <span class="material-icons text-sm">{{ cat.icon }}</span>
+            [class.is-active]="selectedCategory() === cat.id"
+            class="faq-category-button">
+            <span class="material-icons faq-category-icon" aria-hidden="true">{{ cat.icon }}</span>
             <span>{{ cat.labelKey | translate }}</span>
           </button>
         }
       </div>
     </div>
 
-    <!-- FAQ ACCORDION LIST -->
-    <div class="space-y-3.5">
+    <div class="faq-list">
       @if (filteredFaq().length > 0) {
         @for (item of filteredFaq(); track item.id; let idx = $index) {
-          <div 
-            class="rounded-2xl border transition-all duration-200 overflow-hidden bg-white dark:bg-neutral-800/80"
-            [class]="openIndex() === idx 
-              ? 'border-emerald-500/50 dark:border-emerald-500/40 shadow-sm ring-1 ring-emerald-500/20' 
-              : 'border-neutral-200 dark:border-neutral-700/80 hover:border-neutral-300 dark:hover:border-neutral-600'">
-            
-            <!-- Question Header Button -->
-            <button
-              type="button"
-              (click)="toggleItem(idx)"
-              class="w-full px-5 py-4 text-left flex items-center justify-between gap-4 transition-colors cursor-pointer select-none"
-              [attr.aria-expanded]="openIndex() === idx">
-              
-              <div class="flex items-center gap-3.5 min-w-0">
-                <div 
-                  class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors"
-                  [class]="openIndex() === idx 
-                    ? 'bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400' 
-                    : 'bg-neutral-100 dark:bg-neutral-700/50 text-neutral-500 dark:text-neutral-400'">
-                  <span class="material-icons text-lg">{{ item.icon }}</span>
-                </div>
-                <span class="text-sm sm:text-base font-semibold text-neutral-900 dark:text-white leading-snug">
-                  {{ item.questionKey | translate }}
+          <article
+            class="faq-item"
+            [class.is-open]="openIndex() === idx">
+            <h3 class="faq-question-heading">
+              <button
+                type="button"
+                (click)="toggleItem(idx)"
+                class="faq-question-button"
+                [attr.aria-expanded]="openIndex() === idx">
+                <span class="faq-question-main">
+                  <span class="faq-question-icon" [class.is-active]="openIndex() === idx">
+                    <span class="material-icons" aria-hidden="true">{{ item.icon }}</span>
+                  </span>
+                  <span class="faq-question-text">{{ item.questionKey | translate }}</span>
                 </span>
-              </div>
+                <span class="faq-chevron" [class.is-open]="openIndex() === idx">
+                  <span class="material-icons" aria-hidden="true">expand_more</span>
+                </span>
+              </button>
+            </h3>
 
-              <!-- Toggle Chevron -->
-              <div 
-                class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 text-neutral-400 dark:text-neutral-500"
-                [class.rotate-180]="openIndex() === idx">
-                <span class="material-icons text-xl">expand_more</span>
-              </div>
-            </button>
-
-            <!-- Answer Body -->
             @if (openIndex() === idx) {
-              <div class="px-5 pb-5 pt-1 border-t border-neutral-100 dark:border-neutral-700/50 text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed animate-fade-in">
-                <p class="pl-12 pr-2 font-normal">
-                  {{ item.answerKey | translate }}
-                </p>
+              <div class="faq-answer animate-fade-in">
+                <p>{{ item.answerKey | translate }}</p>
               </div>
             }
-          </div>
+          </article>
         }
       } @else {
-        <!-- Empty State -->
-        <div class="text-center py-12 bg-white dark:bg-neutral-800/50 rounded-2xl border border-dashed border-neutral-300 dark:border-neutral-700 p-6">
-          <span class="material-icons text-4xl text-neutral-400 mb-2">search_off</span>
-          <p class="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-            {{ 'faqNoResults' | translate }}
-          </p>
-          <button 
-            type="button" 
-            (click)="searchQuery.set(''); selectedCategory.set('all')" 
-            class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold hover:underline mt-2">
+        <div class="faq-empty-state">
+          <span class="material-icons faq-empty-icon" aria-hidden="true">search_off</span>
+          <p class="faq-empty-title">{{ 'faqNoResults' | translate }}</p>
+          <button
+            type="button"
+            (click)="searchQuery.set(''); selectedCategory.set('all')"
+            class="faq-reset-button">
             Réinitialiser la recherche
           </button>
         </div>
       }
     </div>
 
-    <!-- STILL HAVE A QUESTION CTA CARD -->
-    <div class="mt-12 bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900 dark:from-neutral-800 dark:via-neutral-850 dark:to-neutral-800 rounded-3xl p-6 sm:p-8 text-white shadow-lg border border-neutral-800 relative overflow-hidden">
-      <!-- Subtle Decorative Glow Background -->
-      <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
-      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">
-            <span class="material-icons text-xs">support_agent</span>
+    <aside class="faq-contact-card">
+      <div class="faq-contact-glow" aria-hidden="true"></div>
+      <div class="faq-contact-content">
+        <div class="faq-contact-copy">
+          <div class="faq-contact-badge">
+            <span class="material-icons" aria-hidden="true">support_agent</span>
             <span>Assistance Médicale</span>
           </div>
-          <h3 class="text-lg sm:text-xl font-bold text-white">
-            {{ 'faqStillHaveQuestion' | translate }}
-          </h3>
-          <p class="text-xs sm:text-sm text-neutral-300 max-w-xl leading-relaxed">
-            {{ 'faqContactTeamText' | translate }}
-          </p>
+          <h3 class="faq-contact-title">{{ 'faqStillHaveQuestion' | translate }}</h3>
+          <p class="faq-contact-description">{{ 'faqContactTeamText' | translate }}</p>
         </div>
 
-        <button
-          type="button"
-          (click)="onWhatsAppClick()"
-          class="inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer whitespace-nowrap flex-shrink-0">
-          <span class="material-icons text-lg">chat</span>
+        <button type="button" (click)="onWhatsAppClick()" class="faq-contact-button">
+          <span class="material-icons" aria-hidden="true">chat</span>
           <span>{{ 'faqAskWhatsApp' | translate }}</span>
         </button>
       </div>
-    </div>
-
+    </aside>
   </div>
 </section>
