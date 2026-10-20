@@ -45,7 +45,8 @@
 
 .home-doctors-section {
   background: var(--surface);
-  border-color: var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color .18s ease, border-color .18s ease;
 }
 
 .home-location-section {
@@ -57,6 +58,12 @@
 .home-learning-section {
   background: var(--surface);
   border-color: var(--border-subtle);
+}
+
+.home-map-section {
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color .18s ease, border-color .18s ease;
 }
 
 .home-model-frame {
