@@ -1839,6 +1839,24 @@ export class TranslationService {
     clinicMapAddress: { fr: 'En face de la pharmacie Hassan II, Témara', ar: 'مقابل صيدلية الحسن الثاني، تمارة', en: 'Opposite Hassan II Pharmacy, Temara' },
     toolsCompleteArch: { fr: 'Arcade dentaire complète en 3D', ar: 'قوس الأسنان الكامل ثلاثي الأبعاد', en: 'Complete 3D dental arch' },
     toolsToothLabel: { fr: 'Dent n°{{number}}', ar: 'السن رقم {{number}}', en: 'Tooth #{{number}}' },
+
+    fullMouthExplorerTitle: { fr: 'Explorateur de la dentition complète', ar: 'مستكشف مجموعة الأسنان الكاملة', en: 'Full-mouth dentition explorer' },
+    fullMouthExplorerSubtitle: { fr: 'Anatomie tridimensionnelle des 32 dents et rapports avec les nerfs', ar: 'التشريح ثلاثي الأبعاد للأسنان الـ32 وعلاقتها بالأعصاب', en: '3D anatomy of all 32 teeth and their relationship to nerves' },
+    fullMouthShowFdi: { fr: 'Afficher/masquer les repères FDI', ar: 'إظهار/إخفاء علامات FDI', en: 'Show/hide FDI markers' },
+    fullMouthFdi: { fr: 'Repères FDI', ar: 'علامات FDI', en: 'FDI markers' },
+    fullMouthDirectory: { fr: 'Répertoire des dents', ar: 'دليل الأسنان', en: 'Tooth directory' },
+    fullMouthReset: { fr: 'Réinitialiser', ar: 'إعادة الضبط', en: 'Reset' },
+    fullMouthResetView: { fr: 'Réinitialiser le cadrage', ar: 'إعادة ضبط زاوية العرض', en: 'Reset view' },
+    fullMouthQuadrant1: { fr: 'Quadrant 1 : supérieur droit (11–18)', ar: 'الربع 1: علوي أيمن (11–18)', en: 'Quadrant 1: upper right (11–18)' },
+    fullMouthQuadrant2: { fr: 'Quadrant 2 : supérieur gauche (21–28)', ar: 'الربع 2: علوي أيسر (21–28)', en: 'Quadrant 2: upper left (21–28)' },
+    fullMouthQuadrant3: { fr: 'Quadrant 3 : inférieur gauche (31–38)', ar: 'الربع 3: سفلي أيسر (31–38)', en: 'Quadrant 3: lower left (31–38)' },
+    fullMouthQuadrant4: { fr: 'Quadrant 4 : inférieur droit (41–48)', ar: 'الربع 4: سفلي أيمن (41–48)', en: 'Quadrant 4: lower right (41–48)' },
+    dental3dRequiredTitle: { fr: 'Modèle 3D requis', ar: 'نموذج ثلاثي الأبعاد مطلوب', en: '3D model required' },
+    dental3dAutoRotate: { fr: 'Rotation automatique', ar: 'تدوير تلقائي', en: 'Auto-rotate' },
+    dental3dResetView: { fr: 'Réinitialiser la vue', ar: 'إعادة ضبط العرض', en: 'Reset view' },
+    dental3dFullscreen: { fr: 'Plein écran', ar: 'ملء الشاشة', en: 'Fullscreen' },
+    contactNamePlaceholder: { fr: 'Ex. : Yasmine Benjelloun', ar: 'مثال: ياسمين بنجلون', en: 'e.g. Yasmine Benjelloun' },
+    contactMessagePlaceholder: { fr: 'Ex. : Disponible de préférence le mardi après-midi…', ar: 'مثال: أفضل موعد بعد ظهر يوم الثلاثاء…', en: 'e.g. Preferably available Tuesday afternoon…' },
   };
 
   constructor() {
