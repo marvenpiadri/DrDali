@@ -322,6 +322,20 @@ export class AdvancedOdontogramComponent {
     });
   }
 
+  getToothSilhouette(type: OdontogramToothState['type']): string {
+    switch (type) {
+      case 'incisor':
+        return 'M11 4 C7 5 5 10 6 16 L8 29 C9 34 12 37 20 37 C28 37 31 34 32 29 L34 16 C35 10 33 5 29 4 C25 3 23 6 20 6 C17 6 15 3 11 4 Z';
+      case 'canine':
+        return 'M12 4 C7 6 6 12 8 19 L12 31 C14 36 17 38 20 38 C23 38 26 36 28 31 L32 19 C34 12 33 6 28 4 C24 3 23 8 20 8 C17 8 16 3 12 4 Z';
+      case 'premolar':
+        return 'M10 5 C5 8 5 14 7 20 L10 30 C12 35 16 37 20 37 C24 37 28 35 30 30 L33 20 C35 14 35 8 30 5 C26 3 24 7 20 7 C16 7 14 3 10 5 Z';
+      case 'molar':
+      default:
+        return 'M9 5 C5 6 4 11 5 16 L8 29 C9 34 12 36 16 35 C18 35 19 33 20 33 C21 33 22 35 24 35 C28 36 31 34 32 29 L35 16 C36 11 35 6 31 5 C27 4 24 7 22 8 C21 8 21 5 20 5 C19 5 19 8 18 8 C16 7 13 4 9 5 Z';
+    }
+  }
+
   getSurfaceColor(condition: ToothCondition): string {
     switch (condition) {
       case 'caries': return '#ef4444'; // Red
