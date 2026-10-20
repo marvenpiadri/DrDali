@@ -31,25 +31,8 @@ export class ClinicMapComponent implements OnDestroy {
   readonly googleMapsDirectionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=33.9265,-6.9125';
   readonly wazeDirectionsUrl = 'https://waze.com/ul?ll=33.9265,-6.9125&navigate=yes';
 
-  currentLayer = signal<'dark' | 'light' | 'satellite'>('dark');
-
   private map: unknown = null;
-  private tileLayer: unknown = null;
 
-  private tileConfigs = {
-    dark: {
-      url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    },
-    light: {
-      url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    },
-    satellite: {
-      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, USGS, NOAA',
-    },
-  };
 
   constructor() {
     afterNextRender(() => {
@@ -77,13 +60,12 @@ export class ClinicMapComponent implements OnDestroy {
 
       this.map = mapInstance;
 
-      const currentConfig = this.tileConfigs[this.currentLayer()];
-      const initialLayer = L.tileLayer(currentConfig.url, {
+      // OpenStreetMap's standard raster tiles do not require a client API key.
+      // Keep the attribution visible and avoid providers that can block tiles on key configuration.
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
-        attribution: currentConfig.attribution,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(mapInstance);
-
-      this.tileLayer = initialLayer;
 
       // Create a custom SVG pin marker for Centre Dentaire Dali
       const customIcon = L.divIcon({
@@ -121,25 +103,6 @@ export class ClinicMapComponent implements OnDestroy {
     } catch (err) {
       console.error('Failed to initialize Leaflet map:', err);
     }
-  }
-
-  setMapLayer(layer: 'dark' | 'light' | 'satellite') {
-    this.currentLayer.set(layer);
-    if (!this.map) return;
-
-    import('leaflet').then((L) => {
-      const mapInstance = this.map as { removeLayer: (layer: unknown) => void };
-      if (this.tileLayer) {
-        mapInstance.removeLayer(this.tileLayer);
-      }
-      const config = this.tileConfigs[layer];
-      const newLayer = L.tileLayer(config.url, {
-        maxZoom: 19,
-        attribution: config.attribution,
-      }).addTo(this.map as L.Map);
-
-      this.tileLayer = newLayer;
-    });
   }
 
   ngOnDestroy() {
