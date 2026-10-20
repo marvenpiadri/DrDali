@@ -18,11 +18,12 @@ import {Dental3DModelType, ViewingMode} from '../../models/dental-3d.model';
 import {DentalLoaderComponent} from '../dental-loader/dental-loader';
 import {Dental3DEngineService} from '../../services/dental-3d-engine.service';
 import {AnatomyTooltipService} from '../../services/anatomy-tooltip.service';
+import {TranslatePipe} from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-dental-3d-viewport',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DentalLoaderComponent],
+  imports: [DentalLoaderComponent, TranslatePipe],
   providers: [Dental3DService, Dental3DEngineService],
   templateUrl: './dental-3d-viewport.html',
   styleUrl: './dental-3d-viewport.css',
