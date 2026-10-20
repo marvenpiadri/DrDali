@@ -249,7 +249,8 @@ export class AdvancedOdontogramComponent {
     this.toothSelected.emit(fdi);
   }
 
-  onSurfaceClick(event: MouseEvent, fdi: number, surface: ToothSurface): void {
+  onSurfaceClick(event: MouseEvent | KeyboardEvent, fdi: number, surface: ToothSurface): void {
+    event.preventDefault();
     event.stopPropagation();
     if (this.readOnly()) return;
 
