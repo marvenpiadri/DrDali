@@ -170,13 +170,30 @@
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
                   class="odontogram-surface" />
 
-                <!-- Missing Cross indicator -->
-                @if (tooth.overallCondition === 'missing') {
-                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                }
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
+                <!-- Tooth-type anatomy: fissures and developmental ridges -->
+                @switch (tooth.type) {
+                  @case ('incisor') {
+                    <path d="M 11 13 C 14 15 16 16 20 16 C 24 16 26 15 29 13" fill="none" stroke="#64748b" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 13 25 Q 20 28 27 25" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('canine') {
+                    <path d="M 20 8 C 19 15 18 22 20 31" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 17 Q 16 20 19 20 M 21 20 Q 25 20 28 17" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('premolar') {
+                    <path d="M 20 10 C 18 15 18 18 20 21 C 22 24 22 27 20 30" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 14 Q 16 17 18 19 M 28 14 Q 24 17 22 19" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('molar') {
+                    <path d="M 20 9 C 18 14 17 17 20 20 C 23 23 22 26 20 31 M 20 20 C 16 19 13 18 10 15 M 20 20 C 24 18 27 16 30 13" fill="none" stroke="#64748b" stroke-opacity=".6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+                    <path d="M 12 27 Q 16 24 18 22 M 28 27 Q 24 24 22 22" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                }
+                @if (tooth.overallCondition === 'missing') {
+                  <path d="M 7 7 L 33 33 M 33 7 L 7 33" fill="none" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" pointer-events="none" />
+                }
               </svg>
 
               <!-- Condition Badge Dot -->
@@ -251,13 +268,30 @@
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
                   class="odontogram-surface" />
 
-                <!-- Missing Cross indicator -->
-                @if (tooth.overallCondition === 'missing') {
-                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                }
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
+                <!-- Tooth-type anatomy: fissures and developmental ridges -->
+                @switch (tooth.type) {
+                  @case ('incisor') {
+                    <path d="M 11 13 C 14 15 16 16 20 16 C 24 16 26 15 29 13" fill="none" stroke="#64748b" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 13 25 Q 20 28 27 25" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('canine') {
+                    <path d="M 20 8 C 19 15 18 22 20 31" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 17 Q 16 20 19 20 M 21 20 Q 25 20 28 17" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('premolar') {
+                    <path d="M 20 10 C 18 15 18 18 20 21 C 22 24 22 27 20 30" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 14 Q 16 17 18 19 M 28 14 Q 24 17 22 19" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('molar') {
+                    <path d="M 20 9 C 18 14 17 17 20 20 C 23 23 22 26 20 31 M 20 20 C 16 19 13 18 10 15 M 20 20 C 24 18 27 16 30 13" fill="none" stroke="#64748b" stroke-opacity=".6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+                    <path d="M 12 27 Q 16 24 18 22 M 28 27 Q 24 24 22 22" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                }
+                @if (tooth.overallCondition === 'missing') {
+                  <path d="M 7 7 L 33 33 M 33 7 L 7 33" fill="none" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" pointer-events="none" />
+                }
               </svg>
 
               <!-- Condition Badge Dot -->
@@ -348,13 +382,30 @@
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
                   class="odontogram-surface" />
 
-                <!-- Missing Cross indicator -->
-                @if (tooth.overallCondition === 'missing') {
-                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                }
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
+                <!-- Tooth-type anatomy: fissures and developmental ridges -->
+                @switch (tooth.type) {
+                  @case ('incisor') {
+                    <path d="M 11 13 C 14 15 16 16 20 16 C 24 16 26 15 29 13" fill="none" stroke="#64748b" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 13 25 Q 20 28 27 25" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('canine') {
+                    <path d="M 20 8 C 19 15 18 22 20 31" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 17 Q 16 20 19 20 M 21 20 Q 25 20 28 17" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('premolar') {
+                    <path d="M 20 10 C 18 15 18 18 20 21 C 22 24 22 27 20 30" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 14 Q 16 17 18 19 M 28 14 Q 24 17 22 19" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('molar') {
+                    <path d="M 20 9 C 18 14 17 17 20 20 C 23 23 22 26 20 31 M 20 20 C 16 19 13 18 10 15 M 20 20 C 24 18 27 16 30 13" fill="none" stroke="#64748b" stroke-opacity=".6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+                    <path d="M 12 27 Q 16 24 18 22 M 28 27 Q 24 24 22 22" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                }
+                @if (tooth.overallCondition === 'missing') {
+                  <path d="M 7 7 L 33 33 M 33 7 L 7 33" fill="none" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" pointer-events="none" />
+                }
               </svg>
 
               <!-- Tooth Number -->
@@ -429,13 +480,30 @@
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
                   class="odontogram-surface" />
 
-                <!-- Missing Cross indicator -->
-                @if (tooth.overallCondition === 'missing') {
-                  <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                  <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
-                }
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
+                <!-- Tooth-type anatomy: fissures and developmental ridges -->
+                @switch (tooth.type) {
+                  @case ('incisor') {
+                    <path d="M 11 13 C 14 15 16 16 20 16 C 24 16 26 15 29 13" fill="none" stroke="#64748b" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 13 25 Q 20 28 27 25" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('canine') {
+                    <path d="M 20 8 C 19 15 18 22 20 31" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 17 Q 16 20 19 20 M 21 20 Q 25 20 28 17" fill="none" stroke="#64748b" stroke-opacity=".35" stroke-width=".8" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('premolar') {
+                    <path d="M 20 10 C 18 15 18 18 20 21 C 22 24 22 27 20 30" fill="none" stroke="#64748b" stroke-opacity=".55" stroke-width="1.1" stroke-linecap="round" pointer-events="none" />
+                    <path d="M 12 14 Q 16 17 18 19 M 28 14 Q 24 17 22 19" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                  @case ('molar') {
+                    <path d="M 20 9 C 18 14 17 17 20 20 C 23 23 22 26 20 31 M 20 20 C 16 19 13 18 10 15 M 20 20 C 24 18 27 16 30 13" fill="none" stroke="#64748b" stroke-opacity=".6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" pointer-events="none" />
+                    <path d="M 12 27 Q 16 24 18 22 M 28 27 Q 24 24 22 22" fill="none" stroke="#64748b" stroke-opacity=".4" stroke-width=".9" stroke-linecap="round" pointer-events="none" />
+                  }
+                }
+                @if (tooth.overallCondition === 'missing') {
+                  <path d="M 7 7 L 33 33 M 33 7 L 7 33" fill="none" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round" pointer-events="none" />
+                }
               </svg>
 
               <!-- Tooth Number -->
