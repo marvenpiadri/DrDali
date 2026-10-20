@@ -1115,3 +1115,32 @@ app-dental-3d-viewport canvas {
 .light [class*="border-purple-"], .light [class*="border-fuchsia-"], .light [class*="border-pink-"],
 .light [class*="border-rose-"], .light [class*="border-red-"], .light [class*="border-orange-"],
 .light [class*="border-amber-"], .light [class*="border-yellow-"] { border-color: var(--border-strong) !important; }
+
+
+/* Fixed studio surfaces: 3D rendering must not inherit the page theme. */
+:root {
+  --canvas-bg: #090909;
+  --canvas-surface: #111111;
+  --canvas-border: #292929;
+}
+app-dental-3d-viewport,
+app-dental-3d-viewport .viewport-wrapper,
+app-dental-3d-viewport .canvas-host,
+app-full-mouth-explorer .full-mouth-container,
+app-full-mouth-explorer .full-mouth-stage {
+  background-color: var(--canvas-bg) !important;
+}
+app-dental-3d-viewport .viewport-wrapper,
+app-full-mouth-explorer .full-mouth-container {
+  color: #fafafa;
+  border-color: var(--canvas-border);
+}
+app-dental-3d-viewport .viewport-controls {
+  color: #fafafa;
+  background-color: var(--canvas-surface);
+  border-color: var(--canvas-border);
+}
+/* OSM map tiles stay dark and grayscale in both application themes. */
+.leaflet-container .leaflet-tile {
+  filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
+}
