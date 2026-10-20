@@ -375,34 +375,34 @@
   <app-faq-accordion (openWhatsApp)="openWhatsAppGeneral()"></app-faq-accordion>
 
   <!-- SECTION 6: Priority Emergency & Direct Contact Banner -->
-  <section class="ui-section home-emergency-section text-white">
+  <section class="ui-section ui-emergency-section">
     <div class="ui-container">
-      <div class="home-emergency-card p-8 sm:p-12 rounded-3xl flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <div class="ui-emergency-card">
         
-        <div class="space-y-2 max-w-2xl text-left rtl:text-right">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/20 text-rose-400 border border-rose-500/30">
+        <div class="ui-emergency-copy">
+          <div class="ui-emergency-badge">
             <span>{{ 'emergencyBannerBadge' | translate }}</span>
           </div>
-          <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          <h3 class="ui-emergency-title">
             {{ 'emergencyTitle' | translate }}
           </h3>
-          <p class="text-sm text-neutral-400 leading-relaxed">
+          <p class="ui-emergency-description">
             {{ 'emergencyDesc' | translate }}
           </p>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+        <div class="ui-emergency-actions">
           <button 
             type="button" 
             (click)="openWhatsAppEmergency()"
-            class="btn-primary bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-            <app-whatsapp-icon [size]="18" extraClass="text-white" />
+            class="btn-primary ui-emergency-whatsapp">
+            <app-whatsapp-icon [size]="18" />
             <span>{{ 'directWhatsApp' | translate }}</span>
           </button>
           
           <a 
             routerLink="/contact"
-            class="btn-secondary border border-neutral-700 hover:border-neutral-600 text-neutral-300 hover:text-white">
+            class="btn-secondary ui-emergency-contact">
             <span>{{ 'btnDirections' | translate }}</span>
           </a>
         </div>
