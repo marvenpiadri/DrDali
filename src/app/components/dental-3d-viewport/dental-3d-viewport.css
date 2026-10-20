@@ -29,3 +29,6 @@
   will-change: left, top;
 }
 
+
+.viewport-icon { display:inline-block; font-size:.85rem; line-height:1; }
+.viewport-status-icon { display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem; color:var(--text-muted); font-size:2rem; }
