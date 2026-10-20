@@ -148,16 +148,15 @@
 }
 
 
-/* Keep map chrome aligned with the active application theme. */
+/* Map canvas and popup chrome stay dark in both application themes. */
 :host-context(.light) .map-frame-wrapper { background: #090909; }
 :host-context(.light) .leaflet-container { background-color: #090909 !important; }
 :host-context(.light) .leaflet-popup-content-wrapper,
 :host-context(.light) .leaflet-popup-tip {
   background: #171717;
   color: #fafafa;
+  border-color: #404040;
 }
-:host-context(.light) .leaflet-popup-content-wrapper,
-:host-context(.light) .leaflet-popup-tip { border-color: var(--border-subtle, #e5e5e5); }
 :host-context(.light) .leaflet-container .leaflet-control-attribution {
   background: rgb(23 23 23 / 88%) !important;
   color: #d4d4d4 !important;
