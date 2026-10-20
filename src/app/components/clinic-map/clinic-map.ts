@@ -59,11 +59,11 @@ export class ClinicMapComponent implements OnDestroy {
 
       this.map = mapInstance;
 
-      // CARTO's dark basemap keeps the map itself aligned with the app's monochrome theme.
-      // Attribution remains visible; no client API key is required for the tile URL.
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      // Use standard OpenStreetMap tiles, then apply the dark monochrome treatment in CSS.
+      // This avoids third-party API keys and keeps the map provider easy to replace.
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(mapInstance);
 
       // Create a custom SVG pin marker for Centre Dentaire Dali
