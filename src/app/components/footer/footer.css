@@ -1,17 +1,41 @@
 .footer-root {
-  background-color: #0a0a0a;
-  color: #a3a3a3;
-  border-top: 1px solid #1f1f1f;
-  padding-top: 4rem;
-  padding-bottom: 3rem;
-  transition: background-color 0.2s ease;
+  padding-block: clamp(2.75rem, 5vw, 4.25rem) 2rem;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border-top: 1px solid var(--border-subtle);
 }
-
-.footer-link {
-  color: #a3a3a3;
-  transition: color 0.15s ease;
+.footer-inner { width: min(100% - 2.5rem, 80rem); margin-inline: auto; }
+.footer-grid {
+  display: grid; grid-template-columns: minmax(15rem, 1.8fr) repeat(3, minmax(8rem, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.75rem); padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
-
-.footer-link:hover {
-  color: #ffffff;
+.footer-brand { grid-column: span 1; }
+.footer-description { max-width: 30rem; margin-top: 1rem; color: var(--text-secondary); font-size: .84rem; line-height: 1.8; }
+.footer-note { padding-top: .5rem; color: var(--text-muted); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.footer-column { display: flex; flex-direction: column; align-items: flex-start; gap: .85rem; }
+.footer-column-title { margin: 0; color: var(--text-primary); font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.footer-links { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; color: var(--text-secondary); font-size: .78rem; }
+.footer-contact { display: grid; gap: .65rem; color: var(--text-secondary); font-size: .78rem; line-height: 1.65; }
+.footer-contact p { margin: 0; }
+.footer-clinic-name { color: var(--text-primary); font-weight: 700; }
+.footer-contact-action { padding-top: .2rem; }
+.footer-link { color: var(--text-secondary); text-decoration: none; text-underline-offset: .2em; transition: color .16s ease; }
+.footer-link:hover { color: var(--accent-strong); text-decoration: underline; }
+.footer-disclaimer { max-width: 58rem; padding-block: 1.6rem; border-bottom: 1px solid var(--border-subtle); color: var(--text-muted); font-size: .7rem; line-height: 1.75; }
+.footer-disclaimer p { margin: 0; }
+.footer-disclaimer-title { color: var(--text-secondary); font-size: .68rem; font-weight: 800; letter-spacing: .04em; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.5rem; color: var(--text-muted); font-size: .75rem; }
+.footer-bottom p { margin: 0; }
+.footer-bottom-links { display: flex; align-items: center; gap: 1.5rem; }
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .footer-inner { width: calc(100% - 1.5rem); }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem 1rem; }
+  .footer-column-title { font-size: .68rem; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+  .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
 }
