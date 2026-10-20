@@ -127,7 +127,7 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+              <svg viewBox="0 0 40 40" class="odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
                 <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
                 <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Outer Vestibular (Top) -->
@@ -136,7 +136,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Lingual / Palatal (Bottom) -->
                 <polygon 
@@ -144,7 +144,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Mesial (Inward, right for Q1) -->
                 <polygon 
@@ -152,7 +152,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Distal (Outward, left for Q1) -->
                 <polygon 
@@ -160,7 +160,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <rect 
@@ -168,7 +168,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Missing Cross indicator -->
                 @if (tooth.overallCondition === 'missing') {
@@ -208,7 +208,7 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+              <svg viewBox="0 0 40 40" class="odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
                 <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
                 <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Outer Vestibular (Top) -->
@@ -217,7 +217,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Lingual / Palatal (Bottom) -->
                 <polygon 
@@ -225,7 +225,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Mesial (Inward, left for Q2) -->
                 <polygon 
@@ -233,7 +233,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Distal (Outward, right for Q2) -->
                 <polygon 
@@ -241,7 +241,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <rect 
@@ -249,7 +249,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Missing Cross indicator -->
                 @if (tooth.overallCondition === 'missing') {
@@ -305,7 +305,7 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+              <svg viewBox="0 0 40 40" class="odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
                 <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
                 <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Lingual (Top for lower) -->
@@ -314,7 +314,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Vestibular (Bottom for lower) -->
                 <polygon 
@@ -322,7 +322,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Mesial (Inward, right for Q4) -->
                 <polygon 
@@ -330,7 +330,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Distal (Outward, left for Q4) -->
                 <polygon 
@@ -338,7 +338,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <rect 
@@ -346,7 +346,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Missing Cross indicator -->
                 @if (tooth.overallCondition === 'missing') {
@@ -386,7 +386,7 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+              <svg viewBox="0 0 40 40" class="odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
                 <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
                 <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Lingual (Top for lower) -->
@@ -395,7 +395,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Vestibular (Bottom for lower) -->
                 <polygon 
@@ -403,7 +403,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Mesial (Inward, left for Q3) -->
                 <polygon 
@@ -411,7 +411,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Distal (Outward, right for Q3) -->
                 <polygon 
@@ -419,7 +419,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <rect 
@@ -427,7 +427,7 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#94a3b8" stroke-width="1"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="hover:opacity-80 transition-colors" />
+                  class="odontogram-surface" />
 
                 <!-- Missing Cross indicator -->
                 @if (tooth.overallCondition === 'missing') {
