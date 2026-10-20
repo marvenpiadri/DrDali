@@ -1,23 +1,112 @@
-.odontogram-wrapper { user-select:none; min-width:0; color:var(--text-primary); background:var(--surface); border:1px solid var(--border-subtle); border-radius:1.15rem; padding:clamp(1rem,2.5vw,1.5rem); box-shadow:0 18px 50px rgb(0 0 0 / .12); }
-.tooth-cell { min-width:38px; }
-.grid-cols-16 { display:grid; grid-template-columns:repeat(16,minmax(42px,1fr)); }
-.odontogram-tooth-svg { display:block; overflow:visible; flex:0 0 auto; width:2rem; height:2rem; margin-block:.25rem; shape-rendering:geometricPrecision; filter:drop-shadow(0 1px 1px rgb(15 23 42 / .08)); }
+/* Odontogram component styles: semantic classes, independent of utility CSS. */
+.odontogram-wrapper {
+  user-select: none;
+  min-width: 0;
+  color: var(--text-primary, #171717);
+  background: var(--surface, #fff);
+  border: 1px solid var(--border-subtle, #e5e7eb);
+  border-radius: 1.15rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  box-shadow: 0 18px 50px rgb(15 23 42 / 8%);
+}
+.odg-toolbar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border-subtle,#e5e7eb); }
+.odg-title-group,.odg-inline-group { display:flex; align-items:center; gap:.75rem; }
+.odg-title-icon { display:flex; align-items:center; justify-content:center; flex:0 0 2.25rem; width:2.25rem; height:2.25rem; border-radius:.75rem; color:#059669; background:rgb(16 185 129 / 10%); font-weight:700; }
+.odg-title-icon-glyph { font-size:1.25rem; }
+.odg-heading { display:flex; align-items:center; gap:.5rem; margin:0; color:var(--text-primary,#171717); font-size:1rem; font-weight:700; }
+.odg-count-chip { padding:.125rem .5rem; border-radius:999px; background:var(--surface-muted,#f3f4f6); color:var(--text-secondary,#525252); font: .75rem ui-monospace,monospace; }
+.odg-muted { margin:.2rem 0 0; color:var(--text-secondary,#737373); font-size:.75rem; }
+.odg-numbering-switch { display:inline-flex; gap:.125rem; padding:.125rem; border:1px solid var(--border-subtle,#d4d4d8); border-radius:.6rem; background:var(--surface-muted,#f5f5f5); font-size:.75rem; font-weight:600; }
+.odg-numbering-option { border:0; border-radius:.4rem; padding:.375rem .625rem; color:var(--text-secondary,#525252); background:transparent; cursor:pointer; transition:background .16s,color .16s,box-shadow .16s; }
+.odg-numbering-option:hover { background:rgb(127 127 127 / 10%); }
+.odg-numbering-option.is-active { color:var(--text-primary,#171717); background:var(--surface,#fff); box-shadow:0 1px 2px rgb(0 0 0 / 10%); }
+.odg-reset-button { display:flex; align-items:center; gap:.375rem; padding:.4rem .75rem; border:1px solid var(--border-subtle,#d4d4d8); border-radius:.55rem; background:transparent; color:var(--text-secondary,#525252); font-size:.75rem; cursor:pointer; transition:background .16s; }
+.odg-reset-button:hover { background:var(--surface-muted,#f5f5f5); }
+.odg-small-icon { font-size:.75rem; }
+.odg-palette { padding:.75rem 0; border-bottom:1px solid var(--border-subtle,#e5e7eb); }
+.odg-palette-heading { display:flex; justify-content:space-between; align-items:center; gap:.5rem; margin-bottom:.5rem; }
+.odg-label { color:var(--text-secondary,#737373); font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+.odg-hint { color:var(--text-muted,#a3a3a3); font-size:.75rem; }
+.odg-tool-list { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; }
+.odg-tool-option { display:inline-flex; align-items:center; gap:.375rem; padding:.4rem .75rem; border:1px solid transparent; border-radius:.65rem; background:var(--surface-muted,#f9fafb); color:var(--text-primary,#171717); font-size:.75rem; cursor:pointer; transition:opacity .16s,border-color .16s,box-shadow .16s; }
+.odg-tool-option.is-active { border-color:var(--focus-ring,#111827); box-shadow:0 0 0 2px var(--surface,#fff),0 0 0 4px var(--focus-ring,#111827); font-weight:700; }
+.odg-tool-option.is-inactive { opacity:.86; border-color:var(--border-subtle,#e5e7eb); }
+.odg-tool-option.is-inactive:hover { opacity:1; }
+.odg-tool-swatch { width:.625rem; height:.625rem; flex:0 0 .625rem; border-radius:50%; }
+.odg-arch-area { padding:1.5rem 0; }
+.odg-arch-stack { display:flex; flex-direction:column; gap:1.5rem; min-width:0; }
+.odg-arch-section { min-width:0; }
+.odg-arch-caption { display:flex; justify-content:space-between; align-items:center; gap:.5rem; padding-inline:.5rem; color:var(--text-muted,#a3a3a3); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.odg-arch-caption--upper { padding-bottom:.25rem; border-bottom:1px dashed var(--border-subtle,#e5e7eb); }
+.odg-arch-caption--lower { padding-top:.25rem; border-top:1px dashed var(--border-subtle,#e5e7eb); }
+.odg-arch-caption-center { color:var(--text-secondary,#737373); font: .75rem ui-monospace,monospace; }
+.odontogram-arch-scroll { width:100%; min-width:0; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:var(--border-subtle,#d4d4d8) transparent; }
+.odontogram-arch-grid { display:grid; grid-template-columns:repeat(16,minmax(42px,1fr)); gap:.25rem; min-width:672px; }
+.odontogram-arch-grid--upper { padding-top:.5rem; }
+.odontogram-arch-grid--lower { padding-bottom:.5rem; }
+.tooth-cell { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; align-self:stretch; min-width:38px; min-height:4.25rem; padding:.375rem; border:1px solid transparent; border-radius:.7rem; background:transparent; color:inherit; text-align:left; cursor:pointer; transition:background .16s,border-color .16s; }
+.tooth-cell:hover { background:var(--surface-muted,#f5f5f5); }
+.tooth-cell.is-selected { background:rgb(16 185 129 / 8%); border-color:#10b981; }
+.tooth-cell:focus-visible { z-index:1; outline:2px solid var(--focus-ring,#10b981); outline-offset:2px; }
+.odg-tooth-number { color:var(--text-secondary,#404040); font:700 .75rem ui-monospace,monospace; }
+.odontogram-tooth-svg { display:block; overflow:visible; flex:0 0 auto; width:2rem; height:2rem; margin-block:.25rem; shape-rendering:geometricPrecision; filter:drop-shadow(0 1px 1px rgb(15 23 42 / 8%)); }
 .odontogram-tooth-svg .odontogram-tooth-outline { vector-effect:non-scaling-stroke; }
-.tooth-cell { position:relative; align-self:stretch; justify-content:flex-start; min-height:4.25rem; }
-.tooth-cell:focus-visible { z-index:1; border-radius:.65rem; }
-.tooth-cell:focus-visible .odontogram-tooth-svg { filter:drop-shadow(0 0 2px rgb(16 185 129 / .28)); }
-.odontogram-surface { vector-effect:non-scaling-stroke; stroke-linejoin:round; }
-.odontogram-surface:hover { opacity:.9; filter:brightness(.96); }
+.tooth-cell:focus-visible .odontogram-tooth-svg { filter:drop-shadow(0 0 2px rgb(16 185 129 / 28%)); }
 .odontogram-tooth-outline { vector-effect:non-scaling-stroke; fill:none; stroke:#8b9a90; stroke-width:1.1; stroke-linejoin:round; transition:stroke 160ms ease,opacity 160ms ease; }
 .tooth-cell:hover .odontogram-tooth-outline,.tooth-cell:focus-visible .odontogram-tooth-outline { stroke:#6ebd86; stroke-width:1.8; }
-.tooth-cell:focus-visible { outline:2px solid var(--focus-ring); outline-offset:2px; }
-@media(max-width:720px) { .odontogram-wrapper { padding:.8rem; } .odontogram-tooth-svg { width:1.7rem; height:1.7rem; } .tooth-cell { min-width:34px; } .grid-cols-16 { grid-template-columns:repeat(16,minmax(34px,1fr)); } }
-
-.odontogram-surface { cursor:pointer; transition:opacity .16s ease,fill .16s ease; }
-.odontogram-surface:hover { opacity:.82; }
-
-/* Keep the full dental arch readable on narrow screens. */
-.odontogram-arch-scroll { width:100%; min-width:0; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:var(--border-subtle) transparent; }
-.odontogram-arch-grid { min-width:672px; }
-.odontogram-arch-scroll:focus-within { outline-offset:2px; }
-@media(max-width:720px) { .odontogram-arch-grid { min-width:604px; } }
+.odontogram-surface { cursor:pointer; vector-effect:non-scaling-stroke; stroke-linejoin:round; transition:opacity .16s ease,fill .16s ease; }
+.odontogram-surface:hover { opacity:.9; filter:brightness(.96); }
+.odg-condition-dot { width:.5rem; height:.5rem; border-radius:50%; }
+.odg-condition-dot--upper { margin-top:.125rem; }
+.odg-condition-dot--lower { margin-bottom:.125rem; }
+.odg-arch-divider { position:relative; display:flex; align-items:center; justify-content:center; padding:.25rem 0; }
+.odg-arch-divider-line-wrap { position:absolute; inset:0; display:flex; align-items:center; }
+.odg-arch-divider-line { width:100%; border-top:1px solid var(--border-subtle,#d4d4d8); }
+.odg-arch-divider-label { position:relative; padding-inline:1rem; background:var(--surface,#fff); color:var(--text-muted,#a3a3a3); font:10px ui-monospace,monospace; text-transform:uppercase; letter-spacing:.14em; }
+.odg-summary { display:grid; grid-template-columns:minmax(0,1fr); align-items:center; gap:1rem; margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border-subtle,#e5e7eb); }
+.odg-selected-card { min-width:0; padding:.75rem; border:1px solid var(--border-subtle,#e5e7eb); border-radius:.75rem; background:var(--surface-muted,#fafafa); }
+.odg-selected-header { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
+.odg-selected-name { color:var(--text-primary,#171717); font-size:.875rem; font-weight:700; }
+.odg-selected-arabic { color:var(--text-secondary,#737373); font-size:.75rem; font-weight:600; }
+.odg-condition-badge { display:inline-flex; align-items:center; padding:.125rem .5rem; border:1px solid var(--border-subtle,#e5e7eb); border-radius:999px; font-size:11px; font-weight:700; }
+.odg-selected-description { margin-top:.125rem; color:var(--text-secondary,#525252); font-size:.75rem; }
+.odg-quick-actions { display:flex; align-items:center; gap:.25rem; }
+.odg-condition-action { padding:.25rem .5rem; border:0; border-radius:.3rem; font-size:10px; font-weight:700; cursor:pointer; transition:opacity .16s; }
+.odg-condition-action:hover { opacity:.8; }
+.odg-condition-action--healthy { background:#dcfce7; color:#166534; }
+.odg-condition-action--caries { background:#fee2e2; color:#991b1b; }
+.odg-condition-action--crown { background:#fef3c7; color:#92400e; }
+.odg-empty-prompt { padding:.25rem 0; color:var(--text-secondary,#737373); font-size:.75rem; font-style:italic; }
+.odg-statistics { display:flex; align-items:center; justify-content:flex-end; gap:.75rem; font-size:.75rem; }
+.odg-statistic { min-width:0; text-align:right; }
+.odg-statistic-label { color:var(--text-muted,#a3a3a3); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+.odg-statistic-label--healthy { color:#10b981; }
+.odg-statistic-value { color:var(--text-primary,#171717); font:700 .875rem ui-monospace,monospace; }
+.odg-statistic-value--healthy { color:#059669; }
+.odg-statistic-divider { width:1px; height:2rem; flex:0 0 1px; background:var(--border-subtle,#d4d4d8); }
+.dark .odontogram-wrapper { color:var(--text-primary,#f5f5f5); }
+.dark .odg-count-chip,.dark .odg-numbering-switch { background:#262626; }
+.dark .odg-numbering-option { color:#a3a3a3; }
+.dark .odg-numbering-option.is-active { background:#171717; color:#fafafa; }
+.dark .odg-tool-option { background:rgb(38 38 38 / 80%); color:#fafafa; }
+.dark .odg-tool-option.is-active { box-shadow:0 0 0 2px #171717,0 0 0 4px #fff; }
+.dark .tooth-cell:hover { background:#262626; }
+.dark .tooth-cell.is-selected { background:rgb(6 78 59 / 35%); }
+.dark .odg-tooth-number,.dark .odg-selected-arabic { color:#d4d4d4; }
+.dark .odg-selected-card { background:rgb(38 38 38 / 50%); border-color:#404040; }
+.dark .odg-condition-action--healthy { background:#052e16; color:#bbf7d0; }
+.dark .odg-condition-action--caries { background:#450a0a; color:#fecaca; }
+.dark .odg-condition-action--crown { background:#451a03; color:#fde68a; }
+.dark .odg-statistic-value { color:#fafafa; }
+@media (min-width:768px) { .odg-summary { grid-template-columns:minmax(0,7fr) minmax(0,5fr); } }
+@media (max-width:720px) {
+  .odontogram-wrapper { padding:.8rem; }
+  .odontogram-arch-grid { grid-template-columns:repeat(16,minmax(34px,1fr)); min-width:604px; }
+  .tooth-cell { min-width:34px; padding:.25rem; }
+  .odontogram-tooth-svg { width:1.7rem; height:1.7rem; }
+  .odg-toolbar { align-items:flex-start; }
+  .odg-toolbar > .odg-inline-group { flex-wrap:wrap; }
+  .odg-selected-header { flex-wrap:wrap; }
+  .odg-quick-actions { flex-wrap:wrap; }
+  .odg-statistics { justify-content:flex-start; flex-wrap:wrap; }
+}
