@@ -2,14 +2,9 @@ import {ChangeDetectionStrategy, Component, signal, HostListener, inject} from '
 import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from './components/header/header';
 import {FooterComponent} from './components/footer/footer';
-import {WhatsAppModalComponent} from './components/whatsapp-modal/whatsapp-modal';
 import {SearchModalComponent} from './components/search-modal/search-modal';
-import {ClinicService} from './services/clinic.service';
-import {ThemeService} from './services/theme.service';
-import {TranslationService} from './services/translation.service';
 import {SeoService} from './services/seo.service';
 import {ReadingProgressBarComponent} from './components/reading-progress-bar/reading-progress-bar';
-import {WhatsAppIconComponent} from './components/whatsapp-icon/whatsapp-icon';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,34 +13,20 @@ import {WhatsAppIconComponent} from './components/whatsapp-icon/whatsapp-icon';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    WhatsAppModalComponent,
     SearchModalComponent,
     ReadingProgressBarComponent,
-    WhatsAppIconComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  clinic = inject(ClinicService);
-  theme = inject(ThemeService);
-  i18n = inject(TranslationService);
   seo = inject(SeoService);
 
   constructor() {
     this.seo.init();
   }
 
-  isWhatsAppModalOpen = signal<boolean>(false);
   isSearchModalOpen = signal<boolean>(false);
-
-  openWhatsAppModal() {
-    this.isWhatsAppModalOpen.set(true);
-  }
-
-  closeWhatsAppModal() {
-    this.isWhatsAppModalOpen.set(false);
-  }
 
   openSearchModal() {
     this.isSearchModalOpen.set(true);
@@ -63,7 +44,6 @@ export class App {
     }
     if (event.key === 'Escape') {
       this.isSearchModalOpen.set(false);
-      this.isWhatsAppModalOpen.set(false);
     }
   }
 }
