@@ -1,16 +1,26 @@
 .dictionary-header {
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.dark .dictionary-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .term-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-color: var(--border-subtle);
+  background: var(--surface);
+  box-shadow: none;
+  transition: border-color .18s ease, transform .18s ease;
 }
 
 .term-card:hover {
+  border-color: var(--border-strong);
   transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-card {
+    transition: none;
+  }
+
+  .term-card:hover {
+    transform: none;
+  }
 }
