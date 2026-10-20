@@ -1671,6 +1671,11 @@ export class Dental3DEngineService {
     };
 
     const onPointerLeave = () => {
+      if (this.hoverFrameId !== null) {
+        cancelAnimationFrame(this.hoverFrameId);
+        this.hoverFrameId = null;
+      }
+      this.latestPointerEvent = null;
       this.clearHoverHighlight();
       this.ngZone.run(() => {
         if (this.hoverTooltip().visible) {
@@ -1688,6 +1693,7 @@ export class Dental3DEngineService {
       if (dx > 6 || dy > 6) return;
 
       const rect = container.getBoundingClientRect();
+      if (!rect.width || !rect.height || !this.camera || !this.modelGroup) return;
       this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
