@@ -100,6 +100,7 @@ export class Dental3DEngineService {
   private bufferCache: Record<string, ArrayBuffer> = {};
   private manifestPromise: Promise<DentalManifest> | null = null;
   private initPromise: Promise<void> | null = null;
+  private modelLoadVersion = 0;
 
   // Materials Cache
   private materials: Record<string, THREE.Material> = {};
@@ -642,15 +643,18 @@ export class Dental3DEngineService {
     crownStage: 'damaged' | 'prepared' | 'crown' = 'crown',
     veneerStage: 'natural' | 'prep' | 'veneer' = 'veneer'
   ): Promise<void> {
+    const loadVersion = ++this.modelLoadVersion;
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.initPromise) {
       await this.initPromise;
+      if (loadVersion !== this.modelLoadVersion) return;
     }
     this.clearModel();
     this.selectedToothFdi = null;
 
     try {
       const manifest = await this.loadManifest();
+      if (loadVersion !== this.modelLoadVersion) return;
       
       // Look for ToothFairy parts for this FDI
       let toothPart = manifest.parts.find((p) => p.id === `tf-tooth-${fdi}`);
@@ -926,6 +930,7 @@ export class Dental3DEngineService {
 
       this.onAssetLoaded?.();
     } catch (err: unknown) {
+      if (loadVersion !== this.modelLoadVersion) return;
       console.error('Error loading published 3D single tooth:', err);
       this.onAssetLoadError?.(err instanceof Error ? err : new Error(String(err)));
     }
@@ -935,15 +940,18 @@ export class Dental3DEngineService {
    * Load full adult dentition / jaw anatomy (ToothFairy, Diaz, OpenFullJaw, or Kang)
    */
   async loadFullDentition(source: 'toothfairy' | 'diaz' | 'openfulljaw' | 'fang' = 'toothfairy'): Promise<void> {
+    const loadVersion = ++this.modelLoadVersion;
     if (!isPlatformBrowser(this.platformId)) return;
     if (this.initPromise) {
       await this.initPromise;
+      if (loadVersion !== this.modelLoadVersion) return;
     }
     this.clearModel();
     this.modelGroup.name = `dentition-${source}`;
 
     try {
       const manifest = await this.loadManifest();
+      if (loadVersion !== this.modelLoadVersion) return;
       const parts = manifest.parts.filter((p) => p.source === source);
       if (!parts.length) {
         throw new Error(`No published anatomy parts found for source: ${source}`);
@@ -960,6 +968,7 @@ export class Dental3DEngineService {
           loadedBuffers[bufName] = await this.getBuffer(bufName);
         })
       );
+      if (loadVersion !== this.modelLoadVersion) return;
 
       const lo = [Infinity, Infinity, Infinity];
       const hi = [-Infinity, -Infinity, -Infinity];
