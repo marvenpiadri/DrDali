@@ -41,13 +41,25 @@
   gap: .75rem;
 }
 
-#jawline-header-bar > div:first-child::after {
-  content: "Anatomie de la mâchoire";
-  display: block;
+.jawline-heading-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: .1rem;
+}
+.jawline-heading-copy span {
+  color: #aebbb1;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.jawline-heading-copy strong {
   color: #f0f4f1;
   font-size: .875rem;
   font-weight: 650;
   letter-spacing: -.01em;
+  line-height: 1.3;
 }
 
 #jawline-header-bar button,
@@ -295,11 +307,7 @@
     display: none;
   }
 
-  #jawline-header-bar > div:first-child::after {
-    font-size: .8rem;
-  }
-
-  #jawline-header-bar > div:first-child .w-7 {
+    #jawline-header-bar > div:first-child .w-7 {
     display: none;
   }
 
