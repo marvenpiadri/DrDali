@@ -1,7 +1,7 @@
 <div class="app-shell">
   <app-reading-progress-bar />
   <app-header (openSearch)="openSearchModal()" (openWhatsApp)="openWhatsAppModal()" />
-  <main class="app-main"><router-outlet /></main>
+  <div class="app-main"><router-outlet /></div>
   <app-footer (openWhatsApp)="openWhatsAppModal()" />
   @if (isWhatsAppModalOpen()) { <app-whatsapp-modal (closeModal)="closeWhatsAppModal()" /> }
   @if (isSearchModalOpen()) { <app-search-modal (closeModal)="closeSearchModal()" /> }
