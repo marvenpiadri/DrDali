@@ -1145,3 +1145,15 @@ app-dental-3d-viewport .viewport-controls {
 .leaflet-container .leaflet-tile {
   filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
 }
+
+/* Leaflet creates popup elements outside Angular's component style scope.
+   Keep the clinic popup dark with readable light text in both app themes. */
+.leaflet-container .leaflet-popup-content-wrapper,
+.leaflet-container .leaflet-popup-tip {
+  background: #171717 !important;
+  color: #fafafa !important;
+  border: 1px solid #404040 !important;
+}
+.leaflet-container .leaflet-popup-content {
+  color: #fafafa !important;
+}
