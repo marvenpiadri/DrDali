@@ -483,3 +483,46 @@ img, video, canvas, svg { max-width: 100%; }
   .ui-section-description { font-size: 1rem; }
 }
 
+/* Shared section headings for editorial and practice sections */
+.ui-section--spacious {
+  padding-block: 5rem;
+}
+
+.ui-section-heading {
+  max-width: 48rem;
+  margin: 0 0 3rem;
+  text-align: start;
+}
+
+.ui-section-eyebrow {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--text-muted);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.ui-heading-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+}
+
+.ui-heading-description {
+  margin: .75rem 0 0;
+  color: var(--text-secondary);
+  font-size: .875rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .ui-section--spacious { padding-block: 7rem; }
+  .ui-heading-title { font-size: 2.25rem; }
+  .ui-heading-description { font-size: 1rem; }
+}
+
