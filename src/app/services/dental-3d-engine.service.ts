@@ -1779,6 +1779,7 @@ export class Dental3DEngineService {
 
   resize(width: number, height: number): void {
     if (!isPlatformBrowser(this.platformId) || !this.camera || !this.renderer) return;
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
