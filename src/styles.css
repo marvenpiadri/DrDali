@@ -424,3 +424,62 @@ img, video, canvas, svg { max-width: 100%; }
   }
 }
 
+/* Shared dark section and centered heading */
+.ui-dark-section {
+  padding-block: 5rem;
+  color: #fff;
+  background: #0a0a0a;
+  border-bottom: 1px solid #171717;
+}
+
+.ui-centered-section-heading {
+  display: grid;
+  justify-items: center;
+  gap: .75rem;
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.ui-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem .75rem;
+  color: #34d399;
+  background: #171717;
+  border: 1px solid #262626;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.ui-section-badge-icon {
+  font-size: .75rem;
+}
+
+.ui-section-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+}
+
+.ui-section-description {
+  margin: 0;
+  color: #a3a3a3;
+  font-size: .875rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .ui-dark-section { padding-block: 7rem; }
+  .ui-section-title { font-size: 2.25rem; }
+  .ui-section-description { font-size: 1rem; }
+}
+
