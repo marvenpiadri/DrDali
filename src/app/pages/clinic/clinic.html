@@ -18,6 +18,16 @@
     </p>
   </div>
 
+  <!-- Medical team: integrated into the clinic presentation -->
+  <section class="clinic-team-section py-12 sm:py-16 border-b border-neutral-200 dark:border-neutral-800">
+    <div class="clinic-team-heading max-w-3xl mb-8 sm:mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 block mb-2">{{ 'statPratitioners' | translate }}</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-950 dark:text-white">{{ 'ourDoctorsTitle' | translate }}</h2>
+      <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-3 leading-relaxed">{{ 'ourDoctorsSubtitle' | translate }}</p>
+    </div>
+    <app-doctor-slider />
+  </section>
+
   <!-- Plateau Technique Highlights -->
   <section class="py-10 space-y-12 border-b border-neutral-200 dark:border-neutral-800">
     <div class="max-w-3xl">
