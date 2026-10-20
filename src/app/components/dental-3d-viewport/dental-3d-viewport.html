@@ -9,7 +9,7 @@
       <div class="asset-error-icon-wrap">
         <i class="fa-solid fa-cube viewport-status-icon" aria-hidden="true"></i>
       </div>
-      <h3 class="asset-error-title">Modèle 3D Requis</h3>
+      <h3 class="asset-error-title">{{ 'dental3dRequiredTitle' | translate }}</h3>
       <p class="asset-error-description">
         Le modèle anatomique <strong class="asset-error-emphasis">{{ missingAsset()?.name }}</strong> est en cours de chargement.
       </p>
@@ -46,7 +46,7 @@
           [class.asset-error-emphasis]="isAutoRotating()"
           
           class="viewport-control-button"
-          title="Rotation automatique">
+          [attr.title]="'dental3dAutoRotate' | translate">
           <i class="fa-solid fa-rotate viewport-icon" aria-hidden="true"></i>
         </button>
 
@@ -55,7 +55,7 @@
           type="button" 
           (click)="resetCamera()"
           class="viewport-control-button"
-          title="Réinitialiser la vue">
+          [attr.title]="'dental3dResetView' | translate">
           <i class="fa-solid fa-crosshairs viewport-icon" aria-hidden="true"></i>
         </button>
 
@@ -64,7 +64,7 @@
           type="button" 
           (click)="toggleFullscreen()"
           class="viewport-control-button"
-          title="Plein écran">
+          [attr.title]="'dental3dFullscreen' | translate">
           @if (isFullscreen()) { <i class="fa-solid fa-compress viewport-icon" aria-hidden="true"></i> } @else { <i class="fa-solid fa-expand viewport-icon" aria-hidden="true"></i> }
         </button>
       </div>
