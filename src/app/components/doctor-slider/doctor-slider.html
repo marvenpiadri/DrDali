@@ -36,7 +36,7 @@
               <blockquote class="doctor-quote">“{{ getQuote(doc) }}”</blockquote>
 
               <button type="button" (click)="bookWithDoctor(doc)" class="doctor-book-button">
-                <app-whatsapp-icon [size]="16" extraClass="text-emerald-400 dark:text-emerald-600" />
+                <app-whatsapp-icon [size]="16" extraClass="doctor-whatsapp-icon" />
                 <span>{{ i18n.translate('btnBookDoctor') }} : {{ doc.name }}</span>
               </button>
             </div>
