@@ -132,3 +132,65 @@
   background-color: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.1);
 }
+
+
+/* Header icon system — Font Awesome replaces inconsistent icon glyph rendering. */
+.header-fa-icon,
+.header-control-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex: 0 0 auto;
+}
+
+.header-fa-icon {
+  font-size: 0.9em;
+}
+
+.header-control-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 1rem;
+}
+
+.nav-icon {
+  display: inline-flex;
+  width: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 0.35rem;
+  font-size: 0.78rem;
+  opacity: 0.78;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.nav-link:hover .nav-icon,
+.nav-link-active .nav-icon {
+  opacity: 1;
+}
+
+.header-root {
+  background: color-mix(in srgb, var(--surface, #fff) 92%, transparent);
+  border-bottom: 1px solid var(--border-subtle, rgb(15 23 42 / 0.1));
+  box-shadow: 0 4px 24px rgb(15 23 42 / 0.035);
+}
+
+:host-context(.dark) .header-root {
+  background: color-mix(in srgb, #0b0d10 92%, transparent);
+  border-bottom-color: rgb(255 255 255 / 0.09);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 0.18);
+}
+
+@media (max-width: 1023px) {
+  .nav-icon {
+    margin-inline-end: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-icon,
+  .header-root {
+    transition: none;
+  }
+}
