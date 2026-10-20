@@ -1051,7 +1051,7 @@ img, video, canvas, svg { max-width: 100%; }
 [class*="bg-purple-"], [class*="bg-fuchsia-"], [class*="bg-pink-"],
 [class*="bg-rose-"], [class*="bg-red-"], [class*="bg-orange-"],
 [class*="bg-amber-"], [class*="bg-yellow-"] {
-  background-color: #262626 !important;
+  background-color: var(--surface-raised) !important;
 }
 [class*="border-emerald-"], [class*="border-green-"], [class*="border-teal-"],
 [class*="border-lime-"], [class*="border-cyan-"], [class*="border-sky-"],
@@ -1059,15 +1059,40 @@ img, video, canvas, svg { max-width: 100%; }
 [class*="border-purple-"], [class*="border-fuchsia-"], [class*="border-pink-"],
 [class*="border-rose-"], [class*="border-red-"], [class*="border-orange-"],
 [class*="border-amber-"], [class*="border-yellow-"] {
-  border-color: #525252 !important;
+  border-color: var(--border-strong) !important;
 }
 
 
 /* Third-party map tiles are inserted by Leaflet at runtime, so enforce their
    monochrome treatment globally rather than relying on component encapsulation. */
-.leaflet-container .leaflet-tile {
+:root.dark .leaflet-container .leaflet-tile {
   filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
 }
+:root.light .leaflet-container .leaflet-tile {
+  filter: grayscale(1) contrast(.95) !important;
+}
+
+/* Shared sections follow the active theme instead of locking the page to dark mode. */
+.ui-dark-section {
+  color: var(--text-primary);
+  background: var(--app-bg);
+  border-color: var(--border-subtle);
+}
+.ui-section-title { color: var(--text-primary); }
+.ui-section-description { color: var(--text-muted); }
+.ui-feature-badge, .ui-feature-cta {
+  color: var(--accent-strong);
+  background: var(--accent);
+}
+.ui-feature-badge { border: 1px solid var(--accent-border); }
+.ui-feature-cta:hover { background: var(--surface-hover); }
+.ui-category-icon {
+  color: var(--accent-strong);
+  background: var(--accent);
+}
+.ui-emergency-section { color: var(--text-primary); }
+.ui-emergency-title { color: var(--text-primary); }
+.ui-emergency-description { color: var(--text-muted); }
 
 /* Three.js creates its canvas dynamically; keep rendered 3D assets monochrome too. */
 app-dental-3d-viewport canvas {
