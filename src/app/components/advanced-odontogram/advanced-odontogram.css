@@ -110,3 +110,20 @@
   .odg-quick-actions { flex-wrap:wrap; }
   .odg-statistics { justify-content:flex-start; flex-wrap:wrap; }
 }
+
+.odg-condition-badge--caries { background:#fee2e2; color:#991b1b; border-color:#fecaca; }
+.odg-condition-badge--composite { background:#dbeafe; color:#1d4ed8; border-color:#bfdbfe; }
+.odg-condition-badge--crown { background:#fef3c7; color:#92400e; border-color:#fde68a; }
+.odg-condition-badge--implant { background:#ccfbf1; color:#0f766e; border-color:#99f6e4; }
+.odg-condition-badge--endo { background:#ede9fe; color:#6d28d9; border-color:#ddd6fe; }
+.odg-condition-badge--veneer { background:#fce7f3; color:#9d174d; border-color:#fbcfe8; }
+.odg-condition-badge--missing { background:#e5e5e5; color:#404040; border-color:#d4d4d4; }
+.odg-condition-badge--healthy { background:#d1fae5; color:#065f46; border-color:#a7f3d0; }
+.dark .odg-condition-badge--caries { background:#450a0a; color:#fca5a5; border-color:#7f1d1d; }
+.dark .odg-condition-badge--composite { background:#172554; color:#93c5fd; border-color:#1e40af; }
+.dark .odg-condition-badge--crown { background:#451a03; color:#fcd34d; border-color:#78350f; }
+.dark .odg-condition-badge--implant { background:#042f2e; color:#5eead4; border-color:#115e59; }
+.dark .odg-condition-badge--endo { background:#2e1065; color:#c4b5fd; border-color:#5b21b6; }
+.dark .odg-condition-badge--veneer { background:#500724; color:#f9a8d4; border-color:#9d174d; }
+.dark .odg-condition-badge--missing { background:#262626; color:#d4d4d4; border-color:#404040; }
+.dark .odg-condition-badge--healthy { background:#022c22; color:#6ee7b7; border-color:#065f46; }
