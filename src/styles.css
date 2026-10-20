@@ -1061,3 +1061,15 @@ img, video, canvas, svg { max-width: 100%; }
 [class*="border-amber-"], [class*="border-yellow-"] {
   border-color: #525252 !important;
 }
+
+
+/* Third-party map tiles are inserted by Leaflet at runtime, so enforce their
+   monochrome treatment globally rather than relying on component encapsulation. */
+.leaflet-container .leaflet-tile {
+  filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
+}
+
+/* Three.js creates its canvas dynamically; keep rendered 3D assets monochrome too. */
+app-dental-3d-viewport canvas {
+  filter: grayscale(1) !important;
+}
