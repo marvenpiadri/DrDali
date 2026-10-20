@@ -1086,7 +1086,7 @@ img, video, canvas, svg { max-width: 100%; }
   background: var(--text-primary);
 }
 .ui-feature-badge { border: 1px solid var(--accent-border); }
-.ui-feature-cta:hover { background: var(--surface-hover); }
+.ui-feature-cta:hover { color: var(--text-primary); background: var(--surface-hover); }
 .ui-category-icon {
   color: var(--surface);
   background: var(--text-primary);
