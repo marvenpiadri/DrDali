@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
+<header class="header-root sticky top-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
     
     <!-- Logo & Brand identity -->
@@ -16,13 +16,15 @@
         routerLinkActive="nav-link-active"
         [routerLinkActiveOptions]="{exact: true}"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
         {{ 'navHome' | translate }}
       </a>
       <a 
         routerLink="/atlas" 
         routerLinkActive="nav-link-active"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white flex items-center gap-1.5">
-        <span>{{ 'navAtlas' | translate }}</span>
+        <span><i class="fa-solid fa-cubes-stacked nav-icon" aria-hidden="true"></i>
+        {{ 'navAtlas' | translate }}</span>
         <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
           3D
         </span>
@@ -31,24 +33,28 @@
         routerLink="/tools" 
         routerLinkActive="nav-link-active"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        <i class="fa-solid fa-screwdriver-wrench nav-icon" aria-hidden="true"></i>
         {{ 'navTools' | translate }}
       </a>
       <a 
         routerLink="/dr-dali" 
         routerLinkActive="nav-link-active"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        <i class="fa-solid fa-user-doctor nav-icon" aria-hidden="true"></i>
         {{ 'navDoctors' | translate }}
       </a>
       <a 
         routerLink="/clinic" 
         routerLinkActive="nav-link-active"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        <i class="fa-solid fa-hospital nav-icon" aria-hidden="true"></i>
         {{ 'navClinic' | translate }}
       </a>
       <a 
         routerLink="/contact" 
         routerLinkActive="nav-link-active"
         class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+        <i class="fa-solid fa-calendar-check nav-icon" aria-hidden="true"></i>
         {{ 'navContact' | translate }}
       </a>
     </nav>
@@ -64,14 +70,14 @@
           class="lang-dropdown-btn bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-white"
           [attr.aria-expanded]="langDropdownOpen()"
           [attr.aria-label]="'ariaSelectLang' | translate">
-          <span class="material-icons text-base text-neutral-500 dark:text-neutral-400">language</span>
+          <i class="fa-solid fa-globe text-base text-neutral-500 dark:text-neutral-400 header-fa-icon" aria-hidden="true"></i>
           <span class="font-bold tracking-wider text-xs">{{ currentLangOption().shortLabel }}</span>
           @if (i18n.currentLang() === 'ar') {
             <span class="text-[9px] font-mono uppercase px-1 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
               {{ i18n.effectiveDir().toUpperCase() }}
             </span>
           }
-          <span class="material-icons text-xs text-neutral-400 transition-transform duration-200" [class.rotate-180]="langDropdownOpen()">expand_more</span>
+          <i class="fa-solid fa-chevron-down text-xs text-neutral-400 transition-transform duration-200 header-fa-icon" [class.rotate-180]="langDropdownOpen()" aria-hidden="true"></i>
         </button>
 
         @if (langDropdownOpen()) {
@@ -102,7 +108,7 @@
                     </span>
                   </div>
                   @if (i18n.currentLang() === lang.code) {
-                    <span class="material-icons text-emerald-600 dark:text-emerald-400 text-sm">check</span>
+                    <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400 text-sm header-fa-icon" aria-hidden="true"></i>
                   }
                 </button>
               }
@@ -170,7 +176,7 @@
         (click)="openSearch.emit()"
         class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
         [attr.aria-label]="'ariaSearch' | translate">
-        <span class="material-icons text-lg">search</span>
+        <i class="fa-solid fa-magnifying-glass text-lg header-fa-icon" aria-hidden="true"></i>
       </button>
 
       <!-- Theme Switcher Button -->
@@ -179,7 +185,7 @@
         (click)="theme.toggleTheme()"
         class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
         [attr.aria-label]="theme.isDark() ? ('ariaThemeLight' | translate) : ('ariaThemeDark' | translate)">
-        <span class="material-icons text-lg">{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+        @if (theme.isDark()) {<i class="fa-regular fa-sun header-control-icon" aria-hidden="true"></i>} @else {<i class="fa-regular fa-moon header-control-icon" aria-hidden="true"></i>}
       </button>
 
       <!-- Mobile Menu Hamburger Button -->
@@ -189,7 +195,7 @@
         class="lg:hidden icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200"
         [attr.aria-label]="mobileMenuOpen() ? ('ariaCloseMenu' | translate) : ('ariaOpenMenu' | translate)"
         [attr.aria-expanded]="mobileMenuOpen()">
-        <span class="material-icons text-xl">{{ mobileMenuOpen() ? 'close' : 'menu' }}</span>
+        @if (mobileMenuOpen()) {<i class="fa-solid fa-xmark header-control-icon" aria-hidden="true"></i>} @else {<i class="fa-solid fa-bars header-control-icon" aria-hidden="true"></i>}
       </button>
 
     </div>
@@ -205,7 +211,7 @@
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         [routerLinkActiveOptions]="{exact: true}"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">home</span>
+        <i class="fa-solid fa-house text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navHome' | translate }}</span>
       </a>
 
@@ -214,7 +220,7 @@
         (click)="closeMobileMenu()"
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">view_in_ar</span>
+        <i class="fa-solid fa-cubes-stacked text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navAtlas' | translate }}</span>
       </a>
 
@@ -223,7 +229,7 @@
         (click)="closeMobileMenu()"
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">tune</span>
+        <i class="fa-solid fa-sliders text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navTools' | translate }}</span>
       </a>
 
@@ -232,7 +238,7 @@
         (click)="closeMobileMenu()"
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">groups</span>
+        <i class="fa-solid fa-users text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navDoctors' | translate }}</span>
       </a>
 
@@ -241,7 +247,7 @@
         (click)="closeMobileMenu()"
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">domain</span>
+        <i class="fa-solid fa-building text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navClinic' | translate }}</span>
       </a>
 
@@ -250,7 +256,7 @@
         (click)="closeMobileMenu()"
         routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
         class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <span class="material-icons text-neutral-400 text-lg">contact_support</span>
+        <i class="fa-solid fa-headset text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
         <span>{{ 'navContact' | translate }}</span>
       </a>
 
