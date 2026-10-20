@@ -1,7 +1,102 @@
 .category-card {
-  transition: border-color .18s ease, background-color .18s ease;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
 }
 
 .category-card:hover {
   border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.home-hero {
+  padding-block: clamp(4.5rem, 9vw, 8.5rem);
+  background: var(--app-bg);
+  border-color: var(--border-subtle);
+}
+
+.home-hero-title {
+  max-width: 13ch;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+
+.home-hero-actions .btn-primary {
+  min-height: 3.25rem;
+  padding-inline: 1.35rem;
+  color: #102018;
+  background: var(--accent-strong);
+  box-shadow: none;
+}
+
+.home-hero-actions .btn-primary:hover {
+  background: var(--accent);
+}
+
+.home-hero-actions .btn-secondary {
+  min-height: 3.25rem;
+  padding-inline: 1.25rem;
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  border-color: var(--border-strong);
+}
+
+.home-hero-actions .btn-secondary:hover {
+  background: var(--surface-hover);
+}
+
+.home-doctors-section {
+  background: var(--surface);
+  border-color: var(--border-subtle);
+}
+
+.home-location-section {
+  background: var(--app-bg);
+  border-color: var(--border-subtle);
+}
+
+.home-learning-section {
+  background: var(--surface);
+  border-color: var(--border-subtle);
+}
+
+.home-model-frame {
+  min-height: 24rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  box-shadow: 0 20px 50px rgb(0 0 0 / .16);
+}
+
+.home-emergency-section {
+  background: var(--app-bg);
+}
+
+.home-emergency-card {
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    padding-block: 3.5rem;
+  }
+
+  .home-hero-title {
+    max-width: 15ch;
+    font-size: clamp(2.3rem, 10vw, 3.5rem);
+  }
+
+  .home-model-frame {
+    min-height: 20rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-card {
+    transition: none;
+  }
+
+  .category-card:hover {
+    transform: none;
+  }
 }
