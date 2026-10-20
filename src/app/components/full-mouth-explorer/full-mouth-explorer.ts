@@ -16,6 +16,7 @@ import { Dental3DViewportComponent } from '../dental-3d-viewport/dental-3d-viewp
 import { Dental3DEngineService } from '../../services/dental-3d-engine.service';
 import { Dental3DDataService } from '../../services/dental-3d-data.service';
 import { ToothArchItem } from '../../models/dental-3d.model';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 export type ArchFilter = 'all' | 'upper' | 'lower';
 export type QuadrantFilter = 1 | 2 | 3 | 4 | null;
@@ -23,7 +24,7 @@ export type BoneOpacityMode = 'hidden' | 'visible' | 'translucent';
 
 @Component({
   selector: 'app-full-mouth-explorer',
-  imports: [CommonModule, MatIconModule, Dental3DViewportComponent],
+  imports: [CommonModule, MatIconModule, Dental3DViewportComponent, TranslatePipe],
   templateUrl: './full-mouth-explorer.html',
   styleUrl: './full-mouth-explorer.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
