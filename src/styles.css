@@ -1065,7 +1065,10 @@ img, video, canvas, svg { max-width: 100%; }
 
 /* Third-party map tiles are inserted by Leaflet at runtime, so enforce their
    monochrome treatment globally rather than relying on component encapsulation. */
-:root.dark .leaflet-container .leaflet-tile {
+:root.dark .light .leaflet-container .leaflet-tile {
+  filter: grayscale(1) contrast(.96) !important;
+}
+.dark .leaflet-container .leaflet-tile {
   filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
 }
 :root.light .leaflet-container .leaflet-tile {
@@ -1098,3 +1101,20 @@ img, video, canvas, svg { max-width: 100%; }
 app-dental-3d-viewport canvas {
   filter: grayscale(1) !important;
 }
+
+/* Theme-aware fallbacks for legacy surfaces and controls that predate the token system. */
+.light .ui-emergency-whatsapp { color: #fff; background: #262626; }
+.light .ui-emergency-whatsapp:hover { background: #404040; }
+.light .ui-category-card:hover .ui-category-title { color: var(--text-primary); }
+.light [class*="bg-emerald-"], .light [class*="bg-green-"], .light [class*="bg-teal-"],
+.light [class*="bg-lime-"], .light [class*="bg-cyan-"], .light [class*="bg-sky-"],
+.light [class*="bg-blue-"], .light [class*="bg-indigo-"], .light [class*="bg-violet-"],
+.light [class*="bg-purple-"], .light [class*="bg-fuchsia-"], .light [class*="bg-pink-"],
+.light [class*="bg-rose-"], .light [class*="bg-red-"], .light [class*="bg-orange-"],
+.light [class*="bg-amber-"], .light [class*="bg-yellow-"] { background-color: var(--surface-raised) !important; }
+.light [class*="border-emerald-"], .light [class*="border-green-"], .light [class*="border-teal-"],
+.light [class*="border-lime-"], .light [class*="border-cyan-"], .light [class*="border-sky-"],
+.light [class*="border-blue-"], .light [class*="border-indigo-"], .light [class*="border-violet-"],
+.light [class*="border-purple-"], .light [class*="border-fuchsia-"], .light [class*="border-pink-"],
+.light [class*="border-rose-"], .light [class*="border-red-"], .light [class*="border-orange-"],
+.light [class*="border-amber-"], .light [class*="border-yellow-"] { border-color: var(--border-strong) !important; }
