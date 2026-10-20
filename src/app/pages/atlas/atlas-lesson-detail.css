@@ -1,5 +1,19 @@
 .lesson-detail-root {
   min-height: 100vh;
+  color: var(--text-primary);
+  background: var(--app-bg);
+}
+
+.lesson-detail-header {
+  border-bottom: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.lesson-model-frame {
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  box-shadow: var(--shadow-card, 0 18px 42px rgb(0 0 0 / .14));
 }
 
 .grid-cols-16 {
@@ -9,5 +23,21 @@
 @media (max-width: 640px) {
   .grid-cols-16 {
     grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .lesson-model-frame {
+    height: 24rem;
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-detail-root *,
+  .lesson-detail-root *::before,
+  .lesson-detail-root *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
 }
