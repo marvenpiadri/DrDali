@@ -59,11 +59,11 @@ export class ClinicMapComponent implements OnDestroy {
 
       this.map = mapInstance;
 
-      // OpenStreetMap's standard raster tiles do not require a client API key.
-      // Keep the attribution visible and avoid providers that can block tiles on key configuration.
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      // CARTO's dark basemap keeps the map itself aligned with the app's monochrome theme.
+      // Attribution remains visible; no client API key is required for the tile URL.
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       }).addTo(mapInstance);
 
       // Create a custom SVG pin marker for Centre Dentaire Dali
@@ -85,10 +85,10 @@ export class ClinicMapComponent implements OnDestroy {
       const marker = L.marker([this.latitude, this.longitude], { icon: customIcon }).addTo(mapInstance);
 
       const popupContent = `
-        <div style="font-family: sans-serif; padding: 4px; color: #0f172a;">
+        <div style="font-family: sans-serif; padding: 4px; color: #fafafa;">
           <h4 style="font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">Centre Dentaire Dali</h4>
-          <p style="font-size: 12px; margin: 0 0 6px 0; color: #475569;">Avenue Hassan II, Témara</p>
-          <span style="display: inline-block; font-size: 11px; font-weight: 600; color: #374151; background: #f3f4f6; padding: 2px 8px; border-radius: 9999px;">
+          <p style="font-size: 12px; margin: 0 0 6px 0; color: #d4d4d4;">Avenue Hassan II, Témara</p>
+          <span style="display: inline-block; font-size: 11px; font-weight: 600; color: #e5e5e5; background: #262626; padding: 2px 8px; border-radius: 9999px;">
             Soins & Implantologie
           </span>
         </div>
