@@ -56,7 +56,7 @@ export class Jawline3dViewerComponent implements OnInit {
   
   // Apple-Style Refined UI Signals
   isFullscreen = signal<boolean>(false);
-  isSidebarOpen = signal<boolean>(true);
+  isSidebarOpen = signal<boolean>(false);
   isAutoRotating = signal<boolean>(false);
 
   // Arch & Quadrant Focus
