@@ -23,7 +23,7 @@
         class="annotation-pin"
         [style.left.px]="anno.screenX"
         [style.top.px]="anno.screenY">
-        <div class="landmark-tooltip-copy px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 shadow-lg text-[11px] font-bold asset-error-emphasis whitespace-nowrap">
+        <div class="annotation-pill">
           <span class="annotation-dot"></span>
           <span>{{ anno.label }}</span>
         </div>
@@ -45,7 +45,7 @@
           [class.is-active]="isAutoRotating()"
           [class.asset-error-emphasis]="isAutoRotating()"
           
-          class="p-1.5 rounded-full hover:asset-error-emphasis hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+          class="viewport-control-button"
           title="Rotation automatique">
           <i class="fa-solid fa-rotate viewport-icon" aria-hidden="true"></i>
         </button>
@@ -54,7 +54,7 @@
         <button 
           type="button" 
           (click)="resetCamera()"
-          class="p-1.5 rounded-full text-neutral-400 hover:asset-error-emphasis hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+          class="viewport-control-button"
           title="Réinitialiser la vue">
           <i class="fa-solid fa-crosshairs viewport-icon" aria-hidden="true"></i>
         </button>
@@ -80,10 +80,10 @@
       [class.tooltip-below]="hoverTooltip().screenY < 45"
       [style.left.px]="hoverTooltip().screenX"
       [style.top.px]="hoverTooltip().screenY">
-      <div class="flex items-center gap-2 px-2.5 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md border border-white/10 shadow-lg asset-error-emphasis whitespace-nowrap">
+      <div class="landmark-tooltip-pill">
         <span class="annotation-dot annotation-dot-small"></span>
         <div class="landmark-tooltip-copy">
-          <span class="text-[11px] font-medium asset-error-emphasis">{{ hoverTooltip().label }}</span>
+          <span class="landmark-tooltip-label">{{ hoverTooltip().label }}</span>
           @if (hoverTooltip().category) {
             <span class="landmark-tooltip-category">{{ hoverTooltip().category }}</span>
           }
