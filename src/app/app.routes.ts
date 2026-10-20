@@ -17,21 +17,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/encyclopedia/dictionary').then((m) => m.DictionaryComponent),
   },
   {
-    path: 'encyclopedia',
-    redirectTo: 'atlas',
-    pathMatch: 'full'
-  },
-  {
-    path: 'encyclopedia/dictionary',
-    redirectTo: 'atlas/dictionary',
-    pathMatch: 'full'
-  },
-  {
-    path: 'encyclopedia/:category/:slug',
-    redirectTo: 'atlas',
-    pathMatch: 'full'
-  },
-  {
     path: 'atlas/tooth-explorer',
     title: 'Explorateur 32 Dents 3D | Centre Dentaire Dali',
     data: { toolId: 'tooth-explorer' },
@@ -100,66 +85,6 @@ export const routes: Routes = [
     path: 'tools',
     title: 'Outils Dentaires Interactifs | Centre Dentaire Dali',
     loadComponent: () => import('./pages/tools/tools-hub').then((m) => m.ToolsHubComponent),
-  },
-  {
-    path: 'tools/tooth-explorer',
-    redirectTo: 'atlas/tooth-explorer',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/dental-arch',
-    redirectTo: 'atlas/dental-arch',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/tooth-decay',
-    redirectTo: 'atlas/tooth-decay',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/gum-disease',
-    redirectTo: 'atlas/gum-disease',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/root-canal',
-    redirectTo: 'atlas/root-canal',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/implant-explorer',
-    redirectTo: 'atlas/implant-explorer',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/crown-explorer',
-    redirectTo: 'atlas/crown-explorer',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/veneer-explorer',
-    redirectTo: 'atlas/veneer-explorer',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/wisdom-teeth',
-    redirectTo: 'atlas/wisdom-teeth',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/jaw-anatomy',
-    redirectTo: 'atlas/jaw-anatomy',
-    pathMatch: 'full'
-  },
-  {
-    path: 'tools/3d/:toolId',
-    redirectTo: 'atlas/:toolId',
-    pathMatch: 'full',
-  },
-  {
-    path: 'tools/:toolId',
-    redirectTo: 'atlas/:toolId',
-    pathMatch: 'full',
   },
   {
     path: 'admin/3d-model-inventory',
