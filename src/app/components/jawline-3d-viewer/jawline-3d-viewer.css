@@ -97,6 +97,7 @@
 }
 
 #viewer-container {
+  grid-column: 1;
   position: relative;
   min-width: 0;
   min-height: 0;
@@ -116,6 +117,7 @@
 }
 
 #jawline-sidebar-panel {
+  grid-column: 2;
   min-width: 0;
   min-height: 0;
   height: 100%;
@@ -287,6 +289,10 @@
 @media (max-width: 480px) {
   #jawline-header-bar {
     padding: .65rem .75rem;
+  }
+
+  #jawline-reset-view-btn {
+    display: none;
   }
 
   #jawline-header-bar > div:first-child::after {
