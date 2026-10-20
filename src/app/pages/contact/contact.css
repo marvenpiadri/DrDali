@@ -1,19 +1,15 @@
 .contact-hero {
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.dark .contact-hero {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .preview-box {
-  background-color: #0f172a;
-  border: 1px solid #1e293b;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
   border-radius: 1rem;
   padding: 1.25rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.75rem;
-  color: #94a3b8;
+  font-size: .75rem;
+  color: var(--text-muted);
   line-height: 1.6;
 }
