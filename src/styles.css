@@ -1157,3 +1157,13 @@ app-dental-3d-viewport .viewport-controls {
 .leaflet-container .leaflet-popup-content {
   color: #fafafa !important;
 }
+
+
+/* Keep required OpenStreetMap attribution, but remove Leaflet's branding link. */
+.leaflet-control-attribution a[href*="leafletjs.com"] {
+  display: none !important;
+}
+.leaflet-control-attribution a[href*="leafletjs.com"] + span,
+.leaflet-control-attribution a[href*="leafletjs.com"] + span + span {
+  display: none !important;
+}
