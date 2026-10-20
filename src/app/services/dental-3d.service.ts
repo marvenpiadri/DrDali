@@ -43,6 +43,8 @@ export class Dental3DService {
 
     this.engine.onAssetLoadError = (err) => {
       console.error('Dental 3D asset load error:', err);
+      const currentType = this.currentModelType();
+      this.missingAsset.set(currentType ? this.dataService.getToolById(currentType) ?? null : null);
       this.isLoading.set(false);
     };
 
