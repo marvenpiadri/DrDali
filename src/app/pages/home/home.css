@@ -50,7 +50,8 @@
 
 .home-location-section {
   background: var(--app-bg);
-  border-color: var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background-color .18s ease, border-color .18s ease;
 }
 
 .home-learning-section {
