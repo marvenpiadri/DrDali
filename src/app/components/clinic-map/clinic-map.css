@@ -141,6 +141,7 @@
   .clinic-map-address { line-height: 1.5; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .clinic-status-open .clinic-status-dot,
-  .clinic-map-action,
+  .clinic-map-action {
+    transition: none;
+  }
 }
