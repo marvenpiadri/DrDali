@@ -237,6 +237,10 @@
   .home-hero-title {
     font-size: 3.75rem;
   }
+
+  .home-hero-description {
+    font-size: 1.125rem;
+  }
 }
 
 @media (min-width: 1024px) {
