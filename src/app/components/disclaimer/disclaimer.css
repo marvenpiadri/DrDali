@@ -1,3 +1,51 @@
+:host {
+  display: block;
+}
+
 .disclaimer-aside {
-  transition: border-color 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: .875rem;
+  margin-block: 1.5rem;
+  padding: 1rem;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--surface-raised) 70%, transparent);
+  border: 1px solid var(--border-subtle);
+  border-radius: .75rem;
+  font-size: .75rem;
+  line-height: 1.625;
+  transition: border-color .2s ease;
+}
+
+.disclaimer-icon {
+  flex-shrink: 0;
+  margin-top: .125rem;
+  padding: .375rem;
+  color: var(--text-primary);
+  background: var(--surface-hover);
+  border-radius: .5rem;
+}
+
+.disclaimer-icon .material-icons {
+  display: block;
+  font-size: 1rem;
+}
+
+.disclaimer-title {
+  display: block;
+  margin-bottom: .25rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.disclaimer-copy p {
+  margin: 0;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .disclaimer-aside {
+    padding: 1.25rem;
+    font-size: .875rem;
+  }
 }
