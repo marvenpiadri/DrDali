@@ -597,11 +597,11 @@ export class Dental3DEngineService {
     const positions = new Float32Array(buffer, part.positions, part.vertexCount * 3);
     const normals = new Float32Array(buffer, part.normals, part.vertexCount * 3);
     const indices = new Uint32Array(buffer, part.indices, part.indexCount);
-    for (let i = 0; i < positions.length; i++) {
-      if (!Number.isFinite(positions[i])) throw new Error(`Mesh ${part.id} contains a non-finite vertex position`);
+    for (const position of positions) {
+      if (!Number.isFinite(position)) throw new Error(`Mesh ${part.id} contains a non-finite vertex position`);
     }
-    for (let i = 0; i < indices.length; i++) {
-      if (indices[i] >= part.vertexCount) throw new Error(`Mesh ${part.id} contains an out-of-range triangle index`);
+    for (const index of indices) {
+      if (index >= part.vertexCount) throw new Error(`Mesh ${part.id} contains an out-of-range triangle index`);
     }
 
     const geometry = new THREE.BufferGeometry();
