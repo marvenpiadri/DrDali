@@ -1,318 +1,143 @@
-<header class="header-root sticky top-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
-    
-    <!-- Logo & Brand identity -->
-    <a 
-      routerLink="/" 
-      class="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 dark:focus-visible:ring-white rounded-lg p-1"
-      [attr.aria-label]="'brandName' | translate">
+<header class="site-header">
+  <div class="header-inner">
+    <a routerLink="/" class="brand-link" [attr.aria-label]="'brandName' | translate">
       <app-logo />
     </a>
 
-    <!-- Primary Desktop Navigation Links -->
-    <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-semibold uppercase tracking-wider">
-      <a 
-        routerLink="/" 
-        routerLinkActive="nav-link-active"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a routerLink="/" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
         <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
-        {{ 'navHome' | translate }}
+        <span>{{ 'navHome' | translate }}</span>
       </a>
-      <a 
-        routerLink="/atlas" 
-        routerLinkActive="nav-link-active"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white flex items-center gap-1.5">
-        <span><i class="fa-solid fa-cubes-stacked nav-icon" aria-hidden="true"></i>
-        {{ 'navAtlas' | translate }}</span>
-        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-bold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700">
-          3D
-        </span>
+      <a routerLink="/atlas" routerLinkActive="nav-link-active" class="nav-link">
+        <i class="fa-solid fa-cubes-stacked nav-icon" aria-hidden="true"></i>
+        <span>{{ 'navAtlas' | translate }}</span>
+        <span class="nav-badge">3D</span>
       </a>
-      <a 
-        routerLink="/tools" 
-        routerLinkActive="nav-link-active"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+      <a routerLink="/tools" routerLinkActive="nav-link-active" class="nav-link">
         <i class="fa-solid fa-screwdriver-wrench nav-icon" aria-hidden="true"></i>
-        {{ 'navTools' | translate }}
+        <span>{{ 'navTools' | translate }}</span>
       </a>
-      <a 
-        routerLink="/dr-dali" 
-        routerLinkActive="nav-link-active"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+      <a routerLink="/dr-dali" routerLinkActive="nav-link-active" class="nav-link">
         <i class="fa-solid fa-user-doctor nav-icon" aria-hidden="true"></i>
-        {{ 'navDoctors' | translate }}
+        <span>{{ 'navDoctors' | translate }}</span>
       </a>
-      <a 
-        routerLink="/clinic" 
-        routerLinkActive="nav-link-active"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+      <a routerLink="/clinic" routerLinkActive="nav-link-active" class="nav-link">
         <i class="fa-solid fa-hospital nav-icon" aria-hidden="true"></i>
-        {{ 'navClinic' | translate }}
+        <span>{{ 'navClinic' | translate }}</span>
       </a>
-      <a 
-        routerLink="/contact" 
-        routerLinkActive="nav-link-active"
-        class="nav-link text-neutral-600 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white">
+      <a routerLink="/contact" routerLinkActive="nav-link-active" class="nav-link">
         <i class="fa-solid fa-calendar-check nav-icon" aria-hidden="true"></i>
-        {{ 'navContact' | translate }}
+        <span>{{ 'navContact' | translate }}</span>
       </a>
     </nav>
 
-    <!-- Right Controls: Language Switcher, Search, Theme, Mobile Toggle -->
-    <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-
-      <!-- Language Selector & Direction Switcher Dropdown -->
-      <div class="relative lang-dropdown-wrapper">
-        <button 
-          type="button" 
-          (click)="toggleLangDropdown()"
-          class="lang-dropdown-btn bg-neutral-100 hover:bg-neutral-200/80 dark:bg-neutral-900 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-900 dark:text-white"
-          [attr.aria-expanded]="langDropdownOpen()"
-          [attr.aria-label]="'ariaSelectLang' | translate">
-          <i class="fa-solid fa-globe text-base text-neutral-500 dark:text-neutral-400 header-fa-icon" aria-hidden="true"></i>
-          <span class="font-bold tracking-wider text-xs">{{ currentLangOption().shortLabel }}</span>
+    <div class="header-actions">
+      <div class="language-control">
+        <button type="button" (click)="toggleLangDropdown()" class="language-trigger"
+          [attr.aria-expanded]="langDropdownOpen()" [attr.aria-label]="'ariaSelectLang' | translate">
+          <i class="fa-solid fa-globe header-fa-icon" aria-hidden="true"></i>
+          <span>{{ currentLangOption().shortLabel }}</span>
           @if (i18n.currentLang() === 'ar') {
-            <span class="text-[9px] font-mono uppercase px-1 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
-              {{ i18n.effectiveDir().toUpperCase() }}
-            </span>
+            <span class="direction-badge">{{ i18n.effectiveDir().toUpperCase() }}</span>
           }
-          <i class="fa-solid fa-chevron-down text-xs text-neutral-400 transition-transform duration-200 header-fa-icon" [class.rotate-180]="langDropdownOpen()" aria-hidden="true"></i>
+          <i class="fa-solid fa-chevron-down language-chevron" [class.is-open]="langDropdownOpen()" aria-hidden="true"></i>
         </button>
 
         @if (langDropdownOpen()) {
-          <!-- Click backdrop -->
-          <button 
-            type="button" 
-            [attr.aria-label]="'ariaCloseMenu' | translate"
-            class="fixed inset-0 z-40 cursor-default bg-transparent border-none p-0 w-full h-full block" 
-            (click)="closeLangDropdown()">
-          </button>
-
-          <!-- Dropdown popover list -->
-          <div class="lang-dropdown-menu bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-xl min-w-[200px]">
-            <!-- Languages List -->
-            <div class="p-1 space-y-0.5">
+          <button type="button" class="language-backdrop" [attr.aria-label]="'ariaCloseMenu' | translate"
+            (click)="closeLangDropdown()"></button>
+          <div class="language-popover">
+            <div class="language-options">
               @for (lang of languages; track lang.code) {
-                <button 
-                  type="button" 
-                  (click)="selectLanguage(lang.code)"
-                  class="lang-menu-item w-full flex items-center justify-between px-3 py-2 rounded-lg text-left"
-                  [class.active]="i18n.currentLang() === lang.code">
-                  <div class="flex items-center gap-2">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 w-6">
-                      {{ lang.shortLabel }}
-                    </span>
-                    <span class="text-xs font-semibold text-neutral-900 dark:text-white">
-                      {{ lang.nativeName }}
-                    </span>
-                  </div>
+                <button type="button" (click)="selectLanguage(lang.code)" class="language-option"
+                  [class.is-active]="i18n.currentLang() === lang.code">
+                  <span class="language-option-copy">
+                    <span class="language-code">{{ lang.shortLabel }}</span>
+                    <span class="language-name">{{ lang.nativeName }}</span>
+                  </span>
                   @if (i18n.currentLang() === lang.code) {
-                    <i class="fa-solid fa-check text-emerald-600 dark:text-emerald-400 text-sm header-fa-icon" aria-hidden="true"></i>
+                    <i class="fa-solid fa-check language-check" aria-hidden="true"></i>
                   }
                 </button>
               }
             </div>
-
-            <!-- Direction Override (RTL / LTR) -->
-            <div class="border-t border-neutral-200 dark:border-neutral-800 p-2 bg-neutral-50 dark:bg-neutral-950/50 rounded-b-xl">
-              <div class="flex items-center justify-between mb-1.5 px-1">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-                  {{ 'dirMode' | translate }}
-                </span>
-                <span class="text-[10px] font-mono font-bold text-neutral-800 dark:text-neutral-200 uppercase">
-                  {{ i18n.effectiveDir() }}
-                </span>
+            <div class="direction-settings">
+              <div class="direction-heading">
+                <span>{{ 'dirMode' | translate }}</span>
+                <span class="direction-current">{{ i18n.effectiveDir() }}</span>
               </div>
-              <div class="grid grid-cols-3 gap-1">
-                <button 
-                  type="button"
-                  (click)="setDirection('auto')"
-                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
-                  [class.bg-neutral-900]="i18n.textDir() === 'auto'"
-                  [class.text-white]="i18n.textDir() === 'auto'"
-                  [class.dark:bg-white]="i18n.textDir() === 'auto'"
-                  [class.dark:text-neutral-900]="i18n.textDir() === 'auto'"
-                  [class.border-transparent]="i18n.textDir() === 'auto'"
-                  [class.border-neutral-200]="i18n.textDir() !== 'auto'"
-                  [class.dark:border-neutral-800]="i18n.textDir() !== 'auto'">
-                  Auto
-                </button>
-                <button 
-                  type="button"
-                  (click)="setDirection('rtl')"
-                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
-                  [class.bg-neutral-900]="i18n.textDir() === 'rtl'"
-                  [class.text-white]="i18n.textDir() === 'rtl'"
-                  [class.dark:bg-white]="i18n.textDir() === 'rtl'"
-                  [class.dark:text-neutral-900]="i18n.textDir() === 'rtl'"
-                  [class.border-transparent]="i18n.textDir() === 'rtl'"
-                  [class.border-neutral-200]="i18n.textDir() !== 'rtl'"
-                  [class.dark:border-neutral-800]="i18n.textDir() !== 'rtl'">
-                  RTL
-                </button>
-                <button 
-                  type="button"
-                  (click)="setDirection('ltr')"
-                  class="px-1.5 py-1 text-[10px] font-bold rounded border transition-colors text-center"
-                  [class.bg-neutral-900]="i18n.textDir() === 'ltr'"
-                  [class.text-white]="i18n.textDir() === 'ltr'"
-                  [class.dark:bg-white]="i18n.textDir() === 'ltr'"
-                  [class.dark:text-neutral-900]="i18n.textDir() === 'ltr'"
-                  [class.border-transparent]="i18n.textDir() === 'ltr'"
-                  [class.border-neutral-200]="i18n.textDir() !== 'ltr'"
-                  [class.dark:border-neutral-800]="i18n.textDir() !== 'ltr'">
-                  LTR
-                </button>
+              <div class="direction-options">
+                <button type="button" (click)="setDirection('auto')" class="direction-option"
+                  [class.is-active]="i18n.textDir() === 'auto'">Auto</button>
+                <button type="button" (click)="setDirection('rtl')" class="direction-option"
+                  [class.is-active]="i18n.textDir() === 'rtl'">RTL</button>
+                <button type="button" (click)="setDirection('ltr')" class="direction-option"
+                  [class.is-active]="i18n.textDir() === 'ltr'">LTR</button>
               </div>
             </div>
           </div>
         }
       </div>
 
-      <!-- Search Trigger Button -->
-      <button 
-        type="button" 
-        (click)="openSearch.emit()"
-        class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
+      <button type="button" (click)="openSearch.emit()" class="header-icon-button"
         [attr.aria-label]="'ariaSearch' | translate">
-        <i class="fa-solid fa-magnifying-glass text-lg header-fa-icon" aria-hidden="true"></i>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
       </button>
-
-      <!-- Theme Switcher Button -->
-      <button 
-        type="button" 
-        (click)="theme.toggleTheme()"
-        class="icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300"
+      <button type="button" (click)="theme.toggleTheme()" class="header-icon-button"
         [attr.aria-label]="theme.isDark() ? ('ariaThemeLight' | translate) : ('ariaThemeDark' | translate)">
-        @if (theme.isDark()) {<i class="fa-regular fa-sun header-control-icon" aria-hidden="true"></i>} @else {<i class="fa-regular fa-moon header-control-icon" aria-hidden="true"></i>}
+        @if (theme.isDark()) { <i class="fa-regular fa-sun" aria-hidden="true"></i> }
+        @else { <i class="fa-regular fa-moon" aria-hidden="true"></i> }
       </button>
-
-      <!-- Mobile Menu Hamburger Button -->
-      <button 
-        type="button" 
-        (click)="toggleMobileMenu()"
-        class="lg:hidden icon-square-btn bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800 border border-neutral-200/80 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200"
+      <button type="button" (click)="toggleMobileMenu()" class="header-icon-button mobile-menu-toggle"
         [attr.aria-label]="mobileMenuOpen() ? ('ariaCloseMenu' | translate) : ('ariaOpenMenu' | translate)"
         [attr.aria-expanded]="mobileMenuOpen()">
-        @if (mobileMenuOpen()) {<i class="fa-solid fa-xmark header-control-icon" aria-hidden="true"></i>} @else {<i class="fa-solid fa-bars header-control-icon" aria-hidden="true"></i>}
+        @if (mobileMenuOpen()) { <i class="fa-solid fa-xmark" aria-hidden="true"></i> }
+        @else { <i class="fa-solid fa-bars" aria-hidden="true"></i> }
       </button>
-
     </div>
-
   </div>
 
-  <!-- Mobile Drawer Menu -->
   @if (mobileMenuOpen()) {
-    <div class="lg:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 px-4 pt-3 pb-6 space-y-1.5 shadow-2xl animate-fade-in">
-      <a 
-        routerLink="/" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-house text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navHome' | translate }}</span>
+    <nav class="mobile-navigation" aria-label="Mobile navigation">
+      <a routerLink="/" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active"
+        [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-link">
+        <i class="fa-solid fa-house" aria-hidden="true"></i><span>{{ 'navHome' | translate }}</span>
+      </a>
+      <a routerLink="/atlas" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active" class="mobile-nav-link">
+        <i class="fa-solid fa-cubes-stacked" aria-hidden="true"></i><span>{{ 'navAtlas' | translate }}</span>
+      </a>
+      <a routerLink="/tools" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active" class="mobile-nav-link">
+        <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i><span>{{ 'navTools' | translate }}</span>
+      </a>
+      <a routerLink="/dr-dali" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active" class="mobile-nav-link">
+        <i class="fa-solid fa-user-doctor" aria-hidden="true"></i><span>{{ 'navDoctors' | translate }}</span>
+      </a>
+      <a routerLink="/clinic" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active" class="mobile-nav-link">
+        <i class="fa-solid fa-hospital" aria-hidden="true"></i><span>{{ 'navClinic' | translate }}</span>
+      </a>
+      <a routerLink="/contact" (click)="closeMobileMenu()" routerLinkActive="mobile-nav-link-active" class="mobile-nav-link">
+        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i><span>{{ 'navContact' | translate }}</span>
       </a>
 
-      <a 
-        routerLink="/atlas" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-cubes-stacked text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navAtlas' | translate }}</span>
-      </a>
-
-      <a 
-        routerLink="/tools" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-sliders text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navTools' | translate }}</span>
-      </a>
-
-      <a 
-        routerLink="/dr-dali" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-users text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navDoctors' | translate }}</span>
-      </a>
-
-      <a 
-        routerLink="/clinic" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-building text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navClinic' | translate }}</span>
-      </a>
-
-      <a 
-        routerLink="/contact" 
-        (click)="closeMobileMenu()"
-        routerLinkActive="bg-neutral-100 dark:bg-neutral-900 font-bold"
-        class="flex items-center gap-3 px-4 py-3 text-sm rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-900 text-neutral-900 dark:text-white transition">
-        <i class="fa-solid fa-headset text-neutral-400 text-lg header-fa-icon" aria-hidden="true"></i>
-        <span>{{ 'navContact' | translate }}</span>
-      </a>
-
-      <div class="pt-4 mt-2 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
-        <!-- Language Switch -->
-        <div class="flex items-center justify-between px-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-            {{ 'ariaSelectLang' | translate }}
-          </span>
-          <div class="flex items-center gap-1">
+      <div class="mobile-settings">
+        <div class="mobile-setting-row">
+          <span class="mobile-setting-label">{{ 'ariaSelectLang' | translate }}</span>
+          <div class="language-chips">
             @for (lang of languages; track lang.code) {
-              <button 
-                type="button" 
-                (click)="selectLanguage(lang.code)"
-                class="px-2.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors"
-                [class.bg-neutral-950]="i18n.currentLang() === lang.code"
-                [class.text-white]="i18n.currentLang() === lang.code"
-                [class.dark:bg-white]="i18n.currentLang() === lang.code"
-                [class.dark:text-neutral-950]="i18n.currentLang() === lang.code"
-                [class.text-neutral-600]="i18n.currentLang() !== lang.code"
-                [class.dark:text-neutral-400]="i18n.currentLang() !== lang.code">
-                {{ lang.shortLabel }}
-              </button>
+              <button type="button" (click)="selectLanguage(lang.code)" class="language-chip"
+                [class.is-active]="i18n.currentLang() === lang.code">{{ lang.shortLabel }}</button>
             }
           </div>
         </div>
-
-        <!-- Direction Switch (RTL / LTR) -->
-        <div class="flex items-center justify-between px-2 py-1 bg-neutral-100 dark:bg-neutral-900 rounded-xl">
-          <span class="text-xs font-semibold text-neutral-700 dark:text-neutral-300">
-            {{ 'dirMode' | translate }}
-          </span>
-          <div class="flex items-center gap-1">
-            <button 
-              type="button"
-              (click)="setDirection('rtl')"
-              class="px-2 py-1 text-xs font-bold rounded-lg transition"
-              [class.bg-neutral-950]="i18n.isRtl()"
-              [class.text-white]="i18n.isRtl()"
-              [class.dark:bg-white]="i18n.isRtl()"
-              [class.dark:text-neutral-950]="i18n.isRtl()">
-              RTL
-            </button>
-            <button 
-              type="button"
-              (click)="setDirection('ltr')"
-              class="px-2 py-1 text-xs font-bold rounded-lg transition"
-              [class.bg-neutral-950]="!i18n.isRtl()"
-              [class.text-white]="!i18n.isRtl()"
-              [class.dark:bg-white]="!i18n.isRtl()"
-              [class.dark:text-neutral-950]="!i18n.isRtl()">
-              LTR
-            </button>
+        <div class="mobile-setting-row direction-mobile-row">
+          <span class="mobile-setting-label">{{ 'dirMode' | translate }}</span>
+          <div class="language-chips">
+            <button type="button" (click)="setDirection('rtl')" class="language-chip" [class.is-active]="i18n.isRtl()">RTL</button>
+            <button type="button" (click)="setDirection('ltr')" class="language-chip" [class.is-active]="!i18n.isRtl()">LTR</button>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   }
 </header>
