@@ -7,7 +7,7 @@
   @if (missingAsset()) {
     <div class="absolute inset-0 z-30 flex flex-col items-center justify-center bg-neutral-950/95 backdrop-blur-md p-6 text-center">
       <div class="w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-4">
-        <span class="material-icons text-3xl text-neutral-500">3d_rotation</span>
+        <i class="fa-solid fa-cube viewport-status-icon" aria-hidden="true"></i>
       </div>
       <h3 class="text-lg font-bold text-white mb-2">Modèle 3D Requis</h3>
       <p class="text-sm text-neutral-400 max-w-md leading-relaxed mb-4">
@@ -47,7 +47,7 @@
           [class.text-neutral-400]="!isAutoRotating()"
           class="p-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Rotation automatique">
-          <span class="material-icons text-sm">sync</span>
+          <i class="fa-solid fa-rotate viewport-icon" aria-hidden="true"></i>
         </button>
 
         <!-- Reset Camera -->
@@ -56,7 +56,7 @@
           (click)="resetCamera()"
           class="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Réinitialiser la vue">
-          <span class="material-icons text-sm">center_focus_strong</span>
+          <i class="fa-solid fa-crosshairs viewport-icon" aria-hidden="true"></i>
         </button>
 
         <!-- Fullscreen -->
@@ -65,7 +65,7 @@
           (click)="toggleFullscreen()"
           class="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Plein écran">
-          <span class="material-icons text-sm">{{ isFullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</span>
+          @if (isFullscreen()) { <i class="fa-solid fa-compress viewport-icon" aria-hidden="true"></i> } @else { <i class="fa-solid fa-expand viewport-icon" aria-hidden="true"></i> }
         </button>
       </div>
 
