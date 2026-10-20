@@ -12,3 +12,104 @@
 .animate-fade-in {
   animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+
+.reading-progress-track {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  height: .25rem;
+  pointer-events: none;
+  background: rgb(229 231 235 / 30%);
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.dark .reading-progress-track { background: rgb(38 38 38 / 30%); }
+.reading-progress-track.is-hidden { opacity: 0; }
+.reading-progress-track.is-visible { opacity: 1; }
+
+.reading-progress-fill {
+  height: 100%;
+  border-radius: 0 .25rem .25rem 0;
+  background: linear-gradient(to right, #10b981, #2dd4bf, #34d399);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  transition: width .15s ease-out;
+}
+
+.dark .reading-progress-fill {
+  background: linear-gradient(to right, #34d399, #5eead4, #6ee7b7);
+}
+
+.reading-progress-floating {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  pointer-events: auto;
+}
+
+.reading-progress-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .375rem .75rem;
+  color: #fff;
+  background: rgb(23 23 23 / 90%);
+  border: 1px solid rgb(64 64 64 / 60%);
+  border-radius: 999px;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(12px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.dark .reading-progress-badge,
+.dark .reading-progress-top-button {
+  background: rgb(38 38 38 / 90%);
+}
+
+.reading-progress-dot {
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background: #34d399;
+  animation: progressDotPulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+}
+
+.reading-progress-top-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #fff;
+  background: rgb(23 23 23 / 90%);
+  border: 1px solid rgb(64 64 64 / 60%);
+  border-radius: 50%;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 10%);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: background-color .18s ease;
+}
+
+.reading-progress-top-button:hover { background: #059669; }
+.reading-progress-top-icon { font-size: 1.125rem; }
+
+@keyframes progressDotPulse {
+  50% { opacity: .5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress-track,
+  .reading-progress-fill,
+  .reading-progress-top-button,
+  .animate-fade-in { transition: none; animation: none; }
+  .reading-progress-dot { animation: none; }
+}
