@@ -8,8 +8,8 @@ export const routes: Routes = [
   },
   {
     path: 'atlas',
-    title: 'Atlas Dentaire 3D Interactif | Centre Dentaire Dali',
-    loadComponent: () => import('./pages/atlas/atlas-home').then((m) => m.AtlasHomeComponent),
+    pathMatch: 'full',
+    redirectTo: 'atlas/inside-a-tooth',
   },
   {
     path: 'atlas/dictionary',
