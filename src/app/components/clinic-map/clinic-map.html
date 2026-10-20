@@ -5,26 +5,26 @@
         @if (clinic.isClinicOpenNow()) {
           <span class="clinic-status clinic-status-open">
             <span class="clinic-status-dot" aria-hidden="true"></span>
-            Ouvert Actuellement
+            {{ 'clinicMapOpen' | translate }}
           </span>
         } @else {
           <span class="clinic-status clinic-status-closed">
             <span class="clinic-status-dot" aria-hidden="true"></span>
-            Fermé Actuellement (Réouverture à 09h00)
+            {{ 'clinicMapClosed' | translate }}
           </span>
         }
       </div>
       <h3 class="clinic-map-title">Centre Dentaire Dali</h3>
     </div>
 
-    <nav class="clinic-map-actions" aria-label="Options d’itinéraire">
+    <nav class="clinic-map-actions" [attr.aria-label]="'clinicMapActionsLabel' | translate">
       <a
         [href]="googleMapsDirectionsUrl"
         target="_blank"
         rel="noopener noreferrer"
         class="action-btn clinic-map-action clinic-map-action-primary">
         <span class="material-icons clinic-map-action-icon" aria-hidden="true">directions</span>
-        <span>Itinéraire Google Maps</span>
+        <span>{{ 'clinicMapGoogleDirections' | translate }}</span>
       </a>
 
       <a
@@ -48,16 +48,16 @@
     <div class="clinic-map-features">
       <div class="clinic-map-feature">
         <span class="material-icons clinic-map-feature-icon clinic-map-parking-icon" aria-hidden="true">local_parking</span>
-        <span>Parking gratuit à proximité</span>
+        <span>{{ 'clinicMapParking' | translate }}</span>
       </div>
       <div class="clinic-map-feature">
         <span class="material-icons clinic-map-feature-icon clinic-map-access-icon" aria-hidden="true">accessible</span>
-        <span>Accès PMR complet</span>
+        <span>{{ 'clinicMapAccessibility' | translate }}</span>
       </div>
     </div>
 
     <div class="clinic-map-address">
-      Face à la Pharmacie Hassan II, Témara
+      {{ 'clinicMapAddress' | translate }}
     </div>
   </footer>
 </div>
