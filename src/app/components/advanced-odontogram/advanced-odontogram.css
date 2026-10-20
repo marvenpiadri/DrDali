@@ -1,7 +1,13 @@
 .odontogram-wrapper { user-select:none; min-width:0; color:var(--text-primary); background:var(--surface); border:1px solid var(--border-subtle); border-radius:1.15rem; padding:clamp(1rem,2.5vw,1.5rem); box-shadow:0 18px 50px rgb(0 0 0 / .12); }
 .tooth-cell { min-width:38px; }
 .grid-cols-16 { display:grid; grid-template-columns:repeat(16,minmax(42px,1fr)); }
-.odontogram-tooth-svg { display:block; overflow:visible; flex:0 0 auto; width:2rem; height:2rem; margin-block:.25rem; filter:drop-shadow(0 1px 1px rgb(15 23 42 / .08)); }
+.odontogram-tooth-svg { display:block; overflow:visible; flex:0 0 auto; width:2rem; height:2rem; margin-block:.25rem; shape-rendering:geometricPrecision; filter:drop-shadow(0 1px 1px rgb(15 23 42 / .08)); }
+.odontogram-tooth-svg .odontogram-tooth-outline { vector-effect:non-scaling-stroke; }
+.tooth-cell { position:relative; align-self:stretch; justify-content:flex-start; min-height:4.25rem; }
+.tooth-cell:focus-visible { z-index:1; border-radius:.65rem; }
+.tooth-cell:focus-visible .odontogram-tooth-svg { filter:drop-shadow(0 0 2px rgb(16 185 129 / .28)); }
+.odontogram-surface { vector-effect:non-scaling-stroke; stroke-linejoin:round; }
+.odontogram-surface:hover { opacity:.9; filter:brightness(.96); }
 .odontogram-tooth-outline { vector-effect:non-scaling-stroke; fill:none; stroke:#8b9a90; stroke-width:1.1; stroke-linejoin:round; transition:stroke 160ms ease,opacity 160ms ease; }
 .tooth-cell:hover .odontogram-tooth-outline,.tooth-cell:focus-visible .odontogram-tooth-outline { stroke:#6ebd86; stroke-width:1.8; }
 .tooth-cell:focus-visible { outline:2px solid var(--focus-ring); outline-offset:2px; }
