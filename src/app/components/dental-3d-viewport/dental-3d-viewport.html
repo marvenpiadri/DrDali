@@ -5,13 +5,13 @@
 
   <!-- Missing Asset Fallback Overlay -->
   @if (missingAsset()) {
-    <div class="absolute inset-0 z-30 flex flex-col items-center justify-center bg-neutral-950/95 backdrop-blur-md p-6 text-center">
-      <div class="w-16 h-16 rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-4">
+    <div class="asset-error-overlay">
+      <div class="asset-error-icon-wrap">
         <i class="fa-solid fa-cube viewport-status-icon" aria-hidden="true"></i>
       </div>
-      <h3 class="text-lg font-bold text-white mb-2">Modèle 3D Requis</h3>
-      <p class="text-sm text-neutral-400 max-w-md leading-relaxed mb-4">
-        Le modèle anatomique <strong class="text-white">{{ missingAsset()?.name }}</strong> est en cours de chargement.
+      <h3 class="asset-error-title">Modèle 3D Requis</h3>
+      <p class="asset-error-description">
+        Le modèle anatomique <strong class="asset-error-emphasis">{{ missingAsset()?.name }}</strong> est en cours de chargement.
       </p>
     </div>
   }
@@ -20,11 +20,11 @@
   @for (anno of annotations(); track anno.id) {
     @if (anno.visible && !missingAsset()) {
       <div 
-        class="annotation-pin absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-75"
+        class="annotation-pin"
         [style.left.px]="anno.screenX"
         [style.top.px]="anno.screenY">
-        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 shadow-lg text-[11px] font-bold text-white whitespace-nowrap">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div class="landmark-tooltip-copy px-2.5 py-1 rounded-full bg-neutral-900/90 backdrop-blur-md border border-neutral-700/80 shadow-lg text-[11px] font-bold asset-error-emphasis whitespace-nowrap">
+          <span class="annotation-dot"></span>
           <span>{{ anno.label }}</span>
         </div>
       </div>
@@ -33,19 +33,19 @@
 
   <!-- Minimalist Floating Canvas Controls -->
   @if (!missingAsset() && showControls()) {
-    <div class="absolute bottom-3 inset-x-0 flex items-center justify-center pointer-events-none z-20 px-4">
+    <div class="viewport-controls-position">
       
       <!-- Clean Small Refined Glass Action Buttons Group in the Middle -->
-      <div class="flex items-center gap-1 p-1 rounded-full bg-neutral-950/70 backdrop-blur-md border border-white/10 pointer-events-auto shadow-lg">
+      <div class="viewport-controls">
         
         <!-- Auto Rotate -->
         <button 
           type="button" 
           (click)="toggleAutoRotate()"
-          [class.bg-white/20]="isAutoRotating()"
-          [class.text-white]="isAutoRotating()"
-          [class.text-neutral-400]="!isAutoRotating()"
-          class="p-1.5 rounded-full hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+          [class.is-active]="isAutoRotating()"
+          [class.asset-error-emphasis]="isAutoRotating()"
+          
+          class="p-1.5 rounded-full hover:asset-error-emphasis hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Rotation automatique">
           <i class="fa-solid fa-rotate viewport-icon" aria-hidden="true"></i>
         </button>
@@ -54,7 +54,7 @@
         <button 
           type="button" 
           (click)="resetCamera()"
-          class="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+          class="p-1.5 rounded-full text-neutral-400 hover:asset-error-emphasis hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Réinitialiser la vue">
           <i class="fa-solid fa-crosshairs viewport-icon" aria-hidden="true"></i>
         </button>
@@ -63,7 +63,7 @@
         <button 
           type="button" 
           (click)="toggleFullscreen()"
-          class="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+          class="p-1.5 rounded-full text-neutral-400 hover:asset-error-emphasis hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
           title="Plein écran">
           @if (isFullscreen()) { <i class="fa-solid fa-compress viewport-icon" aria-hidden="true"></i> } @else { <i class="fa-solid fa-expand viewport-icon" aria-hidden="true"></i> }
         </button>
@@ -75,17 +75,17 @@
   <!-- Non-intrusive Hover Landmark Text Tooltip -->
   @if (hoverTooltip().visible && !missingAsset()) {
     <div 
-      class="hover-landmark-tooltip absolute pointer-events-none z-30 transition-all duration-75 transform -translate-x-1/2"
-      [class.-translate-y-10]="hoverTooltip().screenY >= 45"
-      [class.translate-y-4]="hoverTooltip().screenY < 45"
+      class="hover-landmark-tooltip"
+      [class.tooltip-above]="hoverTooltip().screenY >= 45"
+      [class.tooltip-below]="hoverTooltip().screenY < 45"
       [style.left.px]="hoverTooltip().screenX"
       [style.top.px]="hoverTooltip().screenY">
-      <div class="flex items-center gap-2 px-2.5 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md border border-white/10 shadow-lg text-white whitespace-nowrap">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <div class="flex items-center gap-1.5">
-          <span class="text-[11px] font-medium text-white">{{ hoverTooltip().label }}</span>
+      <div class="flex items-center gap-2 px-2.5 py-1 rounded-full bg-neutral-950/70 backdrop-blur-md border border-white/10 shadow-lg asset-error-emphasis whitespace-nowrap">
+        <span class="annotation-dot annotation-dot-small"></span>
+        <div class="landmark-tooltip-copy">
+          <span class="text-[11px] font-medium asset-error-emphasis">{{ hoverTooltip().label }}</span>
           @if (hoverTooltip().category) {
-            <span class="text-[10px] text-neutral-400 font-normal border-l border-white/10 pl-1.5">{{ hoverTooltip().category }}</span>
+            <span class="landmark-tooltip-category">{{ hoverTooltip().category }}</span>
           }
         </div>
       </div>
