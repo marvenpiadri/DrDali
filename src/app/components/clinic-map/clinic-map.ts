@@ -46,7 +46,16 @@ export class ClinicMapComponent implements OnDestroy {
     if (!isPlatformBrowser(this.platformId) || !this.mapElement) return;
 
     try {
-      const L = await import('leaflet');
+      const leafletModule = await import('leaflet');
+      const L = (
+        typeof leafletModule.map === 'function'
+          ? leafletModule
+          : leafletModule.default
+      ) as typeof import('leaflet');
+
+      if (typeof L?.map !== 'function') {
+        throw new Error('Leaflet failed to expose its map API.');
+      }
 
       if (this.map) {
         (this.map as { remove: () => void }).remove();
