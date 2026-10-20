@@ -16,3 +16,51 @@
 .logo-wrapper:hover .logo-img {
   transform: scale(1.03);
 }
+
+
+.logo-text-img {
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-fallback-copy {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  letter-spacing: -.025em;
+  line-height: 1.05;
+  text-align: start;
+  user-select: none;
+}
+
+.logo-fallback-label {
+  color: var(--text-primary);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.logo-fallback-brand {
+  color: #059669;
+  font-size: .75rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.dark .logo-fallback-brand { color: #34d399; }
+
+.logo-fallback-subtitle {
+  margin-top: .125rem;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .logo-fallback-label { font-size: 11px; }
+  .logo-fallback-brand { font-size: .875rem; }
+}
