@@ -1,6 +1,6 @@
 :host { display:block; position:relative; z-index:50; }
 .site-header { position:sticky; top:0; z-index:50; width:100%; color:var(--text-primary); background:var(--header-bg); border-bottom:1px solid var(--border-subtle); backdrop-filter:saturate(145%) blur(18px); -webkit-backdrop-filter:saturate(145%) blur(18px); }
-.header-inner { width:min(100% - 2.5rem,80rem); min-height:5.1rem; margin-inline:auto; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; }
+.header-inner { min-height:5.1rem; display:flex; align-items:center; justify-content:space-between; gap:1.25rem; }
 .brand-link { display:inline-flex; align-items:center; flex:0 0 auto; border-radius:.75rem; }
 .brand-link:focus-visible,.nav-link:focus-visible,.header-icon-button:focus-visible,.language-trigger:focus-visible,.mobile-nav-link:focus-visible,.language-option:focus-visible { outline:2px solid var(--focus-ring); outline-offset:3px; }
 .primary-nav { display:flex; align-items:center; gap:.25rem; margin-inline:auto; }
