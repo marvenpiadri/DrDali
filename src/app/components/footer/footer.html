@@ -1,24 +1,24 @@
 <footer class="footer-root">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="footer-inner">
     
     <!-- Top Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-14 border-b border-neutral-800">
+    <div class="footer-grid">
       
       <!-- Brand & Philosophy -->
-      <div class="lg:col-span-2 space-y-4">
+      <div class="footer-brand">
         <app-logo [size]="48" [showText]="true" [showSubtitle]="true" />
-        <p class="text-xs sm:text-sm text-neutral-400 max-w-sm leading-relaxed mt-4">
+        <p class="footer-description">
           {{ 'footerTaglineDesc' | translate }}
         </p>
-        <div class="pt-2 text-xs font-mono text-neutral-400 tracking-wider uppercase">
+        <div class="footer-note">
           {{ 'footerKnowledgeChain' | translate }}
         </div>
       </div>
 
       <!-- Atlas Links -->
-      <div class="space-y-3">
-        <h4 class="text-xs font-bold uppercase tracking-widest text-white">{{ 'atlasTitle' | translate }}</h4>
-        <ul class="space-y-2 text-xs text-neutral-400">
+      <div class="footer-column">
+        <h4 class="footer-column-title">{{ 'atlasTitle' | translate }}</h4>
+        <ul class="footer-links">
           <li><a routerLink="/atlas" class="footer-link">{{ 'atlasTitle' | translate }}</a></li>
           <li><a routerLink="/atlas" [queryParams]="{tab: 'conditions'}" class="footer-link">{{ 'conditions' | translate }}</a></li>
           <li><a routerLink="/atlas" [queryParams]="{tab: 'anatomy'}" class="footer-link">{{ 'anatomy' | translate }}</a></li>
@@ -28,9 +28,9 @@
       </div>
 
       <!-- Tools Links -->
-      <div class="space-y-3">
-        <h4 class="text-xs font-bold uppercase tracking-widest text-white">{{ 'navTools' | translate }}</h4>
-        <ul class="space-y-2 text-xs text-neutral-400">
+      <div class="footer-column">
+        <h4 class="footer-column-title">{{ 'navTools' | translate }}</h4>
+        <ul class="footer-links">
           <li><a routerLink="/tools" fragment="tooth-explorer" class="footer-link">{{ 'toolOdontogram' | translate }}</a></li>
           <li><a routerLink="/tools" fragment="symptom-explorer" class="footer-link">{{ 'toolSymptomChecker' | translate }}</a></li>
           <li><a routerLink="/tools" fragment="emergency-guide" class="footer-link">{{ 'toolEmergencyGuide' | translate }}</a></li>
@@ -40,30 +40,30 @@
       </div>
 
       <!-- Practice & Contact -->
-      <div class="space-y-3">
-        <h4 class="text-xs font-bold uppercase tracking-widest text-white">{{ 'navClinic' | translate }}</h4>
-        <div class="text-xs text-neutral-400 space-y-2">
-          <p class="font-medium text-neutral-200">{{ 'brandName' | translate }}</p>
+      <div class="footer-column">
+        <h4 class="footer-column-title">{{ 'navClinic' | translate }}</h4>
+        <div class="footer-contact">
+          <p class="footer-clinic-name">{{ 'brandName' | translate }}</p>
           <p>{{ 'clinicAddress' | translate }}</p>
           <p>{{ 'openingHours' | translate }}</p>
-          <div class="pt-2"><a routerLink="/contact" class="footer-link">{{ 'navContact' | translate }}</a></div>
+          <div class="footer-contact-action"><a routerLink="/contact" class="footer-link">{{ 'navContact' | translate }}</a></div>
         </div>
       </div>
 
     </div>
 
     <!-- Medical Disclaimer -->
-    <div class="py-8 border-b border-neutral-900 text-[11px] text-neutral-400 leading-relaxed max-w-4xl">
+    <div class="footer-disclaimer">
       <p>
-        <strong class="text-neutral-400 font-semibold uppercase tracking-wider">{{ 'footerMedicalDisclaimerTitle' | translate }}</strong> 
+        <strong class="footer-disclaimer-title">{{ 'footerMedicalDisclaimerTitle' | translate }}</strong> 
         {{ 'footerMedicalDisclaimer' | translate }}
       </p>
     </div>
 
     <!-- Bottom Copyright -->
-    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400">
+    <div class="footer-bottom">
       <p>{{ 'copyrightText' | translate }}</p>
-      <div class="flex items-center gap-6">
+      <div class="footer-bottom-links">
         <a routerLink="/clinic" class="footer-link">{{ 'footerLegalNotice' | translate }}</a>
         <a routerLink="/contact" class="footer-link">{{ 'footerAccessMap' | translate }}</a>
       </div>
