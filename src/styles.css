@@ -661,3 +661,111 @@ img, video, canvas, svg { max-width: 100%; }
   .ui-category-card:hover .ui-category-icon { transform: none; }
 }
 
+/* Reusable emergency contact banner */
+.ui-emergency-section {
+  color: #fff;
+  background: var(--app-bg);
+}
+
+.ui-emergency-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.5rem;
+}
+
+.ui-emergency-copy {
+  display: grid;
+  gap: .5rem;
+  max-width: 42rem;
+  text-align: start;
+}
+
+.ui-emergency-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  gap: .5rem;
+  padding: .25rem .75rem;
+  color: #fb7185;
+  background: rgb(244 63 94 / 20%);
+  border: 1px solid rgb(244 63 94 / 30%);
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.ui-emergency-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.25;
+}
+
+.ui-emergency-description {
+  margin: 0;
+  color: #a3a3a3;
+  font-size: .875rem;
+  line-height: 1.625;
+}
+
+.ui-emergency-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+
+.ui-emergency-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  color: #fff;
+  background: #059669;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 10%);
+  cursor: pointer;
+  transition: background-color .18s ease, transform .18s ease;
+}
+
+.ui-emergency-whatsapp:hover { background: #047857; }
+.ui-emergency-whatsapp:active { transform: scale(.95); }
+
+.ui-emergency-contact {
+  color: #d4d4d4;
+  border: 1px solid #404040;
+}
+
+.ui-emergency-contact:hover {
+  color: #fff;
+  border-color: #525252;
+}
+
+@media (min-width: 640px) {
+  .ui-emergency-card { padding: 3rem; }
+  .ui-emergency-title { font-size: 1.875rem; }
+  .ui-emergency-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ui-emergency-card { flex-direction: row; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-emergency-whatsapp { transition: none; }
+  .ui-emergency-whatsapp:active { transform: none; }
+}
+
