@@ -100,6 +100,7 @@ export class Dental3DEngineService {
   private bufferCache: Record<string, ArrayBuffer> = {};
   private manifestPromise: Promise<DentalManifest> | null = null;
   private initPromise: Promise<void> | null = null;
+  private initializationVersion = 0;
   private modelLoadVersion = 0;
 
   // Materials Cache
@@ -126,13 +127,16 @@ export class Dental3DEngineService {
       return;
     }
 
-    this.initPromise = (async () => {
-      if (this.scene) {
-        this.dispose();
-      }
+    if (this.scene) {
+      this.dispose();
+    }
 
+    // Invalidate earlier initialization attempts before awaiting the controls import.
+    const initializationVersion = ++this.initializationVersion;
+    this.initPromise = (async () => {
       // Dynamically import OrbitControls
       const {OrbitControls} = await import('three/examples/jsm/controls/OrbitControls.js');
+      if (initializationVersion !== this.initializationVersion) return;
 
       this.scene = new THREE.Scene();
       this.scene.background = null; // Transparent scene to display rich CSS radial studio gradient
@@ -2151,7 +2155,9 @@ export class Dental3DEngineService {
   dispose(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    // Invalidate pending asset loads so they cannot mutate a disposed scene.
+    // Invalidate pending initialization and asset loads so they cannot revive a disposed scene.
+    this.initializationVersion += 1;
+    this.initPromise = null;
     this.modelLoadVersion += 1;
 
     if (this.animationFrameId !== null) {
