@@ -290,79 +290,79 @@
   </section>
 
   <!-- SECTION 5: Encyclopedia Categories Grid -->
-  <section class="ui-section home-learning-section border-b transition-colors">
+  <section class="ui-section home-learning-section">
     <div class="ui-container">
       
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-        <div class="text-left rtl:text-right">
-          <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block mb-2">
+      <div class="ui-learning-header">
+        <div class="ui-learning-heading-copy">
+          <span class="ui-section-eyebrow">
             {{ 'brandName' | translate }}
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-950 dark:text-white">
+          <h2 class="ui-heading-title">
             {{ 'homeDomainsTitle' | translate }}
           </h2>
         </div>
         <a 
           routerLink="/atlas/inside-a-tooth" 
-          class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-950 dark:text-white hover:underline">
+          class="ui-learning-cta">
           <span>{{ 'guided3DExperience' | translate }}</span>
-          <span class="material-icons text-base rtl:rotate-180">arrow_forward</span>
+          <span class="material-icons ui-learning-arrow">arrow_forward</span>
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="ui-category-grid">
         
         <a 
           routerLink="/atlas/tooth-decay"
-          class="category-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/70 hover:shadow-lg transition-all group">
-          <div class="w-12 h-12 rounded-2xl bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+          class="category-card ui-category-card">
+          <div class="ui-category-icon">
             <span class="material-icons">biotech</span>
           </div>
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white mb-2 group-hover:text-emerald-500 transition-colors">
+          <h3 class="ui-category-title">
             {{ 'conditions' | translate }}
           </h3>
-          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p class="ui-category-description">
             {{ 'cardDescCaries' | translate }}
           </p>
-          <div class="mt-5 text-xs font-bold text-neutral-950 dark:text-white flex items-center gap-1.5">
+          <div class="ui-category-footer">
             <span>{{ 'exploreIn3D' | translate }}</span>
-            <span class="material-icons text-sm group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+            <span class="material-icons ui-category-arrow">arrow_forward</span>
           </div>
         </a>
 
         <a 
           routerLink="/atlas/dental-implant"
-          class="category-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/70 hover:shadow-lg transition-all group">
-          <div class="w-12 h-12 rounded-2xl bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+          class="category-card ui-category-card">
+          <div class="ui-category-icon">
             <span class="material-icons">medical_services</span>
           </div>
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white mb-2 group-hover:text-emerald-500 transition-colors">
+          <h3 class="ui-category-title">
             {{ 'treatments' | translate }}
           </h3>
-          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p class="ui-category-description">
             {{ 'cardDescImplant' | translate }}
           </p>
-          <div class="mt-5 text-xs font-bold text-neutral-950 dark:text-white flex items-center gap-1.5">
+          <div class="ui-category-footer">
             <span>{{ 'exploreIn3D' | translate }}</span>
-            <span class="material-icons text-sm group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+            <span class="material-icons ui-category-arrow">arrow_forward</span>
           </div>
         </a>
 
         <a 
           routerLink="/atlas/inside-a-tooth"
-          class="category-card p-7 rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900/70 hover:shadow-lg transition-all group">
-          <div class="w-12 h-12 rounded-2xl bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+          class="category-card ui-category-card">
+          <div class="ui-category-icon">
             <span class="material-icons">layers</span>
           </div>
-          <h3 class="text-lg font-bold text-neutral-950 dark:text-white mb-2 group-hover:text-emerald-500 transition-colors">
+          <h3 class="ui-category-title">
             {{ 'anatomy' | translate }}
           </h3>
-          <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          <p class="ui-category-description">
             {{ 'interactive3DSubtitle' | translate }}
           </p>
-          <div class="mt-5 text-xs font-bold text-neutral-950 dark:text-white flex items-center gap-1.5">
+          <div class="ui-category-footer">
             <span>{{ 'exploreIn3D' | translate }}</span>
-            <span class="material-icons text-sm group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+            <span class="material-icons ui-category-arrow">arrow_forward</span>
           </div>
         </a>
 
