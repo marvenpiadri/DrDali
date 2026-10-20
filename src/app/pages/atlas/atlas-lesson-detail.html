@@ -24,7 +24,7 @@
         <div class="flex items-center gap-2">
           
           <!-- Guided vs Explore Switcher -->
-          <div class="inline-flex p-0.5 rounded-xl bg-neutral-950 border border-neutral-800 text-xs">
+          <div class="inline-flex p-0.5 rounded-xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-xs">
             <button 
               type="button" 
               (click)="setLearningMode('guided')"
@@ -467,7 +467,7 @@
                   <h3 class="text-sm font-bold text-neutral-950 dark:text-white">Odontogramme 2D Synchronisé</h3>
                 </div>
                 <!-- Numbering System Switcher -->
-                <div class="inline-flex p-0.5 rounded-lg bg-neutral-950 border border-neutral-800 text-[11px]">
+                <div class="inline-flex p-0.5 rounded-lg bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-[11px]">
                   <button 
                     type="button" 
                     (click)="setNumberingSystem('fdi')"
@@ -540,7 +540,7 @@
 
               <!-- Selected Tooth Insight Card -->
               @if (selectedTooth(); as activeTooth) {
-                <div class="mt-4 p-3 rounded-xl bg-neutral-950 border border-neutral-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div class="mt-4 p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                   <div>
                     <div class="flex items-center gap-2">
                       <span class="font-bold text-neutral-950 dark:text-white text-sm">{{ activeTooth.nameFr }}</span>
@@ -609,7 +609,7 @@
                 <div class="space-y-2.5 mb-6 text-xs">
                   
                   <!-- What is happening -->
-                  <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
+                  <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
                     <div class="font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1.5 mb-1">
                       <span class="material-icons text-blue-400 text-sm">visibility</span>
                       <span>Ce qui se passe :</span>
@@ -620,7 +620,7 @@
                   </div>
 
                   <!-- Why it matters -->
-                  <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
+                  <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
                     <div class="font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1.5 mb-1">
                       <span class="material-icons text-amber-400 text-sm">health_and_safety</span>
                       <span>Importance clinique :</span>
@@ -632,7 +632,7 @@
 
                   <!-- Patient sensation (if available) -->
                   @if (stage.patientSensation) {
-                    <div class="p-3 rounded-xl bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
+                    <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-200 dark:border-neutral-800">
                       <div class="font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1.5 mb-1">
                         <span class="material-icons text-purple-400 text-sm">sentiment_satisfied</span>
                         <span>Sensation du patient :</span>
@@ -710,7 +710,7 @@
               </div>
 
               @if (selectedStructure(); as activeStr) {
-                <div class="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-xs">
+                <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-xs">
                   <h4 class="font-bold text-neutral-950 dark:text-white text-sm mb-1">{{ activeStr.name }}</h4>
                   <p class="text-neutral-700 dark:text-neutral-300 text-xs mb-2">{{ activeStr.description }}</p>
                   <div class="space-y-1 text-[11px] text-neutral-600 dark:text-neutral-400">
@@ -768,7 +768,7 @@
 
           <div class="space-y-6 mb-8">
             @for (q of currentLesson.quizQuestions; track q.id; let idx = $index) {
-              <div class="p-4 rounded-xl bg-neutral-950 border border-neutral-800">
+              <div class="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800">
                 <h4 class="text-sm font-bold text-neutral-950 dark:text-white mb-3 flex items-start gap-2">
                   <span class="w-5 h-5 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center text-xs font-mono shrink-0">
                     {{ idx + 1 }}
