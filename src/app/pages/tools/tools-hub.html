@@ -479,22 +479,22 @@
         <!-- Quadrants Map: 4 Quadrants visual -->
         <div class="grid grid-cols-2 gap-3 max-w-xs w-full">
           <div 
-            [class]="currentQuadrantIndex() === 0 ? 'bg-emerald-600 text-white font-bold ring-2 ring-emerald-400' : 'bg-neutral-900 text-neutral-400 border border-neutral-800'"
+            [class]="currentQuadrantIndex() === 0 ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold ring-2 ring-neutral-400' : 'bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800'"
             class="p-3 rounded-xl text-center text-xs transition-colors">
             1. Supérieur Droit
           </div>
           <div 
-            [class]="currentQuadrantIndex() === 1 ? 'bg-emerald-600 text-white font-bold ring-2 ring-emerald-400' : 'bg-neutral-900 text-neutral-400 border border-neutral-800'"
+            [class]="currentQuadrantIndex() === 1 ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold ring-2 ring-neutral-400' : 'bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800'"
             class="p-3 rounded-xl text-center text-xs transition-colors">
             2. Supérieur Gauche
           </div>
           <div 
-            [class]="currentQuadrantIndex() === 2 ? 'bg-emerald-600 text-white font-bold ring-2 ring-emerald-400' : 'bg-neutral-900 text-neutral-400 border border-neutral-800'"
+            [class]="currentQuadrantIndex() === 2 ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold ring-2 ring-neutral-400' : 'bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800'"
             class="p-3 rounded-xl text-center text-xs transition-colors">
             3. Inférieur Gauche
           </div>
           <div 
-            [class]="currentQuadrantIndex() === 3 ? 'bg-emerald-600 text-white font-bold ring-2 ring-emerald-400' : 'bg-neutral-900 text-neutral-400 border border-neutral-800'"
+            [class]="currentQuadrantIndex() === 3 ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold ring-2 ring-neutral-400' : 'bg-neutral-100 text-neutral-700 border border-neutral-300 dark:bg-neutral-900 dark:text-neutral-400 dark:border-neutral-800'"
             class="p-3 rounded-xl text-center text-xs transition-colors">
             4. Inférieur Droit
           </div>
