@@ -13,22 +13,22 @@
       <img 
         [src]="logoTextSrc()" 
         alt="Centre Dentaire Dali" 
-        class="logo-text-img h-[40px] w-auto object-contain"
+        class="logo-text-img"
         [style.height.px]="textHeight()"
         (error)="onTextError()" />
     } @else {
-      <div class="flex flex-col tracking-tight leading-[1.05] text-left select-none">
-        <span class="text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-neutral-900 dark:text-white">
+      <div class="logo-fallback-copy">
+        <span class="logo-fallback-label">
           CENTRE
         </span>
-        <span class="text-[10px] sm:text-[11px] font-black tracking-[0.22em] uppercase text-neutral-900 dark:text-white">
+        <span class="logo-fallback-label">
           DENTAIRE
         </span>
-        <span class="text-xs sm:text-sm font-black tracking-[0.16em] uppercase text-emerald-600 dark:text-emerald-400">
+        <span class="logo-fallback-brand">
           DALI
         </span>
         @if (showSubtitle()) {
-          <span class="text-[9px] tracking-widest uppercase text-neutral-500 dark:text-neutral-400 mt-0.5 font-medium">
+          <span class="logo-fallback-subtitle">
             {{ i18n.translate('brandTagline') }}
           </span>
         }
