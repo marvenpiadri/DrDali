@@ -1,20 +1,20 @@
-<main class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left rtl:text-right">
+<main class="tools-hub-page">
   
   <!-- Breadcrumb & Header -->
-  <div class="mb-8">
-    <nav class="flex items-center gap-2 text-xs text-neutral-500 mb-3" aria-label="Breadcrumbs">
-      <a routerLink="/" class="hover:text-neutral-900 dark:hover:text-white">{{ 'navHome' | translate }}</a>
-      <span class="rtl:rotate-180">/</span>
-      <span class="text-neutral-900 dark:text-white font-medium">{{ 'navTools' | translate }}</span>
+  <div class="tools-hub-intro">
+    <nav class="tools-hub-breadcrumbs" aria-label="Breadcrumbs">
+      <a routerLink="/" class="tools-hub-breadcrumb-link">{{ 'navHome' | translate }}</a>
+      <span class="tools-hub-breadcrumb-separator" aria-hidden="true">/</span>
+      <span class="tools-hub-breadcrumb-current">{{ 'navTools' | translate }}</span>
     </nav>
 
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-neutral-200 dark:border-neutral-800">
+    <div class="tools-hub-heading-row">
       <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-neutral-500 block mb-2">{{ 'toolsLabTitle' | translate }}</span>
-        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-950 dark:text-white">
+        <span class="tools-hub-eyebrow">{{ 'toolsLabTitle' | translate }}</span>
+        <h1 class="tools-hub-title">
           {{ 'navTools' | translate }}
         </h1>
-        <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 mt-2 max-w-2xl leading-relaxed">
+        <p class="tools-hub-subtitle">
           {{ 'toolsHubSubtitle' | translate }}
         </p>
       </div>
@@ -24,24 +24,25 @@
         [href]="clinic.generateWhatsAppUrl('general_inquiry')" 
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-5 py-3 bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all self-start md:self-auto">
-        <span class="material-icons text-emerald-400 dark:text-emerald-600 text-base">chat</span>
+        class="tools-hub-question-link">
+        <span class="material-icons tools-hub-question-icon" aria-hidden="true">chat</span>
         <span>{{ 'clinicalQuestionCta' | translate }}</span>
       </a>
     </div>
   </div>
 
   <!-- Tool Selector Tabs (High-Precision Pill Navigation) -->
-  <div class="flex items-center gap-2 overflow-x-auto pb-4 no-scrollbar border-b border-neutral-200 dark:border-neutral-800 mb-8">
+  <div class="tools-hub-tabs" role="tablist" aria-label="Outils dentaires">
     @for (tab of toolTabs(); track tab.id) {
       <button 
         type="button" 
         (click)="activeTab.set(tab.id)"
-        [class]="activeTab() === tab.id 
-          ? 'bg-neutral-950 text-white dark:bg-white dark:text-neutral-950 font-bold shadow-sm' 
-          : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 font-medium'"
-        class="px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 transition-all shrink-0 cursor-pointer">
-        <span class="material-icons text-sm">{{ tab.icon }}</span>
+        [class.is-active]="activeTab() === tab.id"
+        [class.is-inactive]="activeTab() !== tab.id"
+        [attr.aria-selected]="activeTab() === tab.id"
+        role="tab"
+        class="tools-hub-tab">
+        <span class="material-icons tools-hub-tab-icon" aria-hidden="true">{{ tab.icon }}</span>
         <span>{{ tab.label }}</span>
       </button>
     }
