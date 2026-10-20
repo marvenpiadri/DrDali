@@ -137,7 +137,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' vestibular surface'" class="odontogram-surface" />
 
                 <!-- Lingual / Palatal (Bottom) -->
                 <path 
@@ -145,7 +147,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' lingual surface'" class="odontogram-surface" />
 
                 <!-- Mesial (Inward, right for Q1) -->
                 <path 
@@ -153,7 +157,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' mesial surface'" class="odontogram-surface" />
 
                 <!-- Distal (Outward, left for Q1) -->
                 <path 
@@ -161,7 +167,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' distal surface'" class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <path 
@@ -169,7 +177,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' occlusal surface'" class="odontogram-surface" />
 
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
@@ -236,7 +246,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' vestibular surface'" class="odontogram-surface" />
 
                 <!-- Lingual / Palatal (Bottom) -->
                 <path 
@@ -244,7 +256,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' lingual surface'" class="odontogram-surface" />
 
                 <!-- Mesial (Inward, left for Q2) -->
                 <path 
@@ -252,7 +266,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' mesial surface'" class="odontogram-surface" />
 
                 <!-- Distal (Outward, right for Q2) -->
                 <path 
@@ -260,7 +276,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' distal surface'" class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <path 
@@ -268,7 +286,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' occlusal surface'" class="odontogram-surface" />
 
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
@@ -352,7 +372,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' lingual surface'" class="odontogram-surface" />
 
                 <!-- Vestibular (Bottom for lower) -->
                 <path 
@@ -360,7 +382,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' vestibular surface'" class="odontogram-surface" />
 
                 <!-- Mesial (Inward, right for Q4) -->
                 <path 
@@ -368,7 +392,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' mesial surface'" class="odontogram-surface" />
 
                 <!-- Distal (Outward, left for Q4) -->
                 <path 
@@ -376,7 +402,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' distal surface'" class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <path 
@@ -384,7 +412,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' occlusal surface'" class="odontogram-surface" />
 
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
@@ -451,7 +481,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.lingual)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'lingual')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'lingual')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' lingual surface'" class="odontogram-surface" />
 
                 <!-- Vestibular (Bottom for lower) -->
                 <path 
@@ -459,7 +491,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.vestibular)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'vestibular')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' vestibular surface'" class="odontogram-surface" />
 
                 <!-- Mesial (Inward, left for Q3) -->
                 <path 
@@ -467,7 +501,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.mesial)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'mesial')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'mesial')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' mesial surface'" class="odontogram-surface" />
 
                 <!-- Distal (Outward, right for Q3) -->
                 <path 
@@ -475,7 +511,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.distal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'distal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'distal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' distal surface'" class="odontogram-surface" />
 
                 <!-- Center Occlusal -->
                 <path 
@@ -483,7 +521,9 @@
                   [attr.fill]="getSurfaceColor(tooth.surfaces.occlusal)"
                   stroke="#64748b" stroke-opacity=".48" stroke-width=".85"
                   (click)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
-                  class="odontogram-surface" />
+                  (keydown.enter)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  (keydown.space)="onSurfaceClick($event, tooth.fdi, 'occlusal')"
+                  role="button" tabindex="0" [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ' occlusal surface'" class="odontogram-surface" />
 
               </g>
                 <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
