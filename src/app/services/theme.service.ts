@@ -41,10 +41,11 @@ export class ThemeService {
 
   private applyTheme(dark: boolean) {
     const root = document.documentElement;
-    if (dark) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+
+    // Keep the root classes in sync with the CSS theme tokens. The light palette
+    // is scoped to :root.light / .light, so removing .dark alone leaves dark tokens active.
+    root.classList.toggle('dark', dark);
+    root.classList.toggle('light', !dark);
+    root.style.colorScheme = dark ? 'dark' : 'light';
   }
 }
