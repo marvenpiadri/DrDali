@@ -623,11 +623,26 @@ export class Dental3DEngineService {
     // Models contain nested Groups, so dispose every geometry before detaching
     // the hierarchy. Materials are cached separately and intentionally retained.
     const geometries = new Set<THREE.BufferGeometry>();
+    const cachedMaterials = new Set(Object.values(this.materials));
+    const ownedMaterials = new Set<THREE.Material>();
     this.modelGroup.traverse((node) => {
       const mesh = node as THREE.Mesh;
-      if (mesh.isMesh && mesh.geometry) geometries.add(mesh.geometry);
+      if (!mesh.isMesh) return;
+      if (mesh.geometry) geometries.add(mesh.geometry);
+
+      const meshMaterials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      meshMaterials.forEach((material) => {
+        if (!cachedMaterials.has(material)) ownedMaterials.add(material);
+      });
     });
     geometries.forEach((geometry) => geometry.dispose());
+    ownedMaterials.forEach((material) => {
+      // Procedural stages may create one-off materials with their own textures.
+      Object.values(material).forEach((value) => {
+        if (value instanceof THREE.Texture) value.dispose();
+      });
+      material.dispose();
+    });
 
     this.modelGroup.clear();
     this.modelGroup.name = '';
