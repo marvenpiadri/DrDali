@@ -105,12 +105,13 @@
           <span>{{ 'quadrantLeftUpper' | translate }}</span>
         </div>
 
-        <div class="grid grid-cols-16 gap-1 pt-2">
+        <div class="odontogram-arch-scroll"><div class="grid grid-cols-16 gap-1 pt-2 odontogram-arch-grid">
           <!-- Q1: 18 -> 11 -->
           @for (tooth of upperRightTeeth(); track tooth.fdi) {
             <button 
               type="button"
               class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ', ' + tooth.overallCondition"
               [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
               [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
               [class.border-emerald-500]="selectedFdi() === tooth.fdi"
@@ -209,6 +210,7 @@
             <button 
               type="button"
               class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ', ' + tooth.overallCondition"
               [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
               [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
               [class.border-emerald-500]="selectedFdi() === tooth.fdi"
@@ -302,6 +304,7 @@
             </button>
           }
         </div>
+        </div>
       </div>
 
       <!-- MIDLINE DIVISION -->
@@ -316,12 +319,13 @@
 
       <!-- LOWER ARCH: Quadrant 4 (Right) | Quadrant 3 (Left) -->
       <div class="space-y-1">
-        <div class="grid grid-cols-16 gap-1 pb-2">
+        <div class="odontogram-arch-scroll"><div class="grid grid-cols-16 gap-1 pb-2 odontogram-arch-grid">
           <!-- Q4: 48 -> 41 -->
           @for (tooth of lowerRightTeeth(); track tooth.fdi) {
             <button 
               type="button"
               class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ', ' + tooth.overallCondition"
               [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
               [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
               [class.border-emerald-500]="selectedFdi() === tooth.fdi"
@@ -420,6 +424,7 @@
             <button 
               type="button"
               class="tooth-cell flex flex-col items-center p-1.5 rounded-xl transition-all cursor-pointer border text-left"
+              [attr.aria-label]="'Tooth ' + getToothNumber(tooth) + ', ' + tooth.overallCondition"
               [class.bg-emerald-50]="selectedFdi() === tooth.fdi"
               [class.dark:bg-emerald-950/40]="selectedFdi() === tooth.fdi"
               [class.border-emerald-500]="selectedFdi() === tooth.fdi"
@@ -518,6 +523,7 @@
           <span>{{ 'quadrantRightLower' | translate }}</span>
           <span class="text-neutral-500 font-mono text-xs">{{ 'lowerArchTitle' | translate }}</span>
           <span>{{ 'quadrantLeftLower' | translate }}</span>
+        </div>
         </div>
       </div>
 
