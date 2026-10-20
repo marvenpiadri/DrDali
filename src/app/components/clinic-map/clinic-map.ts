@@ -6,7 +6,6 @@ import {
   ViewChild,
   afterNextRender,
   inject,
-  signal,
 } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
