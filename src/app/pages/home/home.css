@@ -13,7 +13,7 @@
 .home-hero-actions .btn-primary {
   min-height: 3.25rem;
   padding-inline: 1.35rem;
-  color: #102018;
+  color: var(--text-primary);
   background: var(--accent-strong);
   box-shadow: none;
 }
@@ -259,3 +259,17 @@
 @media (min-width: 1024px) {
   .home-model-frame { height: 43.75rem; }
 }
+
+
+/* The hero used to force white typography even when the page switched to light mode. */
+:host-context(.light) .home-hero { color: var(--text-primary); }
+:host-context(.light) .home-hero-badge {
+  color: var(--text-secondary);
+  background: var(--surface-raised);
+  border-color: var(--border-subtle);
+}
+:host-context(.light) .home-hero-title,
+:host-context(.light) .home-hero-stat-value { color: var(--text-primary); }
+:host-context(.light) .home-hero-description,
+:host-context(.light) .home-hero-stat-label { color: var(--text-secondary); }
+:host-context(.light) .home-hero-stats { border-top-color: var(--border-subtle); }
