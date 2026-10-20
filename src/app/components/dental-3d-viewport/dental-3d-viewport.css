@@ -11,7 +11,8 @@
   height: 100%;
 }
 
-.canvas-host {\n  cursor: grab;
+.canvas-host {
+  cursor: grab;
   position: absolute;
   inset: 0;
   width: 100%;
