@@ -1,6 +1,6 @@
 <div class="slider-container">
   <div class="doctor-slider-toolbar">
-    <span class="doctor-slider-count">Praticien {{ currentIndex() + 1 }} sur {{ doctors.length }}</span>
+    <span class="doctor-slider-count">Praticien {{ currentIndex() + 1 }} / {{ doctors.length }}</span>
     <div class="doctor-slider-navigation">
       <button type="button" (click)="prevSlide()" class="nav-button nav-button-secondary" aria-label="Praticien précédent">
         <span class="material-icons" aria-hidden="true">arrow_back</span>
@@ -11,48 +11,54 @@
     </div>
   </div>
 
-  <div class="doctor-slider-surface ui-card">
+  <div class="doctor-slider-surface">
     <div class="slide-wrapper" [style.transform]="'translateX(' + (i18n.isRtl() ? '' : '-') + (currentIndex() * 100) + '%)'">
-      @for (doc of doctors; track doc.id; let i = $index) {
+      @for (doc of doctors; track doc.id) {
         <article class="slide-card">
           <div class="doctor-slide-grid">
-            <div class="doctor-profile-column">
-              <div class="doctor-avatar-wrap">
-                <div class="doctor-avatar">{{ doc.initials }}</div>
-                <span class="doctor-status">En exercice</span>
+            <div class="doctor-portrait-column">
+              <div class="doctor-portrait" [class.has-portrait]="!!doc.portraitUrl">
+                @if (doc.portraitUrl) {
+                  <img class="doctor-portrait-image" [src]="doc.portraitUrl" [alt]="doc.name" loading="lazy" />
+                } @else {
+                  <div class="doctor-portrait-placeholder" aria-label="Portrait à ajouter">
+                    <span class="portrait-monogram">{{ doc.initials }}</span>
+                    <span class="portrait-rule"></span>
+                    <span class="portrait-caption">CENTRE DENTAIRE<br />DALI · TÉMARA</span>
+                  </div>
+                }
+                <span class="doctor-status"><span class="status-dot"></span> En exercice</span>
               </div>
-
-              <div class="doctor-identity">
-                <h3 class="doctor-name">{{ doc.name }}</h3>
-                <p class="doctor-title">{{ getTitle(doc) }}</p>
-                <p class="doctor-location">Centre Dentaire Dali • Témara</p>
+              <div class="doctor-portrait-meta">
+                <span class="portrait-index">0{{ currentIndex() + 1 }} <span>/ 0{{ doctors.length }}</span></span>
+                <span class="portrait-location"><span class="material-icons" aria-hidden="true">location_on</span> Témara, Maroc</span>
               </div>
-
-              <div class="doctor-languages">
-                <span class="material-icons" aria-hidden="true">language</span>
-                <span>{{ doc.languages.join(' • ') }}</span>
-              </div>
-
-              <blockquote class="doctor-quote">“{{ getQuote(doc) }}”</blockquote>
-
-              <button type="button" (click)="bookWithDoctor(doc)" class="doctor-book-button">
-                <app-whatsapp-icon [size]="16" extraClass="doctor-whatsapp-icon" />
-                <span>{{ i18n.translate('btnBookDoctor') }} : {{ doc.name }}</span>
-              </button>
             </div>
 
-            <div class="doctor-details-column">
+            <div class="doctor-information-card">
+              <div class="doctor-information-topline">
+                <span class="doctor-kicker">L'équipe médicale</span>
+                <span class="doctor-languages"><span class="material-icons" aria-hidden="true">language</span>{{ doc.languages.join(' · ') }}</span>
+              </div>
+
+              <header class="doctor-identity">
+                <h3 class="doctor-name">{{ doc.name }}</h3>
+                <p class="doctor-title">{{ getTitle(doc) }}</p>
+              </header>
+
               <section class="doctor-detail-section">
-                <h4 class="doctor-section-label">Parcours & Démarche Thérapeutique</h4>
+                <h4 class="doctor-section-label">Approche & parcours</h4>
                 <p class="doctor-bio">{{ getBio(doc) }}</p>
               </section>
 
+              <blockquote class="doctor-quote">“{{ getQuote(doc) }}”</blockquote>
+
               <section class="doctor-detail-section doctor-specialties-section">
-                <h4 class="doctor-section-label">Domaines d'Intervention Principaux</h4>
+                <h4 class="doctor-section-label">Domaines d'intervention</h4>
                 <div class="doctor-specialties-grid">
                   @for (spec of getSpecialties(doc); track spec) {
                     <div class="doctor-specialty">
-                      <span class="material-icons" aria-hidden="true">check_circle</span>
+                      <span class="material-icons" aria-hidden="true">arrow_outward</span>
                       <span>{{ spec }}</span>
                     </div>
                   }
@@ -60,7 +66,7 @@
               </section>
 
               <section class="doctor-detail-section doctor-diplomas-section">
-                <h4 class="doctor-section-label">Diplômes & Cursus Hospitalo-Universitaire</h4>
+                <h4 class="doctor-section-label">Diplômes & formations</h4>
                 <div class="doctor-diplomas">
                   @for (dip of getDiplomas(doc); track dip) {
                     <div class="doctor-diploma">
@@ -70,6 +76,15 @@
                   }
                 </div>
               </section>
+
+              <div class="doctor-card-footer">
+                <p class="doctor-footer-note">Un accompagnement adapté à chaque patient.</p>
+                <button type="button" (click)="bookWithDoctor(doc)" class="doctor-book-button">
+                  <app-whatsapp-icon [size]="16" extraClass="doctor-whatsapp-icon" />
+                  <span>{{ i18n.translate('btnBookDoctor') }}</span>
+                  <span class="material-icons doctor-book-arrow" aria-hidden="true">arrow_forward</span>
+                </button>
+              </div>
             </div>
           </div>
         </article>
