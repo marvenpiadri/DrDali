@@ -1,30 +1,8 @@
-<div class="min-h-screen flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 transition-colors duration-200">
-  
-  <!-- Global Reading Progress Bar -->
+<div class="app-shell">
   <app-reading-progress-bar />
-
-  <!-- Global Header -->
-  <app-header 
-    (openSearch)="openSearchModal()" 
-    (openWhatsApp)="openWhatsAppModal()" />
-
-  <!-- Main View Container -->
-  <div class="flex-1 w-full">
-    <router-outlet />
-  </div>
-
-  <!-- Global Footer -->
-  <app-footer 
-    (openWhatsApp)="openWhatsAppModal()" />
-  <!-- Modals -->
-  @if (isWhatsAppModalOpen()) {
-    <app-whatsapp-modal 
-      (closeModal)="closeWhatsAppModal()" />
-  }
-
-  @if (isSearchModalOpen()) {
-    <app-search-modal 
-      (closeModal)="closeSearchModal()" />
-  }
-
+  <app-header (openSearch)="openSearchModal()" (openWhatsApp)="openWhatsAppModal()" />
+  <main class="app-main"><router-outlet /></main>
+  <app-footer (openWhatsApp)="openWhatsAppModal()" />
+  @if (isWhatsAppModalOpen()) { <app-whatsapp-modal (closeModal)="closeWhatsAppModal()" /> }
+  @if (isSearchModalOpen()) { <app-search-modal (closeModal)="closeSearchModal()" /> }
 </div>
