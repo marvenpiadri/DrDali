@@ -15,3 +15,9 @@
 
 .odontogram-surface { cursor:pointer; transition:opacity .16s ease,fill .16s ease; }
 .odontogram-surface:hover { opacity:.82; }
+
+/* Keep the full dental arch readable on narrow screens. */
+.odontogram-arch-scroll { width:100%; min-width:0; overflow-x:auto; overscroll-behavior-inline:contain; scrollbar-width:thin; scrollbar-color:var(--border-subtle) transparent; }
+.odontogram-arch-grid { min-width:672px; }
+.odontogram-arch-scroll:focus-within { outline-offset:2px; }
+@media(max-width:720px) { .odontogram-arch-grid { min-width:604px; } }
