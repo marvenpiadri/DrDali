@@ -41,34 +41,7 @@
   <div class="map-frame-wrapper">
     <div #mapElement class="clinic-map-canvas"></div>
 
-    <div class="clinic-map-layer-control" role="group" aria-label="Style de la carte">
-      <button
-        type="button"
-        (click)="setMapLayer('dark')"
-        class="clinic-map-layer-button"
-        [class.is-active]="currentLayer() === 'dark'"
-        [attr.aria-pressed]="currentLayer() === 'dark'">
-        Sombre
-      </button>
 
-      <button
-        type="button"
-        (click)="setMapLayer('light')"
-        class="clinic-map-layer-button"
-        [class.is-active]="currentLayer() === 'light'"
-        [attr.aria-pressed]="currentLayer() === 'light'">
-        Clair
-      </button>
-
-      <button
-        type="button"
-        (click)="setMapLayer('satellite')"
-        class="clinic-map-layer-button"
-        [class.is-active]="currentLayer() === 'satellite'"
-        [attr.aria-pressed]="currentLayer() === 'satellite'">
-        Satellite
-      </button>
-    </div>
   </div>
 
   <footer class="clinic-map-footer">
