@@ -16,7 +16,7 @@ export class ThemeService {
       if (savedTheme) {
         this.isDark.set(savedTheme === 'dark');
       } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ?? false;
         this.isDark.set(prefersDark);
       }
       this.applyTheme(this.isDark());
