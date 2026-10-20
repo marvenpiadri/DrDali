@@ -22,7 +22,7 @@
     <!-- Search input -->
     <div class="mt-6 max-w-md">
       <div class="relative flex items-center">
-        <span class="material-icons absolute left-3.5 rtl:left-auto rtl:right-3.5 text-neutral-400 text-lg">search</span>
+        <span class="material-icons absolute left-3.5 rtl:left-auto rtl:right-3.5 text-neutral-600 dark:text-neutral-400 text-lg">search</span>
         <input 
           type="text" 
           [value]="searchQuery()" 
@@ -69,7 +69,7 @@
                 {{ term.term }}
               </h3>
               @if (term.phonetic) {
-                <span class="text-xs font-mono text-neutral-400">/{{ term.phonetic }}/</span>
+                <span class="text-xs font-mono text-neutral-600 dark:text-neutral-400">/{{ term.phonetic }}/</span>
               }
             </div>
 
@@ -112,7 +112,7 @@
 
   @if (filteredTerms().length === 0) {
     <div class="py-16 text-center text-neutral-500">
-      <span class="material-icons text-4xl text-neutral-300 dark:text-neutral-700">search_off</span>
+      <span class="material-icons text-4xl text-neutral-700 dark:text-neutral-300 dark:text-neutral-700">search_off</span>
       <p class="text-sm font-medium mt-2">{{ 'noResultsFound' | translate }}</p>
     </div>
   }
