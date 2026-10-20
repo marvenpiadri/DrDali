@@ -1,12 +1,12 @@
 :host {
   display: block;
   min-width: 0;
-  color: var(--text-primary, #171a18);
+  color: var(--text-primary, #111111);
 }
 
 .clinic-map-card {
   overflow: hidden;
-  border: 1px solid var(--border-subtle, #e1e5e1);
+  border: 1px solid var(--border-subtle, #e5e5e5);
   border-radius: 1rem;
   background: var(--surface, #fff);
   box-shadow: 0 16px 38px rgb(0 0 0 / 9%);
@@ -19,7 +19,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-subtle, #e1e5e1);
+  border-bottom: 1px solid var(--border-subtle, #e5e5e5);
 }
 
 .clinic-map-heading { min-width: 0; }
@@ -36,11 +36,11 @@
   line-height: 1.3;
   text-transform: uppercase;
 }
-.clinic-status-open { background: #dcfce7; color: #166534; }
-.clinic-status-closed { background: #fef3c7; color: #92400e; }
+.clinic-status-open { background: #f3f4f6; color: #374151; }
+.clinic-status-closed { background: #e5e7eb; color: #374151; }
 .clinic-status-dot { width: .45rem; height: .45rem; flex: 0 0 auto; border-radius: 50%; background: currentColor; }
-.clinic-status-open .clinic-status-dot { background: #10b981; animation: clinic-status-pulse 1.8s ease-in-out infinite; }
-.clinic-map-title { margin: 0; color: var(--text-primary, #171a18); font-size: clamp(1.125rem, 2vw, 1.25rem); font-weight: 800; letter-spacing: -.02em; }
+.clinic-status-open .clinic-status-dot { background: #737373; animation: clinic-status-pulse 1.8s ease-in-out infinite; }
+.clinic-map-title { margin: 0; color: var(--text-primary, #111111); font-size: clamp(1.125rem, 2vw, 1.25rem); font-weight: 800; letter-spacing: -.02em; }
 
 .clinic-map-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
 .clinic-map-action {
@@ -60,21 +60,21 @@
 .clinic-map-action:hover { transform: translateY(-1px); }
 .clinic-map-action:focus-visible,
 .clinic-map-layer-button:focus-visible {
-  outline: 3px solid var(--focus-ring, #10b981);
+  outline: 3px solid var(--focus-ring, #737373);
   outline-offset: 3px;
 }
-.clinic-map-action-primary { background: #171a18; color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 8%); }
-.clinic-map-action-primary:hover { background: #303632; }
-.clinic-map-action-secondary { border-color: var(--border-strong, #d1d5d2); background: var(--surface-muted, #f1f3f1); color: var(--text-primary, #171a18); }
-.clinic-map-action-secondary:hover { background: var(--surface-hover, #e5e8e5); }
-.clinic-map-action-icon { color: #34d399; font-size: 1.1rem; }
+.clinic-map-action-primary { background: #111111; color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / 8%); }
+.clinic-map-action-primary:hover { background: #292929; }
+.clinic-map-action-secondary { border-color: var(--border-strong, #d4d4d4); background: var(--surface-muted, #f5f5f5); color: var(--text-primary, #111111); }
+.clinic-map-action-secondary:hover { background: var(--surface-hover, #e5e5e5); }
+.clinic-map-action-icon { color: #d4d4d4; font-size: 1.1rem; }
 .clinic-map-action-secondary .clinic-map-action-icon { color: inherit; }
 
 .map-frame-wrapper {
   position: relative;
   min-height: 30rem;
   overflow: hidden;
-  background: #0b0d0c;
+  background: #111111;
 }
 .clinic-map-canvas { position: relative; z-index: 0; width: 100%; height: 100%; min-height: 30rem; }
 .clinic-map-layer-control {
@@ -96,7 +96,7 @@
   border: 0;
   border-radius: .65rem;
   background: transparent;
-  color: #525b54;
+  color: #525252;
   font-size: .6875rem;
   font-weight: 750;
   letter-spacing: .035em;
@@ -105,8 +105,8 @@
   cursor: pointer;
   transition: background-color 140ms ease, color 140ms ease;
 }
-.clinic-map-layer-button:hover { background: #eef1ee; color: #171a18; }
-.clinic-map-layer-button.is-active { background: #171a18; color: #fff; }
+.clinic-map-layer-button:hover { background: #e5e5e5; color: #111111; }
+.clinic-map-layer-button.is-active { background: #111111; color: #fff; }
 
 .clinic-map-footer {
   display: flex;
@@ -115,40 +115,41 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  border-top: 1px solid var(--border-subtle, #e1e5e1);
-  background: var(--surface-muted, #f7f8f7);
-  color: var(--text-secondary, #626b64);
+  border-top: 1px solid var(--border-subtle, #e5e5e5);
+  background: var(--surface-muted, #f5f5f5);
+  color: var(--text-secondary, #525252);
   font-size: .75rem;
 }
 .clinic-map-features { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .clinic-map-feature { display: inline-flex; align-items: center; gap: .4rem; }
 .clinic-map-feature-icon { font-size: 1rem; }
-.clinic-map-parking-icon { color: #10b981; }
-.clinic-map-access-icon { color: #0ea5e9; }
-.clinic-map-address { color: var(--text-tertiary, #7a837c); }
+.clinic-map-parking-icon { color: #737373; }
+.clinic-map-access-icon { color: #737373; }
+.clinic-map-address { color: var(--text-tertiary, #737373); }
 
 :host-context(.dark) .clinic-map-card {
-  --surface: #171c18;
-  --surface-muted: #101411;
-  --surface-hover: #303832;
-  --text-primary: #f5f7f5;
-  --text-secondary: #c2cbc4;
-  --text-tertiary: #9aa69d;
-  --border-subtle: #303832;
-  --border-strong: #4a554c;
+  --surface: #171717;
+  --surface-muted: #111111;
+  --surface-hover: #333333;
+  --text-primary: #fafafa;
+  --text-secondary: #d4d4d4;
+  --text-tertiary: #a3a3a3;
+  --border-subtle: #333333;
+  --border-strong: #525252;
 }
-:host-context(.dark) .clinic-status-open { background: #052e22; color: #a7f3d0; }
-:host-context(.dark) .clinic-status-closed { background: #422006; color: #fde68a; }
-:host-context(.dark) .clinic-map-action-primary { background: #f5f7f5; color: #171a18; }
-:host-context(.dark) .clinic-map-action-primary:hover { background: #e5e8e5; }
-:host-context(.dark) .clinic-map-action-secondary { background: #252c27; color: #f5f7f5; }
-:host-context(.dark) .clinic-map-action-secondary:hover { background: #303832; }
-:host-context(.dark) .clinic-map-layer-control { border-color: #343c36; background: rgb(23 28 24 / 95%); }
-:host-context(.dark) .clinic-map-layer-button { color: #c2cbc4; }
-:host-context(.dark) .clinic-map-layer-button:hover { background: #303832; color: #f5f7f5; }
-:host-context(.dark) .clinic-map-layer-button.is-active { background: #f5f7f5; color: #171a18; }
+:host-context(.dark) .clinic-status-open { background: #262626; color: #f5f5f5; }
+:host-context(.dark) .clinic-status-closed { background: #262626; color: #f5f5f5; }
+:host-context(.dark) .clinic-map-action-primary { background: #fafafa; color: #111111; }
+:host-context(.dark) .clinic-map-action-primary:hover { background: #e5e5e5; }
+:host-context(.dark) .clinic-map-action-secondary { background: #262626; color: #fafafa; }
+:host-context(.dark) .clinic-map-action-secondary:hover { background: #333333; }
+:host-context(.dark) .clinic-map-layer-control { border-color: #404040; background: rgb(23 28 24 / 95%); }
+:host-context(.dark) .clinic-map-layer-button { color: #d4d4d4; }
+:host-context(.dark) .clinic-map-layer-button:hover { background: #333333; color: #fafafa; }
+:host-context(.dark) .clinic-map-layer-button.is-active { background: #fafafa; color: #111111; }
 
-.leaflet-container { background-color: #0b0d0c !important; font-family: inherit; }
+.leaflet-container { background-color: #111111 !important; font-family: inherit; }
+.leaflet-tile { filter: grayscale(1) contrast(1.04); }
 .custom-clinical-marker { border: 0; background: transparent; }
 .leaflet-popup-content-wrapper {
   padding: 4px;
@@ -157,10 +158,10 @@
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 30%), 0 10px 10px -5px rgb(0 0 0 / 4%);
 }
 .leaflet-popup-tip { background: #fff; }
-:host-context(.dark) .leaflet-popup-content-wrapper { border: 1px solid #343c36; background: #171c18; color: #f5f7f5; }
-:host-context(.dark) .leaflet-popup-tip { background: #171c18; }
-.leaflet-container .leaflet-control-attribution { background: rgb(15 23 42 / 75%) !important; color: #c2cbc4 !important; font-size: .625rem; }
-.leaflet-container .leaflet-control-attribution a { color: #7dd3fc !important; }
+:host-context(.dark) .leaflet-popup-content-wrapper { border: 1px solid #404040; background: #171717; color: #fafafa; }
+:host-context(.dark) .leaflet-popup-tip { background: #171717; }
+.leaflet-container .leaflet-control-attribution { background: rgb(15 23 42 / 75%) !important; color: #d4d4d4 !important; font-size: .625rem; }
+.leaflet-container .leaflet-control-attribution a { color: #e5e5e5 !important; }
 
 @keyframes clinic-status-pulse {
   50% { opacity: .55; }
