@@ -6,3 +6,6 @@
 .tooth-cell:hover .odontogram-tooth-outline,.tooth-cell:focus-visible .odontogram-tooth-outline { stroke:#6ebd86; stroke-width:1.8; }
 .tooth-cell:focus-visible { outline:2px solid var(--focus-ring); outline-offset:2px; }
 @media(max-width:720px) { .odontogram-wrapper { padding:.8rem; } .odontogram-tooth-svg { width:1.7rem; height:1.7rem; } .tooth-cell { min-width:34px; } .grid-cols-16 { grid-template-columns:repeat(16,minmax(34px,1fr)); } }
+
+.odontogram-surface { cursor:pointer; transition:opacity .16s ease,fill .16s ease; }
+.odontogram-surface:hover { opacity:.82; }
