@@ -110,6 +110,7 @@ export class Dental3DEngineService {
   private visibilityHandler: (() => void) | null = null;
   private hoverFrameId: number | null = null;
   private latestPointerEvent: PointerEvent | null = null;
+  private interactionCleanup: (() => void) | null = null;
   private raycaster = new THREE.Raycaster();
   private mouse = new THREE.Vector2();
 
@@ -1725,10 +1726,18 @@ export class Dental3DEngineService {
       }
     };
 
+    this.interactionCleanup?.();
     container.addEventListener('pointerdown', onPointerDown);
     container.addEventListener('pointermove', onPointerMove);
     container.addEventListener('pointerleave', onPointerLeave);
     container.addEventListener('pointerup', onPointerUp);
+
+    this.interactionCleanup = () => {
+      container.removeEventListener('pointerdown', onPointerDown);
+      container.removeEventListener('pointermove', onPointerMove);
+      container.removeEventListener('pointerleave', onPointerLeave);
+      container.removeEventListener('pointerup', onPointerUp);
+    };
   }
 
   private startAnimationLoop(): void {
@@ -2157,6 +2166,8 @@ export class Dental3DEngineService {
       this.hoverFrameId = null;
     }
     this.latestPointerEvent = null;
+    this.interactionCleanup?.();
+    this.interactionCleanup = null;
     if (this.visibilityHandler) {
       document.removeEventListener('visibilitychange', this.visibilityHandler);
       this.visibilityHandler = null;
