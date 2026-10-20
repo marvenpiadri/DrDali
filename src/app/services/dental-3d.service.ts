@@ -2,7 +2,6 @@ import {Injectable, inject, signal, computed} from '@angular/core';
 import {Dental3DEngineService, AnnotationPoint} from './dental-3d-engine.service';
 import {Dental3DDataService} from './dental-3d-data.service';
 import {Dental3DModelType, ViewingMode, ToothNumberingSystem, Dental3DToolConfig} from '../models/dental-3d.model';
-import {Dental3DAsset} from '../models/dental-3d-asset.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,7 @@ export class Dental3DService {
   readonly currentStage = signal<number>(0);
   readonly annotations = signal<AnnotationPoint[]>([]);
   readonly selectedFdi = signal<number | null>(null);
-  readonly missingAsset = signal<Dental3DAsset | null>(null);
+  readonly missingAsset = signal<{name: string} | null>(null);
 
   readonly hoverTooltip = computed(() => this.engine.hoverTooltip());
 
@@ -44,7 +43,7 @@ export class Dental3DService {
     this.engine.onAssetLoadError = (err) => {
       console.error('Dental 3D asset load error:', err);
       const currentType = this.currentModelType();
-      this.missingAsset.set(currentType ? this.dataService.getToolById(currentType) ?? null : null);
+      this.missingAsset.set(currentType ? { name: this.dataService.getToolById(currentType)?.title ?? currentType } : null);
       this.isLoading.set(false);
     };
 
