@@ -2,51 +2,48 @@
 
   <!-- TOP APP BAR / HEADER -->
   <header class="full-mouth-header">
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-xl bg-neutral-800 border border-neutral-700/80 flex items-center justify-center text-neutral-200 shadow-inner">
-        <mat-icon class="text-base">view_in_ar</mat-icon>
+    <div class="full-mouth-brand">
+      <div class="full-mouth-brand-mark">
+        <mat-icon class="full-mouth-brand-icon">view_in_ar</mat-icon>
       </div>
       <div>
-        <div class="flex items-center gap-2">
-          <h2 class="text-sm md:text-base font-semibold text-neutral-100 tracking-tight">Full-Mouth Dentition Explorer</h2>
-          <span class="px-2 py-0.5 text-[10px] font-mono font-medium bg-neutral-800 text-neutral-300 border border-neutral-700 rounded-full">ToothFairy3 CBCT</span>
+        <div class="full-mouth-brand-heading">
+          <h2 class="full-mouth-title">Full-Mouth Dentition Explorer</h2>
+          <span class="full-mouth-source-badge">ToothFairy3 CBCT</span>
         </div>
-        <p class="text-xs text-neutral-400 hidden sm:block">Anatomie Tridimensionnelle des 32 Dents & Rapports Radiculo-Nerveux</p>
+        <p class="full-mouth-description">Anatomie Tridimensionnelle des 32 Dents & Rapports Radiculo-Nerveux</p>
       </div>
     </div>
 
     <!-- Right Quick Actions -->
-    <div class="flex items-center gap-2">
+    <div class="full-mouth-actions">
       <button
         type="button"
         (click)="toggleFdiLabels()"
-        [class.bg-neutral-100]="showFdiLabels()"
-        [class.text-neutral-950]="showFdiLabels()"
-        [class.font-semibold]="showFdiLabels()"
-        [class.bg-neutral-800]="!showFdiLabels()"
-        [class.text-neutral-300]="!showFdiLabels()"
-        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border border-neutral-700/60 transition hover:text-white cursor-pointer"
+        [class.is-active]="showFdiLabels()"
+        [class.is-inactive]="!showFdiLabels()"
+        class="full-mouth-action"
         title="Afficher/Masquer les repères FDI">
-        <mat-icon class="text-sm">tag</mat-icon>
+        <mat-icon class="full-mouth-action-icon">tag</mat-icon>
         <span class="hidden sm:inline">Repères FDI</span>
       </button>
 
       <button
         type="button"
         (click)="toggleAccessibleList()"
-        [class.bg-neutral-700]="isAccessibleListOpen()"
-        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-neutral-800 border border-neutral-700/60 text-neutral-300 hover:bg-neutral-700 transition cursor-pointer"
+        [class.is-active]="isAccessibleListOpen()"
+        class="full-mouth-action"
         title="Répertoire des 32 dents">
-        <mat-icon class="text-sm">format_list_bulleted</mat-icon>
+        <mat-icon class="full-mouth-action-icon">format_list_bulleted</mat-icon>
         <span class="hidden sm:inline">Répertoire</span>
       </button>
 
       <button
         type="button"
         (click)="resetView()"
-        class="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg bg-neutral-800 border border-neutral-700/60 text-neutral-300 hover:bg-neutral-700 transition cursor-pointer"
+        class="full-mouth-action"
         title="Réinitialiser le cadrage">
-        <mat-icon class="text-sm">restart_alt</mat-icon>
+        <mat-icon class="full-mouth-action-icon">restart_alt</mat-icon>
         <span class="hidden sm:inline">Réinitialiser</span>
       </button>
     </div>
