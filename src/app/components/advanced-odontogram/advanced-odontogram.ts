@@ -36,7 +36,6 @@ export interface OdontogramToothState {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [UpperCasePipe, TranslatePipe],
   templateUrl: './advanced-odontogram.html',
-  styleUrl: './advanced-odontogram.css',
 })
 export class AdvancedOdontogramComponent {
   // Inputs
