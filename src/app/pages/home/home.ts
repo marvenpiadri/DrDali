@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, output, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ClinicService} from '../../services/clinic.service';
 import {EncyclopediaService} from '../../services/encyclopedia.service';
@@ -32,7 +32,10 @@ export class HomeComponent {
   encyclopedia = inject(EncyclopediaService);
   i18n = inject(TranslationService);
 
-  openWhatsApp = output<void>();
+  openWhatsAppGeneral() {
+    const url = this.clinic.generateWhatsAppUrl('first_visit');
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 
   openWhatsAppWithDoctor(event: {doctorName: string}) {
     const url = this.clinic.generateWhatsAppUrl('first_visit', '', '', event.doctorName);
