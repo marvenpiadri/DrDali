@@ -149,8 +149,8 @@
 
 
 /* Keep map chrome aligned with the active application theme. */
-:host-context(.light) .map-frame-wrapper { background: var(--app-bg, #fafafa); }
-:host-context(.light) .leaflet-container { background-color: var(--app-bg, #fafafa) !important; }
+:host-context(.light) .map-frame-wrapper { background: #090909; }
+:host-context(.light) .leaflet-container { background-color: #090909 !important; }
 :host-context(.light) .leaflet-popup-content-wrapper,
 :host-context(.light) .leaflet-popup-tip {
   background: var(--surface-elevated, #ffffff);
