@@ -1065,14 +1065,11 @@ img, video, canvas, svg { max-width: 100%; }
 
 /* Third-party map tiles are inserted by Leaflet at runtime, so enforce their
    monochrome treatment globally rather than relying on component encapsulation. */
-:root.dark .light .leaflet-container .leaflet-tile {
-  filter: grayscale(1) contrast(.96) !important;
-}
-.dark .leaflet-container .leaflet-tile {
-  filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
-}
 :root.light .leaflet-container .leaflet-tile {
   filter: grayscale(1) contrast(.95) !important;
+}
+:root.dark .leaflet-container .leaflet-tile {
+  filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9) !important;
 }
 
 /* Shared sections follow the active theme instead of locking the page to dark mode. */
