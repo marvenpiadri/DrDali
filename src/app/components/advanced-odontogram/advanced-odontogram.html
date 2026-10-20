@@ -127,7 +127,9 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+                <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
+                <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Outer Vestibular (Top) -->
                 <polygon 
                   points="2,2 38,2 30,10 10,10" 
@@ -173,6 +175,8 @@
                   <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
                   <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
                 }
+              </g>
+                <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
               </svg>
 
               <!-- Condition Badge Dot -->
@@ -204,7 +208,9 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+                <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
+                <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Outer Vestibular (Top) -->
                 <polygon 
                   points="2,2 38,2 30,10 10,10" 
@@ -250,6 +256,8 @@
                   <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
                   <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
                 }
+              </g>
+                <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
               </svg>
 
               <!-- Condition Badge Dot -->
@@ -297,7 +305,9 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+                <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
+                <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Lingual (Top for lower) -->
                 <polygon 
                   points="2,2 38,2 30,10 10,10" 
@@ -343,6 +353,8 @@
                   <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
                   <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
                 }
+              </g>
+                <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
               </svg>
 
               <!-- Tooth Number -->
@@ -374,7 +386,9 @@
               </span>
 
               <!-- SVG Multi-Surface Tooth Graphic -->
-              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1">
+              <svg viewBox="0 0 40 40" class="w-8 h-8 my-1 odontogram-tooth-svg" role="img" [attr.aria-label]="'Tooth ' + getToothNumber(tooth)">
+                <defs><clipPath [attr.id]="'tooth-clip-' + tooth.fdi"><path [attr.d]="getToothSilhouette(tooth.type)" /></clipPath></defs>
+                <g [attr.clip-path]="'url(#tooth-clip-' + tooth.fdi + ')'">
                 <!-- Lingual (Top for lower) -->
                 <polygon 
                   points="2,2 38,2 30,10 10,10" 
@@ -420,6 +434,8 @@
                   <line x1="2" y1="2" x2="38" y2="38" stroke="#ef4444" stroke-width="2.5" />
                   <line x1="38" y1="2" x2="2" y2="38" stroke="#ef4444" stroke-width="2.5" />
                 }
+              </g>
+                <path [attr.d]="getToothSilhouette(tooth.type)" class="odontogram-tooth-outline" fill="none" stroke="#94a3b8" stroke-width="1.35" stroke-linejoin="round" pointer-events="none" />
               </svg>
 
               <!-- Tooth Number -->
