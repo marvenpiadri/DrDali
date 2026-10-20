@@ -123,6 +123,6 @@
   .loader-glow,
   .circle-spinner,
   .star-light-icon {
-    animation-duration: 8s;
+    animation: none;
   }
 }
