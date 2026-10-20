@@ -56,6 +56,20 @@ export class AdvancedOdontogramComponent {
   readonly activeQuadrantFilter = signal<'all' | 1 | 2 | 3 | 4>('all');
   readonly hoverTooth = signal<OdontogramToothState | null>(null);
 
+  readonly getToothSilhouette = (type: OdontogramToothState['type']): string => {
+    switch (type) {
+      case 'incisor':
+        return 'M 13 3 C 8 3 5 7 5 13 L 6 27 C 6 33 11 37 20 37 C 29 37 34 33 34 27 L 35 13 C 35 7 31 3 27 3 C 24 3 23 6 20 6 C 17 6 16 3 13 3 Z';
+      case 'canine':
+        return 'M 14 2 C 9 4 6 9 6 15 C 6 24 11 31 18 38 C 19 39 21 39 22 38 C 29 31 34 24 34 15 C 34 9 31 4 26 2 C 23 1 22 5 20 7 C 18 5 17 1 14 2 Z';
+      case 'premolar':
+        return 'M 13 3 C 8 3 4 8 5 14 L 7 27 C 8 33 12 37 20 37 C 28 37 32 33 33 27 L 35 14 C 36 8 32 3 27 3 C 24 3 23 7 20 7 C 17 7 16 3 13 3 Z';
+      case 'molar':
+      default:
+        return 'M 12 3 C 8 2 4 6 4 12 L 3 23 C 3 29 7 34 12 36 C 15 37 17 34 20 34 C 23 34 25 37 28 36 C 33 34 37 29 37 23 L 36 12 C 36 6 32 2 28 3 C 25 3 23 7 20 7 C 17 7 15 3 12 3 Z';
+    }
+  };
+
   // Available condition tools for clinical marking
   readonly conditionTools: {id: ToothCondition; label: string; color: string; bgClass: string; icon: string}[] = [
     { id: 'healthy', label: 'Sain (Intact)', color: '#10b981', bgClass: 'bg-emerald-500', icon: 'check_circle' },
