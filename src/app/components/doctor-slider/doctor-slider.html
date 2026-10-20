@@ -3,7 +3,6 @@
   <!-- Header Controls with Prev/Next and Indicators -->
   <div class="flex items-center justify-between gap-4 mb-6">
     <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
       <span class="text-xs font-bold uppercase tracking-wider text-neutral-600 dark:text-neutral-400">
         Praticien {{ currentIndex() + 1 }} sur {{ doctors.length }}
       </span>
@@ -30,7 +29,7 @@
   </div>
 
   <!-- Slides Track -->
-  <div class="overflow-hidden rounded-3xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl">
+  <div class="doctor-slider-surface ui-card overflow-hidden rounded-3xl">
     <div 
       class="slide-wrapper"
       [style.transform]="'translateX(' + (i18n.isRtl() ? '' : '-') + (currentIndex() * 100) + '%)'">
