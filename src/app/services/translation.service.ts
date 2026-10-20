@@ -1818,6 +1818,27 @@ export class TranslationService {
       ar: 'يُنصح بتنظيف وتلميع الأسنان الطبي كل 6 أشهر (أو سنة كحد أقصى) لإزالة الجير تحت اللثة، والوقاية من أمراض اللثة والحفاظ على صحة النسيج الداعم.',
       en: 'Professional scaling and polishing is recommended every 6 months (or annually at most) to remove subgingival tartar, prevent gum disease, and maintain healthy, non-bleeding gums.',
     },
+
+    // Clinic page and map UI
+    clinicEquipmentTitle: { fr: 'Les équipements du plateau technique', ar: 'تجهيزات العيادة', en: 'Clinical equipment' },
+    clinicEquipmentIntro: { fr: "La précision des soins dépend de la qualité des outils diagnostiques et thérapeutiques utilisés.", ar: 'تعتمد دقة العلاج على جودة أدوات التشخيص والعلاج المستخدمة.', en: 'Precise care depends on the quality of diagnostic and treatment tools.' },
+    clinicSterilizationTitle: { fr: 'Stérilisation de norme hospitalière (classe B)', ar: 'تعقيم بمعايير المستشفيات (الفئة B)', en: 'Hospital-grade sterilization (Class B)' },
+    clinicSterilizationDesc: { fr: "Autoclave de classe B avec traçabilité numérique de chaque cycle. Les instruments sont décontaminés, nettoyés aux ultrasons, ensachés et stérilisés avant leur ouverture devant vous.", ar: 'جهاز تعقيم من الفئة B مع تتبع رقمي لكل دورة. تُطهّر الأدوات وتُنظّف بالموجات فوق الصوتية وتُغلّف وتُعقّم قبل فتحها أمامكم.', en: 'Class B autoclave with digital cycle tracking. Instruments are decontaminated, ultrasonically cleaned, pouched and sterilized before being opened in front of you.' },
+    clinicRvgTitle: { fr: 'Radiovisiographie numérique à faible dose', ar: 'التصوير الشعاعي الرقمي بجرعة منخفضة', en: 'Low-dose digital radiography' },
+    clinicRvgDesc: { fr: "Des capteurs numériques haute définition réduisent l’exposition aux rayons X par rapport aux films traditionnels. Les images sont consultées et expliquées sur écran avec le patient.", ar: 'تقلل المستشعرات الرقمية عالية الدقة التعرض للأشعة مقارنة بالأفلام التقليدية، وتُعرض الصور وتُشرح للمريض على الشاشة.', en: 'High-definition digital sensors reduce X-ray exposure compared with traditional film. Images are reviewed and explained on screen with the patient.' },
+    clinicCameraTitle: { fr: 'Caméra intra-orale et visualisation à l’écran', ar: 'كاميرا داخل الفم وعرض على الشاشة', en: 'Intraoral camera and screen viewing' },
+    clinicCameraDesc: { fr: 'Visualisez vos dents et vos gencives à l’écran. Les caries, l’usure et les fissures vous sont montrées avant tout traitement.', ar: 'شاهدوا أسنانكم ولثتكم على الشاشة، مع توضيح التسوس والتآكل والتشققات قبل أي علاج.', en: 'View your teeth and gums on screen. Decay, wear and cracks are shown before treatment.' },
+    clinicOpticsTitle: { fr: 'Aides optiques et grossissement', ar: 'وسائل بصرية وتكبير', en: 'Optical aids and magnification' },
+    clinicOpticsDesc: { fr: 'Les gestes de préparation et de collage sont réalisés sous loupes binoculaires avec éclairage LED coaxial afin de préserver au maximum les tissus dentaires sains.', ar: 'تُجرى خطوات التحضير واللصق باستخدام عدسات مكبرة ثنائية مع إضاءة LED للحفاظ على أنسجة الأسنان السليمة قدر الإمكان.', en: 'Preparation and bonding are performed with binocular magnification and coaxial LED lighting to preserve healthy tooth structure.' },
+    clinicMapOpen: { fr: 'Ouvert actuellement', ar: 'مفتوح الآن', en: 'Open now' },
+    clinicMapClosed: { fr: 'Fermé actuellement (réouverture à 09 h 00)', ar: 'مغلق الآن (يفتح مجدداً الساعة 09:00)', en: 'Closed now (reopens at 9:00 AM)' },
+    clinicMapActionsLabel: { fr: 'Options d’itinéraire', ar: 'خيارات الاتجاهات', en: 'Directions options' },
+    clinicMapGoogleDirections: { fr: 'Itinéraire Google Maps', ar: 'الاتجاهات عبر خرائط Google', en: 'Google Maps directions' },
+    clinicMapParking: { fr: 'Parking gratuit à proximité', ar: 'موقف سيارات مجاني قريب', en: 'Free nearby parking' },
+    clinicMapAccessibility: { fr: 'Accès PMR complet', ar: 'إمكانية وصول كاملة لذوي الحركة المحدودة', en: 'Full wheelchair accessibility' },
+    clinicMapAddress: { fr: 'En face de la pharmacie Hassan II, Témara', ar: 'مقابل صيدلية الحسن الثاني، تمارة', en: 'Opposite Hassan II Pharmacy, Temara' },
+    toolsCompleteArch: { fr: 'Arcade dentaire complète en 3D', ar: 'قوس الأسنان الكامل ثلاثي الأبعاد', en: 'Complete 3D dental arch' },
+    toolsToothLabel: { fr: 'Dent n°{{number}}', ar: 'السن رقم {{number}}', en: 'Tooth #{{number}}' },
   };
 
   constructor() {
