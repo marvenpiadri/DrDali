@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, signal, computed, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal, computed, output, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {ThemeService} from '../../services/theme.service';
 import {TranslationService, Language, TextDirection} from '../../services/translation.service';
