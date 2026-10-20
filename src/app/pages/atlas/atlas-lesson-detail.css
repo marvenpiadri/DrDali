@@ -1,18 +1,18 @@
 .lesson-detail-root {
   min-height: 100vh;
-  color: var(--text-primary);
-  background: var(--app-bg);
+  color: #f5f7f5;
+  background: #0b0d0c;
 }
 
 .lesson-detail-header {
-  border-bottom: 1px solid var(--border-subtle);
-  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border-bottom: 1px solid #29332d;
+  background: rgb(17 21 19 / 94%);
   backdrop-filter: blur(14px);
 }
 
 .lesson-model-frame {
-  border: 1px solid var(--border-subtle);
-  background: var(--surface);
+  border: 1px solid #29332d;
+  background: #111513;
   box-shadow: var(--shadow-card, 0 18px 42px rgb(0 0 0 / .14));
 }
 
