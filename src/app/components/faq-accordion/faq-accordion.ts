@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, computed, signal, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, signal, inject, output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {TranslationService} from '../../services/translation.service';
 import {TranslatePipe} from '../../pipes/translate.pipe';
@@ -23,6 +23,7 @@ export interface FaqItem {
 })
 export class FaqAccordionComponent {
   readonly i18n = inject(TranslationService);
+  readonly openWhatsApp = output<void>();
 
   readonly selectedCategory = signal<FaqCategory>('all');
   readonly searchQuery = signal<string>('');
