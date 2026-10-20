@@ -92,11 +92,6 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/admin/model-inventory/model-inventory').then((m) => m.ModelInventoryComponent),
   },
   {
-    path: 'dr-dali',
-    title: 'Équipe Médicale & Spécialistes | Centre Dentaire Dali',
-    loadComponent: () => import('./pages/doctor/doctor').then((m) => m.DoctorComponent),
-  },
-  {
     path: 'clinic',
     title: 'Le Cabinet & Équipements de Pointe | Centre Dentaire Dali',
     loadComponent: () => import('./pages/clinic/clinic').then((m) => m.ClinicComponent),
