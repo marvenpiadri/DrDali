@@ -71,9 +71,9 @@ export class ClinicMapComponent implements OnDestroy {
         className: 'custom-clinical-marker',
         html: `
           <div class="relative flex items-center justify-center w-10 h-10">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <div class="relative inline-flex rounded-full h-10 w-10 bg-neutral-950 border-2 border-emerald-400 text-white shadow-2xl items-center justify-center font-bold text-xs">
-              <span class="material-icons text-emerald-400 text-lg">local_hospital</span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <div class="relative inline-flex rounded-full h-10 w-10 bg-neutral-950 border-2 border-white text-white shadow-2xl items-center justify-center font-bold text-xs">
+              <span class="material-icons text-white text-lg">local_hospital</span>
             </div>
           </div>
         `,
@@ -88,7 +88,7 @@ export class ClinicMapComponent implements OnDestroy {
         <div style="font-family: sans-serif; padding: 4px; color: #0f172a;">
           <h4 style="font-weight: 700; font-size: 14px; margin: 0 0 4px 0;">Centre Dentaire Dali</h4>
           <p style="font-size: 12px; margin: 0 0 6px 0; color: #475569;">Avenue Hassan II, Témara</p>
-          <span style="display: inline-block; font-size: 11px; font-weight: 600; color: #059669; background: #ecfdf5; padding: 2px 8px; border-radius: 9999px;">
+          <span style="display: inline-block; font-size: 11px; font-weight: 600; color: #374151; background: #f3f4f6; padding: 2px 8px; border-radius: 9999px;">
             Soins & Implantologie
           </span>
         </div>
