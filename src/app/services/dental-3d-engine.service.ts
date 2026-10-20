@@ -573,33 +573,41 @@ export class Dental3DEngineService {
   }
 
   private geometryFor(part: DentalManifestPart, buffers: Record<string, ArrayBuffer>): THREE.BufferGeometry {
-    const bufKey = part.buffer || 'dental';
-    const buffer = buffers[bufKey];
-    if (!buffer) {
-      throw new Error(`Buffer not found: ${bufKey}`);
+    const bufferKey = part.buffer || 'dental';
+    const buffer = buffers[bufferKey];
+    if (!buffer) throw new Error(`Buffer not found: ${bufferKey}`);
+
+    if (!Number.isInteger(part.vertexCount) || part.vertexCount < 3 ||
+        !Number.isInteger(part.indexCount) || part.indexCount < 3 || part.indexCount % 3 !== 0) {
+      throw new Error(`Invalid mesh counts for ${part.id}`);
+    }
+
+    const positionBytes = part.vertexCount * 3 * Float32Array.BYTES_PER_ELEMENT;
+    const normalBytes = positionBytes;
+    const indexBytes = part.indexCount * Uint32Array.BYTES_PER_ELEMENT;
+    const validRange = (offset: number, length: number): boolean =>
+      Number.isInteger(offset) && offset >= 0 && offset % 4 === 0 && offset + length <= buffer.byteLength;
+
+    if (!validRange(part.positions, positionBytes) ||
+        !validRange(part.normals, normalBytes) ||
+        !validRange(part.indices, indexBytes)) {
+      throw new Error(`Mesh data for ${part.id} extends beyond buffer ${bufferKey}`);
+    }
+
+    const positions = new Float32Array(buffer, part.positions, part.vertexCount * 3);
+    const normals = new Float32Array(buffer, part.normals, part.vertexCount * 3);
+    const indices = new Uint32Array(buffer, part.indices, part.indexCount);
+    for (let i = 0; i < positions.length; i++) {
+      if (!Number.isFinite(positions[i])) throw new Error(`Mesh ${part.id} contains a non-finite vertex position`);
+    }
+    for (let i = 0; i < indices.length; i++) {
+      if (indices[i] >= part.vertexCount) throw new Error(`Mesh ${part.id} contains an out-of-range triangle index`);
     }
 
     const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute(
-      'position',
-      new THREE.BufferAttribute(
-        new Float32Array(buffer, part.positions, part.vertexCount * 3),
-        3
-      )
-    );
-    geometry.setAttribute(
-      'normal',
-      new THREE.BufferAttribute(
-        new Float32Array(buffer, part.normals, part.vertexCount * 3),
-        3
-      )
-    );
-    geometry.setIndex(
-      new THREE.BufferAttribute(
-        new Uint32Array(buffer, part.indices, part.indexCount),
-        1
-      )
-    );
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+    geometry.setIndex(new THREE.BufferAttribute(indices, 1));
     geometry.computeBoundingBox();
     geometry.computeBoundingSphere();
     return geometry;
@@ -960,6 +968,8 @@ export class Dental3DEngineService {
       const center = lo.map((low, axis) => (low + hi[axis]) / 2);
       const group = new THREE.Group();
       group.name = `dentition-${source}`;
+      const expectedToothMeshes = parts.filter((part) => part.group === 'tooth').length;
+      let loadedToothMeshes = 0;
 
       for (const part of parts) {
         try {
@@ -1019,9 +1029,14 @@ export class Dental3DEngineService {
             ['id']: part.id,
           };
           group.add(mesh);
-        } catch {
-          // continue
+          if (part.group === 'tooth') loadedToothMeshes++;
+        } catch (error) {
+          console.warn(`Skipping invalid dental mesh "${part.id}" from ${source}:`, error);
         }
+      }
+
+      if (source === 'toothfairy' && expectedToothMeshes > 0 && loadedToothMeshes !== expectedToothMeshes) {
+        throw new Error(`The dentition is incomplete: loaded ${loadedToothMeshes} of ${expectedToothMeshes} tooth meshes. Check the published dental buffers and manifest offsets.`);
       }
 
       // Standing upright face toward reader
