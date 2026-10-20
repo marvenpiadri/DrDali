@@ -368,16 +368,16 @@ export class AdvancedOdontogramComponent {
 
   getConditionBadgeClass(condition: ToothCondition): string {
     switch (condition) {
-      case 'caries': return 'bg-red-100 text-red-700 dark:bg-red-950/80 dark:text-red-400 border-red-200 dark:border-red-900';
-      case 'composite': return 'bg-blue-100 text-blue-700 dark:bg-blue-950/80 dark:text-blue-400 border-blue-200 dark:border-blue-900';
-      case 'crown': return 'bg-amber-100 text-amber-700 dark:bg-amber-950/80 dark:text-amber-400 border-amber-200 dark:border-amber-900';
-      case 'implant': return 'bg-teal-100 text-teal-700 dark:bg-teal-950/80 dark:text-teal-400 border-teal-200 dark:border-teal-900';
-      case 'endo': return 'bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-400 border-purple-200 dark:border-purple-900';
-      case 'veneer': return 'bg-pink-100 text-pink-700 dark:bg-pink-950/80 dark:text-pink-400 border-pink-200 dark:border-pink-900';
-      case 'missing': return 'bg-neutral-200 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 border-neutral-300 dark:border-neutral-700';
+      case 'caries': return 'odg-condition-badge--caries';
+      case 'composite': return 'odg-condition-badge--composite';
+      case 'crown': return 'odg-condition-badge--crown';
+      case 'implant': return 'odg-condition-badge--implant';
+      case 'endo': return 'odg-condition-badge--endo';
+      case 'veneer': return 'odg-condition-badge--veneer';
+      case 'missing': return 'odg-condition-badge--missing';
       case 'healthy':
       default:
-        return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900';
+        return 'odg-condition-badge--healthy';
     }
   }
 }
