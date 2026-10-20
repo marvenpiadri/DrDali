@@ -60,6 +60,10 @@
 }
 
 .home-model-frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
   min-height: 24rem;
   border: 1px solid var(--border-subtle);
   border-radius: 1.25rem;
@@ -260,4 +264,8 @@
   .home-hero-title {
     font-size: 4.5rem;
   }
+}
+
+@media (min-width: 1024px) {
+  .home-model-frame { height: 43.75rem; }
 }
