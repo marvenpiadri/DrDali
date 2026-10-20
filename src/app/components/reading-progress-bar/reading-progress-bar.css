@@ -33,7 +33,7 @@
 
 .reading-progress-fill {
   height: 100%;
-  border-radius: 0 .25rem .25rem 0;
+  border-radius: 0 9999px 9999px 0;
   background: linear-gradient(to right, #10b981, #2dd4bf, #34d399);
   box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
   transition: width .15s ease-out;
