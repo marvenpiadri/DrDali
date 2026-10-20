@@ -183,7 +183,7 @@ canvas:active { cursor:grabbing; }
   #tooth-header-bar > div:last-child { width:100%; justify-content:flex-start; flex-wrap:wrap; }
   #tooth-type-subbar { padding:.65rem .75rem; }
   #viewer-container { height:clamp(24rem, 70svh, 34rem); min-height:24rem; }
-  #viewer-container > div.absolute.bottom-3 { left:.65rem; right:.65rem; bottom:.65rem; justify-content:center; max-width:calc(100% - 1.3rem); overflow-x:auto; }
+  #viewer-container > div.absolute.bottom-3 { left:.65rem; right:.65rem; bottom:.65rem; transform:none; justify-content:center; max-width:calc(100% - 1.3rem); overflow-x:auto; }
   #viewer-container > div.absolute.bottom-3 button { flex:0 0 auto; padding-inline:.55rem; }
   #tooth-structures-panel { padding:.75rem; }
   #tooth-structures-panel > div:first-child { grid-template-columns:repeat(2,minmax(0,1fr)); }
