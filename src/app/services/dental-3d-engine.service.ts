@@ -65,6 +65,7 @@ export class Dental3DEngineService {
   private keyLight!: THREE.DirectionalLight;
   private fillLight!: THREE.DirectionalLight;
   private rimLight!: THREE.DirectionalLight;
+  private groundShadow: THREE.Mesh | null = null;
 
   // State
   activeMode: ViewingMode = 'surface';
@@ -536,6 +537,7 @@ export class Dental3DEngineService {
     const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
     shadowMesh.rotation.x = -Math.PI / 2;
     shadowMesh.position.set(0, -17.5, 0);
+    this.groundShadow = shadowMesh;
     this.scene.add(shadowMesh);
   }
 
@@ -616,14 +618,18 @@ export class Dental3DEngineService {
   clearModel(): void {
     this.clearHoverHighlight();
     if (!this.modelGroup) return;
+
+    // Models contain nested Groups, so dispose every geometry before detaching
+    // the hierarchy. Materials are cached separately and intentionally retained.
+    const geometries = new Set<THREE.BufferGeometry>();
+    this.modelGroup.traverse((node) => {
+      const mesh = node as THREE.Mesh;
+      if (mesh.isMesh && mesh.geometry) geometries.add(mesh.geometry);
+    });
+    geometries.forEach((geometry) => geometry.dispose());
+
+    this.modelGroup.clear();
     this.modelGroup.name = '';
-    while (this.modelGroup.children.length > 0) {
-      const child = this.modelGroup.children[0];
-      this.modelGroup.remove(child);
-      if (child instanceof THREE.Mesh) {
-        if (child.geometry) child.geometry.dispose();
-      }
-    }
   }
 
   /**
@@ -2075,30 +2081,52 @@ export class Dental3DEngineService {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
     }
-
-    if (this.controls) {
-      this.controls.dispose();
+    if (this.cameraAnimId !== null) {
+      cancelAnimationFrame(this.cameraAnimId);
+      this.cameraAnimId = null;
     }
 
+    this.clearHoverHighlight();
+    this.controls?.dispose();
+    this.controls = null;
     this.clearModel();
 
-    Object.values(this.materials).forEach((material) => {
-      material.dispose();
-    });
+    // The studio shadow is attached to the scene rather than modelGroup.
+    // Dispose its geometry, material and canvas texture explicitly.
+    if (this.groundShadow) {
+      this.scene?.remove(this.groundShadow);
+      this.groundShadow.geometry.dispose();
+      const material = this.groundShadow.material;
+      if (Array.isArray(material)) {
+        material.forEach((item) => {
+          if (item instanceof THREE.MeshBasicMaterial) item.map?.dispose();
+          item.dispose();
+        });
+      } else {
+        if (material instanceof THREE.MeshBasicMaterial) material.map?.dispose();
+        material.dispose();
+      }
+      this.groundShadow = null;
+    }
+
+    Object.values(this.materials).forEach((material) => material.dispose());
     this.materials = {};
 
     if (this.renderer) {
+      this.renderer.renderLists.dispose();
       this.renderer.dispose();
+      this.renderer.forceContextLoss();
       const dom = this.renderer.domElement;
-      if (dom && dom.parentNode) {
-        dom.parentNode.removeChild(dom);
-      }
+      if (dom?.parentNode) dom.parentNode.removeChild(dom);
     }
 
+    this.scene?.clear();
     this.onAnnotationsUpdate = undefined;
     this.onToothClicked = undefined;
     this.onStructureClicked = undefined;
     this.onAssetLoaded = undefined;
     this.onAssetLoadError = undefined;
+    this.hoverTooltip.set({ visible: false, label: '', category: '', screenX: 0, screenY: 0 });
+    this.tooltipService.clearTooltip();
   }
 }
