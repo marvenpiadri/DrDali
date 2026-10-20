@@ -2086,6 +2086,9 @@ export class Dental3DEngineService {
   dispose(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
+    // Invalidate pending asset loads so they cannot mutate a disposed scene.
+    this.modelLoadVersion += 1;
+
     if (this.animationFrameId !== null) {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
