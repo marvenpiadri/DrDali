@@ -8,7 +8,6 @@ import {
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { Dental3DViewportComponent } from '../dental-3d-viewport/dental-3d-viewport';
 import { Dental3DDataService } from '../../services/dental-3d-data.service';
 import { ToothArchItem, ViewingMode } from '../../models/dental-3d.model';
@@ -23,7 +22,7 @@ export interface ToothTypePreset {
 @Component({
   selector: 'app-compact-tooth-preview',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, MatIconModule, Dental3DViewportComponent],
+  imports: [RouterLink, Dental3DViewportComponent],
   templateUrl: './compact-tooth-preview.html',
   styleUrl: './compact-tooth-preview.css',
 })
