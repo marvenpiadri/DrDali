@@ -153,15 +153,15 @@
 :host-context(.light) .leaflet-container { background-color: #090909 !important; }
 :host-context(.light) .leaflet-popup-content-wrapper,
 :host-context(.light) .leaflet-popup-tip {
-  background: var(--surface-elevated, #ffffff);
-  color: var(--text-primary, #171717);
+  background: #171717;
+  color: #fafafa;
 }
 :host-context(.light) .leaflet-popup-content-wrapper,
 :host-context(.light) .leaflet-popup-tip { border-color: var(--border-subtle, #e5e5e5); }
 :host-context(.light) .leaflet-container .leaflet-control-attribution {
-  background: rgb(255 255 255 / 88%) !important;
-  color: var(--text-secondary, #404040) !important;
+  background: rgb(23 23 23 / 88%) !important;
+  color: #d4d4d4 !important;
 }
 :host-context(.light) .leaflet-container .leaflet-control-attribution a {
-  color: var(--text-primary, #171717) !important;
+  color: #e5e5e5 !important;
 }
