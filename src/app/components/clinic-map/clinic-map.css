@@ -117,7 +117,7 @@
 :host-context(.dark) .clinic-map-layer-button.is-active { background: #fafafa; color: #111111; }
 
 .leaflet-container { background-color: #111111 !important; font-family: inherit; }
-.leaflet-tile { filter: grayscale(1) contrast(1.08); }
+.leaflet-tile { filter: grayscale(1) invert(1) hue-rotate(180deg) brightness(.82) contrast(.9); }
 .custom-clinical-marker { border: 0; background: transparent; }
 .leaflet-popup-content-wrapper {
   padding: 4px;
