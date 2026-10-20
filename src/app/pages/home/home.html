@@ -1,49 +1,49 @@
 <main class="w-full">
   
   <!-- HERO SECTION: High-Contrast Authority -->
-  <section class="home-hero ui-section text-white overflow-hidden border-b">
+  <section class="home-hero ui-section">
 
-    <div class="relative ui-container">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="home-hero-inner ui-container">
+      <div class="home-hero-layout">
         
         <!-- Left Narrative Column -->
-        <div class="lg:col-span-7 space-y-7 text-left rtl:text-right">
+        <div class="home-hero-copy">
           
-          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/90 text-xs font-semibold uppercase tracking-widest text-neutral-300">
+          <div class="home-hero-badge">
             <span>{{ 'brandName' | translate }} • {{ 'cityLocation' | translate }}</span>
           </div>
 
-          <h1 class="home-hero-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+          <h1 class="home-hero-title">
             {{ 'brandTagline' | translate }}.
           </h1>
 
-          <p class="text-base sm:text-lg text-neutral-400 max-w-2xl font-normal leading-relaxed">
+          <p class="home-hero-description">
             {{ 'heroDescription' | translate }}
           </p>
 
           <!-- CTAs with strictly balanced proportions -->
-          <div class="home-hero-actions pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+          <div class="home-hero-actions">
             <button
               type="button"
               (click)="openWhatsAppGeneral()"
-              class="btn-primary home-contact-primary flex items-center justify-center gap-2 cursor-pointer">
+              class="btn-primary home-contact-primary">
               <app-whatsapp-icon [size]="19" extraClass="text-current" />
               <span>{{ 'btnWhatsApp' | translate }}</span>
             </button>
 
             <a
               routerLink="/clinic"
-              class="btn-secondary home-contact-secondary flex items-center justify-center gap-2">
+              class="btn-secondary home-contact-secondary">
               <span>{{ 'navClinic' | translate }}</span>
-              <span class="material-icons text-base rtl:rotate-180" aria-hidden="true">arrow_forward</span>
+              <span class="material-icons home-hero-arrow" aria-hidden="true">arrow_forward</span>
             </a>
           </div>
 
           <!-- Trust Markers -->
-          <div class="pt-8 border-t border-neutral-800/80 grid grid-cols-3 gap-4 text-left rtl:text-right">
+          <div class="home-hero-stats">
             <div>
-              <div class="text-2xl font-black text-white">2</div>
-              <div class="text-xs text-neutral-400 mt-0.5">{{ 'statPratitioners' | translate }}</div>
+              <div class="home-hero-stat-value">2</div>
+              <div class="home-hero-stat-label">{{ 'statPratitioners' | translate }}</div>
             </div>
             <div>
               <div class="text-2xl font-black text-white">3D</div>
@@ -58,8 +58,8 @@
         </div>
 
         <!-- Right Visual Showcase: Compact 3D Tooth Teaser Preview Card -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-md">
+        <div class="home-hero-visual">
+          <div class="home-hero-preview">
             <app-compact-tooth-preview
               [fdi]="46"
               [title]="'heroToothTitle' | translate"
