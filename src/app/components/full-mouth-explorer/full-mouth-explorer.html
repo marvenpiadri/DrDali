@@ -8,10 +8,10 @@
       </div>
       <div>
         <div class="full-mouth-brand-heading">
-          <h2 class="full-mouth-title">Full-Mouth Dentition Explorer</h2>
+          <h2 class="full-mouth-title">{{ 'fullMouthExplorerTitle' | translate }}</h2>
           <span class="full-mouth-source-badge">ToothFairy3 CBCT</span>
         </div>
-        <p class="full-mouth-description">Anatomie Tridimensionnelle des 32 Dents & Rapports Radiculo-Nerveux</p>
+        <p class="full-mouth-description">{{ 'fullMouthExplorerSubtitle' | translate }}</p>
       </div>
     </div>
 
@@ -23,9 +23,9 @@
         [class.is-active]="showFdiLabels()"
         [class.is-inactive]="!showFdiLabels()"
         class="full-mouth-action"
-        title="Afficher/Masquer les repères FDI">
+        [attr.title]="'fullMouthShowFdi' | translate">
         <mat-icon class="full-mouth-action-icon">tag</mat-icon>
-        <span class="full-mouth-action-label">Repères FDI</span>
+        <span class="full-mouth-action-label">{{ 'fullMouthFdi' | translate }}</span>
       </button>
 
       <button
@@ -33,18 +33,18 @@
         (click)="toggleAccessibleList()"
         [class.is-selected]="isAccessibleListOpen()"
         class="full-mouth-action"
-        title="Répertoire des 32 dents">
+        [attr.title]="'fullMouthDirectory' | translate">
         <mat-icon class="full-mouth-action-icon">format_list_bulleted</mat-icon>
-        <span class="full-mouth-action-label">Répertoire</span>
+        <span class="full-mouth-action-label">{{ 'fullMouthDirectory' | translate }}</span>
       </button>
 
       <button
         type="button"
         (click)="resetView()"
         class="full-mouth-action"
-        title="Réinitialiser le cadrage">
+        [attr.title]="'fullMouthResetView' | translate">
         <mat-icon class="full-mouth-action-icon">restart_alt</mat-icon>
-        <span class="full-mouth-action-label">Réinitialiser</span>
+        <span class="full-mouth-action-label">{{ 'fullMouthReset' | translate }}</span>
       </button>
     </div>
   </header>
@@ -105,7 +105,7 @@
             [class.font-bold]="selectedQuadrant() === 1"
             [class.text-neutral-400]="selectedQuadrant() !== 1"
             class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
-            title="Quadrant 1: Supérieur Droit (11-18)">
+            [attr.title]="'fullMouthQuadrant1' | translate">
             Q1
           </button>
           <button
@@ -116,7 +116,7 @@
             [class.font-bold]="selectedQuadrant() === 2"
             [class.text-neutral-400]="selectedQuadrant() !== 2"
             class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
-            title="Quadrant 2: Supérieur Gauche (21-28)">
+            [attr.title]="'fullMouthQuadrant2' | translate">
             Q2
           </button>
           <button
@@ -127,7 +127,7 @@
             [class.font-bold]="selectedQuadrant() === 3"
             [class.text-neutral-400]="selectedQuadrant() !== 3"
             class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
-            title="Quadrant 3: Inférieur Gauche (31-38)">
+            [attr.title]="'fullMouthQuadrant3' | translate">
             Q3
           </button>
           <button
@@ -138,7 +138,7 @@
             [class.font-bold]="selectedQuadrant() === 4"
             [class.text-neutral-400]="selectedQuadrant() !== 4"
             class="px-2.5 py-1 rounded-lg transition hover:text-white cursor-pointer"
-            title="Quadrant 4: Inférieur Droit (41-48)">
+            [attr.title]="'fullMouthQuadrant4' | translate">
             Q4
           </button>
         </div>
