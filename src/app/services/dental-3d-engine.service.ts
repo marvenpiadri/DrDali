@@ -107,6 +107,9 @@ export class Dental3DEngineService {
 
   // Animation Loop & Raycasting
   private animationFrameId: number | null = null;
+  private visibilityHandler: (() => void) | null = null;
+  private hoverFrameId: number | null = null;
+  private latestPointerEvent: PointerEvent | null = null;
   private raycaster = new THREE.Raycaster();
   private mouse = new THREE.Vector2();
 
@@ -1610,10 +1613,14 @@ export class Dental3DEngineService {
       }
     };
 
-    const onPointerMove = (event: MouseEvent) => {
-      if (!this.modelGroup || !this.camera) return;
+    const processPointerMove = () => {
+      this.hoverFrameId = null;
+      const event = this.latestPointerEvent;
+      this.latestPointerEvent = null;
+      if (!event || !this.modelGroup || !this.camera || !container.isConnected) return;
 
       const rect = container.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
       const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
@@ -1654,6 +1661,13 @@ export class Dental3DEngineService {
           this.tooltipService.clearTooltip();
         }
       });
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      this.latestPointerEvent = event;
+      if (this.hoverFrameId === null) {
+        this.hoverFrameId = requestAnimationFrame(processPointerMove);
+      }
     };
 
     const onPointerLeave = () => {
@@ -1712,9 +1726,13 @@ export class Dental3DEngineService {
   }
 
   private startAnimationLoop(): void {
+    if (this.animationFrameId !== null || typeof document === 'undefined') return;
+
     this.ngZone.runOutsideAngular(() => {
       const animate = () => {
-        this.animationFrameId = requestAnimationFrame(animate);
+        this.animationFrameId = null;
+        if (document.visibilityState === 'hidden') return;
+
         if (this.controls) {
           this.controls.autoRotate = this.isAutoRotating;
           this.controls.autoRotateSpeed = 1.2;
@@ -1723,7 +1741,23 @@ export class Dental3DEngineService {
         if (this.renderer && this.scene && this.camera) {
           this.renderer.render(this.scene, this.camera);
         }
+        this.animationFrameId = requestAnimationFrame(animate);
       };
+
+      if (!this.visibilityHandler) {
+        this.visibilityHandler = () => {
+          if (document.visibilityState === 'hidden') {
+            if (this.animationFrameId !== null) {
+              cancelAnimationFrame(this.animationFrameId);
+              this.animationFrameId = null;
+            }
+          } else {
+            this.startAnimationLoop();
+          }
+        };
+        document.addEventListener('visibilitychange', this.visibilityHandler);
+      }
+
       animate();
     });
   }
@@ -2111,6 +2145,15 @@ export class Dental3DEngineService {
     if (this.cameraAnimId !== null) {
       cancelAnimationFrame(this.cameraAnimId);
       this.cameraAnimId = null;
+    }
+    if (this.hoverFrameId !== null) {
+      cancelAnimationFrame(this.hoverFrameId);
+      this.hoverFrameId = null;
+    }
+    this.latestPointerEvent = null;
+    if (this.visibilityHandler) {
+      document.removeEventListener('visibilitychange', this.visibilityHandler);
+      this.visibilityHandler = null;
     }
 
     this.clearHoverHighlight();
