@@ -1,114 +1,90 @@
-<div class="clinic-map-card border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xl rounded-2xl overflow-hidden">
-  
-  <!-- Map Top Bar / Header -->
-  <div class="p-5 sm:p-6 border-b border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-4">
-    <div>
-      <div class="flex items-center gap-2 mb-1">
+<div class="clinic-map-card">
+  <header class="clinic-map-header">
+    <div class="clinic-map-heading">
+      <div class="clinic-map-status-row">
         @if (clinic.isClinicOpenNow()) {
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="clinic-status clinic-status-open">
+            <span class="clinic-status-dot" aria-hidden="true"></span>
             Ouvert Actuellement
           </span>
         } @else {
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
-            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span class="clinic-status clinic-status-closed">
+            <span class="clinic-status-dot" aria-hidden="true"></span>
             Fermé Actuellement (Réouverture à 09h00)
           </span>
         }
       </div>
-      <h3 class="text-lg sm:text-xl font-extrabold text-neutral-950 dark:text-white">
-        Centre Dentaire Dali
-      </h3>
+      <h3 class="clinic-map-title">Centre Dentaire Dali</h3>
     </div>
 
-    <!-- External Navigation Links -->
-    <div class="flex items-center gap-2">
-      <a 
-        [href]="googleMapsDirectionsUrl" 
-        target="_blank" 
+    <nav class="clinic-map-actions" aria-label="Options d’itinéraire">
+      <a
+        [href]="googleMapsDirectionsUrl"
+        target="_blank"
         rel="noopener noreferrer"
-        class="action-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-neutral-950 shadow-sm cursor-pointer">
-        <span class="material-icons text-base text-emerald-400 dark:text-emerald-600">directions</span>
+        class="action-btn clinic-map-action clinic-map-action-primary">
+        <span class="material-icons clinic-map-action-icon" aria-hidden="true">directions</span>
         <span>Itinéraire Google Maps</span>
       </a>
 
-      <a 
-        [href]="wazeDirectionsUrl" 
-        target="_blank" 
+      <a
+        [href]="wazeDirectionsUrl"
+        target="_blank"
         rel="noopener noreferrer"
-        class="action-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white border border-neutral-300 dark:border-neutral-700 cursor-pointer">
-        <span class="material-icons text-base">navigation</span>
+        class="action-btn clinic-map-action clinic-map-action-secondary">
+        <span class="material-icons clinic-map-action-icon" aria-hidden="true">navigation</span>
         <span>Waze</span>
       </a>
-    </div>
-  </div>
+    </nav>
+  </header>
 
-  <!-- Map Container (Leaflet Interactive Canvas) -->
-  <div class="map-frame-wrapper bg-neutral-950 relative min-h-[480px]">
-    
-    <!-- Leaflet Map Element -->
-    <div #mapElement class="w-full h-full min-h-[480px] z-0"></div>
+  <div class="map-frame-wrapper">
+    <div #mapElement class="clinic-map-canvas"></div>
 
-    <!-- Map Type Controls (Dark Mode vs Light vs Satellite) -->
-    <div class="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 p-1.5 rounded-2xl bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 shadow-lg pointer-events-auto">
-      <button 
-        type="button" 
+    <div class="clinic-map-layer-control" role="group" aria-label="Style de la carte">
+      <button
+        type="button"
         (click)="setMapLayer('dark')"
-        class="px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-        [class.bg-neutral-950]="currentLayer() === 'dark'"
-        [class.text-white]="currentLayer() === 'dark'"
-        [class.dark:bg-white]="currentLayer() === 'dark'"
-        [class.dark:text-neutral-950]="currentLayer() === 'dark'"
-        [class.text-neutral-600]="currentLayer() !== 'dark'"
-        [class.dark:text-neutral-400]="currentLayer() !== 'dark'">
+        class="clinic-map-layer-button"
+        [class.is-active]="currentLayer() === 'dark'"
+        [attr.aria-pressed]="currentLayer() === 'dark'">
         Sombre
       </button>
 
-      <button 
-        type="button" 
+      <button
+        type="button"
         (click)="setMapLayer('light')"
-        class="px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-        [class.bg-neutral-950]="currentLayer() === 'light'"
-        [class.text-white]="currentLayer() === 'light'"
-        [class.dark:bg-white]="currentLayer() === 'light'"
-        [class.dark:text-neutral-950]="currentLayer() === 'light'"
-        [class.text-neutral-600]="currentLayer() !== 'light'"
-        [class.dark:text-neutral-400]="currentLayer() !== 'light'">
+        class="clinic-map-layer-button"
+        [class.is-active]="currentLayer() === 'light'"
+        [attr.aria-pressed]="currentLayer() === 'light'">
         Clair
       </button>
 
-      <button 
-        type="button" 
+      <button
+        type="button"
         (click)="setMapLayer('satellite')"
-        class="px-3 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
-        [class.bg-neutral-950]="currentLayer() === 'satellite'"
-        [class.text-white]="currentLayer() === 'satellite'"
-        [class.dark:bg-white]="currentLayer() === 'satellite'"
-        [class.dark:text-neutral-950]="currentLayer() === 'satellite'"
-        [class.text-neutral-600]="currentLayer() !== 'satellite'"
-        [class.dark:text-neutral-400]="currentLayer() !== 'satellite'">
+        class="clinic-map-layer-button"
+        [class.is-active]="currentLayer() === 'satellite'"
+        [attr.aria-pressed]="currentLayer() === 'satellite'">
         Satellite
       </button>
     </div>
-
   </div>
 
-  <!-- Map Bottom Details & Info -->
-  <div class="p-4 sm:p-5 bg-neutral-50 dark:bg-neutral-950/80 border-t border-neutral-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-4 text-xs">
-    <div class="flex items-center gap-4 text-neutral-600 dark:text-neutral-400">
-      <div class="flex items-center gap-1.5">
-        <span class="material-icons text-sm text-emerald-500">local_parking</span>
+  <footer class="clinic-map-footer">
+    <div class="clinic-map-features">
+      <div class="clinic-map-feature">
+        <span class="material-icons clinic-map-feature-icon clinic-map-parking-icon" aria-hidden="true">local_parking</span>
         <span>Parking gratuit à proximité</span>
       </div>
-      <div class="flex items-center gap-1.5">
-        <span class="material-icons text-sm text-sky-500">accessible</span>
+      <div class="clinic-map-feature">
+        <span class="material-icons clinic-map-feature-icon clinic-map-access-icon" aria-hidden="true">accessible</span>
         <span>Accès PMR complet</span>
       </div>
     </div>
 
-    <div class="text-neutral-500">
-      📍 Face à la Pharmacie Hassan II, Témara
+    <div class="clinic-map-address">
+      Face à la Pharmacie Hassan II, Témara
     </div>
-  </div>
-
+  </footer>
 </div>
