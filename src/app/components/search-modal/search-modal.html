@@ -1,5 +1,5 @@
 <div 
-  class="search-backdrop animate-fade-in"
+  class="search-backdrop"
   (click)="onBackdropClick($event)"
   (keydown.escape)="closeModal.emit()"
   tabindex="-1"
@@ -9,89 +9,89 @@
   
   <div 
     id="search-modal-container"
-    class="search-container bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-left rtl:text-right">
+    class="search-container">
     
     <!-- Search Input Bar -->
-    <div class="p-4 border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-3">
-      <span class="material-icons text-neutral-400 text-2xl">search</span>
+    <div class="search-input-row">
+      <span class="material-icons search-icon">search</span>
       <input 
         #searchInput
         type="search"
         [value]="query()"
         (input)="onInput($event)"
         [placeholder]="'searchPlaceholder' | translate" 
-        class="search-input text-neutral-900 dark:text-white placeholder-neutral-400" />
+        class="search-input" />
       <button 
         type="button" 
         (click)="closeModal.emit()"
-        class="px-2.5 py-1 text-xs uppercase tracking-wider text-neutral-400 hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800 rounded-lg cursor-pointer">
+        class="search-close-button">
         {{ 'searchEscape' | translate }}
       </button>
     </div>
 
     <!-- Content Results -->
-    <div class="overflow-y-auto p-4 space-y-6 divide-y divide-neutral-100 dark:divide-neutral-800">
+    <div class="search-results">
       
       <!-- Query Empty: Quick Suggestion Tags -->
       @if (!query().trim()) {
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block mb-3">
+          <span class="search-section-label search-section-label--spaced">
             {{ 'suggestedSearches' | translate }}
           </span>
-          <div class="flex flex-wrap gap-2">
+          <div class="search-suggestion-list">
             @for (tag of suggestedTags; track tag) {
               <button 
                 type="button" 
                 (click)="setQuery(tag)"
-                class="px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors cursor-pointer">
+                class="search-suggestion">
                 {{ tag }}
               </button>
             }
           </div>
         </div>
 
-        <div class="pt-4 text-xs text-neutral-400 space-y-2">
-          <p class="font-medium text-neutral-500 dark:text-neutral-400">{{ 'quickNavigation' | translate }}:</p>
-          <div class="grid grid-cols-2 gap-2 text-xs">
+        <div class="search-quick-nav">
+          <p class="search-quick-nav-title">{{ 'quickNavigation' | translate }}:</p>
+          <div class="search-quick-nav-grid">
             <a 
               routerLink="/tools" 
               (click)="closeModal.emit()"
-              class="p-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 hover:bg-neutral-100 dark:hover:bg-neutral-800 block text-left rtl:text-right">
-              <span class="font-semibold text-neutral-900 dark:text-white block">{{ 'toolSymptomTab' | translate }}</span>
-              <span class="text-[11px] text-neutral-400">{{ 'toolSymptomDesc' | translate }}</span>
+              class="search-quick-nav-link">
+              <span class="search-quick-nav-link-title">{{ 'toolSymptomTab' | translate }}</span>
+              <span class="search-quick-nav-link-description">{{ 'toolSymptomDesc' | translate }}</span>
             </a>
             <a 
               routerLink="/atlas/dictionary" 
               (click)="closeModal.emit()"
-              class="p-2.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 hover:bg-neutral-100 dark:hover:bg-neutral-800 block text-left rtl:text-right">
-              <span class="font-semibold text-neutral-900 dark:text-white block">{{ 'navDictionary' | translate }}</span>
-              <span class="text-[11px] text-neutral-400">{{ 'medicalLexicon' | translate }}</span>
+              class="search-quick-nav-link">
+              <span class="search-quick-nav-link-title">{{ 'navDictionary' | translate }}</span>
+              <span class="search-quick-nav-link-description">{{ 'medicalLexicon' | translate }}</span>
             </a>
           </div>
         </div>
       } @else {
         <!-- Articles Found -->
         @if (results().articles.length > 0) {
-          <div class="space-y-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block">
+          <div class="search-result-group">
+            <span class="search-section-label">
               {{ 'encyclopediaArticles' | translate }} ({{ results().articles.length }})
             </span>
-            <div class="space-y-2">
+            <div class="search-result-list">
               @for (art of results().articles; track art.id) {
                 <a 
                   [routerLink]="['/encyclopedia', art.category, art.slug]"
                   (click)="closeModal.emit()"
-                  class="block p-3 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800/80 transition-colors group text-left rtl:text-right">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold uppercase tracking-wider text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white">
+                  class="search-article-result">
+                  <div class="search-result-meta-row">
+                    <span class="search-result-category">
                       {{ art.categoryLabel }}
                     </span>
-                    <span class="text-[11px] text-neutral-400">{{ art.readingTimeMinutes }} min</span>
+                    <span class="search-quick-nav-link-description">{{ art.readingTimeMinutes }} min</span>
                   </div>
-                  <h4 class="text-sm font-bold text-neutral-950 dark:text-white mt-1 group-hover:underline">
+                  <h4 class="search-result-title">
                     {{ art.title }}
                   </h4>
-                  <p class="text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2 mt-0.5">
+                  <p class="search-result-summary">
                     {{ art.summary }}
                   </p>
                 </a>
@@ -102,22 +102,22 @@
 
         <!-- Terms Found -->
         @if (results().terms.length > 0) {
-          <div class="space-y-3 pt-4">
-            <span class="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block">
+          <div class="search-result-group search-result-group--separated">
+            <span class="search-section-label">
               {{ 'navDictionary' | translate }} ({{ results().terms.length }})
             </span>
-            <div class="space-y-2">
+            <div class="search-result-list">
               @for (term of results().terms; track term.id) {
-                <div class="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/80 border border-neutral-100 dark:border-neutral-800 text-left rtl:text-right">
-                  <div class="flex items-center justify-between">
-                    <h4 class="text-sm font-bold text-neutral-950 dark:text-white">
+                <div class="search-term-result">
+                  <div class="search-result-meta-row">
+                    <h4 class="search-term-title">
                       {{ term.term }}
                     </h4>
-                    <span class="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+                    <span class="search-term-phonetic">
                       {{ term.phonetic }}
                     </span>
                   </div>
-                  <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">
+                  <p class="search-term-definition">
                     {{ term.definition }}
                   </p>
                 </div>
@@ -128,10 +128,10 @@
 
         <!-- Zero Results -->
         @if (results().articles.length === 0 && results().terms.length === 0) {
-          <div class="py-12 text-center text-neutral-500">
-            <span class="material-icons text-4xl text-neutral-300 dark:text-neutral-700 mb-2">search_off</span>
-            <p class="text-sm font-semibold text-neutral-700 dark:text-neutral-300">{{ 'noResultsFor' | translate }} "{{ query() }}"</p>
-            <p class="text-xs text-neutral-400 mt-1">{{ 'trySimplerTerm' | translate }}</p>
+          <div class="search-empty-state">
+            <span class="material-icons search-empty-icon">search_off</span>
+            <p class="search-empty-title">{{ 'noResultsFor' | translate }} "{{ query() }}"</p>
+            <p class="search-empty-description">{{ 'trySimplerTerm' | translate }}</p>
           </div>
         }
       }
