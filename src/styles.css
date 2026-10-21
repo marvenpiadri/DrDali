@@ -1095,11 +1095,7 @@ img, video, canvas, svg { max-width: 100%; }
 .ui-emergency-title { color: var(--text-primary); }
 .ui-emergency-description { color: var(--text-muted); }
 
-/* Three.js creates its canvas dynamically; keep rendered 3D assets monochrome too. */
-app-dental-3d-viewport canvas {
-  filter: grayscale(1) !important;
-}
-
+/* Preserve authored material colors in Three.js anatomy models. */
 /* Theme-aware fallbacks for legacy surfaces and controls that predate the token system. */
 .light .ui-emergency-whatsapp { color: #fff; background: #262626; }
 .light .ui-emergency-whatsapp:hover { background: #404040; }
