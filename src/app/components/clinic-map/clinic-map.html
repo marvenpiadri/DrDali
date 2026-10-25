@@ -2,62 +2,21 @@
   <header class="clinic-map-header">
     <div class="clinic-map-heading">
       <div class="clinic-map-status-row">
-        @if (clinic.isClinicOpenNow()) {
-          <span class="clinic-status clinic-status-open">
-            <span class="clinic-status-dot" aria-hidden="true"></span>
-            {{ 'clinicMapOpen' | translate }}
-          </span>
-        } @else {
-          <span class="clinic-status clinic-status-closed">
-            <span class="clinic-status-dot" aria-hidden="true"></span>
-            {{ 'clinicMapClosed' | translate }}
-          </span>
-        }
+        <span class="clinic-status clinic-status-closed"><span class="clinic-status-dot" aria-hidden="true"></span> Demo preview</span>
       </div>
-      <h3 class="clinic-map-title">Centre Dentaire Dali</h3>
+      <h3 class="clinic-map-title">Demo</h3>
     </div>
-
-    <nav class="clinic-map-actions" [attr.aria-label]="'clinicMapActionsLabel' | translate">
-      <a
-        [href]="googleMapsDirectionsUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="action-btn clinic-map-action clinic-map-action-primary">
-        <span class="material-icons clinic-map-action-icon" aria-hidden="true">directions</span>
-        <span>{{ 'clinicMapGoogleDirections' | translate }}</span>
-      </a>
-
-      <a
-        [href]="wazeDirectionsUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="action-btn clinic-map-action clinic-map-action-secondary">
-        <span class="material-icons clinic-map-action-icon" aria-hidden="true">navigation</span>
-        <span>Waze</span>
-      </a>
-    </nav>
   </header>
-
   <div class="map-frame-wrapper">
-    <div #mapElement class="clinic-map-canvas"></div>
-
-
+    <div class="clinic-map-canvas flex items-center justify-center">
+      <div class="text-center p-8">
+        <span class="material-icons text-4xl" aria-hidden="true">location_off</span>
+        <p class="mt-3 font-semibold">Location preview</p>
+        <p class="text-sm opacity-70">Fictional demo address — no real clinic location is published.</p>
+      </div>
+    </div>
   </div>
-
   <footer class="clinic-map-footer">
-    <div class="clinic-map-features">
-      <div class="clinic-map-feature">
-        <span class="material-icons clinic-map-feature-icon clinic-map-parking-icon" aria-hidden="true">local_parking</span>
-        <span>{{ 'clinicMapParking' | translate }}</span>
-      </div>
-      <div class="clinic-map-feature">
-        <span class="material-icons clinic-map-feature-icon clinic-map-access-icon" aria-hidden="true">accessible</span>
-        <span>{{ 'clinicMapAccessibility' | translate }}</span>
-      </div>
-    </div>
-
-    <div class="clinic-map-address">
-      {{ 'clinicMapAddress' | translate }}
-    </div>
+    <div class="clinic-map-address">Demo City · Fictional address</div>
   </footer>
 </div>
