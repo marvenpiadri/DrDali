@@ -54,7 +54,7 @@ export class TranslationService {
     clinicAddress: {
       fr: 'Demo Avenue, Demo City, Maroc',
       ar: 'شارع تجريبي، مدينة تجريبية، المغرب',
-      en: 'Hassan II Avenue, Al Manar Residence, Demo City, Morocco',
+      en: 'Demo Avenue, Demo City, Morocco',
     },
     openingHours: {
       fr: 'Lun - Ven : 09:00 - 19:30 • Sam : 09:00 - 14:00',
@@ -550,8 +550,8 @@ export class TranslationService {
     },
     liveMapSubtitle: {
       fr: 'Situé au cœur de Demo City, accessible en moins de 10 minutes depuis Rabat, Harhoura et Skhirat.',
-      ar: 'يقع في قلب مدينة مدينة تجريبية، على بُعد أقل من 10 دقائق من الرباط والهرهورة والصخيرات.',
-      en: 'Located in the heart of Demo City, accessible in under 10 minutes from Rabat, Harhoura, and Skhirat.',
+      ar: 'يقع في قلب مدينة مدينة تجريبية، على بُعد أقل من 10 دقائق من المناطق المجاورة.',
+      en: 'Fictional location used for this demonstration.',
     },
     openStatusNow: {
       fr: 'Cabinet Ouvert Actuellement',
@@ -998,7 +998,7 @@ export class TranslationService {
     },
     toolsHubSubtitle: {
       fr: 'Explorez l\'anatomie de votre bouche, comprenez vos symptômes et préparez vos soins grâce à nos simulateurs pédagogiques exclusifs du Demo.',
-      ar: 'استكشف تشريح فمك، وافهم أعراضك واستعد لزيارتك مع محاكيات مركز دالي التفاعلية.',
+      ar: 'استكشف تشريح فمك، وافهم أعراضك واستعد لزيارتك مع محاكيات مركز Demo التفاعلية.',
       en: 'Explore oral anatomy, understand symptoms, and prepare for treatment with exclusive interactive simulators from Demo.',
     },
     clinicalQuestionCta: {
@@ -1701,7 +1701,7 @@ export class TranslationService {
     },
     faqContactTeamText: {
       fr: 'Notre équipe médicale et les Doctors sont à votre entière disposition pour répondre à toutes vos interrogations.',
-      ar: 'فريقنا الطبي والدكتور دالي في خدمتكم للإجابة على كافة استفساراتكم بكل رحابة صدر.',
+      ar: 'فريقنا الطبي والدكتور Demo في خدمتكم للإجابة على كافة استفساراتكم بكل رحابة صدر.',
       en: 'Our medical team and Doctors are at your complete disposal to answer all your queries.',
     },
     faqAskWhatsApp: {
