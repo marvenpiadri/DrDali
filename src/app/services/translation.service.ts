@@ -47,14 +47,14 @@ export class TranslationService {
       en: 'Confidence in every smile',
     },
     cityLocation: {
-      fr: 'Demo City, Morocco',
-      ar: 'مدينة تجريبية، المغرب',
-      en: 'Demo City, Morocco',
+      fr: 'Témara, Morocco',
+      ar: 'تمارة، المغرب',
+      en: 'Témara, Morocco',
     },
     clinicAddress: {
-      fr: 'Demo Avenue, Demo City, Maroc',
-      ar: 'شارع تجريبي، مدينة تجريبية، المغرب',
-      en: 'Demo Avenue, Demo City, Morocco',
+      fr: 'Avenue Hassan II, Résidence Al Manar, Témara, Maroc',
+      ar: 'شارع الحسن الثاني، إقامة المنار، تمارة، المغرب',
+      en: 'Demo Avenue, Témara, Morocco',
     },
     openingHours: {
       fr: 'Lun - Ven : 09:00 - 19:30 • Sam : 09:00 - 14:00',
@@ -549,8 +549,8 @@ export class TranslationService {
       en: 'Real-Time Location & Clinic Access',
     },
     liveMapSubtitle: {
-      fr: 'Situé au cœur de Demo City, accessible en moins de 10 minutes depuis Rabat, Harhoura et Skhirat.',
-      ar: 'يقع في قلب مدينة مدينة تجريبية، على بُعد أقل من 10 دقائق من المناطق المجاورة.',
+      fr: 'Situé au cœur de Témara, accessible en moins de 10 minutes depuis Rabat, Harhoura et Skhirat.',
+      ar: 'يقع في قلب مدينة تمارة، على بُعد أقل من 10 دقائق من المناطق المجاورة.',
       en: 'Fictional location used for this demonstration.',
     },
     openStatusNow: {
@@ -918,9 +918,9 @@ export class TranslationService {
       en: 'Explore all 3D lessons',
     },
     emergencyBannerBadge: {
-      fr: 'Urgences Dentaires Demo City',
-      ar: 'طوارئ الأسنان في مدينة تجريبية',
-      en: 'Demo City Dental Emergencies',
+      fr: 'Urgences Dentaires Témara',
+      ar: 'طوارئ الأسنان في تمارة',
+      en: 'Témara Dental Emergencies',
     },
 
     // Atlas & 3D Lessons
@@ -1104,9 +1104,9 @@ export class TranslationService {
       en: 'Dedicated to modern clear aligner orthodontics, preventive pediatric dentistry, and anxiety-free patient care.',
     },
     clinicPageTitle: {
-      fr: 'Le Demo à Demo City',
-      ar: 'Demo في مدينة تجريبية',
-      en: 'Demo in Demo City',
+      fr: 'Le Demo à Témara',
+      ar: 'Demo في تمارة',
+      en: 'Demo in Témara',
     },
     clinicPageSubtitle: {
       fr: 'Plateau technique de dernière génération conçu pour la sécurité, l\'asepsie chirurgicale et le confort absolu de chaque patient.',
@@ -1182,9 +1182,9 @@ export class TranslationService {
       en: 'Legal Notice & Ethics',
     },
     footerAccessMap: {
-      fr: 'Plan d\'Accès Demo City',
-      ar: 'خريطة الوصول في مدينة تجريبية',
-      en: 'Access Map Demo City',
+      fr: 'Plan d\'Accès Témara',
+      ar: 'خريطة الوصول في تمارة',
+      en: 'Access Map Témara',
     },
 
     // Atlas detailed UI
@@ -1836,7 +1836,7 @@ export class TranslationService {
     clinicMapGoogleDirections: { fr: 'Itinéraire Google Maps', ar: 'الاتجاهات عبر خرائط Google', en: 'Google Maps directions' },
     clinicMapParking: { fr: 'Parking gratuit à proximité', ar: 'موقف سيارات مجاني قريب', en: 'Free nearby parking' },
     clinicMapAccessibility: { fr: 'Accès PMR complet', ar: 'إمكانية وصول كاملة لذوي الحركة المحدودة', en: 'Full wheelchair accessibility' },
-    clinicMapAddress: { fr: 'Adresse fictive — Demo City', ar: 'مقابل صيدلية الحسن الثاني، مدينة تجريبية', en: 'Fictional address — Demo City' },
+    clinicMapAddress: { fr: 'Avenue Hassan II, Résidence Al Manar, Témara', ar: 'مقابل صيدلية الحسن الثاني، تمارة', en: 'Avenue Hassan II, Al Manar Residence, Témara' },
     toolsCompleteArch: { fr: 'Arcade dentaire complète en 3D', ar: 'قوس الأسنان الكامل ثلاثي الأبعاد', en: 'Complete 3D dental arch' },
     toolsToothLabel: { fr: 'Dent n°{{number}}', ar: 'السن رقم {{number}}', en: 'Tooth #{{number}}' },
 
