@@ -15,12 +15,12 @@ export interface ConsultationReason {
 export class ClinicService {
   readonly clinicName = 'Demo';
   readonly doctorName = 'Dr. Adam Bennett';
-  readonly city = 'Demo City';
+  readonly city = 'Témara';
   readonly country = 'Morocco';
-  readonly address = 'Demo, Demo Avenue, Demo City, Morocco';
+  readonly address = 'Avenue Hassan II, Résidence Al Manar, Témara, Morocco';
   readonly phone = '+212 600 000 000';
   readonly whatsappPhone = '000000000000'; // WhatsApp contact gateway
-  readonly googleMapsUrl = 'https://maps.google.com/';
+  readonly googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=Avenue+Hassan+II+Residence+Al+Manar+Temara+Morocco';
   readonly openingHours = 'Sample hours: Monday–Friday, 09:00–17:00';
 
   // The two doctors of Demo
@@ -174,7 +174,7 @@ export class ClinicService {
       label: 'Première consultation & Bilan global',
       description: 'Bilan bucco-dentaire complet, examen radiologique et plan de traitement personnalisé.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. Je souhaite planifier une première consultation pour un bilan bucco-dentaire complet à Demo City.',
+      defaultMessage: 'Bonjour Demo. Je souhaite planifier une première consultation pour un bilan bucco-dentaire complet à Témara.',
     },
     {
       id: 'emergency',
