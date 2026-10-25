@@ -2,59 +2,62 @@
   <header class="clinic-map-header">
     <div class="clinic-map-heading">
       <div class="clinic-map-status-row">
-        <span class="clinic-status clinic-status-closed"><span class="clinic-status-dot" aria-hidden="true"></span> Demo preview</span>
+        @if (clinic.isClinicOpenNow()) {
+          <span class="clinic-status clinic-status-open">
+            <span class="clinic-status-dot" aria-hidden="true"></span>
+            {{ 'clinicMapOpen' | translate }}
+          </span>
+        } @else {
+          <span class="clinic-status clinic-status-closed">
+            <span class="clinic-status-dot" aria-hidden="true"></span>
+            {{ 'clinicMapClosed' | translate }}
+          </span>
+        }
       </div>
-      <h3 class="clinic-map-title">Demo</h3>
+      <h3 class="clinic-map-title">Centre Dentaire Dali</h3>
     </div>
+
+    <nav class="clinic-map-actions" [attr.aria-label]="'clinicMapActionsLabel' | translate">
+      <a
+        [href]="googleMapsDirectionsUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-btn clinic-map-action clinic-map-action-primary">
+        <span class="material-icons clinic-map-action-icon" aria-hidden="true">directions</span>
+        <span>{{ 'clinicMapGoogleDirections' | translate }}</span>
+      </a>
+
+      <a
+        [href]="wazeDirectionsUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="action-btn clinic-map-action clinic-map-action-secondary">
+        <span class="material-icons clinic-map-action-icon" aria-hidden="true">navigation</span>
+        <span>Waze</span>
+      </a>
+    </nav>
   </header>
 
-  <div class="map-frame-wrapper" role="img" aria-label="Decorative map preview showing the clinic location in Témara">
-    <div class="clinic-map-canvas">
-      <svg class="location-map-art" viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <pattern id="map-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-            <path d="M120 0H0V120" class="map-grid-line" />
-          </pattern>
-        </defs>
-        <rect width="1200" height="560" class="map-ground" />
-        <rect width="1200" height="560" fill="url(#map-grid)" />
-        <g class="map-blocks">
-          <path d="M-40 70L210 20L285 145L80 220Z M350 10L560 0L615 120L410 175Z M735 5L960 40L910 175L700 135Z M1030 180L1240 125L1260 330L1080 350Z M-30 330L170 265L290 420L80 520Z M390 365L570 290L700 440L510 590Z M820 360L1010 285L1120 455L930 590Z" />
-        </g>
-        <g class="map-minor-roads">
-          <path d="M-30 250L1230 85 M-40 475L1230 270 M180 -20L360 590 M620 -30L770 590 M980 -20L850 590 M-20 145L1220 500" />
-        </g>
-        <g class="map-major-roads">
-          <path d="M-40 405C220 330 350 250 570 260S920 360 1240 190" />
-          <path d="M300 -30C380 100 470 200 610 300S820 460 900 590" />
-        </g>
-        <g class="map-road-centers">
-          <path d="M-40 405C220 330 350 250 570 260S920 360 1240 190" />
-          <path d="M300 -30C380 100 470 200 610 300S820 460 900 590" />
-        </g>
-        <g class="map-labels">
-          <text x="115" y="290">TÉMARA</text>
-          <text x="835" y="115">AVENUE HASSAN II</text>
-          <text x="880" y="475">RÉSIDENCE AL MANAR</text>
-        </g>
-        <g transform="translate(610 260)" class="map-location-pin">
-          <circle r="43" class="map-pin-halo" />
-          <path d="M0-31C-18-31-32-17-32 1C-32 23 0 51 0 51S32 23 32 1C32-17 18-31 0-31Z" class="map-pin-shape" />
-          <circle cy="0" r="10" class="map-pin-center" />
-        </g>
-      </svg>
-      <div class="location-preview-label">
-        <span class="location-preview-dot" aria-hidden="true"></span>
-        <div>
-          <strong>Location preview</strong>
-          <span>Avenue Hassan II, Témara</span>
-        </div>
-      </div>
-      <span class="location-preview-caption">TÉMARA · MOROCCO</span>
-    </div>
+  <div class="map-frame-wrapper">
+    <div #mapElement class="clinic-map-canvas"></div>
+
+
   </div>
 
   <footer class="clinic-map-footer">
-    <div class="clinic-map-address">Avenue Hassan II, Résidence Al Manar · Témara</div>
+    <div class="clinic-map-features">
+      <div class="clinic-map-feature">
+        <span class="material-icons clinic-map-feature-icon clinic-map-parking-icon" aria-hidden="true">local_parking</span>
+        <span>{{ 'clinicMapParking' | translate }}</span>
+      </div>
+      <div class="clinic-map-feature">
+        <span class="material-icons clinic-map-feature-icon clinic-map-access-icon" aria-hidden="true">accessible</span>
+        <span>{{ 'clinicMapAccessibility' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="clinic-map-address">
+      {{ 'clinicMapAddress' | translate }}
+    </div>
   </footer>
 </div>
