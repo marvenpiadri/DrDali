@@ -101,7 +101,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La synchronisation 2D/3D permet d\'isoler chaque dent et de voir sa structure interne.',
         'La préservation de l\'occlusion protège l\'articulation temporo-mandibulaire.',
       ],
-      clinicalAdvice: 'Un bilan photographique et 3D au Centre Dentaire Dali cartographie vos 32 dents pour un suivi personnalisé.',
+      clinicalAdvice: 'Un bilan photographique et 3D au Demo cartographie vos 32 dents pour un suivi personnalisé.',
     },
   },
 
@@ -218,7 +218,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'Les fibres de Sharpey relient directement le cément radiculaire à la paroi osseuse alvéolaire.',
         'Le traitement précoce de la parodontite protège le ligament desmodontal.',
       ],
-      clinicalAdvice: 'Un détartrage et surfaçage sous-gingival au Centre Dentaire Dali stoppe l\'atteinte du ligament parodontal.',
+      clinicalAdvice: 'Un détartrage et surfaçage sous-gingival au Demo stoppe l\'atteinte du ligament parodontal.',
     },
   },
 
@@ -348,7 +348,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'L\'os spongieux trabéculaire forme le cœur interne vascularisé.',
         'La combinaison des deux types osseux garantit le succès du traitement implantaire.',
       ],
-      clinicalAdvice: 'Un scanner Cone Beam 3D au Centre Dentaire Dali quantifie précisément la densité osseuse corticale et spongieuse.',
+      clinicalAdvice: 'Un scanner Cone Beam 3D au Demo quantifie précisément la densité osseuse corticale et spongieuse.',
     },
   },
 
@@ -466,7 +466,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'L\'apexogenèse préserve la pulpe vivante pour permettre l\'achèvement des racines.',
         'Le mainteneur d\'espace prévient les malocclusions futures.',
       ],
-      clinicalAdvice: 'Un scellement préventif des sillons au Centre Dentaire Dali protège la molaire de 6 ans dès son éruption.',
+      clinicalAdvice: 'Un scellement préventif des sillons au Demo protège la molaire de 6 ans dès son éruption.',
     },
   },
 
@@ -596,7 +596,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'Les racines molaires maxillaires sont en contact étroit avec le plancher du sinus maxillaire.',
         'L\'imagerie 3D Cone Beam garantit des interventions sécurisées au millimètre près.',
       ],
-      clinicalAdvice: 'Un cliché 3D Cone Beam au Centre Dentaire Dali planifie vos soins en toute sérénité.',
+      clinicalAdvice: 'Un cliché 3D Cone Beam au Demo planifie vos soins en toute sérénité.',
     },
   },
   {
@@ -733,7 +733,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         subtitle: 'Explorez librement toutes les dimensions',
         explanation: 'Vous maîtrisez désormais l\'ensemble des couches de l\'organe dentaire. Utilisez les commandes pour basculer entre la vue de surface, la coupe anatomique et la radiographie 3D.',
         whatIsHappening: 'Déverrouillage complet de la rotation 360°, du zoom et des modes de visualisation.',
-        whyItMatters: 'Une parfaite connaissance anatomique est le socle de toute thérapeutique dentaire moderne au Centre Dentaire Dali.',
+        whyItMatters: 'Une parfaite connaissance anatomique est le socle de toute thérapeutique dentaire moderne au Demo.',
         cameraPreset: 'perspective',
         viewMode: 'surface',
       },
@@ -830,7 +830,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La dentine amortit les forces et abrite les tubuli générateurs de sensibilité.',
         'La pulpe apporte vitalité et sensations, tandis que le ligament parodontal amortit la mastication.',
       ],
-      clinicalAdvice: 'Un contrôle bucco-dentaire semestriel au Centre Dentaire Dali permet de détecter toute atteinte de l\'émail avant qu\'elle n\'atteigne la pulpe vivante.',
+      clinicalAdvice: 'Un contrôle bucco-dentaire semestriel au Demo permet de détecter toute atteinte de l\'émail avant qu\'elle n\'atteigne la pulpe vivante.',
     },
   },
 
@@ -1089,7 +1089,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La synchronisation 2D/3D permet de localiser instantanément toute dent et ses racines.',
         'L\'alignement parabolique protège les articulations temporo-mandibulaires.',
       ],
-      clinicalAdvice: 'Lors de chaque consultation au Centre Dentaire Dali, un bilan photographique et radiologique 3D met à jour votre odontogramme personnalisé.',
+      clinicalAdvice: 'Lors de chaque consultation au Demo, un bilan photographique et radiologique 3D met à jour votre odontogramme personnalisé.',
     },
   },
 
@@ -1204,7 +1204,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'Le système Universal numérote de #1 à #32 en continu.',
         'La notation de Palmer utilise des symboles d\'angle très prisés en orthodontie.',
       ],
-      clinicalAdvice: 'Sur tous les devis et radios du Centre Dentaire Dali, vos dents sont repérées avec le standard officiel FDI.',
+      clinicalAdvice: 'Sur tous les devis et radios du Demo, vos dents sont repérées avec le standard officiel FDI.',
     },
   },
 
@@ -1439,7 +1439,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La constriction apicale marque la limite idéale de l\'obturation.',
         'L\'utilisation du microscope opératoire permet de traiter 100% des canaux sans omission.',
       ],
-      clinicalAdvice: 'Au Centre Dentaire Dali, nos traitements de racine sont réalisés sous loupes binoculaires et microscope pour une précision chirurgicale micrométrique.',
+      clinicalAdvice: 'Au Demo, nos traitements de racine sont réalisés sous loupes binoculaires et microscope pour une précision chirurgicale micrométrique.',
     },
   },
 
@@ -1587,7 +1587,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'L\'alésage NiTi et l\'irrigation ultrasonique assainissent 100% de la racine.',
         'La couronne finale garantit la pérennité de la dent pour des décennies.',
       ],
-      clinicalAdvice: 'Grâce à notre protocole endodontique de pointe au Centre Dentaire Dali, une dent soignée conserve son rôle masticatoire naturel à vie.',
+      clinicalAdvice: 'Grâce à notre protocole endodontique de pointe au Demo, une dent soignée conserve son rôle masticatoire naturel à vie.',
     },
   },
 
@@ -1664,7 +1664,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         subtitle: 'Le repère anatomique capital',
         explanation: 'Le nerf alvéolaire inférieur passe dans un canal osseux situé juste sous les racines des dents de sagesse inférieures. Il innerve la lèvre inférieure et le menton.',
         whatIsHappening: 'Mise en surbrillance du canal mandibulaire ambré passant à proximité immédiate des racines.',
-        whyItMatters: 'Le bilan 3D Cone Beam au Centre Dentaire Dali permet d\'analyser la distance exacte au dixième de millimètre pour une chirurgie 100% sécurisée.',
+        whyItMatters: 'Le bilan 3D Cone Beam au Demo permet d\'analyser la distance exacte au dixième de millimètre pour une chirurgie 100% sécurisée.',
         cameraPreset: 'zoom-apex',
         viewMode: 'anatomy',
       },
@@ -1701,7 +1701,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La relation avec le nerf alvéolaire inférieur est analysée en 3D volumique avant tout geste chirurgical.',
         'L\'intervention sous anesthésie locale et sédation douce est rapide et standardisée.',
       ],
-      clinicalAdvice: 'Un cliché panoramique de contrôle vers 16-18 ans au Centre Dentaire Dali permet d\'anticiper tout problème avant l\'apparition de douleurs.',
+      clinicalAdvice: 'Un cliché panoramique de contrôle vers 16-18 ans au Demo permet d\'anticiper tout problème avant l\'apparition de douleurs.',
     },
   },
 
@@ -1815,7 +1815,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'Le système se compose de 3 éléments : Implant titane + Pilier + Couronne zircone.',
         'La chirurgie guidée numérique garantit un positionnement au millimètre près en toute sécurité.',
       ],
-      clinicalAdvice: 'Au Centre Dentaire Dali, nos poses d\'implants s\'appuient sur l\'imagerie 3D et les guides chirurgicaux numériques pour un confort post-opératoire exceptionnel.',
+      clinicalAdvice: 'Au Demo, nos poses d\'implants s\'appuient sur l\'imagerie 3D et les guides chirurgicaux numériques pour un confort post-opératoire exceptionnel.',
     },
   },
 
@@ -1927,7 +1927,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
       keyTakeaways: [
         'La couronne protège à 360° une dent fragilisée ou dévitalisée.',
         'La facette embellit la face visible du sourire avec une préservation maximale de l\'émail.',
-        'Le Centre Dentaire Dali utilise exclusivement des matériaux tout-céramique sans métal gris.',
+        'Le Demo utilise exclusivement des matériaux tout-céramique sans métal gris.',
       ],
       clinicalAdvice: 'Une empreinte optique 3D sans pâte garantit un ajustement prothétique au micron près pour une longévité maximale.',
     },
@@ -2043,7 +2043,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'La gingivite est réversible, mais non soignée elle évolue en parodontite destructive.',
         'L\'assainissement parodontal stoppe la perte osseuse et préserve vos dents naturelles.',
       ],
-      clinicalAdvice: 'Un bilan parodontal complet avec sondage au Centre Dentaire Dali permet de mesurer la profondeur de vos poches gingivales et de traiter toute inflammation précoce.',
+      clinicalAdvice: 'Un bilan parodontal complet avec sondage au Demo permet de mesurer la profondeur de vos poches gingivales et de traiter toute inflammation précoce.',
     },
   },
 
@@ -2146,7 +2146,7 @@ export const ATLAS_LESSONS: AtlasLesson[] = [
         'Les molaires supérieures sont en rapport direct avec le plancher du sinus maxillaire.',
         'L\'os alvéolaire nécessite une stimulation masticatoire par dent ou implant pour maintenir son volume.',
       ],
-      clinicalAdvice: 'Au Centre Dentaire Dali, chaque planification implantaire fait l\'objet d\'une simulation 3D numérique préalable respectant scrupuleusement les structures nerveuses et sinusiennes.',
+      clinicalAdvice: 'Au Demo, chaque planification implantaire fait l\'objet d\'une simulation 3D numérique préalable respectant scrupuleusement les structures nerveuses et sinusiennes.',
     },
   },
 ];
