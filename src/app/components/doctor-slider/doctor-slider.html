@@ -24,20 +24,20 @@
                   <div class="doctor-portrait-placeholder" aria-label="Portrait à ajouter">
                     <span class="portrait-monogram">{{ doc.initials }}</span>
                     <span class="portrait-rule"></span>
-                    <span class="portrait-caption">CENTRE DENTAIRE<br />DALI · TÉMARA</span>
+                    <span class="portrait-caption">DEMO<br />FICTIONAL PROFILE</span>
                   </div>
                 }
-                <span class="doctor-status"><span class="status-dot"></span> En exercice</span>
+                <span class="doctor-status"><span class="status-dot"></span> Profil fictif · Démo</span>
               </div>
               <div class="doctor-portrait-meta">
                 <span class="portrait-index">0{{ currentIndex() + 1 }} <span>/ 0{{ doctors.length }}</span></span>
-                <span class="portrait-location"><span class="material-icons" aria-hidden="true">location_on</span> Témara, Maroc</span>
+                <span class="portrait-location"><span class="material-icons" aria-hidden="true">location_on</span> Demo City</span>
               </div>
             </div>
 
             <div class="doctor-information-card">
               <div class="doctor-information-topline">
-                <span class="doctor-kicker">L'équipe médicale</span>
+                <span class="doctor-kicker">Équipe de démonstration</span>
                 <span class="doctor-languages"><span class="material-icons" aria-hidden="true">language</span>{{ doc.languages.join(' · ') }}</span>
               </div>
 
@@ -47,7 +47,7 @@
               </header>
 
               <section class="doctor-detail-section">
-                <h4 class="doctor-section-label">Approche & parcours</h4>
+                <h4 class="doctor-section-label">Profil de démonstration</h4>
                 <p class="doctor-bio">{{ getBio(doc) }}</p>
               </section>
 
@@ -66,7 +66,7 @@
               </section>
 
               <section class="doctor-detail-section doctor-diplomas-section">
-                <h4 class="doctor-section-label">Diplômes & formations</h4>
+                <h4 class="doctor-section-label">Formations fictives</h4>
                 <div class="doctor-diplomas">
                   @for (dip of getDiplomas(doc); track dip) {
                     <div class="doctor-diploma">
