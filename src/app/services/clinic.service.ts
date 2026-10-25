@@ -19,8 +19,8 @@ export class ClinicService {
   readonly country = 'Morocco';
   readonly address = 'Demo, Demo Avenue, Demo City, Morocco';
   readonly phone = '+212 600 000 000';
-  readonly whatsappPhone = '212600000000'; // WhatsApp contact gateway
-  readonly googleMapsUrl = 'https://maps.google.com/?q=Demo City+Morocco+Centre+Dentaire';
+  readonly whatsappPhone = '000000000000'; // WhatsApp contact gateway
+  readonly googleMapsUrl = 'https://maps.google.com/';
   readonly openingHours = 'Sample hours: Monday–Friday, 09:00–17:00';
 
   // The two doctors of Demo
@@ -195,7 +195,7 @@ export class ClinicService {
       label: 'Implantologie & Remplacement de dents',
       description: 'Remplacement de dents manquantes par implants en titane et couronnes céramiques.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Dr. Dali. Je souhaite une consultation concernant la pose d\'implants dentaires ou le remplacement de dents absentes.',
+      defaultMessage: 'Bonjour Demo. Je souhaite une consultation concernant la pose d\'implants dentaires ou le remplacement de dents absentes.',
     },
     {
       id: 'endodontics',
