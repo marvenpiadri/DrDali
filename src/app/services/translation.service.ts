@@ -37,9 +37,9 @@ export class TranslationService {
   private readonly dictionary: Translations = {
     // Brand
     brandName: {
-      fr: 'Centre Dentaire Dali',
-      ar: 'مركز دالي لطب وجراحة الأسنان',
-      en: 'Centre Dentaire Dali',
+      fr: 'Demo',
+      ar: 'Demo',
+      en: 'Demo',
     },
     brandTagline: {
       fr: 'La confiance dans chaque sourire',
@@ -47,14 +47,14 @@ export class TranslationService {
       en: 'Confidence in every smile',
     },
     cityLocation: {
-      fr: 'Témara, Maroc',
-      ar: 'تمارة، المغرب',
-      en: 'Temara, Morocco',
+      fr: 'Demo City, Morocco',
+      ar: 'مدينة تجريبية، المغرب',
+      en: 'Demo City, Morocco',
     },
     clinicAddress: {
-      fr: 'Avenue Hassan II, Résidence Al Manar, Témara, Maroc',
-      ar: 'شارع الحسن الثاني، إقامة المنار، تمارة، المغرب',
-      en: 'Hassan II Avenue, Al Manar Residence, Temara, Morocco',
+      fr: 'Demo Avenue, Demo City, Maroc',
+      ar: 'شارع تجريبي، مدينة تجريبية، المغرب',
+      en: 'Hassan II Avenue, Al Manar Residence, Demo City, Morocco',
     },
     openingHours: {
       fr: 'Lun - Ven : 09:00 - 19:30 • Sam : 09:00 - 14:00',
@@ -84,9 +84,9 @@ export class TranslationService {
       en: 'Clinical Tools',
     },
     navDoctors: {
-      fr: 'Dr. Dali',
-      ar: 'د. دالي',
-      en: 'Dr. Dali',
+      fr: 'Doctors',
+      ar: 'الأطباء',
+      en: 'Doctors',
     },
     navClinic: {
       fr: 'Le Cabinet',
@@ -549,9 +549,9 @@ export class TranslationService {
       en: 'Real-Time Location & Clinic Access',
     },
     liveMapSubtitle: {
-      fr: 'Situé au cœur de Témara, accessible en moins de 10 minutes depuis Rabat, Harhoura et Skhirat.',
-      ar: 'يقع في قلب مدينة تمارة، على بُعد أقل من 10 دقائق من الرباط والهرهورة والصخيرات.',
-      en: 'Located in the heart of Temara, accessible in under 10 minutes from Rabat, Harhoura, and Skhirat.',
+      fr: 'Situé au cœur de Demo City, accessible en moins de 10 minutes depuis Rabat, Harhoura et Skhirat.',
+      ar: 'يقع في قلب مدينة مدينة تجريبية، على بُعد أقل من 10 دقائق من الرباط والهرهورة والصخيرات.',
+      en: 'Located in the heart of Demo City, accessible in under 10 minutes from Rabat, Harhoura, and Skhirat.',
     },
     openStatusNow: {
       fr: 'Cabinet Ouvert Actuellement',
@@ -757,9 +757,9 @@ export class TranslationService {
       en: 'Switch to dark mode',
     },
     ariaWhatsAppCTA: {
-      fr: 'Contacter le Centre Dentaire Dali sur WhatsApp',
-      ar: 'تواصل مع مركز دالي لطب الأسنان عبر واتساب',
-      en: 'Contact Centre Dentaire Dali on WhatsApp',
+      fr: 'Contacter Demo sur WhatsApp',
+      ar: 'تواصل مع Demo عبر واتساب',
+      en: 'Contact Demo on WhatsApp',
     },
     dragToRotateHint: {
       fr: 'Glisser pour orbiter • Molette pour zoomer',
@@ -767,9 +767,9 @@ export class TranslationService {
       en: 'Drag to orbit • Scroll to zoom',
     },
     copyrightText: {
-      fr: 'Centre Dentaire Dali • Tous droits réservés • Dr. Dali & Associés',
-      ar: 'مركز دالي لطب الأسنان • جميع الحقوق محفوظة • د. دالي وشركاؤه',
-      en: 'Centre Dentaire Dali • All rights reserved • Dr. Dali & Associates',
+      fr: 'Demo • Informations fictives de démonstration',
+      ar: 'Demo • جميع الحقوق محفوظة • الأطباء وشركاؤه',
+      en: 'Demo • Sample demonstration information',
     },
     // Home Page Specific Translations
     heroDescription: {
@@ -918,9 +918,9 @@ export class TranslationService {
       en: 'Explore all 3D lessons',
     },
     emergencyBannerBadge: {
-      fr: 'Urgences Dentaires Témara',
-      ar: 'طوارئ الأسنان في تمارة',
-      en: 'Temara Dental Emergencies',
+      fr: 'Urgences Dentaires Demo City',
+      ar: 'طوارئ الأسنان في مدينة تجريبية',
+      en: 'Demo City Dental Emergencies',
     },
 
     // Atlas & 3D Lessons
@@ -975,9 +975,9 @@ export class TranslationService {
       en: 'Jaw & Maxillofacial',
     },
     interactive3DAtlasTitle: {
-      fr: 'Atlas Anatomique 3D Interactif • Centre Dentaire Dali',
-      ar: 'الأطلس التشريحي التفاعلي 3D • مركز دالي لطب الأسنان',
-      en: 'Interactive 3D Anatomical Atlas • Centre Dentaire Dali',
+      fr: 'Atlas Anatomique 3D Interactif • Demo',
+      ar: 'الأطلس التشريحي التفاعلي 3D • Demo',
+      en: 'Interactive 3D Anatomical Atlas • Demo',
     },
     atlasHeroSubtitle: {
       fr: 'Apprenez l\'odontologie en interagissant directement avec l\'anatomie tridimensionnelle. Dissections guidées, coupes transversales et simulations cliniques de pointe.',
@@ -997,9 +997,9 @@ export class TranslationService {
       en: 'Therapeutic Education Lab',
     },
     toolsHubSubtitle: {
-      fr: 'Explorez l\'anatomie de votre bouche, comprenez vos symptômes et préparez vos soins grâce à nos simulateurs pédagogiques exclusifs du Centre Dentaire Dali.',
+      fr: 'Explorez l\'anatomie de votre bouche, comprenez vos symptômes et préparez vos soins grâce à nos simulateurs pédagogiques exclusifs du Demo.',
       ar: 'استكشف تشريح فمك، وافهم أعراضك واستعد لزيارتك مع محاكيات مركز دالي التفاعلية.',
-      en: 'Explore oral anatomy, understand symptoms, and prepare for treatment with exclusive interactive simulators from Centre Dentaire Dali.',
+      en: 'Explore oral anatomy, understand symptoms, and prepare for treatment with exclusive interactive simulators from Demo.',
     },
     clinicalQuestionCta: {
       fr: 'Une question clinique ?',
@@ -1059,9 +1059,9 @@ export class TranslationService {
       en: 'Clinical Leadership & Dental Surgeons',
     },
     doctorsPageTitle: {
-      fr: 'Les Praticiens du Centre Dentaire Dali',
-      ar: 'أطباء مركز دالي لطب وجراحة الأسنان',
-      en: 'Practitioners of Centre Dentaire Dali',
+      fr: 'Les Praticiens du Demo',
+      ar: 'أطباء Demo',
+      en: 'Practitioners of Demo',
     },
     doctorsPageSubtitle: {
       fr: 'Une équipe complémentaire et dévouée réunissant la précision chirurgicale, l\'implantologie, l\'orthodontie invisible et la douceur des soins pédiatriques.',
@@ -1104,9 +1104,9 @@ export class TranslationService {
       en: 'Dedicated to modern clear aligner orthodontics, preventive pediatric dentistry, and anxiety-free patient care.',
     },
     clinicPageTitle: {
-      fr: 'Le Centre Dentaire Dali à Témara',
-      ar: 'مركز دالي لطب وجراحة الأسنان في تمارة',
-      en: 'Centre Dentaire Dali in Temara',
+      fr: 'Le Demo à Demo City',
+      ar: 'Demo في مدينة تجريبية',
+      en: 'Demo in Demo City',
     },
     clinicPageSubtitle: {
       fr: 'Plateau technique de dernière génération conçu pour la sécurité, l\'asepsie chirurgicale et le confort absolu de chaque patient.',
@@ -1119,9 +1119,9 @@ export class TranslationService {
       en: 'Location & Opening Hours',
     },
     contactPageTitle: {
-      fr: 'Contactez le Centre Dentaire Dali',
-      ar: 'تواصل مع مركز دالي لطب الأسنان',
-      en: 'Contact Centre Dentaire Dali',
+      fr: 'Contactez le Demo',
+      ar: 'تواصل مع Demo',
+      en: 'Contact Demo',
     },
     contactPageSubtitle: {
       fr: 'Nous sommes à votre disposition pour vos rendez-vous, vos questions de soins et la prise en charge de vos urgences.',
@@ -1157,9 +1157,9 @@ export class TranslationService {
     },
 
     footerTaglineDesc: {
-      fr: 'Plateforme d\'excellence et de pédagogie bucco-dentaire du Centre Dentaire Dali. La confiance commence par la compréhension de votre santé dentaire.',
-      ar: 'منصة التميز والتوعية بصحة الفم والأسنان لمركز دالي لطب الأسنان. تبدأ الثقة بفهم صحة أسنانكم بدقة.',
-      en: 'Oral health excellence and educational platform of Centre Dentaire Dali. Confidence begins with understanding your dental health.',
+      fr: 'Plateforme d\'excellence et de pédagogie bucco-dentaire du Demo. La confiance commence par la compréhension de votre santé dentaire.',
+      ar: 'منصة التميز والتوعية بصحة الفم والأسنان لDemo. تبدأ الثقة بفهم صحة أسنانكم بدقة.',
+      en: 'Oral health excellence and educational platform of Demo. Confidence begins with understanding your dental health.',
     },
     footerKnowledgeChain: {
       fr: 'Connaissance → Compréhension → Confiance',
@@ -1172,9 +1172,9 @@ export class TranslationService {
       en: 'Legal Medical Disclaimer:',
     },
     footerMedicalDisclaimer: {
-      fr: 'Les informations, outils et modèles 3D publiés sur cette plateforme sont mis à disposition à titre purement éducatif et préventif sous la supervision clinique de l\'équipe du Centre Dentaire Dali. Ils ne constituent en aucun cas une téléconsultation ou un diagnostic médical personnalisé et ne sauraient se substituer à un examen clinique et radiologique approfondi réalisé au cabinet.',
-      ar: 'المعلومات، الأدوات والنماذج ثلاثية الأبعاد المنشورة على هذه المنصة مقدمة لأغراض التوعية والتعليم الوقائي تحت إشراف أطباء مركز دالي لطب وجراحة الأسنان. وهي لا تغني عن الفحص السريري والشعاعي الشامل داخل العيادة.',
-      en: 'The information, tools, and 3D models provided on this platform are for educational and preventive purposes under the clinical supervision of Centre Dentaire Dali. They do not replace a full in-person clinical and radiological examination at the clinic.',
+      fr: 'Les informations, outils et modèles 3D publiés sur cette plateforme sont mis à disposition à titre purement éducatif et préventif sous la supervision clinique de l\'équipe du Demo. Ils ne constituent en aucun cas une téléconsultation ou un diagnostic médical personnalisé et ne sauraient se substituer à un examen clinique et radiologique approfondi réalisé au cabinet.',
+      ar: 'المعلومات، الأدوات والنماذج ثلاثية الأبعاد المنشورة على هذه المنصة مقدمة لأغراض التوعية والتعليم الوقائي تحت إشراف أطباء Demo. وهي لا تغني عن الفحص السريري والشعاعي الشامل داخل العيادة.',
+      en: 'The information, tools, and 3D models provided on this platform are for educational and preventive purposes under the clinical supervision of Demo. They do not replace a full in-person clinical and radiological examination at the clinic.',
     },
     footerLegalNotice: {
       fr: 'Mentions Légales & Déontologie',
@@ -1182,9 +1182,9 @@ export class TranslationService {
       en: 'Legal Notice & Ethics',
     },
     footerAccessMap: {
-      fr: 'Plan d\'Accès Témara',
-      ar: 'خريطة الوصول في تمارة',
-      en: 'Access Map Temara',
+      fr: 'Plan d\'Accès Demo City',
+      ar: 'خريطة الوصول في مدينة تجريبية',
+      en: 'Access Map Demo City',
     },
 
     // Atlas detailed UI
@@ -1465,14 +1465,14 @@ export class TranslationService {
       en: 'First available practitioner',
     },
     doctorYoussefSpecialty: {
-      fr: 'Dr. Youssef Dali — Chirurgie & Implantologie',
-      ar: 'د. يوسف دالي — جراحة وزراعة الأسنان',
-      en: 'Dr. Youssef Dali — Surgery & Implantology',
+      fr: 'Dr. Adam Bennett — Chirurgie & Implantologie',
+      ar: 'د. آدم بنِت — جراحة وزراعة الأسنان',
+      en: 'Dr. Adam Bennett — Surgery & Implantology',
     },
     doctorKenzaSpecialty: {
-      fr: 'Dr. Kenza Dali — Esthétique & Orthodontie',
-      ar: 'د. كنزة دالي — تجميل وتقويم الأسنان',
-      en: 'Dr. Kenza Dali — Aesthetics & Orthodontics',
+      fr: 'Dr. Maya Laurent — Esthétique & Orthodontie',
+      ar: 'د. مايا لوران — تجميل وتقويم الأسنان',
+      en: 'Dr. Maya Laurent — Aesthetics & Orthodontics',
     },
     consultationReason: {
       fr: 'Motif de la consultation',
@@ -1700,9 +1700,9 @@ export class TranslationService {
       en: 'Have a specific question?',
     },
     faqContactTeamText: {
-      fr: 'Notre équipe médicale et les Dr. Dali sont à votre entière disposition pour répondre à toutes vos interrogations.',
+      fr: 'Notre équipe médicale et les Doctors sont à votre entière disposition pour répondre à toutes vos interrogations.',
       ar: 'فريقنا الطبي والدكتور دالي في خدمتكم للإجابة على كافة استفساراتكم بكل رحابة صدر.',
-      en: 'Our medical team and Dr. Dali are at your complete disposal to answer all your queries.',
+      en: 'Our medical team and Doctors are at your complete disposal to answer all your queries.',
     },
     faqAskWhatsApp: {
       fr: 'Poser une question via WhatsApp',
@@ -1836,7 +1836,7 @@ export class TranslationService {
     clinicMapGoogleDirections: { fr: 'Itinéraire Google Maps', ar: 'الاتجاهات عبر خرائط Google', en: 'Google Maps directions' },
     clinicMapParking: { fr: 'Parking gratuit à proximité', ar: 'موقف سيارات مجاني قريب', en: 'Free nearby parking' },
     clinicMapAccessibility: { fr: 'Accès PMR complet', ar: 'إمكانية وصول كاملة لذوي الحركة المحدودة', en: 'Full wheelchair accessibility' },
-    clinicMapAddress: { fr: 'En face de la pharmacie Hassan II, Témara', ar: 'مقابل صيدلية الحسن الثاني، تمارة', en: 'Opposite Hassan II Pharmacy, Temara' },
+    clinicMapAddress: { fr: 'Adresse fictive — Demo City', ar: 'مقابل صيدلية الحسن الثاني، مدينة تجريبية', en: 'Fictional address — Demo City' },
     toolsCompleteArch: { fr: 'Arcade dentaire complète en 3D', ar: 'قوس الأسنان الكامل ثلاثي الأبعاد', en: 'Complete 3D dental arch' },
     toolsToothLabel: { fr: 'Dent n°{{number}}', ar: 'السن رقم {{number}}', en: 'Tooth #{{number}}' },
 
