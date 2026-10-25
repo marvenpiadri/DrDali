@@ -37,9 +37,9 @@ export class TranslationService {
   private readonly dictionary: Translations = {
     // Brand
     brandName: {
-      fr: 'Demo',
-      ar: 'Demo',
-      en: 'Demo',
+      fr: 'Demo for Dentists',
+      ar: 'Demo for Dentists',
+      en: 'Demo for Dentists',
     },
     brandTagline: {
       fr: 'La confiance dans chaque sourire',
@@ -54,7 +54,7 @@ export class TranslationService {
     clinicAddress: {
       fr: 'Avenue Hassan II, Résidence Al Manar, Témara, Maroc',
       ar: 'شارع الحسن الثاني، إقامة المنار، تمارة، المغرب',
-      en: 'Demo Avenue, Témara, Morocco',
+      en: 'Avenue Hassan II, Résidence Al Manar, Témara, Morocco',
     },
     openingHours: {
       fr: 'Lun - Ven : 09:00 - 19:30 • Sam : 09:00 - 14:00',
