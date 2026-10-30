@@ -1,209 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Home Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://centredentairedali.ma/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://centredentairedali.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/" />
   </url>
-
-  <!-- 3D Dental Atlas Home -->
   <url>
-    <loc>https://centredentairedali.ma/atlas</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://centredentairedali.com/atlas/inside-a-tooth</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/inside-a-tooth" />
   </url>
-
-  <!-- Dental Medical Dictionary -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/dictionary</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/dictionary?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/dictionary?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/dictionary?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/dictionary"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/dictionary</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/dictionary?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/dictionary?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/dictionary?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/dictionary" />
   </url>
-
-  <!-- 3D Tooth Explorer -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/tooth-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/tooth-explorer?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/tooth-explorer?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/tooth-explorer?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/tooth-explorer"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/tooth-explorer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/tooth-explorer?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/tooth-explorer?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/tooth-explorer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/tooth-explorer" />
   </url>
-
-  <!-- 3D Dental Arch -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/dental-arch</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/dental-arch?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/dental-arch?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/dental-arch?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/dental-arch"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/dental-arch</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/dental-arch?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/dental-arch?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/dental-arch?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/dental-arch" />
   </url>
-
-  <!-- 3D Tooth Decay -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/tooth-decay</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/tooth-decay?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/tooth-decay?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/tooth-decay?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/tooth-decay"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/tooth-decay</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/tooth-decay?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/tooth-decay?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/tooth-decay?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/tooth-decay" />
   </url>
-
-  <!-- 3D Gum Disease -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/gum-disease</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/gum-disease?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/gum-disease?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/gum-disease?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/gum-disease"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/gum-disease</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/gum-disease?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/gum-disease?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/gum-disease?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/gum-disease" />
   </url>
-
-  <!-- 3D Root Canal -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/root-canal</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/root-canal?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/root-canal?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/root-canal?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/root-canal"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/root-canal</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/root-canal?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/root-canal?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/root-canal?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/root-canal" />
   </url>
-
-  <!-- 3D Implant Explorer -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/implant-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/implant-explorer?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/implant-explorer?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/implant-explorer?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/implant-explorer"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/implant-explorer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/implant-explorer?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/implant-explorer?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/implant-explorer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/implant-explorer" />
   </url>
-
-  <!-- 3D Crown Explorer -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/crown-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/crown-explorer?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/crown-explorer?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/crown-explorer?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/crown-explorer"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/crown-explorer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/crown-explorer?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/crown-explorer?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/crown-explorer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/crown-explorer" />
   </url>
-
-  <!-- 3D Veneer Explorer -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/veneer-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/veneer-explorer?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/veneer-explorer?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/veneer-explorer?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/veneer-explorer"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/veneer-explorer</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/veneer-explorer?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/veneer-explorer?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/veneer-explorer?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/veneer-explorer" />
   </url>
-
-  <!-- 3D Wisdom Teeth -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/wisdom-teeth</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/wisdom-teeth?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/wisdom-teeth?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/wisdom-teeth?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/wisdom-teeth"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/wisdom-teeth</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/wisdom-teeth" />
   </url>
-
-  <!-- 3D Jaw Anatomy -->
   <url>
-    <loc>https://centredentairedali.ma/atlas/jaw-anatomy</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/atlas/jaw-anatomy?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/atlas/jaw-anatomy?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/atlas/jaw-anatomy?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/atlas/jaw-anatomy"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/atlas/jaw-anatomy</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/jaw-anatomy" />
   </url>
-
-  <!-- 3D Tools Hub -->
   <url>
-    <loc>https://centredentairedali.ma/tools</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/tools?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/tools?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/tools?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/tools"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/tools</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/tools?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/tools?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/tools?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/tools" />
   </url>
-
-  <!-- Medical Doctors & Specialists -->
   <url>
-    <loc>https://centredentairedali.ma/dr-dali</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/dr-dali?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/dr-dali?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/dr-dali?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/dr-dali"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/clinic</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/clinic?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/clinic?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/clinic?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/clinic" />
   </url>
-
-  <!-- Clinic Facilities -->
   <url>
-    <loc>https://centredentairedali.ma/clinic</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/clinic?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/clinic?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/clinic?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/clinic"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://centredentairedali.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/contact?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/contact?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/contact?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/contact" />
   </url>
-
-  <!-- Contact & Appointments -->
-  <url>
-    <loc>https://centredentairedali.ma/contact</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.ma/contact?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.ma/contact?lang=ar"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.ma/contact?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.ma/contact"/>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
 </urlset>
