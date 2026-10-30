@@ -13,8 +13,8 @@ export interface ConsultationReason {
   providedIn: 'root',
 })
 export class ClinicService {
-  readonly clinicName = 'Demo';
-  readonly doctorName = 'Dr. Adam Bennett';
+  readonly clinicName = 'Centre Dentaire Dali';
+  readonly doctorName = 'Dr. Youssef Dali';
   readonly city = 'Témara';
   readonly country = 'Morocco';
   readonly address = 'Avenue Hassan II, Résidence Al Manar, Témara, Morocco';
@@ -72,56 +72,56 @@ export class ClinicService {
       label: 'Première consultation & Bilan global',
       description: 'Bilan bucco-dentaire complet, examen radiologique et plan de traitement personnalisé.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. Je souhaite planifier une première consultation pour un bilan bucco-dentaire complet à Témara.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je souhaite planifier une première consultation pour un bilan bucco-dentaire complet à Témara.',
     },
     {
       id: 'emergency',
       label: 'Urgence dentaire (Douleur / Gonflement / Choc)',
       description: 'Prise en charge rapide pour soulager une douleur aiguë, un abcès ou une dent fracturée.',
       urgency: 'urgence',
-      defaultMessage: 'URGENCE DENTAIRE : Bonjour Demo. Je souffre d\'une urgence dentaire aiguë (douleur intense/gonflement/traumatisme) et j\'ai besoin d\'une prise en charge rapide.',
+      defaultMessage: 'URGENCE DENTAIRE : Bonjour Centre Dentaire Dali. Je souffre d\'une urgence dentaire aiguë (douleur intense/gonflement/traumatisme) et j\'ai besoin d\'une prise en charge rapide.',
     },
     {
       id: 'orthodontics',
       label: 'Orthodontie & Aligneurs Invisibles',
       description: 'Alignement dentaire esthétique pour adultes et adolescents, gouttières transparentes.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. Je souhaite un avis spécialisé concernant un alignement dentaire ou un traitement par gouttières invisibles.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je souhaite un avis spécialisé concernant un alignement dentaire ou un traitement par gouttières invisibles.',
     },
     {
       id: 'implants',
       label: 'Implantologie & Remplacement de dents',
       description: 'Remplacement de dents manquantes par implants en titane et couronnes céramiques.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. Je souhaite une consultation concernant la pose d\'implants dentaires ou le remplacement de dents absentes.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je souhaite une consultation concernant la pose d\'implants dentaires ou le remplacement de dents absentes.',
     },
     {
       id: 'endodontics',
       label: 'Soin de carie / Traitement de racine',
       description: 'Traitement conservateur, dévitalisation et restauration sous microscope.',
       urgency: 'prioritaire',
-      defaultMessage: 'Bonjour Demo. Je ressens une douleur/sensibilité sur une dent et je souhaite prendre rendez-vous pour un diagnostic et soin conservateur.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je ressens une douleur/sensibilité sur une dent et je souhaite prendre rendez-vous pour un diagnostic et soin conservateur.',
     },
     {
       id: 'pedodontics',
       label: 'Soins pour Enfant (Pédodontie)',
       description: 'Prise en charge douce, prévention des caries et accompagnement bienveillant pour enfants.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. Je souhaite prendre rendez-vous pour mon enfant pour une consultation de contrôle et soins en pédodontie.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je souhaite prendre rendez-vous pour mon enfant pour une consultation de contrôle et soins en pédodontie.',
     },
     {
       id: 'aesthetics',
       label: 'Esthétique du sourire (Facettes / Éclaircissement)',
       description: 'Harmonisation du sourire, facettes céramiques haute précision et éclaircissement clinique.',
       urgency: 'normale',
-      defaultMessage: 'Bonjour Demo. J\'aimerais planifier une consultation dédiée à l\'esthétique de mon sourire (facettes / éclaircissement).',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. J\'aimerais planifier une consultation dédiée à l\'esthétique de mon sourire (facettes / éclaircissement).',
     },
     {
       id: 'periodontics',
       label: 'Parodontologie (Saignement / Déchaussement)',
       description: 'Soins des gencives, surfaçage radiculaire et stabilisation osseuse.',
       urgency: 'prioritaire',
-      defaultMessage: 'Bonjour Demo. Je constate des saignements de gencives / mobilité et souhaite un examen parodontal complet.',
+      defaultMessage: 'Bonjour Centre Dentaire Dali. Je constate des saignements de gencives / mobilité et souhaite un examen parodontal complet.',
     },
   ];
 
@@ -159,7 +159,7 @@ export class ClinicService {
     if (customNote && customNote.trim()) {
       text += `\nPrécisions : ${customNote.trim()}`;
     }
-    text += `\n\n(Demo message — not a real appointment request)`;
+    text += `\n\n`;
 
     const cleanNumber = this.whatsappPhone.replace(/[^0-9]/g, '');
     return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`;
