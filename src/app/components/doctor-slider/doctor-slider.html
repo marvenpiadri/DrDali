@@ -16,10 +16,82 @@
       @for (doc of doctors; track doc.id) {
         <article class="slide-card">
           <div class="doctor-slide-grid">
-            <div class="doctor-portrait" aria-hidden="true"></div>
+            <div class="doctor-portrait-column">
+              <div class="doctor-portrait" aria-hidden="true"></div>
+              <div class="doctor-portrait-meta">
+                <span class="portrait-index">0{{ currentIndex() + 1 }} <span>/ 0{{ doctors.length }}</span></span>
+                <span class="portrait-location">
+                  <span class="material-icons" aria-hidden="true">location_on</span>
+                  Témara, Maroc
+                </span>
+              </div>
+            </div>
+
             <div class="doctor-information-card">
-              <span class="doctor-kicker">Notre équipe</span>
-              <h3 class="doctor-name">{{ doc.name }}</h3>
+              <div class="doctor-information-topline">
+                <span class="doctor-kicker">L'équipe médicale</span>
+                @if (doc.languages.length) {
+                  <span class="doctor-languages">
+                    <span class="material-icons" aria-hidden="true">language</span>
+                    {{ doc.languages.join(' · ') }}
+                  </span>
+                }
+              </div>
+
+              <header class="doctor-identity">
+                <h3 class="doctor-name">{{ doc.name }}</h3>
+                @if (getTitle(doc)) {
+                  <p class="doctor-title">{{ getTitle(doc) }}</p>
+                }
+              </header>
+
+              @if (getBio(doc)) {
+                <section class="doctor-detail-section">
+                  <h4 class="doctor-section-label">Approche & parcours</h4>
+                  <p class="doctor-bio">{{ getBio(doc) }}</p>
+                </section>
+              }
+
+              @if (getQuote(doc)) {
+                <blockquote class="doctor-quote">“{{ getQuote(doc) }}”</blockquote>
+              }
+
+              @if (getSpecialties(doc).length) {
+                <section class="doctor-detail-section doctor-specialties-section">
+                  <h4 class="doctor-section-label">Domaines d'intervention</h4>
+                  <div class="doctor-specialties-grid">
+                    @for (spec of getSpecialties(doc); track spec) {
+                      <div class="doctor-specialty">
+                        <span class="material-icons" aria-hidden="true">arrow_outward</span>
+                        <span>{{ spec }}</span>
+                      </div>
+                    }
+                  </div>
+                </section>
+              }
+
+              @if (getDiplomas(doc).length) {
+                <section class="doctor-detail-section doctor-diplomas-section">
+                  <h4 class="doctor-section-label">Diplômes & formations</h4>
+                  <div class="doctor-diplomas">
+                    @for (dip of getDiplomas(doc); track dip) {
+                      <div class="doctor-diploma">
+                        <span class="material-icons" aria-hidden="true">school</span>
+                        <span>{{ dip }}</span>
+                      </div>
+                    }
+                  </div>
+                </section>
+              }
+
+              <div class="doctor-card-footer">
+                <p class="doctor-footer-note">Un accompagnement adapté à chaque patient.</p>
+                <button type="button" (click)="bookWithDoctor(doc)" class="doctor-book-button">
+                  <app-whatsapp-icon [size]="16" extraClass="doctor-whatsapp-icon" />
+                  <span>{{ i18n.translate('btnBookDoctor') }}</span>
+                  <span class="material-icons doctor-book-arrow" aria-hidden="true">arrow_forward</span>
+                </button>
+              </div>
             </div>
           </div>
         </article>
