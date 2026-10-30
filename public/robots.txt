@@ -1,8 +1,5 @@
-# Allow all search engine crawlers
 User-agent: *
 Allow: /
-
-# Disallow admin path
 Disallow: /admin/
 
 Sitemap: https://centredentairedali.com/sitemap.xml
