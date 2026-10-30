@@ -23,133 +23,31 @@ export class ClinicService {
   readonly googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=Avenue+Hassan+II+Residence+Al+Manar+Temara+Morocco';
   readonly openingHours = 'Sample hours: Monday–Friday, 09:00–17:00';
 
-  // The two doctors of Demo
+  // Doctor profiles intentionally contain names only until the clinic supplies approved biographies and portraits.
   readonly doctors: Doctor[] = [
     {
-      id: 'demo-doctor-adam',
-      name: 'Dr. Adam Bennett',
-      title: {
-        fr: 'Chirurgien-Dentiste Fondateur',
-        ar: 'جراح أسنان ومؤسس المركز',
-        en: 'Founder & Dental Surgeon',
-      },
-      specialties: {
-        fr: [
-          'Implantologie & Micro-Chirurgie',
-          'Parodontologie & Régénération Osseuse',
-          'Réhabilitation Esthétique & Facettes',
-          'Endodontie Microscopique',
-        ],
-        ar: [
-          'زراعة الأسنان والجراحة الدقيقة',
-          'علاج اللثة وتجديد العظام',
-          'تجميل الابتسامة والعدسات الخزفية',
-          'علاج الجذور بالميكروسكوب',
-        ],
-        en: [
-          'Implantology & Micro-Surgery',
-          'Periodontics & Bone Regeneration',
-          'Aesthetic Rehabilitation & Veneers',
-          'Microscopic Endodontics',
-        ],
-      },
-      diplomas: {
-        fr: [
-          'Diplôme d\'État de Docteur en Chirurgie Dentaire',
-          'Certificat d\'Études Supérieures en Implantologie Orale',
-          'Formation Internationale en Chirurgie Parodontale et Muco-Gingivale',
-          'Membre des Sociétés Scientifiques d\'Implantologie & Parodontologie',
-        ],
-        ar: [
-          'دبلوم الدولة في جراحة الأسنان',
-          'شهادة الدراسات العليا في زراعة الأسنان',
-          'تكوين دولي في جراحة اللثة المتقدمة',
-          'عضو الجمعيات العلمية لزراعة الأسنان وعلاج اللثة',
-        ],
-        en: [
-          'State Diploma in Dental Surgery',
-          'Advanced Graduate Certificate in Oral Implantology',
-          'International Training in Periodontal and Mucogingival Surgery',
-          'Member of Scientific Societies of Implantology and Periodontology',
-        ],
-      },
-      bio: {
-        fr: 'Animé par la conviction que la dentisterie moderne repose sur la micro-dentisterie adhésive, la précision numérique et une écoute bienveillante, Dr. Adam Bennett met un point d\'honneur à préserver au maximum les tissus dentaires naturels.',
-        ar: 'مسترشداً بقناعة أن طب الأسنان الحديث يقوم على الدقة الرقمية والعلاجات المحافظة، يحرص د. آدم بنِت على الحفاظ على الأنسجة الطبيعية للأسنان وتقديم رعاية مبنية على الراحة والثقة.',
-        en: 'Driven by the conviction that modern dentistry is rooted in adhesive micro-dentistry, digital precision, and compassionate listening, Dr. Adam Bennett emphasizes preserving natural tooth structure whenever possible.',
-      },
-      quote: {
-        fr: 'La confiance ne se réclame pas : elle se construit par la rigueur de chaque geste et le respect du bien-être du patient.',
-        ar: 'الثقة لا تُطلب بل تُبنى بدقة كل حركة واحترام راحة المريض وسلامته.',
-        en: 'Trust is not claimed: it is built through the precision of every action and deep respect for patient well-being.',
-      },
-      languages: ['Français', 'Arabe', 'Anglais'],
-      initials: 'AB',
-      portraitUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
-      colorAccent: 'emerald',
+      id: 'dr-youssef-dali',
+      name: 'Dr. Youssef Dali',
+      title: {fr: '', ar: '', en: ''},
+      specialties: {fr: [], ar: [], en: []},
+      diplomas: {fr: [], ar: [], en: []},
+      bio: {fr: '', ar: '', en: ''},
+      quote: {fr: '', ar: '', en: ''},
+      languages: [],
+      initials: '',
+      colorAccent: '',
     },
     {
-      id: 'demo-doctor-maya',
-      name: 'Dr. Maya Laurent',
-      title: {
-        fr: 'Chirurgien-Dentiste Associée',
-        ar: 'جراحة أسنان مشاركة بالمركز',
-        en: 'Associate Dental Surgeon',
-      },
-      specialties: {
-        fr: [
-          'Orthodontie par Aligneurs Invisibles',
-          'Pédodontie & Soins des Enfants',
-          'Dentisterie Conservatrice Mini-Invasive',
-          'Éclaircissement & Esthétique Douce',
-        ],
-        ar: [
-          'تقويم الأسنان بالصفائح الشفافة (الإنفيزلاين)',
-          'طب أسنان الأطفال والناشئة',
-          'العلاجات التحفظية اللطيفة',
-          'تبييض الأسنان والعلاجات التجميلية',
-        ],
-        en: [
-          'Clear Aligner Orthodontics',
-          'Pediatric Dentistry',
-          'Minimally Invasive Conservative Care',
-          'Teeth Whitening & Smile Aesthetics',
-        ],
-      },
-      diplomas: {
-        fr: [
-          'Diplôme d\'État de Docteur en Chirurgie Dentaire',
-          'Certification Spécialisée en Orthodontie par Aligneurs Transparents',
-          'Formation Approfondie en Pédodontie et Gestion de l\'Anxiété Dentaire',
-          'Pratique de la Dentisterie Mini-Invasive et Préventive',
-        ],
-        ar: [
-          'دبلوم الدولة في جراحة الأسنان',
-          'شهادة معتمدة في تقويم الأسنان الشفاف',
-          'تكوين متقدم في طب أسنان الأطفال وإدارة قلق العلاج',
-          'ممارسة طب الأسنان التحفظي الوقائي',
-        ],
-        en: [
-          'State Diploma in Dental Surgery',
-          'Certified Specialist in Clear Aligner Orthodontics',
-          'Advanced Training in Pediatric Dentistry & Dental Anxiety Management',
-          'Practice of Minimally Invasive & Preventive Dentistry',
-        ],
-      },
-      bio: {
-        fr: 'Passionnée par l\'harmonie des sourires chez l\'adulte et la prise en charge précoce et douce chez l\'enfant, Dr. Maya Laurent applique des approches modernes d\'alignement invisible et met en confiance les patients de tous âges.',
-        ar: 'شغوفة بتناسق الابتسامات لدى البالغين والعناية اللطيفة والمبكرة بأسنان الأطفال، تطبق د. مايا لوران أحدث تقنيات التقويم الشفاف وتبث الاطمئنان لدى المرضى من جميع الأعمار.',
-        en: 'Passionate about smile harmony for adults and gentle, early interceptive care for children, Dr. Maya Laurent applies modern clear aligner technology while creating an anxiety-free atmosphere for all patients.',
-      },
-      quote: {
-        fr: 'Un beau sourire commence dès le plus jeune âge dans la douceur et la sérénité.',
-        ar: 'الابتسامة الجميلة تبدأ منذ الصغر في جو من اللطف والهدوء التام.',
-        en: 'A radiant smile begins early in an atmosphere of gentleness and reassurance.',
-      },
-      languages: ['Français', 'Arabe', 'Anglais'],
-      initials: 'ML',
-      portraitUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
-      colorAccent: 'amber',
+      id: 'dr-yassine-ibrahimi',
+      name: 'Dr. Yassine Ibrahimi',
+      title: {fr: '', ar: '', en: ''},
+      specialties: {fr: [], ar: [], en: []},
+      diplomas: {fr: [], ar: [], en: []},
+      bio: {fr: '', ar: '', en: ''},
+      quote: {fr: '', ar: '', en: ''},
+      languages: [],
+      initials: '',
+      colorAccent: '',
     },
   ];
 
