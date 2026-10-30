@@ -1,3 +1,21 @@
 <div class="logo-wrapper" [class]="containerClass()">
-  <span class="logo-fallback-brand" [style.fontSize.px]="size() * 0.62">Demo</span>
+  <img
+    class="logo-img"
+    [src]="logoSrc()"
+    [style.height.px]="size()"
+    [alt]="'Centre Dentaire Dali'"
+    (error)="onImageError()"
+    [hidden]="hasImageError()"
+  />
+  @if (hasImageError()) {
+    <span class="logo-fallback-label" [style.fontSize.px]="size() * 0.48">CDD</span>
+  }
+  @if (showText()) {
+    <span class="logo-fallback-copy">
+      <span class="logo-fallback-label">C.D.Dali</span>
+      @if (showSubtitle()) {
+        <span class="logo-fallback-subtitle">Centre Dentaire Dali</span>
+      }
+    </span>
+  }
 </div>
