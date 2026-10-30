@@ -37,9 +37,9 @@ export class TranslationService {
   private readonly dictionary: Translations = {
     // Brand
     brandName: {
-      fr: 'Demo for Dentists',
-      ar: 'Demo for Dentists',
-      en: 'Demo for Dentists',
+      fr: 'Centre Dentaire Dali',
+      ar: 'مركز دالي لطب الأسنان',
+      en: 'Centre Dentaire Dali',
     },
     brandTagline: {
       fr: 'La confiance dans chaque sourire',
