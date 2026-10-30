@@ -20,3 +20,32 @@
 :host-context(.dark) .dot-indicator.is-current{background:#f5f5f5}
 @media(max-width:640px){.doctor-slide-grid{grid-template-columns:minmax(0,1fr);gap:1rem;min-height:0}.doctor-portrait{min-height:260px;aspect-ratio:16/9}.doctor-information-card{padding:1rem .25rem}.doctor-name{font-size:1.8rem}}
 @media(prefers-reduced-motion:reduce){.slide-wrapper,.dot-indicator{transition:none}}
+/* Preserve the full doctor profile-card layout while portraits are pending. */
+.doctor-portrait-column{display:flex;min-width:0;flex-direction:column;gap:1rem}
+.doctor-portrait{min-height:420px;aspect-ratio:4/5;background:var(--surface-muted,#f5f5f5);border:1px solid var(--border-subtle,#e5e5e5)}
+.doctor-portrait-meta{display:flex;align-items:center;justify-content:space-between;gap:.75rem;color:var(--text-tertiary,#737373);font-size:.75rem}
+.portrait-index{font-weight:800;letter-spacing:.04em}
+.portrait-index span{color:var(--text-tertiary,#a3a3a3);font-weight:500}
+.portrait-location,.doctor-information-topline,.doctor-languages{display:flex;align-items:center;gap:.4rem}
+.doctor-information-card{display:flex;min-width:0;flex-direction:column;gap:1.25rem;padding:clamp(.5rem,1.5vw,1rem)}
+.doctor-information-topline{justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.doctor-kicker,.doctor-section-label{color:var(--text-tertiary,#737373);font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.doctor-identity{min-width:0}
+.doctor-title{margin:.35rem 0 0;color:var(--text-secondary,#626262);font-size:.9rem;font-weight:650}
+.doctor-detail-section{display:grid;gap:.55rem}
+.doctor-bio{margin:0;color:var(--text-secondary,#626262);font-size:.9rem;line-height:1.75}
+.doctor-quote{margin:0;padding:1rem 1.1rem;border-inline-start:3px solid var(--border-strong,#aaa);background:var(--surface-muted,#f5f5f5);color:var(--text-secondary,#626262);font-size:.85rem;font-style:italic;line-height:1.7}
+.doctor-specialties-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}
+.doctor-specialty{display:flex;align-items:center;gap:.55rem;padding:.7rem;border:1px solid var(--border-subtle,#e5e5e5);border-radius:.75rem;color:var(--text-primary,#171717);font-size:.78rem}
+.doctor-specialty .material-icons,.doctor-diploma .material-icons{color:var(--text-tertiary,#737373);font-size:1rem}
+.doctor-diplomas{display:grid;gap:.55rem}
+.doctor-diploma{display:flex;align-items:flex-start;gap:.55rem;color:var(--text-secondary,#626262);font-size:.8rem;line-height:1.5}
+.doctor-card-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;padding-top:1rem;border-top:1px solid var(--border-subtle,#e5e5e5)}
+.doctor-footer-note{margin:0;color:var(--text-tertiary,#737373);font-size:.78rem}
+.doctor-book-button{display:flex;align-items:center;justify-content:center;gap:.55rem;min-height:2.75rem;padding:.7rem 1rem;border:0;border-radius:.75rem;background:var(--text-primary,#171717);color:var(--surface,#fff);font-size:.75rem;font-weight:750;cursor:pointer}
+.doctor-book-button:focus-visible{outline:2px solid var(--focus-ring,#777);outline-offset:3px}
+.doctor-book-arrow{font-size:1rem}
+:host-context(.dark) .doctor-portrait{background:var(--surface-muted,#1a1a1a);border-color:var(--border-subtle,#303030)}
+:host-context(.dark) .doctor-quote{background:var(--surface-muted,#1a1a1a)}
+@media(max-width:1023px){.doctor-slide-grid{grid-template-columns:minmax(0,1fr);gap:1.5rem}.doctor-portrait-column{max-width:100%}.doctor-portrait{min-height:260px;aspect-ratio:16/7}.doctor-information-card{padding:.5rem 0}.doctor-card-footer{flex-wrap:wrap}}
+@media(max-width:560px){.doctor-specialties-grid{grid-template-columns:minmax(0,1fr)}.doctor-portrait-meta{font-size:.7rem}.doctor-card-footer{align-items:stretch;flex-direction:column}.doctor-book-button{width:100%}}
