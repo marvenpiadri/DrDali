@@ -1,115 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://centredentairedali.com/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/" />
-  </url>
-  <url>
-    <loc>https://centredentairedali.com/atlas/inside-a-tooth</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/inside-a-tooth?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/inside-a-tooth" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/dictionary</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/dictionary?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/dictionary?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/dictionary?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/dictionary" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/tooth-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/tooth-explorer?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/tooth-explorer?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/tooth-explorer?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/tooth-explorer" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/dental-arch</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/dental-arch?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/dental-arch?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/dental-arch?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/dental-arch" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/tooth-decay</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/tooth-decay?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/tooth-decay?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/tooth-decay?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/tooth-decay" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/gum-disease</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/gum-disease?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/gum-disease?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/gum-disease?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/gum-disease" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/root-canal</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/root-canal?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/root-canal?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/root-canal?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/root-canal" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/implant-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/implant-explorer?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/implant-explorer?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/implant-explorer?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/implant-explorer" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/crown-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/crown-explorer?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/crown-explorer?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/crown-explorer?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/crown-explorer" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/veneer-explorer</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/veneer-explorer?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/veneer-explorer?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/veneer-explorer?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/veneer-explorer" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/wisdom-teeth</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/wisdom-teeth?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/wisdom-teeth" />
   </url>
   <url>
     <loc>https://centredentairedali.com/atlas/jaw-anatomy</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/atlas/jaw-anatomy?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/atlas/jaw-anatomy" />
   </url>
   <url>
     <loc>https://centredentairedali.com/tools</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/tools?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/tools?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/tools?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/tools" />
   </url>
   <url>
     <loc>https://centredentairedali.com/clinic</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/clinic?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/clinic?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/clinic?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/clinic" />
   </url>
   <url>
     <loc>https://centredentairedali.com/contact</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://centredentairedali.com/contact?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://centredentairedali.com/contact?lang=ar" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://centredentairedali.com/contact?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://centredentairedali.com/contact" />
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/permanent-dentition</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/dental-anatomy</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/supporting-structures</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/periodontitis</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/bone-architecture</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/dental-implants</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/pediatric-dentistry</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/anatomical-relationships</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/inside-a-tooth</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/enamel</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/tooth-types</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/tooth-numbering</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/dental-caries</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/root-canal-anatomy</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/root-canal-treatment</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/tooth-pain</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/dental-implant</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/dental-crown</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/cosmetic-dentistry</loc>
+  </url>
+  <url>
+    <loc>https://centredentairedali.com/atlas/the-jaw</loc>
   </url>
 </urlset>
