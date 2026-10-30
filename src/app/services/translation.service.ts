@@ -1104,9 +1104,9 @@ export class TranslationService {
       en: 'Dedicated to modern clear aligner orthodontics, preventive pediatric dentistry, and anxiety-free patient care.',
     },
     clinicPageTitle: {
-      fr: 'Le Demo à Témara',
-      ar: 'Demo في تمارة',
-      en: 'Demo in Témara',
+      fr: 'Le Cabinet',
+      ar: 'العيادة',
+      en: 'The Clinic',
     },
     clinicPageSubtitle: {
       fr: 'Plateau technique de dernière génération conçu pour la sécurité, l\'asepsie chirurgicale et le confort absolu de chaque patient.',
