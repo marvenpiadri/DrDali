@@ -172,7 +172,7 @@ export class SeoService {
       return { title: customTitle, description: customDescription };
     }
 
-    const pages: Array<{ path: string; title: string; description: string }> = [
+    const pages: { path: string; title: string; description: string }[] = [
       { path: '/atlas/dictionary', title: 'Dental Glossary', description: 'A multilingual reference for dental anatomy, conditions, terminology, and treatments.' },
       { path: '/atlas/tooth-explorer', title: '3D Tooth Anatomy Explorer', description: 'Explore permanent tooth anatomy and its internal structures in an interactive 3D viewer.' },
       { path: '/atlas/dental-arch', title: '3D Dental Arch', description: 'Explore upper and lower dental arches, tooth alignment, and occlusion in 3D.' },
