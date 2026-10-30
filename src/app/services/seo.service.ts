@@ -56,7 +56,7 @@ export class SeoService {
     this.metaService.updateTag({ property: 'og:description', content: description });
     this.metaService.updateTag({ property: 'og:url', content: fullUrl });
     this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:image', content: `${this.baseUrl}/assets/favi-icon.png` });
+    this.metaService.updateTag({ property: 'og:image', content: `${this.baseUrl}/assets/facebook-share.png` });
     this.metaService.updateTag({ property: 'og:image:alt', content: 'Centre Dentaire Dali' });
     this.metaService.updateTag({ property: 'og:image:type', content: 'image/png' });
     this.metaService.updateTag({ property: 'og:locale', content: lang === 'ar' ? 'ar_MA' : lang === 'en' ? 'en_US' : 'fr_FR' });
@@ -65,7 +65,7 @@ export class SeoService {
     this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.updateTag({ name: 'twitter:title', content: title });
     this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: `${this.baseUrl}/assets/favi-icon.png` });
+    this.metaService.updateTag({ name: 'twitter:image', content: `${this.baseUrl}/assets/facebook-share.png` });
 
     // Canonical & Hreflang Link tags
     this.updateCanonicalAndHreflang(url);
