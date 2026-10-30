@@ -67,9 +67,14 @@
 
 .logo-brand-name {
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -.035em;
   line-height: 1;
   text-transform: none;
 }
+
+.logo-brand-name { display: inline-flex; align-items: baseline; gap: 0; }
+.logo-brand-prefix { color: #059669; }
+.logo-brand-surname { color: var(--text-primary); }
+.dark .logo-brand-prefix { color: #34d399; }
