@@ -18,8 +18,8 @@ export class ClinicService {
   readonly city = 'Témara';
   readonly country = 'Morocco';
   readonly address = 'Avenue Hassan II, Résidence Al Manar, Témara, Morocco';
-  readonly phone = '+212 600 000 000';
-  readonly whatsappPhone = '000000000000'; // WhatsApp contact gateway
+  readonly phone = '+212 610 405 164';
+  readonly whatsappPhone = '212610405164'; // Official clinic WhatsApp contact
   readonly googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=Avenue+Hassan+II+Residence+Al+Manar+Temara+Morocco';
   readonly openingHours = 'Sample hours: Monday–Friday, 09:00–17:00';
 
