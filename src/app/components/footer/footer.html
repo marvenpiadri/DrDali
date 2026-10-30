@@ -6,7 +6,10 @@
       
       <!-- Brand & Philosophy -->
       <div class="footer-brand">
-        <app-logo [size]="48" [showText]="true" [showSubtitle]="true" />
+        <a class="footer-brand-link" routerLink="/" [attr.aria-label]="'brandName' | translate">
+          <span class="footer-app-icon"><img src="/assets/facebook-share.png" alt="" /></span>
+          <span class="footer-brand-name">C.D.Dali</span>
+        </a>
         <p class="footer-description">
           {{ 'footerTaglineDesc' | translate }}
         </p>
@@ -15,7 +18,7 @@
         </div>
         <a
           class="footer-social-link"
-          href="https://instagram.centredentairedali.com"
+          href="https://www.instagram.com/centre_dentaire_dali/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Centre Dentaire Dali on Instagram"
