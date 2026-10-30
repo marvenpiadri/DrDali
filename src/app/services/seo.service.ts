@@ -198,9 +198,9 @@ export class SeoService {
     const page = pages.find((item) => url.includes(item.path));
     const title = page
       ? `${page.title} | Centre Dentaire Dali`
-      : 'Centre Dentaire Dali | Cabinet Dentaire à Témara';
+      : 'Centre Dentaire Dali | Cabinet Dentaire';
     const description = page?.description
-      ?? 'Le Centre Dentaire Dali vous accueille pour vos soins dentaires à Témara. Découvrez le cabinet, son équipe et nos ressources pédagogiques en 3D.';
+      ?? 'Découvrez le Centre Dentaire Dali, son équipe et ses ressources pédagogiques en 3D dédiées à la santé bucco-dentaire.';
 
     return { title, description };
   }
