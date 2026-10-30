@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal, inject, output} fr
 import {FormsModule} from '@angular/forms';
 import {TranslationService} from '../../services/translation.service';
 import {TranslatePipe} from '../../pipes/translate.pipe';
+import {WhatsAppIconComponent} from '../whatsapp-icon/whatsapp-icon';
 
 export type FaqCategory = 'all' | 'general' | 'implants' | 'care' | 'aesthetics' | 'emergencies';
 
@@ -17,7 +18,7 @@ export interface FaqItem {
   selector: 'app-faq-accordion',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FormsModule, TranslatePipe],
+  imports: [FormsModule, TranslatePipe, WhatsAppIconComponent],
   templateUrl: './faq-accordion.html',
   styleUrl: './faq-accordion.css',
 })
