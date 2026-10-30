@@ -13,7 +13,7 @@ export class SeoService {
   private readonly router = inject(Router);
   private readonly i18n = inject(TranslationService);
 
-  private readonly baseUrl = 'https://drdali.marvenpiadri.workers.dev';
+  private readonly baseUrl = 'https://centredentairedali.com';
   private faqLdScriptElement: HTMLScriptElement | null = null;
 
   init() {
@@ -46,22 +46,26 @@ export class SeoService {
 
     // Standard Meta Tags (No meta keywords per current search engine standards)
     this.metaService.updateTag({ name: 'description', content: description });
-    this.metaService.updateTag({ name: 'author', content: 'Demo for Dentists' });
+    this.metaService.updateTag({ name: 'author', content: 'Centre Dentaire Dali' });
     this.metaService.updateTag({ name: 'robots', content: 'index, follow, max-image-preview:large' });
 
     // OpenGraph / Facebook Meta
     const fullUrl = `${this.baseUrl}${url || '/'}`;
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Demo for Dentists' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Centre Dentaire Dali' });
     this.metaService.updateTag({ property: 'og:title', content: title });
     this.metaService.updateTag({ property: 'og:description', content: description });
     this.metaService.updateTag({ property: 'og:url', content: fullUrl });
     this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:image', content: `${this.baseUrl}/assets/dali_logo.png` });
+    this.metaService.updateTag({ property: 'og:image:alt', content: 'Centre Dentaire Dali' });
+    this.metaService.updateTag({ property: 'og:image:type', content: 'image/png' });
     this.metaService.updateTag({ property: 'og:locale', content: lang === 'ar' ? 'ar_MA' : lang === 'en' ? 'en_US' : 'fr_FR' });
 
     // Twitter Meta
     this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.updateTag({ name: 'twitter:title', content: title });
     this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: `${this.baseUrl}/assets/dali_logo.png` });
 
     // Canonical & Hreflang Link tags
     this.updateCanonicalAndHreflang(url);
@@ -185,18 +189,18 @@ export class SeoService {
       { path: '/atlas/wisdom-teeth', title: 'Wisdom Teeth Explorer', description: 'Explore impacted wisdom teeth and their anatomical relationships in 3D.' },
       { path: '/atlas/jaw-anatomy', title: 'Jaw Anatomy in 3D', description: 'Explore maxillary and mandibular anatomy in an interactive 3D viewer.' },
       { path: '/atlas', title: 'Interactive 3D Dental Atlas', description: 'Explore interactive 3D dental anatomy, conditions, and treatment explanations.' },
-      { path: '/dr-dali', title: 'Dental Team Demo', description: 'Preview a sample dental team presentation for a practice website.' },
-      { path: '/clinic', title: 'Practice Preview', description: 'Preview a sample dental practice website and its facilities presentation.' },
-      { path: '/contact', title: 'Contact & Location Preview', description: 'Preview a sample dental practice contact and location page.' },
+      
+      { path: '/clinic', title: 'Le Cabinet & Équipements', description: 'Découvrez le Centre Dentaire Dali, son environnement de soins et ses équipements à Témara.' },
+      { path: '/contact', title: 'Contact & Accès', description: 'Retrouvez les coordonnées et les informations d’accès au Centre Dentaire Dali à Témara.' },
       { path: '/tools', title: 'Dental Tools & Simulators', description: 'Explore interactive dental education tools and clinical learning simulators.' },
     ];
 
     const page = pages.find((item) => url.includes(item.path));
     const title = page
-      ? `${page.title} | Demo for Dentists`
-      : 'Demo for Dentists | Interactive Dental Atlas';
+      ? `${page.title} | Centre Dentaire Dali`
+      : 'Centre Dentaire Dali | Cabinet Dentaire à Témara';
     const description = page?.description
-      ?? 'A demonstration dental website featuring interactive 3D anatomy, treatment explanations, and patient education tools.';
+      ?? 'Le Centre Dentaire Dali vous accueille pour vos soins dentaires à Témara. Découvrez le cabinet, son équipe et nos ressources pédagogiques en 3D.';
 
     return { title, description };
   }
