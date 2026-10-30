@@ -2,10 +2,10 @@
   <div class="doctor-slider-toolbar">
     <span class="doctor-slider-count">Praticien {{ currentIndex() + 1 }} / {{ doctors.length }}</span>
     <div class="doctor-slider-navigation">
-      <button type="button" (click)="prevSlide()" class="nav-button nav-button-secondary" aria-label="Praticien précédent">
+      <button type="button" (click)="prevSlide()" class="nav-button" aria-label="Praticien précédent">
         <span class="material-icons" aria-hidden="true">arrow_back</span>
       </button>
-      <button type="button" (click)="nextSlide()" class="nav-button nav-button-primary" aria-label="Praticien suivant">
+      <button type="button" (click)="nextSlide()" class="nav-button" aria-label="Praticien suivant">
         <span class="material-icons" aria-hidden="true">arrow_forward</span>
       </button>
     </div>
@@ -16,75 +16,10 @@
       @for (doc of doctors; track doc.id) {
         <article class="slide-card">
           <div class="doctor-slide-grid">
-            <div class="doctor-portrait-column">
-              <div class="doctor-portrait" [class.has-portrait]="!!doc.portraitUrl">
-                @if (doc.portraitUrl) {
-                  <img class="doctor-portrait-image" [src]="doc.portraitUrl" [alt]="doc.name" loading="lazy" />
-                } @else {
-                  <div class="doctor-portrait-placeholder" aria-label="Portrait à ajouter">
-                    <span class="portrait-monogram">{{ doc.initials }}</span>
-                    <span class="portrait-rule"></span>
-                    <span class="portrait-caption">DEMO<br />FICTIONAL PROFILE</span>
-                  </div>
-                }
-                <span class="doctor-status"><span class="status-dot"></span> Profil fictif · Démo</span>
-              </div>
-              <div class="doctor-portrait-meta">
-                <span class="portrait-index">0{{ currentIndex() + 1 }} <span>/ 0{{ doctors.length }}</span></span>
-                <span class="portrait-location"><span class="material-icons" aria-hidden="true">location_on</span> Demo City</span>
-              </div>
-            </div>
-
+            <div class="doctor-portrait" aria-hidden="true"></div>
             <div class="doctor-information-card">
-              <div class="doctor-information-topline">
-                <span class="doctor-kicker">Équipe de démonstration</span>
-                <span class="doctor-languages"><span class="material-icons" aria-hidden="true">language</span>{{ doc.languages.join(' · ') }}</span>
-              </div>
-
-              <header class="doctor-identity">
-                <h3 class="doctor-name">{{ doc.name }}</h3>
-                <p class="doctor-title">{{ getTitle(doc) }}</p>
-              </header>
-
-              <section class="doctor-detail-section">
-                <h4 class="doctor-section-label">Profil de démonstration</h4>
-                <p class="doctor-bio">{{ getBio(doc) }}</p>
-              </section>
-
-              <blockquote class="doctor-quote">“{{ getQuote(doc) }}”</blockquote>
-
-              <section class="doctor-detail-section doctor-specialties-section">
-                <h4 class="doctor-section-label">Domaines d'intervention</h4>
-                <div class="doctor-specialties-grid">
-                  @for (spec of getSpecialties(doc); track spec) {
-                    <div class="doctor-specialty">
-                      <span class="material-icons" aria-hidden="true">arrow_outward</span>
-                      <span>{{ spec }}</span>
-                    </div>
-                  }
-                </div>
-              </section>
-
-              <section class="doctor-detail-section doctor-diplomas-section">
-                <h4 class="doctor-section-label">Formations fictives</h4>
-                <div class="doctor-diplomas">
-                  @for (dip of getDiplomas(doc); track dip) {
-                    <div class="doctor-diploma">
-                      <span class="material-icons" aria-hidden="true">school</span>
-                      <span>{{ dip }}</span>
-                    </div>
-                  }
-                </div>
-              </section>
-
-              <div class="doctor-card-footer">
-                <p class="doctor-footer-note">Un accompagnement adapté à chaque patient.</p>
-                <button type="button" (click)="bookWithDoctor(doc)" class="doctor-book-button">
-                  <app-whatsapp-icon [size]="16" extraClass="doctor-whatsapp-icon" />
-                  <span>{{ i18n.translate('btnBookDoctor') }}</span>
-                  <span class="material-icons doctor-book-arrow" aria-hidden="true">arrow_forward</span>
-                </button>
-              </div>
+              <span class="doctor-kicker">Notre équipe</span>
+              <h3 class="doctor-name">{{ doc.name }}</h3>
             </div>
           </div>
         </article>
