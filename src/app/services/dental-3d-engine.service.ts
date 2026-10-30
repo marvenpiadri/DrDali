@@ -514,40 +514,6 @@ export class Dental3DEngineService {
       side: THREE.FrontSide,
       clippingPlanes: [this.clippingPlane],
     });
-
-    // Distinguish the two jaw arches instead of rendering both as the same grey bone.
-    this.materials['maxilla'] = new THREE.MeshStandardMaterial({
-      color: 0xd98f70,
-      roughness: 0.72,
-      metalness: 0,
-      side: THREE.DoubleSide,
-      clippingPlanes: [this.clippingPlane],
-    });
-    this.materials['mandible'] = new THREE.MeshStandardMaterial({
-      color: 0x6eabb2,
-      roughness: 0.72,
-      metalness: 0,
-      side: THREE.DoubleSide,
-      clippingPlanes: [this.clippingPlane],
-    });
-    this.materials['maxilla_translucent'] = new THREE.MeshStandardMaterial({
-      color: 0xd98f70,
-      roughness: 0.72,
-      transparent: true,
-      opacity: 0.56,
-      depthWrite: false,
-      side: THREE.DoubleSide,
-      clippingPlanes: [this.clippingPlane],
-    });
-    this.materials['mandible_translucent'] = new THREE.MeshStandardMaterial({
-      color: 0x6eabb2,
-      roughness: 0.72,
-      transparent: true,
-      opacity: 0.56,
-      depthWrite: false,
-      side: THREE.DoubleSide,
-      clippingPlanes: [this.clippingPlane],
-    });
   }
 
   private addGroundShadow(): void {
@@ -1052,10 +1018,6 @@ export class Dental3DEngineService {
             mat = this.materials['bone_cortical'];
           } else if (part.id === 'jaw-cancellous') {
             mat = this.materials['bone_trabecular'];
-          } else if (part.id === 'tf-bone-maxilla' || part.id === 'jaw-bone-maxilla') {
-            mat = this.boneOpacityMode === 'translucent' ? this.materials['maxilla_translucent'] : this.materials['maxilla'];
-          } else if (part.id === 'tf-bone-mandible' || part.id === 'jaw-bone-mandible') {
-            mat = this.boneOpacityMode === 'translucent' ? this.materials['mandible_translucent'] : this.materials['mandible'];
           } else if (part.id === 'fang-maintainer') {
             mat = this.materials['appliance'];
           } else if (part.id === 'fang-pulp') {
@@ -1354,7 +1316,7 @@ export class Dental3DEngineService {
               mesh.material = this.activeMode === 'xray' ? this.materials['pulp_xray'] : this.materials['pulp'];
             }
           } else if (tissue === 'bone') {
-            const isMandible = id === 'tf-bone-mandible' || id === 'jaw-bone-mandible' || id === 'jaw-cortical' || id === 'jaw-cancellous';
+            const isMandible = id === 'tf-bone-mandible' || id === 'jaw-bone-mandible' || id === 'jaw-cortical';
             const isMaxilla = id === 'tf-bone-maxilla' || id === 'jaw-bone-maxilla';
 
             let isArchVisible = true;
@@ -1370,22 +1332,10 @@ export class Dental3DEngineService {
 
             mesh.visible = true;
             mesh.renderOrder = 0;
-            if (this.activeMode === 'xray') {
-              mesh.material = this.materials['xray_bone'];
-            } else if (id === 'jaw-cortical') {
-              mesh.material = this.materials['bone_cortical'];
-            } else if (id === 'jaw-cancellous') {
-              mesh.material = this.materials['bone_trabecular'];
-            } else if (isMaxilla) {
-              mesh.material = this.boneOpacityMode === 'translucent'
-                ? this.materials['maxilla_translucent']
-                : this.materials['maxilla'];
-            } else if (isMandible) {
-              mesh.material = this.boneOpacityMode === 'translucent'
-                ? this.materials['mandible_translucent']
-                : this.materials['mandible'];
-            } else if (this.boneOpacityMode === 'translucent') {
+            if (this.boneOpacityMode === 'translucent') {
               mesh.material = this.materials['bone_translucent'];
+            } else if (this.activeMode === 'xray') {
+              mesh.material = this.materials['xray_bone'];
             } else {
               mesh.material = this.materials['bone'];
             }
