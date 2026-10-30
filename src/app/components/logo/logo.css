@@ -64,3 +64,12 @@
   .logo-fallback-label { font-size: 11px; }
   .logo-fallback-brand { font-size: .875rem; }
 }
+
+.logo-brand-name {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1;
+  text-transform: none;
+}
