@@ -1175,3 +1175,69 @@ a[role="button"][class~="bg-white"] {
 .dark a[role="button"][class~="dark:bg-white"] {
   color: #171717;
 }
+
+
+/* WhatsApp contact actions: intentionally preserve the brand green against
+   the site's monochrome palette and utility-class color overrides. */
+button:has(app-whatsapp-icon),
+a:has(app-whatsapp-icon),
+.faq-contact-button,
+.ui-emergency-whatsapp,
+a[href*="wa.me"] {
+  min-height: 2.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  padding: .8rem 1.2rem;
+  border: 1px solid #25d366 !important;
+  border-radius: .9rem;
+  color: #fff !important;
+  background: #25d366 !important;
+  font-weight: 750;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgb(37 211 102 / 20%);
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  cursor: pointer;
+}
+button:has(app-whatsapp-icon):hover,
+a:has(app-whatsapp-icon):hover,
+.faq-contact-button:hover,
+.ui-emergency-whatsapp:hover,
+a[href*="wa.me"]:hover {
+  color: #fff !important;
+  background: #1fbd5b !important;
+  border-color: #1fbd5b !important;
+  box-shadow: 0 9px 24px rgb(37 211 102 / 28%);
+  transform: translateY(-1px);
+}
+button:has(app-whatsapp-icon) app-whatsapp-icon,
+a:has(app-whatsapp-icon) app-whatsapp-icon,
+button:has(app-whatsapp-icon) app-whatsapp-icon svg,
+a:has(app-whatsapp-icon) app-whatsapp-icon svg {
+  color: #fff !important;
+}
+button:has(app-whatsapp-icon):active,
+a:has(app-whatsapp-icon):active,
+.faq-contact-button:active,
+.ui-emergency-whatsapp:active,
+a[href*="wa.me"]:active {
+  transform: translateY(0) scale(.98);
+}
+button:has(app-whatsapp-icon):focus-visible,
+a:has(app-whatsapp-icon):focus-visible,
+.faq-contact-button:focus-visible,
+.ui-emergency-whatsapp:focus-visible,
+a[href*="wa.me"]:focus-visible {
+  outline: 3px solid rgb(37 211 102 / 45%);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  button:has(app-whatsapp-icon),
+  a:has(app-whatsapp-icon),
+  .faq-contact-button,
+  .ui-emergency-whatsapp,
+  a[href*="wa.me"] {
+    transition: none;
+  }
+}
