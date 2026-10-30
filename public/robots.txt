@@ -5,5 +5,4 @@ Allow: /
 # Disallow admin path
 Disallow: /admin/
 
-# XML Sitemap Location
-Sitemap: https://centredentairedali.ma/sitemap.xml
+Sitemap: https://centredentairedali.com/sitemap.xml
