@@ -757,9 +757,9 @@ export class TranslationService {
       en: 'Switch to dark mode',
     },
     ariaWhatsAppCTA: {
-      fr: 'Contacter Demo sur WhatsApp',
-      ar: 'تواصل مع Demo عبر واتساب',
-      en: 'Contact Demo on WhatsApp',
+      fr: 'Contacter le Centre Dentaire Dali sur WhatsApp',
+      ar: 'تواصل مع مركز دالي لطب الأسنان عبر واتساب',
+      en: 'Contact Centre Dentaire Dali on WhatsApp',
     },
     dragToRotateHint: {
       fr: 'Glisser pour orbiter • Molette pour zoomer',
@@ -767,9 +767,9 @@ export class TranslationService {
       en: 'Drag to orbit • Scroll to zoom',
     },
     copyrightText: {
-      fr: 'Demo • Informations fictives de démonstration',
-      ar: 'Demo • جميع الحقوق محفوظة • الأطباء وشركاؤه',
-      en: 'Demo • Sample demonstration information',
+      fr: '© Centre Dentaire Dali • Tous droits réservés',
+      ar: '© مركز دالي لطب الأسنان • جميع الحقوق محفوظة',
+      en: '© Centre Dentaire Dali • All rights reserved',
     },
     // Home Page Specific Translations
     heroDescription: {
@@ -1157,9 +1157,9 @@ export class TranslationService {
     },
 
     footerTaglineDesc: {
-      fr: 'Plateforme d\'excellence et de pédagogie bucco-dentaire du Demo. La confiance commence par la compréhension de votre santé dentaire.',
-      ar: 'منصة التميز والتوعية بصحة الفم والأسنان لDemo. تبدأ الثقة بفهم صحة أسنانكم بدقة.',
-      en: 'Oral health excellence and educational platform of Demo. Confidence begins with understanding your dental health.',
+      fr: 'Le Centre Dentaire Dali vous accompagne avec une approche attentive et une information claire pour prendre soin de votre santé bucco-dentaire.',
+      ar: 'يرافقكم مركز دالي لطب الأسنان بعناية ومعلومات واضحة للاهتمام بصحة الفم والأسنان.',
+      en: 'Centre Dentaire Dali combines attentive dental care with clear information to help you make confident decisions about your oral health.',
     },
     footerKnowledgeChain: {
       fr: 'Connaissance → Compréhension → Confiance',
@@ -1172,9 +1172,9 @@ export class TranslationService {
       en: 'Legal Medical Disclaimer:',
     },
     footerMedicalDisclaimer: {
-      fr: 'Les informations, outils et modèles 3D publiés sur cette plateforme sont mis à disposition à titre purement éducatif et préventif sous la supervision clinique de l\'équipe du Demo. Ils ne constituent en aucun cas une téléconsultation ou un diagnostic médical personnalisé et ne sauraient se substituer à un examen clinique et radiologique approfondi réalisé au cabinet.',
-      ar: 'المعلومات، الأدوات والنماذج ثلاثية الأبعاد المنشورة على هذه المنصة مقدمة لأغراض التوعية والتعليم الوقائي تحت إشراف أطباء Demo. وهي لا تغني عن الفحص السريري والشعاعي الشامل داخل العيادة.',
-      en: 'The information, tools, and 3D models provided on this platform are for educational and preventive purposes under the clinical supervision of Demo. They do not replace a full in-person clinical and radiological examination at the clinic.',
+      fr: 'Les informations, outils et modèles 3D publiés sur cette plateforme sont mis à disposition à titre purement éducatif et préventif sous la supervision clinique de l\'équipe du Centre Dentaire Dali. Ils ne constituent en aucun cas une téléconsultation ou un diagnostic médical personnalisé et ne sauraient se substituer à un examen clinique et radiologique approfondi réalisé au cabinet.',
+      ar: 'المعلومات، الأدوات والنماذج ثلاثية الأبعاد المنشورة على هذه المنصة مقدمة لأغراض التوعية والتعليم الوقائي تحت الإشراف السريري لفريق مركز دالي لطب الأسنان. وهي لا تغني عن الفحص السريري والشعاعي الشامل داخل العيادة.',
+      en: 'The information, tools, and 3D models provided on this platform are for educational and preventive purposes under the clinical supervision of the Centre Dentaire Dali team. They do not replace a full in-person clinical and radiological examination at the clinic.',
     },
     footerLegalNotice: {
       fr: 'Mentions Légales & Déontologie',
