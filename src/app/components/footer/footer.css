@@ -39,3 +39,24 @@
   .footer-bottom { align-items: flex-start; flex-direction: column; }
   .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
 }
+
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  width: fit-content;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: .8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .16s ease;
+}
+.footer-social-link:hover { color: var(--accent-strong); }
+.footer-social-link:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+.footer-social-icon { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; }
